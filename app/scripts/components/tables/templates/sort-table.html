@@ -1,0 +1,37 @@
+<div class="btn-group" data-uib-dropdown auto-close="outsideClick">
+  <button type="button"
+          class="btn btn-default fa fa-sort-alpha-asc"
+          data-uib-tooltip="Sort Table"
+          data-tooltip-popup-delay="1000"
+          data-tooltip-trigger="mouseenter"
+          data-uib-dropdown-toggle
+          aria-expanded="false"
+          title="Sort Table"
+          aria-label="Sort Table">
+    <span class="icon-btn-label">Sort Table</span>
+  </button>
+
+  <ul class="pull-right Columns-dropdown Columns-dropdown-headings"
+      data-uib-dropdown-menu
+      role="menu">
+    <li data-ng-repeat="item in sortColumns">
+      <div class="sort-item">
+        <i class="fa fa-{{item.sort ? 'check-square-o' : 'square-o'}} fa-stack" ng-click="tsc.toggleSorting(item)"></i>
+        <span>{{ item.name | translate }}</span>
+        <span class="pull-right text-right" data-ng-if="item.sort">
+
+          <i class="fa fa-sort-alpha-asc"></i>
+          <input type="radio" aria-label="Sort Data Ascending" value="asc"
+              title="Sort Data Ascending"
+              data-ng-model="item.order" data-ng-change="tsc.updateSorting()"
+              data-ng-checked="!item.order || item.order === 'asc'"
+              name="{{ item.id }}-sort-order">
+          <i class="fa fa-sort-alpha-desc"></i>
+          <input type="radio" aria-label="Sort Data Descending" value="desc"
+                 data-ng-model="item.order" data-ng-change="tsc.updateSorting()"
+                 name="{{ item.id }}-sort-order">
+        </span>
+      </div>
+    </li>
+  </ul>
+</div>

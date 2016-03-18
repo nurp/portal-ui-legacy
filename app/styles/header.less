@@ -1,0 +1,49 @@
+#nci-header {
+  background-colour: @NCI_COLOUR;
+  height: @NCI_HEADER_HEIGHT;
+  border: none;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+
+  tr {
+    background-color: @NCI_COLOUR;
+  }
+}
+
+#gdc-header {
+    .legacy-header {
+        background: #fefefe; /* Old browsers */
+        background: -moz-linear-gradient(top, #fefefe 0%, #c7c7c7 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(top, #fefefe 0%,#c7c7c7 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom, #fefefe 0%,#c7c7c7 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    }
+    
+  &.navbar-static-top {
+    z-index: auto;
+  }
+  
+  nav {
+    background-color: #3d3d3d;
+    padding: 0 20px;
+    a {
+        color: #fff;
+         padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    a:hover {
+        background-color: #232323;
+    }
+    .active > a { 
+        background-color: #232323;
+    }    
+  }
+  
+  nav.navbar-collapse {
+    border-bottom: solid 1px #ececec;
+  }
+
+  i.fa.stock-icon {
+    text-indent: 0;
+  }
+}

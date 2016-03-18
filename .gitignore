@@ -1,0 +1,15 @@
+.idea/
+
+node_modules/
+bower_components/
+typings/
+npm-debug.log*
+.DS_Store
+
+.env
+dist/
+translations/
+.tmp/
+coverage/
+report/
+
