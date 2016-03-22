@@ -26,17 +26,25 @@
   nav {
     background-color: #3d3d3d;
     padding: 0 20px;
-    a {
-        color: #fff;
-         padding-top: 10px;
-        padding-bottom: 10px;
+    .navbar-nav {
+        a {
+            color: #fff;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        a:hover {
+            background-color: #232323;
+        }
+        .active > a { 
+            background-color: #232323;
+        } 
+        .dropdown-menu a {
+            color: #232323;
+        }   
+        .dropdown-menu a:hover {
+            color: #fff;
+        }   
     }
-    a:hover {
-        background-color: #232323;
-    }
-    .active > a { 
-        background-color: #232323;
-    }    
   }
   
   nav.navbar-collapse {

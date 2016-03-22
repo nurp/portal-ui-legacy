@@ -7,7 +7,7 @@ module ngApp.cart {
   function cartConfig($stateProvider: ng.ui.IStateProvider) {
 
     $stateProvider.state("cart", {
-      url: "/cart",
+      url: "/legacy/cart",
       controller: "CartController as cc",
       templateUrl: "cart/templates/cart.html",
       resolve: {

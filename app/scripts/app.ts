@@ -55,7 +55,7 @@ function appConfig($urlRouterProvider: ng.ui.IUrlRouterProvider,
                    ) {
   $compileProvider.debugInfoEnabled(!config.production);
   $locationProvider.html5Mode(true);
-  $urlRouterProvider.otherwise("/search/f");
+  $urlRouterProvider.otherwise("legacy/search/f");
   RestangularProvider.setBaseUrl(config.api);
   RestangularProvider.setDefaultHttpFields({
     cache: true

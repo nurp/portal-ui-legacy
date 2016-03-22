@@ -6,7 +6,7 @@ module ngApp.projects.models {
           {
             name: "ID",
             id: "annotation_id",
-            td: row => '<a href="annotations/'+row.annotation_id+'">' + row.annotation_id + '</a>',
+            td: row => '<a href="/legacy/annotations/'+row.annotation_id+'">' + row.annotation_id + '</a>',
             sortable: true,
             tdClassName: 'truncated-cell'
           },

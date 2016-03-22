@@ -1,13 +1,15 @@
 
 <header id="gdc-header" class="container-fluid navbar navbar-default navbar-static-top" role="banner">
     <div class="row legacy-header" style="padding: 15px 0;">
-        <div class="col-sm-3">
-        <a id="gdc-logo" class="navbar-brand" data-ui-sref="home" data-translate tabindex="0">GDC Data Portal</a>
+        <div class="col-md-9">
+            <div>
+                <a id="gdc-logo" class="navbar-brand" data-ui-sref="search.files" data-translate tabindex="0">GDC Data Portal</a>
+            </div>
+            <div style="font-size: 1.1rem">
+                The legacy data is the original data that uses the old genome build hg19 as produced by the original submitter. The legacy data is not actively being updated in any way. Users should migrate to the harmonized data.<br />Please visit the <a href="gdc-portal.nih.nci.gov">GDC Data Portal</a>.
+            </div>
         </div>
-        <div class="col-sm-6" style="font-size: 1.1rem">
-            The legacy data is the original data that uses the old genome build hg19 as produced by the original submitter. The legacy data is not actively being updated in any way. Users should migrate to the harmonized data.<br />Please visit the <a href="gdc-portal.nih.nci.gov">GDC Data Portal</a>.
-        </div>
-        <div class="col-sm-3">
+        <div class="col-md-3">
             <a id="gdc-logo" class="navbar-brand" data-ui-sref="home" data-translate tabindex="0">GDC Data Portal</a>
         </div>
     </div>
@@ -43,7 +45,7 @@
                     <tbody>
                     <tr>
                     <td>
-                        <a href="#" title="Data Portal" class="active">
+                        <a href="#" title="Data Portal">
                             <span class="icon icon-gdc-data-portal">
                                 <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span><span class="path9"></span><span class="path10"></span><span class="path11"></span><span class="path12"></span><span class="path13"></span><span class="path14"></span>
                             </span>
@@ -97,7 +99,7 @@
                     </tr>
                     <tr>
                     <td>
-                        <a href="" title="GDC Legacy Archive" target="_blank">
+                        <a href="" title="GDC Legacy Archive" target="_blank"  class="active">
                         <span class="icon icon-gdc-legacy-archive">
                             <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span><span class="path9"></span><span class="path10"></span>
                             </span>
@@ -139,18 +141,6 @@
                     </ul>
                     </li>
                 </ul>
-                </li>
-                <li id="header-token" data-ng-if="hc.UserService.currentUser" class="visible-xs">
-                <a data-ng-click="hc.getToken()">
-                    <i class="fa fa-file-zip-o stock-icon"></i>
-                    <span data-translate>Download Token</span>
-                </a>
-                </li>
-                <li id="header-logout" data-ng-if="hc.UserService.currentUser" class="visible-xs">
-                <a logout-button data-redirect="logout">
-                    <i class="fa fa-sign-out stock-icon"></i>
-                    <span data-translate>Logout</span>
-                </a>
                 </li>
                 <li ui-sref-active="active" class="nav-cart">
                 <a ui-sref="cart" tabindex="0">

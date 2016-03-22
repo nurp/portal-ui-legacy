@@ -198,7 +198,7 @@
               <tr data-ng-repeat="f in fc.file.metadata_files track by f.file_id">
                 <td class="truncated-cell">
                   <i class="fa fa-{{(f.access === 'controlled' ? 'lock' : 'unlock-alt')}}"></i>
-                  <a href="files/{{ ::f.file_id }}">
+                  <a href="/legacy/files/{{ ::f.file_id }}">
                     {{ ::f.file_name }}
                   </a>
                 </td>
