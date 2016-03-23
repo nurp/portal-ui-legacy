@@ -18,9 +18,11 @@ module ngApp.cart.directives {
       templateUrl: "cart/templates/remove-single.html",
       controllerAs: 'ctrl',
       controller: function($scope: ng.IScope, CartService: ICartService) {
+        disabled: boolean = false;
         this.remove = function() {
-          CartService.remove([this.file.file_id]);
-          $scope.$emit("cart-update");
+          CartService.remove([{file_id: this.file.file_id,
+                               file_name: this.file.file_name }]);
+          this.disabled = true;
         }
       }
     };
@@ -218,8 +220,12 @@ module ngApp.cart.directives {
         };
 
         this.calculateFileCount = function() {
-          this.inBoth = _.intersection(_.pluck(CartService.getFiles(), "file_id"),
-                                         _.pluck(this.files, "file_id"));
+          this.inBoth = this.files.reduce((acc, f) => {
+            if (CartService.getFiles().find(cartF => cartF.file_id === f.file_id)){
+              return acc.concat(f);
+            }
+            return acc;
+          }, []);
         }
       }
     }
@@ -241,7 +247,7 @@ module ngApp.cart.directives {
         },true);
 
         $scope.remove = function() {
-          CartService.removeFiles($scope.files);
+          CartService.remove($scope.files);
         }
 
       }
@@ -267,6 +273,34 @@ module ngApp.cart.directives {
         const files = [].concat(CartService.getFiles());
         const params = { ids: files.map(f => f.file_id) };
         const url = config.api + '/manifest?annotations=true&related_files=true';
+        const clickHandler = () => {
+          const checkProgress = scope.download(params, url, () => $element, 'POST');
+          checkProgress(inProgress, done);
+        };
+
+        $element.on('click', clickHandler);
+      }
+    };
+  }
+
+  function DownloadMetadataFiles(CartService, $uibModal, config: IGDCConfig) {
+    return {
+      restrict:"AE",
+      scope: true,
+      link: (scope, $element, $attrs) => {
+        scope.active = false;
+
+        const inProgress = () => {
+          scope.active = true;
+          $attrs.$set('disabled', 'disabled');
+        };
+        const done = () => {
+          scope.active = false;
+          $element.removeAttr('disabled');
+        };
+        const files = [].concat(CartService.getFiles());
+        const params = { ids: files.map(f => f.file_id) };
+        const url = config.api + '/data/metadata_files';
         const clickHandler = () => {
           const checkProgress = scope.download(params, url, () => $element, 'POST');
           checkProgress(inProgress, done);
@@ -366,6 +400,7 @@ module ngApp.cart.directives {
     .directive("addToCartSingleIcon", AddToCartSingleIcon)
     .directive("addToCartSingleLabelled", AddToCartSingleLabelled)
     .directive("addToCartAllDropdown", AddToCartAllDropDown)
+    .directive("downloadMetadataFiles", DownloadMetadataFiles)
     .directive("addToCartAllButton", AddToCartAllButton)
     .directive("addToCartFiltered", AddToCartFiltered)
     .directive("downloadButtonAllCart", DownloadButtonAllCart)

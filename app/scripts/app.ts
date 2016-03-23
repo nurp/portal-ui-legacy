@@ -203,6 +203,7 @@ angular
       "ngApp.projects",
       "ngApp.components",
       "ngApp.cart",
+      "ngApp.cases",
       "ngApp.notFound",
     //   "ngApp.reports",
       "templates"

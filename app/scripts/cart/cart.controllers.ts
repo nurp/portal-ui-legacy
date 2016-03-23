@@ -46,7 +46,6 @@ module ngApp.cart.controllers {
                 private CartState) {
       var data = $state.current.data || {};
       this.CartState.setActive("tabs", data.tab);
-      CoreService.setPageTitle("Cart", "(" + this.files.length + ")");
       this.lastModified = this.CartService.lastModified;
       this.cartTableConfig = CartTableModel;
 
@@ -84,6 +83,19 @@ module ngApp.cart.controllers {
         pluralDefaultText: "authorization levels"
       };
 
+      this.clinicalDataExportFilters = this.biospecimenDataExportFilters = {
+        'files.file_id': this.CartService.getFileIds()
+      };
+      // TODO: Change `clinical` to those clinical objects (5 of them) once the data model change occurs.
+      this.clinicalDataExportExpands = ['clinical'];
+      this.clinicalDataExportFileName = 'clinical.cart';
+
+      this.biospecimenDataExportExpands =
+        ['samples','samples.portions','samples.portions.analytes','samples.portions.analytes.aliquots',
+        'samples.portions.analytes.aliquots.annotations','samples.portions.analytes.annotations',
+        'samples.portions.submitter_id','samples.portions.slides','samples.portions.annotations',
+        'samples.portions.center'];
+      this.biospecimenDataExportFileName = 'biospecimen.cart';
     }
 
     getSummary() {
@@ -127,7 +139,15 @@ module ngApp.cart.controllers {
     }
 
     refresh(): void {
-      var filters = {'content': [{'content': {'field': 'files.file_id', 'value': this.CartService.getFileIds()}, 'op': 'in'}], 'op': 'and'};
+      const fileIds = this.CartService.getFileIds();
+      this.CoreService.setPageTitle("Cart", "(" + fileIds.length + ")");
+      // in the event that our cart is empty
+      if (fileIds.length < 1) {
+        this.files = {};
+        return;
+      }
+
+      var filters = {'content': [{'content': {'field': 'files.file_id', 'value': fileIds}, 'op': 'in'}], 'op': 'and'};
       var fileOptions = {
         filters: filters,
         fields: ['access', 'file_name', 'file_id', 'data_type', 'data_format', 'file_size', 'annotations.annotation_id'],
@@ -141,7 +161,7 @@ module ngApp.cart.controllers {
           this.getSummary();
         }
       });
-      this.ParticipantsService.getParticipants({filters: filters}, 'POST').then((data: IParticipants) => {
+      this.ParticipantsService.getParticipants({filters: filters, size: 0}, 'POST').then((data: IParticipants) => {
         this.participantCount = data.pagination.total;
       });
     }
@@ -201,7 +221,7 @@ module ngApp.cart.controllers {
     }
 
     removeFromCart(): void {
-      this.CartService.removeFiles([this.file]);
+      this.CartService.remove([this.file]);
     }
   }
 
@@ -239,13 +259,14 @@ module ngApp.cart.controllers {
 
       this.FilesService.getFiles({
         fields:[
-          "file_id"
+          "file_id",
+          "file_name"
         ],
         filters: filters,
         size: size,
         from: 0
       }, 'POST').then((data) => {
-        this.CartService.remove(_.pluck(data.hits, "file_id"));
+        this.CartService.remove(data.hits);
       });
     }
 

@@ -17,10 +17,10 @@ module ngApp.cart.services {
   }
 
   class QueryCartService implements IQueryCartService {
-    private static GDC_CART_ADDED_QUERY: string = "gdc-legacy-cart-added-query";
-    private static GDC_CART_REMOVED_QUERY: string = "gdc-legacy-cart-removed-query";
-    private static GDC_CART_ADDED_FILES: string = "gdc-legacy-cart-added-files";
-    private static GDC_CART_REMOVED_FILES: string = "gdc-legacy-cart-removed-files";
+    private static GDC_CART_ADDED_QUERY: string = "gdc-cart-added-query";
+    private static GDC_CART_REMOVED_QUERY: string = "gdc-cart-removed-query";
+    private static GDC_CART_ADDED_FILES: string = "gdc-cart-added-files";
+    private static GDC_CART_REMOVED_FILES: string = "gdc-cart-removed-files";
 
     public files: IFiles;
     /* @ngInject */
@@ -113,8 +113,7 @@ module ngApp.cart.services {
     isInCart(fileId: string): boolean;
     areInCart(files: IFile[]): boolean;
     removeAll(): void;
-    remove(fileIds: string[]): void;
-    removeFiles(files: IFile[]): void;
+    remove(files: IFile[]): void;
     buildAddedMsg(added: Array<Object>, alreadyIn: Array<Object>): string;
     buildRemovedMsg(removedFiles: IFile[]): string;
     undoAdded(): void;
@@ -131,8 +130,8 @@ module ngApp.cart.services {
     lastModified: Moment;
     lastModifiedFiles: IFile[];
 
-    private static GDC_CART_KEY = "gdc-legacy-cart-items";
-    private static GDC_CART_UPDATE = "gdc-legacy-cart-updated";
+    private static GDC_CART_KEY = "gdc-cart-items";
+    private static GDC_CART_UPDATE = "gdc-cart-updated";
     private static MAX_SIZE: number = 10000;
 
     /* @ngInject */
@@ -291,24 +290,18 @@ module ngApp.cart.services {
     }
 
     removeAll(): void {
-      this.notify.closeAll();
-      this.notify({
-        message: "",
-        messageTemplate: this.buildRemovedMsg(this.files),
-        container: "#notification",
-        classes: "alert-warning"
-      });
-      this.lastModifiedFiles = this.files;
-      this.files = [];
-      this._sync();
+      this.remove(this.files);
     }
 
-    remove(fileIds: string[]): void {
-      var remaining = _.reject(this.files, function (hit: IFile) {
-        return fileIds.indexOf(hit.file_id) !== -1;
-      });
-      this.lastModifiedFiles = _.difference(this.files, remaining);
-      this._sync();
+    remove(filesToRemove: IFile[]): void {
+        var partitioned = this.files.reduce((acc, f) => {
+        var fileToRemove = _.find(filesToRemove, f2r => f2r.file_id === f.file_id);
+        if (fileToRemove) {
+          return { remaining: acc.remaining, removed: acc.removed.concat(fileToRemove)};
+        }
+        return { remaining: acc.remaining.concat(f), removed: acc.removed};
+      } ,{ remaining: [], removed: [] });
+      this.lastModifiedFiles = partitioned.removed;
       this.notify.closeAll();
       this.notify({
         message: "",
@@ -316,13 +309,8 @@ module ngApp.cart.services {
         container: "#notification",
         classes: "alert-warning"
       });
-      this.files = remaining;
+      this.files = partitioned.remaining;
       this._sync();
-    }
-
-    removeFiles(files: IFile[]): void {
-      var ids: string[] = _.pluck(files, "file_id");
-      this.remove(ids);
     }
 
     getFileIds(): string[] {
@@ -330,7 +318,7 @@ module ngApp.cart.services {
     }
 
     undoAdded(): void {
-      this.removeFiles(this.lastModifiedFiles);
+      this.remove(this.lastModifiedFiles);
     }
 
     undoRemoved(): void {
