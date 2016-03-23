@@ -121,7 +121,7 @@ module ngApp.components.tables.controllers {
 
     saveToLocalStorage(): void {
       var save = _.map(this.$scope.config.headings, h => _.pick(h, 'id', 'hidden', 'sort', 'order'));
-      this.$window.localStorage.setItem('gdc-legacy-' + this.$scope.config.title + '-col', angular.toJson(save));
+      this.$window.localStorage.setItem('gdc-archive-' + this.$scope.config.title + '-col', angular.toJson(save));
     }
 
     updateSorting(): void {
@@ -196,7 +196,7 @@ module ngApp.components.tables.controllers {
 
       this.setDisplayedData();
 
-      var decompressed = $window.localStorage.getItem('gdc-legacy-' + $scope.config.title + '-col');
+      var decompressed = $window.localStorage.getItem('gdc-archive-' + $scope.config.title + '-col');
       $scope.saved = decompressed ? JSON.parse(decompressed) : [];
 
     }

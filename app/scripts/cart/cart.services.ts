@@ -17,10 +17,10 @@ module ngApp.cart.services {
   }
 
   class QueryCartService implements IQueryCartService {
-    private static GDC_CART_ADDED_QUERY: string = "gdc-cart-added-query";
-    private static GDC_CART_REMOVED_QUERY: string = "gdc-cart-removed-query";
-    private static GDC_CART_ADDED_FILES: string = "gdc-cart-added-files";
-    private static GDC_CART_REMOVED_FILES: string = "gdc-cart-removed-files";
+    private static GDC_CART_ADDED_QUERY: string = "gdc-archive-cart-added-query";
+    private static GDC_CART_REMOVED_QUERY: string = "gdc-archive-cart-removed-query";
+    private static GDC_CART_ADDED_FILES: string = "gdc-archive-cart-added-files";
+    private static GDC_CART_REMOVED_FILES: string = "gdc-archive-cart-removed-files";
 
     public files: IFiles;
     /* @ngInject */
@@ -130,8 +130,8 @@ module ngApp.cart.services {
     lastModified: Moment;
     lastModifiedFiles: IFile[];
 
-    private static GDC_CART_KEY = "gdc-cart-items";
-    private static GDC_CART_UPDATE = "gdc-cart-updated";
+    private static GDC_CART_KEY = "gdc-archive-cart-items";
+    private static GDC_CART_UPDATE = "gdc-archive-cart-updated";
     private static MAX_SIZE: number = 10000;
 
     /* @ngInject */

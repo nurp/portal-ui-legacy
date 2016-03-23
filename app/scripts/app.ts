@@ -93,6 +93,7 @@ function appRun(gettextCatalog: any,
     $window.localStorage.removeItem("gdc-archive-Cart-col");
     $window.localStorage.removeItem("gdc-archive-cart-items");
     $window.localStorage.removeItem("gdc-archive-cart-updated");
+    $window.localStorage.removeItem("gdc-archive-facet-config");
   }
   gettextCatalog.debug = true;
 

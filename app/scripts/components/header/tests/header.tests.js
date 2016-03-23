@@ -11,7 +11,7 @@ describe('Header:', function () {
   describe('Controller:', function () {
     beforeEach(inject(function ($window) {
       // Clear localStorage system to prevent oddities from tests.
-      $window.localStorage.setItem("gdc-legacy-cart-items", []);
+      $window.localStorage.setItem("gdc-archive-cart-items", []);
     }));
 
     it('should get cart count', inject(function ($controller, CartService) {

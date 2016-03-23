@@ -22,7 +22,7 @@ describe('Cart:', function () {
   describe('Controller:', function () {
     beforeEach(inject(function ($window) {
       // Clear localStorage system to prevent oddities from tests.
-      $window.localStorage.setItem("gdc-legacy-cart-items", []);
+      $window.localStorage.setItem("gdc-archive-cart-items", []);
     }));
 
     it('should have files', inject(function ($rootScope, $controller, CartService) {
@@ -31,12 +31,14 @@ describe('Cart:', function () {
       var files = [
         {
           file_id: "AAA",
+          file_name: "aaa.bam",
           file_size: 20,
           file_url: "urlA",
           participantId: []
         },
         {
           file_id: "BBB",
+          file_name: "bbb.bam",
           file_size: 10,
           file_url: "urlB",
           participantId: []
@@ -70,7 +72,7 @@ describe('Cart:', function () {
 
     beforeEach(inject(function ($window) {
       // Clear localStorage system to prevent oddities from tests.
-      $window.localStorage.setItem("gdc-legacy-cart-items", []);
+      $window.localStorage.setItem("gdc-archive-cart-items", []);
     }));
 
     it('should return files', inject(function (CartService) {
@@ -127,23 +129,11 @@ describe('Cart:', function () {
       expect(CartService).to.have.property('files').to.be.empty;
     }));
 
-    it('should remove files by ids', inject(function (CartService) {
-      CartService.add(fileA);
-      CartService.add(fileB);
-      var removeByIdCallback = sinon.spy(CartService, 'remove');
-      CartService.remove(['AAA']);
-      expect(removeByIdCallback).to.have.been.calledOnce;
-      var files = CartService.getFiles();
-      expect(files).to.have.length(1);
-      expect(files[0]).to.have.property('file_id', 'BBB');
-    }));
-
-
     it('should remove files', inject(function (CartService) {
       CartService.add(fileA);
       CartService.add(fileB);
-      var removeByIdCallback = sinon.spy(CartService, 'removeFiles');
-      CartService.removeFiles([fileA]);
+      var removeByIdCallback = sinon.spy(CartService, 'remove');
+      CartService.remove([fileA]);
       expect(removeByIdCallback).to.have.been.calledOnce;
       var files = CartService.getFiles();
       expect(files).to.have.length(1);

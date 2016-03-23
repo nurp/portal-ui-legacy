@@ -245,7 +245,7 @@ module ngApp.components.facets.services {
   class FacetsConfigService implements IFacetsConfigServce {
     public fieldsMap: any = {};
     defaultFieldsMap: any = {};
-    FACET_CONFIG_KEY: string = "gdc-legacy-facet-config";
+    FACET_CONFIG_KEY: string = "gdc-archive-facet-config";
 
      /* @ngInject */
     constructor(private $window: ng.IWindowService) {

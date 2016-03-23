@@ -23,7 +23,7 @@ module ngApp.components.tables.directives {
 
         function saveSettings() {
           var save = _.map($scope.headings, h => _.pick(h, 'id', 'hidden', 'sort', 'order'));
-          $window.localStorage.setItem('gdc-legacy-' + $scope.title + '-col', angular.toJson(save));
+          $window.localStorage.setItem('gdc-archive-' + $scope.title + '-col', angular.toJson(save));
         }
 
         var defaults = _.cloneDeep($scope.headings);
