@@ -1,7 +1,7 @@
 module ngApp.search.models {
   function withAnnotationFilter(value: number, filters: Object[], $filter: ng.IFilterService): string {
     var filterString = $filter("makeFilter")(filters, true);
-    var href = '/annotations?filters=' + filterString;
+    var href = '/legacy-archive/annotations?filters=' + filterString;
     var val = $filter("number")(value);
     return "<a href='" + href + "'>" + val + '</a>';
   }
@@ -41,7 +41,7 @@ module ngApp.search.models {
       }, {
         name: "File Name",
         id: "file_name",
-        td: row => '<a href="/files/' + row.file_id + '">' + row.file_name + '</a>',
+        td: row => '<a href="/legacy-archive/files/' + row.file_id + '">' + row.file_name + '</a>',
         sortable: true,
         tdClassName: 'truncated-cell'
       }, {
@@ -78,7 +78,7 @@ module ngApp.search.models {
         td: (row, $scope) => {
           function getAnnotations(row, $scope) {
             return row.annotations.length == 1 ?
-                     '<a href="/annotations/' + row.annotations[0].annotation_id + '">' + 1 + '</a>' :
+                     '<a href="/legacy-archive/annotations/' + row.annotations[0].annotation_id + '">' + 1 + '</a>' :
                      withAnnotationFilter(
                        row.annotations.length,
                        [{field: "annotation_id", value: _.pluck(row.annotations, 'annotation_id')}],
