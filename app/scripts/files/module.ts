@@ -7,7 +7,7 @@ module ngApp.files {
   /* @ngInject */
   function filesConfig($stateProvider: ng.ui.IStateProvider) {
     $stateProvider.state("file", {
-      url: "/legacy/files/:fileId",
+      url: "/files/:fileId",
       controller: "FileController as fc",
       templateUrl: "files/templates/file.html",
       resolve: {

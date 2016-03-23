@@ -4,7 +4,7 @@ module ngApp.notFound {
   /* @ngInject */
   function notFoundConfig($stateProvider: ng.ui.IStateProvider) {
     $stateProvider.state("404", {
-      url: "/legacy/404",
+      url: "/404",
       controller: "NotFoundController as nf",
       templateUrl: "404/templates/404.html"
     });

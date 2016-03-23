@@ -4,10 +4,10 @@ module ngApp.search {
   /* @ngInject */
   function searchConfig($stateProvider: ng.ui.IStateProvider, $urlRouterProvider: ng.ui.IUrlRouterProvider) {
 
-    $urlRouterProvider.when("/legacy/search", "/legacy/search/f");
+    $urlRouterProvider.when("/search", "/search/f");
 
     $stateProvider.state("search", {
-      url: "/legacy/search?filters&pagination",
+      url: "/search?filters&pagination",
       controller: "SearchController as sc",
       templateUrl: "search/templates/search.html",
       reloadOnSearch: false
