@@ -157,8 +157,6 @@ function appRun(gettextCatalog: any,
     });
   });
 
-  UserService.login();
-
   ProjectsService.getProjects({
     size: 100
   })
