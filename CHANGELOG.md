@@ -1,3 +1,22 @@
+<a name"0.3.24.2"></a>
+### 0.3.24.2 (2016-04-04)
+
+
+#### Bug Fixes
+
+* **app:** generic error message ([5065fb7a](https://github.com/NCI-GDC/portal-ui/commit/5065fb7a), closes [PGDC-1773](https://jira.opensciencedatacloud.org/browse/PGDC-1773))
+* **facets:**
+  * ID -> UUID annotations facet ([051078fb](https://github.com/NCI-GDC/portal-ui/commit/051078fb), closes [PGDC-715](https://jira.opensciencedatacloud.org/browse/PGDC-715))
+  * remove tags & data submitter ([4993e902](https://github.com/NCI-GDC/portal-ui/commit/4993e902), closes [PGDC-1791](https://jira.opensciencedatacloud.org/browse/PGDC-1791))
+
+
+#### Features
+
+* **app:**
+  * copy latest active portal features ([4dd172f4](https://github.com/NCI-GDC/portal-ui/commit/4dd172f4))
+  * first step for legacy portal ([beffae38](https://github.com/NCI-GDC/portal-ui/commit/beffae38), closes [PGDC-661](https://jira.opensciencedatacloud.org/browse/PGDC-661), [PGDC-1784](https://jira.opensciencedatacloud.org/browse/PGDC-1784))
+
+
 <a name"0.2.18"></a>
 ### 0.2.18 (2015-12-15)
 
