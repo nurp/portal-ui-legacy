@@ -1,0 +1,854 @@
+@import "../../bower_components/bootstrap/less/bootstrap.less";
+@import "theme.less";
+@icon-font-path: "../../libs/bootstrap/dist/fonts/";
+
+@import "colours.less";
+@import "globals.less";
+@import "cart.less";
+@import "utils.less";
+@import "entities.less";
+@import "header.less";
+@import "footer.less";
+@import "tables.less";
+@import "pagination.less";
+@import "dnd.less";
+@import "tooltip.less";
+@import "search.less";
+@import "home.less";
+@import "fonts.less";
+@import "modal.less";
+@import "../scripts/components/styles.less";
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  cursor: default;
+}
+
+abbr {
+  border-bottom: 1px dashed @NCI_COLOUR;
+}
+
+#wrapper {
+  min-height: 100%;
+  position: relative;
+}
+
+#gdc-header {
+  border: none;
+}
+.navbar-nav > li > a {
+  padding-left: 13px;
+  padding-right: 13px;
+}
+
+.gdc-body {
+  padding-bottom: @FOOTER_HEIGHT + 20;
+  margin-top: -20px;
+}
+
+body {
+  > a.skip-to-content {
+    position: absolute;
+    left: -999px;
+    background-color: black;
+    z-index: 1000;
+
+    &:focus {
+      left: 5px;
+    }
+  }
+}
+
+.full-page {
+  padding-top: 20px;
+}
+
+th, td {
+  white-space: nowrap;
+}
+
+.summary-results {
+  width: 60%;
+}
+
+.summary-table {
+  border-bottom: 1px solid #c4c4c4 !important;
+}
+
+.summary-toggle {
+  padding: 5px;
+}
+
+/* bootcard override */
+.panel {
+  border-radius: 0;
+}
+.panel-default .panel-heading,
+.panel-default .panel-footer {
+  background: #fff;
+}
+h3.panel-title {
+  line-height: 1.4em;
+}
+
+/* bootstrap */
+.content .nav.nav-tabs {
+  border-bottom: 0;
+  cursor: pointer;
+}
+
+//bootcard override
+
+//.list-group-item-heading.current a{
+//  color: #428bca;
+//}
+//.list-group-item {
+//  margin-left: 0 ;
+//  padding-left: 10px;
+//
+//  i {
+//    width: 3rem;
+//    text-align: center;
+//  }
+//  i, img {
+//    margin-right: 0;
+//    opacity: 1;
+//  }
+//}
+//p {
+//  margin: 0 0 5px;
+//}
+//.pagination {
+//  margin: 0;
+//}
+//
+//.btn-group > .btn + .dropdown-toggle {
+//  padding-left: 4px;
+//  padding-right: 5px;
+//}
+//.reset-table-span {
+//  color: @link-blue;
+//}
+//
+//.m-margin-bottom-0 {
+//  margin-bottom: 0px;
+//}
+//
+
+// --- ICONS
+.navbar-nav .fa {
+  display:inline-block;
+  text-indent:-10000px;
+  overflow:hidden;
+  width:19px;
+  height:14px;
+}
+/*---projects---*/
+.fa-custom {
+  width: 30px;
+  height: 30px;
+  vertical-align: middle;
+}
+
+.fa-projects {
+  background:url(/images/icon-projects-large.png) no-repeat 2px 0;
+}
+
+/*---data---*/
+.fa-data {
+  background:url(/images/icon-data-large.png) no-repeat 2px 3px;
+}
+/*---annotations---*/
+.fa-annotations {
+  background:url(/images/icon-annotations-large.png) no-repeat 0 0;
+}
+
+/*---reports---*/
+.fa-reports {
+  background:url(/images/icon-reports-large.png) no-repeat 4px 2px;
+}
+
+/*---cart---*/
+.fa-cart {
+  background:url(/images/icon-cart-large.png) no-repeat 3px 2px;
+}
+
+
+/******************************************************************/
+/* CSS INJECTOR [##]                                              */
+/* For: Data Portal    */
+/******************************************************************/
+
+/****************************/
+/* gdc-style.css                */
+/****************************/
+
+
+/* Basic Typography
+-------------------------------------------------------------- */
+body {
+  font-family: Arial, Helvetica, Verdana, "Bitstream Vera Sans", sans-serif;
+  /*  font-size: 75%;    also set in acquia_prosper.info: settings[base-font-size] = font-size-12 */
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6, .h4 {
+  font-weight: normal;
+  line-height: 100%;
+}
+
+label {
+  font-weight:normal;
+}
+
+h1,
+h1.title {
+  font-size: 30px;
+}
+
+h2,
+h3.panel-title {
+  font-size: 24px;
+}
+
+h3,
+.list-group-item-heading {
+  font-size: 18px;
+}
+
+h4  {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6,
+.panel-default .list-group-item .text-right {
+  font-size: 12px;
+}
+
+@font-face {
+  font-family: "franklin_gothic_fsbook";
+  src: url('/fonts/FranklinGothic-Book-webfont.eot');
+  src: url('/fonts/FranklinGothic-Book-webfont.eot?#iefix') format('embedded-opentype'),
+  url('/fonts/FranklinGothic-Book-webfont.woff2') format('woff2'),
+  url('/fonts/FranklinGothic-Book-webfont.woff') format('woff'),
+  url('/fonts/FranklinGothic-Book-webfont.ttf') format('truetype'),
+  url('/fonts/FranklinGothic-Book-webfont.svg#franklin_gothic_fsbook') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+html,
+body {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+/* Headings */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "franklin_gothic_fsbook","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+.list-group-item-heading {
+  font-family: "franklin_gothic_fsbook","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+/* Basic Colors
+-------------------------------------------------------------- */
+
+html { background-color: #f5f5f5;}
+
+body {
+  background-color: #f5f5f5;
+  color: #3a3a3a;
+}
+
+/* Links */
+a,
+a:link {
+  color: #83001E;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #bb0e3d;
+}
+
+a:hover,
+a:focus {
+  color: #bb0e3d;
+  text-decoration: underline;
+}
+
+.nav-tabs a,
+.nav-tabs a:link,
+.nav-tabs a:hover,
+.nav-tabs a:visited,
+.nav-tabs a:active,
+.nav-tabs a:focus {
+  color: #6d6363;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6, h3.panel-title {
+  color: #6b6262 !important;
+}
+
+h3,
+h4,
+.list-group-item-heading {
+  color: #bb0e3d !important;
+}
+
+/* HTML Elements LAYOUT
+-------------------------------------------------------------- */
+body {
+  padding: 0;
+}
+
+/* Blockquotes */
+blockquote {
+  font-style: italic;
+  margin: 10px 0;
+  padding: 10px 30px;
+}
+p, ul, ol {
+  font-size: 1em;
+}
+
+dt {
+  font-weight: bold;
+  color:#66581c;
+}
+
+dd {
+  margin-left: 0;
+}
+
+blockquote {
+  padding-left: 40px;
+  font-family: "franklin_gothic_fsbook","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 115.44%;
+}
+
+blockquote p {
+  font-size: 1em;
+  margin-top: 0;
+}
+
+blockquote cite {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 75.0720%;
+  font-style: normal;
+}
+
+/* Tables */
+
+.table > thead > tr > th,
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
+  padding: 3px;
+}
+.table > thead > tr > th {
+  background-color:#dedddd;
+}
+
+
+
+/* HTML Elements SYTLE
+-------------------------------------------------------------- */
+/* Lists */
+/*ul li {
+  list-style-image: url(http://gdcdev.res.oicr.on.ca/sites/all/themes/gdc/design_packs/gray/images/list-level-1.png);
+}
+
+ul li ul li {
+  list-style-image: url(http://gdcdev.res.oicr.on.ca/sites/all/themes/gdc/design_packs/gray/images/list-level-2.png);
+}
+
+ul li ul li ul li {
+  list-style-image: url(http://gdcdev.res.oicr.on.ca/sites/all/themes/gdc/design_packs/gray/images/list-level-3.png);
+}*/
+
+/* Blockquotes */
+blockquote {
+  /*background-image: url(http://gdcdev.res.oicr.on.ca/sites/all/themes/gdc/design_packs/gray/images/blockquote-quote.png);*/
+  background-repeat: no-repeat;
+  background-position: left 0.6425em;
+  border-top: 1px dotted #c4c4c4;
+  border-bottom: 1px dotted #c4c4c4;
+  font-style:normal;
+  font-size: 116.66%;
+  font-style: normal;
+}
+
+/* Blockquotes */
+blockquote {
+  background-color: transparent;
+  color: #5b5151;;
+}
+
+blockquote cite {
+  color: #999;
+  display: block;
+
+}
+
+/* Horizontal Rule */
+hr {
+  border-style: none none solid;
+  background-color: #d9d8d8;
+  border:#d9d8d8 3px solid;
+  color:#d9d8d8;
+}
+
+
+/* Preformatted text and code */
+pre {
+  overflow: auto;
+  width: auto;
+  max-width: 100%;
+}
+
+pre, code, kbd, samp {
+  font-family: monospace,serif;
+  font-size: 1em;
+}
+
+code {
+  background: none repeat scroll 0 0 #ede8d5;
+  border-radius: 3px;
+  color: #66581c;
+  font-family: "Menlo",monospace;
+  font-size: 14px;
+  padding: 3px;
+}
+
+pre {
+  color: #66581c;
+  font-size: 86.66%;
+  background-color: #eee;
+  border-bottom: 1px dotted #bfbfbf;
+  border-top: 1px dotted #bfbfbf;
+  font-family: Consolas,Monaco,'Andale Mono',monospace;
+  text-shadow: 0 1px white;
+  word-spacing: normal;
+}
+
+pre code {
+  background: none repeat scroll 0 0 transparent;
+  font-size: 100%;
+}
+
+/* Page Top & Bottom Regions LAYOUT
+/-------------------------------------------------------------- */
+
+.page-top-inner,
+#footer .container {
+  font-size: 85.714%;  /* 12px/13px */
+}
+
+/*----NCI Footer-----*/
+#footer { height: auto;}
+
+#footer .container {
+  padding:15px 0;
+}
+.page-bottom-wrapper {
+  background-color: #a34748;
+  border-top: 1px solid #621c1e;
+  border-bottom: 6px solid #813130;
+}
+/* NCI Agency Links */
+.nci-links-agency a {
+  float: left;
+  margin-right: 20px;
+  vertical-align: middle;
+}
+
+.nci-links-agency a img {
+  vertical-align: middle;
+}
+
+.nci-links-agency .link-dhhs img {height: 49px; width: 49px;}
+.nci-links-agency .link-nih img {width: 55px; height: 34px;}
+.nci-links-agency .link-nci img {height: 38px; width: 60px;}
+.nci-links-agency .link-usa img {height: 34px; width: 110px;}
+
+/* NCI Tagline */
+.nci-tagline {
+  clear: both;
+}
+
+.nci-tagline blockquote {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-style: normal;
+  font-size: 100%;
+}
+
+.nci-tagline blockquote {
+  margin: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 0;
+}
+
+
+
+/* Page Top & Bottom Regions STYLE
+/-------------------------------------------------------------- */
+#header {
+  border-top: 6px solid #83001E; /* New */
+}
+
+#footer {
+  background-color: #242424;
+  border-top: 6px solid #757575;
+  border-bottom: none;
+}
+
+#footer .container { color: #898989; }
+
+#footer a,
+#footer a:link,
+#footer a:visited {
+  color: #a6a6a6;
+}
+
+#footer a:hover {
+  color: #a6a6a6;
+}
+
+/* NCI Info Links */
+.nci-links-info.fusion-inline-menu .inner ul.menu li {
+  border-right-color: #c88b8a;
+}
+
+
+/* NCI Tagline */
+.nci-tagline blockquote {
+  background-image: none;
+  background-color: transparent;
+  border-color: transparent;
+  color: inherit;
+}
+
+/* Portal Specific Items
+/-------------------------------------------------------------- */
+
+/* Header and Navigation */
+#gdc-header {
+  background-color: #fff;
+}
+
+.label-primary {
+  background-color:  #5b5151;
+}
+
+.navbar-default {
+  border-color: #c4c4c4;
+}
+
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:focus,
+.navbar-default .navbar-nav > .active > a:hover {
+  color: #fff;
+  background-color: #5b5151;
+}
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  background-color: #dedddd;
+  text-decoration: none;
+}
+
+.navbar-brand {
+  background:url(/legacy-archive/images/NIH-GDC-Legacy-Archive.svg) no-repeat 0 0;
+  background-size: 100%;
+  width: 275px;
+  height: 47px;
+  text-indent:-10000px;
+  overflow:hidden;
+  margin-right:0;
+}
+
+a.gdc-data-portal-brand {
+  background-color: #83001E;
+  padding: 5px 10px;
+  color: #fff;
+  display: inline-block;
+  width: 180px;
+  float: right;
+  border-radius: 5px;
+}
+.gdc-data-portal-brand:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+.gdc-data-portal-icon {
+  background:url(/legacy-archive/images/GDC-App-data-portal.svg) no-repeat 0 0;
+  background-size: 100%;
+  display: inline-block;
+  height: 35px;
+  text-indent:-10000px;
+  overflow:hidden;
+  margin-right: 10px;
+  float: left;
+}
+
+@media (min-width:768px) and (max-width: 991px) {
+  .navbar-header {
+    width: 100%;
+  }
+  .navbar-brand {
+    margin-bottom: 0.375em;
+    margin-left: -15px;
+  }
+}
+
+@media (min-width: 992px) {
+  .navbar-header {
+    width: auto;
+  }
+  .navbar-brand {
+    margin-right: 15px;
+    margin-bottom: 0;
+    margin-left: 0;
+  }
+}
+
+
+/* nav bar icon replacement (replacing font-awesome icons) */
+
+.navbar-nav .fa {
+  display:inline-block;
+  text-indent:-10000px;
+  overflow:hidden;
+  width:19px;
+  height:14px;
+}
+/*---projects---*/
+.navbar-nav .fa-folder-o {
+  background:url(/images/icon-projects-off.png) no-repeat 2px 0;
+}
+
+/*---data---*/
+.navbar-nav .fa-database {
+  background:url(/images/icon-data-off.png) no-repeat 2px 3px;
+}
+.navbar-nav .active .fa-database {
+  background:url(/images/icon-data-on.png) no-repeat 2px 3px;
+}
+
+
+/*---annotations---*/
+.navbar-nav .fa-align-left {
+  background:url(/images/icon-annotations-off.png) no-repeat 0 0;
+}
+.navbar-nav .active .fa-align-left {
+  background:url(/images/icon-annotations-on.png) no-repeat 0 0;
+}
+
+/*---reports---*/
+.navbar-nav .fa-cube {
+  background:url(/images/icon-reports-off.png) no-repeat 4px 2px;
+}
+.navbar-nav .active .fa-cube {
+  background:url(/images/icon-reports-on.png) no-repeat 4px 2px;
+}
+
+/*---login---*/
+.navbar-nav .fa-sign-in {
+  background:url(/images/icon-login-off.png) no-repeat 3px 2px;
+}
+.navbar-nav .active .fa-sign-in {
+  background:url(/images/icon-login-on.png) no-repeat 3px 2px;
+}
+
+/*---cart---*/
+.navbar-nav .fa-shopping-cart {
+  background:url(/images/icon-cart-off.png) no-repeat 3px 2px;
+}
+.navbar-nav .active .fa-shopping-cart {
+  background:url(/images/icon-cart-on.png) no-repeat 3px 2px;
+}
+
+.navbar-nav .active.nav-cart .label-primary {
+  background-color:#fff;
+  color:#5b5151;
+}
+
+//i.fa,
+//.btn.btn-default i.fa,
+//span.fa-search { color: #c5c3c4;}
+
+/*.navbar-nav .active i.fa { color: #68644e;}*/
+
+.alert-info i.fa { color: #68644e; }
+
+.btn.btn-primary i.fa { color: #e4eff7; }
+
+.nav-tabs {
+  border-bottom: 1px solid #c4c4c4;
+}
+
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+  background-color: #f5f5f5;
+  border-color: #c4c4c4 #c4c4c4 transparent;
+  color: inherit;
+}
+
+.nav-tabs > li > a:hover {
+  border-color: #d9d8d8 #d9d8d8 #c4c4c4;
+}
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+  background-color: #fff;
+  border-color: #c4c4c4 #c4c4c4 transparent;
+  color: inherit;
+}
+
+/* Left Panal sidebar */
+.facets-sidebar .nav-tabs > li.active > a,
+.facets-sidebar .nav-tabs > li.active > a:hover,
+.facets-sidebar .nav-tabs > li.active > a:focus {
+  background-color: #fff;
+}
+
+.panel-default {
+  border-color: #c4c4c4;
+}
+.panel-default .list-group-item p {
+  padding:0;
+  margin:0;
+}
+.list-group-item p.ng-scope:first-child {
+  margin-top:10px;
+}
+
+.input-group-addon:not(:first-child):not(:last-child),
+.input-group-btn:not(:first-child):not(:last-child),
+.input-group .form-control:not(:first-child):not(:last-child) {
+  border-radius: 3px;
+}
+
+/* Content elements */
+.alert-info {
+  background-color: #ddd;
+  border-color: #ddd;
+  color: #333;
+}
+
+
+.pagination > li > a,
+.pagination > li > span {
+  color: #686868;
+}
+
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+  background-color: #686868;
+  border-color:  #686868;
+}
+
+.btn-primary {
+  background-color: #83001E;
+  border-color: transparent;
+  color: #fff!important;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary.focus,
+.btn-primary:active,
+.btn-primary.active,
+.open > .dropdown-toggle.btn-primary {
+  background-color: #83001E;
+  border-color: transparent;
+  color: #fff!important;
+}
+
+.btn-primary.disabled, .btn-primary[disabled], fieldset[disabled] .btn-primary, .btn-primary.disabled:hover, .btn-primary[disabled]:hover, fieldset[disabled] .btn-primary:hover, .btn-primary.disabled:focus, .btn-primary[disabled]:focus, fieldset[disabled] .btn-primary:focus, .btn-primary.disabled.focus, .btn-primary.focus[disabled], fieldset[disabled] .btn-primary.focus, .btn-primary.disabled:active, .btn-primary[disabled]:active, fieldset[disabled] .btn-primary:active, .btn-primary.disabled.active, .btn-primary.active[disabled], fieldset[disabled] .btn-primary.active {
+    background-color: #83001E;
+    border-color: transparent;
+}
+
+.btn-default {
+  background-color: #fff;
+  border-color: #ccc;
+  color: #333;
+}
+
+.btn-default:hover,
+.btn-default:focus,
+.btn-default.focus,
+.btn-default:active,
+.btn-default.active,
+.open > .dropdown-toggle.btn-default {
+  background: linear-gradient(to bottom, #ffffff 50%, #e6e6e6 100%) repeat scroll 0 0 #e6e6e6;
+  border-color: #adadad;
+  color: #333;
+}
+
+.btn:active,
+.btn.active {
+  box-shadow: none;
+}
+
+.cg-notify-message {
+  word-break: break-all;
+}
+
+.icon-btn-label {
+  font-size: 0;
+  height: 1px;
+  overflow: hidden;
+  display: block;
+}
+
+.dropdown-rule {
+  margin: 0.6rem 0;
+  border: 1px solid #d9d8d8;
+}
+
+.dropdown-menu > li > span {
+  display: block;
+  padding: 3px 20px;
+  clear: both;
+  font-weight: normal;
+  line-height: 1.42857143;
+  color: #333333;
+  white-space: nowrap;
+}
+
+.dropdown-menu > li > span:hover, .dropdown-menu > li > span:focus {
+  color: #262626;
+  background-color: #f5f5f5;
+}
+
+.dropdown-menu > li > span a {
+  color: #333333;
+  text-decoration: none;
+}
+
+.dropdown-menu > .active > a,
+.dropdown-menu > .active > a:hover,
+.dropdown-menu > .active > a:focus {
+  background-color: #3d3d3d;
+}

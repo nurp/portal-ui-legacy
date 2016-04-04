@@ -1,0 +1,66 @@
+<div class="container-fluid full-page search">
+  <div class="row search-panel">
+    <div class="col-lg-3 col-md-4 facets-sidebar">
+      <uib-tabset>
+        <uib-tab heading="{{ 'Cases' | translate }}" active="true" id="participants-facets-tab">
+          <div class="facet-section panel-default">
+            <div class="list-group">
+              <add-custom-facets-panel
+                 aggregations="sc.participants.aggregations"
+                 data-doc-type="cases">
+              </add-custom-facets-panel>
+              <facets-section facets-config="sc.SearchTableParticipantsModel.facets"
+                              doctype="cases"
+                              aggregations="sc.participants.aggregations">
+              </facets-section>
+            </div>
+          </div>
+        </uib-tab>
+        <uib-tab heading="{{ 'Files' | translate }}" id="files-facets-tab">
+          <div class="facet-section panel-default">
+            <div class="list-group">
+              <add-custom-facets-panel
+                 aggregations="sc.files.aggregations"
+                 data-doc-type="files">
+              </add-custom-facets-panel>
+              <facets-section doctype="files"
+                              aggregations="sc.files.aggregations">
+              </facets-section>
+            </div>
+          </div>
+        </uib-tab>
+      </uib-tabset>
+    </div>
+    <div class="col-lg-9 col-md-8 content">
+      <div class="alert alert-info clearfix">
+        <div class="col-sm-10">
+          <current-filters></current-filters>
+          <span data-ng-if="!cfc.currentFilters.length" style="line-height: 3.4rem">
+            <span data-translate>
+              <i class="fa fa-long-arrow-left"></i> Start searching by selecting a facet
+            </span>
+          </span>
+        </div>
+      </div>
+
+      <ul class="nav nav-tabs">
+        <li role="presentation"
+            data-ng-class="{ active: sc.SearchState.tabs.files.active }"
+            data-ng-click="sc.select('tabs', 'files')"
+            id="search-files">
+            <a
+              data-ng-href="{{
+              sc.$state.href('search.files', sc.LocationService.search().filters
+              )}}">
+              {{ 'Files' | translate }} ({{sc.files.pagination.total| number:0}})
+            </a>
+
+        </li>
+      </ul>
+      <div class="pane-section"
+           data-ng-show="sc.SearchState.tabs.files.active">
+        <div data-ng-include="'search/templates/search.files.html'"></div>
+      </div>
+    </div>
+  </div>
+</div>

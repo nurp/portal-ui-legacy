@@ -1,0 +1,25 @@
+<ul class="list-unstyled Gql_dropdown Gql_dropdown-{{mode}}" data-ng-show="showResults()">
+  <li data-ng-click="handleOnClickUpArrow()" class="Gql_dropdown_arrow">
+    <i ng-style="{color: offset > 0 ? '#333' : '#ccc'}" class="fa fa-sort-asc"></i>
+  </li>
+  <li class="Gql_dropdown_item"
+      data-ng-click="click(e)"
+      data-ng-mouseenter="mouseIn($index)"
+      data-ng-class="{true:'Gql_dropdown_item-active'}[e.active]"
+      data-ng-repeat="e in ddItems | limitTo:limit:offset track by e.full">
+    <i class="fa"
+       data-ng-if="e.doc_type"
+       style="margin-right: 10px;background: #5b5151;padding: 1rem;color: #fff; width: 3.2rem"
+        data-ng-class="{'files':'fa-file', 'cases':'fa-user', '':'fa-square'}[e.doc_type]">
+    </i>
+    <i class="fa fa-square"
+       data-ng-if="!e.doc_type"
+       style="margin-right: 10px;background: #5b5151;padding: 1rem;color: #fff;">
+    </i>
+    <span data-ng-bind-html="e.field | gqlHighlight:query"></span>
+    <span data-ng-if="e.doc_type" style="color:#888" data-ng-bind-html="e.type | gqlHighlight:query"></span>
+  </li>
+  <li data-ng-click="handleOnClickDownArrow()" class="Gql_dropdown_arrow">
+    <i ng-style="{color: ddItems.length > offset + limit ? '#333' : '#ccc'}" class="fa fa-sort-desc"></i>
+  </li>
+</ul>
