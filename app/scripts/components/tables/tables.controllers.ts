@@ -183,10 +183,14 @@ module ngApp.components.tables.controllers {
     sortingHeadings: any[] = [];
     displayedData: any[];
     tableRendered: boolean = false;
+    defaultHeadings: any[] = [];
 
     /* @ngInject */
     constructor(private $scope: IGDCTableScope,
+                private $window: ng.IWindowService,
                 private LocalStorageService: ILocationService) {
+      this.defaultHeadings = _.cloneDeep($scope.config.headings);
+
       this.sortingHeadings = _.filter($scope.config.headings, (heading: any) => {
         return heading && heading.sortable;
       });
