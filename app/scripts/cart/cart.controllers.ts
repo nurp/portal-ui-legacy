@@ -61,6 +61,10 @@ module ngApp.cart.controllers {
           this.refresh();
       });
 
+      $scope.$on("gdc-user-reset", () => {
+        this.refresh();
+      });
+
       this.projectCountChartConfig = {
         textValue: "file_size.value",
         textFilter: "size",
