@@ -86,8 +86,7 @@ module ngApp.cart.controllers {
       this.clinicalDataExportFilters = this.biospecimenDataExportFilters = {
         'files.file_id': this.CartService.getFileIds()
       };
-      // TODO: Change `clinical` to those clinical objects (5 of them) once the data model change occurs.
-      this.clinicalDataExportExpands = ['clinical'];
+      this.clinicalDataExportExpands = ['demographic', 'diagnoses', 'family_histories', 'exposures'];
       this.clinicalDataExportFileName = 'clinical.cart';
 
       this.biospecimenDataExportExpands =
@@ -183,10 +182,17 @@ module ngApp.cart.controllers {
     }
 
     removeAll() {
-      this.CartService.removeAll();
+      // edge case where there is only 1 file in the cart,
+      // need to pass the file to CartService.remove because CartService
+      // does not store file names and the file name is displayed in
+      // remove notification
+      if (this.files.pagination.count === 1) {
+        this.CartService.remove(this.files.hits);
+      } else {
+        this.CartService.removeAll();
+      }
       this.lastModified = this.CartService.lastModified;
-      this.files = this.CartService.getFiles();
-      this.getSummary();
+      this.files = {};
     }
 
     getManifest(selectedOnly: boolean = false) {
@@ -217,7 +223,9 @@ module ngApp.cart.controllers {
     constructor(private CartService: ICartService) {}
 
     addToCart(): void {
-      this.CartService.addFiles([this.file], true);
+      if (this.CartService.getCartVacancySize() < 1) {
+        this.CartService.sizeWarning();
+      } else this.CartService.addFiles([this.file], true);
     }
 
     removeFromCart(): void {

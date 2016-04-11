@@ -4,6 +4,7 @@ module ngApp.components.facets.services {
   import ISearch = ngApp.components.location.services.ISearch;
   import ICartService = ngApp.cart.services.ICartService;
   import IUserService = ngApp.components.user.services.IUserService;
+  import ILocalStorageService = ngApp.core.services.ILocalStorageService;
 
   export interface IFacetService {
     addTerm(facet: string, term: string, op?:string): void;
@@ -41,9 +42,7 @@ module ngApp.components.facets.services {
       }
 
       return this.Restangular.all(entity + "/ids").get("", options).then((data) => {
-        var model = {};
-        model[field.split(".").pop()] = query + "*";
-        return [model].concat(data.data.hits);
+        return data.data.hits.length ? data.data.hits : [{ warning: "No results found" }];
       });
     }
 
@@ -224,36 +223,44 @@ module ngApp.components.facets.services {
     getFacetFields(docType: string): ng.IPromise<any> {
       return this.ds.getList().then((data) => {
         var current = _.pluck(this.FacetsConfigService.fieldsMap[docType], "name");
-        return _.filter(data, (datum) => {
-          return datum.doc_type === docType &&
-                 datum.field !== 'archive.revision' &&
-                 !_.includes(datum.field, "_id") &&
-                 !_.includes(current, datum.field) &&
-                 !_.includes(docType === 'files' ? _.pluck(this.SearchTableFilesModel.facets, "name") : _.pluck(this.SearchTableParticipantsModel.facets, "name"), datum.field);
-        });
+        return _.map(_.filter(data, (datum) =>
+          datum.doc_type === docType &&
+          datum.field !== 'archive.revision' &&
+          !_.includes(datum.field, "_id") &&
+          !_.includes(current, datum.field) &&
+          !_.includes(
+            docType === 'files'
+              ? _.pluck(this.SearchTableFilesModel.facets, "name")
+              : _.pluck(this.SearchTableParticipantsModel.facets, "name"),
+            datum.field
+          )
+        ), f => _.merge(f, { description: 'this is a description' }));
       });
     }
 
   }
 
   export interface IFacetsConfigService {
-    getFields(docType: string): Array<Object>;
-    addField(field: Object): void;
+    setFields(docType: string, fields: Array<Object>): void;
+    addField(docType: string, fieldName: string, fieldType: string): void;
+    removeField(docType: string, fieldName: string): void;
     reset(docType: string): void;
+    isDefault(docType: string): boolean;
+    save(): void;
   }
 
-  class FacetsConfigService implements IFacetsConfigServce {
+  class FacetsConfigService implements IFacetsConfigService {
     public fieldsMap: any = {};
     defaultFieldsMap: any = {};
     FACET_CONFIG_KEY: string = "gdc-archive-facet-config";
 
      /* @ngInject */
-    constructor(private $window: ng.IWindowService) {
-    }
+    constructor(private $window: ng.IWindowService,
+                private LocalStorageService: ILocalStorageService) { }
 
     setFields(docType: string, fields: Array<Object>) {
-      var saved = _.get(JSON.parse(this.$window.localStorage.getItem(this.FACET_CONFIG_KEY)), docType, null);
-      if(!saved) {
+      var saved = _.get(this.LocalStorageService.getItem(this.FACET_CONFIG_KEY), docType, null);
+      if (!saved) {
         this.fieldsMap[docType] = fields;
         this.save();
       } else {
@@ -274,7 +281,7 @@ module ngApp.components.facets.services {
     }
 
     removeField(docType: string, fieldName: string): void {
-      this.fieldsMap[docType ]= _.reject(this.fieldsMap[docType], (facet) => {
+      this.fieldsMap[docType] = _.reject(this.fieldsMap[docType], (facet) => {
         return facet.name === fieldName;
       });
       this.save();
@@ -290,13 +297,15 @@ module ngApp.components.facets.services {
     }
 
     save(): void {
-      this.$window.localStorage.setItem(this.FACET_CONFIG_KEY, angular.toJson(this.fieldsMap));
+      this.LocalStorageService.setItem(this.FACET_CONFIG_KEY, this.fieldsMap);
     }
 
  }
 
   angular.
-      module("facets.services", ["location.services", "restangular", "user.services"])
+      module("facets.services", [
+        "location.services", "restangular", "user.services", "ngApp.core"
+      ])
       .service("CustomFacetsService", CustomFacetsService)
       .service("FacetsConfigService", FacetsConfigService)
       .service("FacetService", FacetService);

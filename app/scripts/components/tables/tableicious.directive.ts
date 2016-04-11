@@ -4,9 +4,9 @@ module ngApp.components.tables.directives.tableicious {
 
     /* @ngInject */
     function Tableicious(
-        $filter: ng.IFilterService, 
-        LocationService: ILocationService, 
-        UserService: IUserService, 
+        $filter: ng.IFilterService,
+        LocationService: ILocationService,
+        UserService: IUserService,
         $window: ng.IWindowService): ITableicious {
         return {
             restrict: "E",
@@ -25,24 +25,27 @@ module ngApp.components.tables.directives.tableicious {
                 $scope.UserService = UserService;
                 $scope.LocationService = LocationService;
                 $scope.getCell = function(h, d) {
-                    return h.td(d, $scope);
+                  return h.td(d, $scope);
                 }
+                $scope.getToolTipText = function(h, d) {
+                  return h.toolTipText ? h.toolTipText(d, $scope) : '';
+                };
                 function hasChildren(h: IHeading): boolean {
-                    return h.children && h.children.length > 0;
+                  return h.children && h.children.length > 0;
                 }
 
                 function refresh(hs: IHeading[]): void {
-                    $scope.enabledHeadings = _.reject(hs, h => {
-                        return h.hidden;// || (h.inactive && h.inactive($scope))
-                    });
-                    $scope.subHeaders = _.flatten<IHeading>(
-                        _.pluck(_.filter($scope.enabledHeadings, (h) => {
-                            return hasChildren(h);
-                    }), 'children'));
-                    $scope.dataCols = _.flatten<IHeading>(
-                        _.map($scope.enabledHeadings, (h: IHeading): IHeading[] | IHeading => {
-                            return hasChildren(h) ? h.children : h;
-                    }));
+                  $scope.enabledHeadings = _.reject(hs, h => {
+                    return h.hidden;// || (h.inactive && h.inactive($scope))
+                  });
+                  $scope.subHeaders = _.flatten<IHeading>(
+                    _.pluck(_.filter($scope.enabledHeadings, (h) => {
+                      return hasChildren(h);
+                  }), 'children'));
+                  $scope.dataCols = _.flatten<IHeading>(
+                    _.map($scope.enabledHeadings, (h: IHeading): IHeading[] | IHeading => {
+                      return hasChildren(h) ? h.children : h;
+                  }));
                 }
 
                 $scope.$watch('headings', (n: IHeading[], o: IHeading[]) => {
@@ -50,11 +53,11 @@ module ngApp.components.tables.directives.tableicious {
                    refresh(n);
                 }, true);
 
-                
-                $scope.headings = $scope.saved.length ? 
+
+                $scope.headings = $scope.saved.length ?
                   _.map($scope.saved, (s: IHeading): IHeading => _.merge(_.find($scope.headings, {id: s.id}), s)) :
                   $scope.headings;
-                
+
                 refresh($scope.headings);
             }
         }
@@ -78,6 +81,7 @@ module ngApp.components.tables.directives.tableicious {
         UserService:IUserService;
         LocationService:ILocationService;
         saved: string[];
+        getToolTipText(h, d): any;
     }
 
     interface IConfig {

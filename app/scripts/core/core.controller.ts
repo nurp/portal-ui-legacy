@@ -99,7 +99,7 @@ module ngApp.core.controllers {
 
   class WarningController {
     /* @ngInject */
-    constructor(private $uibModalInstance) {}
+    constructor(private $uibModalInstance, private warning) {}
 
     acceptWarning(): void {
       this.$uibModalInstance.close();
