@@ -33,9 +33,9 @@ module ngApp.components.tables.controllers {
       this.paging = $scope.paging || {size: 20};
       var currentSorting = this.paging.sort || '';
 
-      var headings = $scope.saved.length
-        ? _.map($scope.saved, s => _.merge(_.find($scope.config.headings, {id: s.id}), s))
-        : $scope.config.headings;
+      var headings = ($scope.saved || []).length ?
+          _.map($scope.saved, s => _.merge(_.find($scope.headings, {id: s.id}), s)) :
+          $scope.headings;
 
       $scope.sortColumns = _.reduce(headings, (cols,col) => {
 
@@ -124,8 +124,8 @@ module ngApp.components.tables.controllers {
     }
 
     saveToLocalStorage(): void {
-      var save = _.map(this.$scope.config.headings, h => _.pick(h, 'id', 'hidden', 'sort', 'order'));
-      this.LocalStorageService.setItem('gdc-archive-' + this.$scope.config.title + '-col', save);
+      var save = _.map(this.$scope.headings, h => _.pick(h, 'id', 'hidden', 'sort', 'order'));
+      this.LocalStorageService.setItem('gdc-archive-' + this.$scope.title + '-col', save);
     }
 
     updateSorting(): void {
@@ -184,18 +184,20 @@ module ngApp.components.tables.controllers {
     displayedData: any[];
     tableRendered: boolean = false;
     defaultHeadings: any[] = [];
+    displayedHeadings: any[] = [];
 
     /* @ngInject */
     constructor(private $scope: IGDCTableScope,
                 private $window: ng.IWindowService,
                 private LocalStorageService: ILocationService) {
+      this.displayedHeadings = _.cloneDeep($scope.config.headings);
       this.defaultHeadings = _.cloneDeep($scope.config.headings);
 
-      this.sortingHeadings = _.filter($scope.config.headings, (heading: any) => {
+      this.sortingHeadings = _.filter(this.displayedHeadings, (heading: any) => {
         return heading && heading.sortable;
       });
 
-      $scope.$watch("data", ()=> {
+      $scope.$watch("data", () => {
         this.setDisplayedData();
       }, true);
 
