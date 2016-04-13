@@ -106,14 +106,17 @@ function appRun(gettextCatalog: any,
     CoreService.xhrDone();
     if (response.status === 500) {
       $uibModal.open({
-                templateUrl: "core/templates/internal-server-error.html",
-                controller: "WarningController",
-                controllerAs: "wc",
-                backdrop: "static",
-                keyboard: false,
-                backdropClass: "warning-backdrop",
-                animation: false,
-                size: "lg"
+        templateUrl: "core/templates/internal-server-error.html",
+        controller: "WarningController",
+        controllerAs: "wc",
+        backdrop: "static",
+        keyboard: false,
+        backdropClass: "warning-backdrop",
+        animation: false,
+        size: "lg",
+        resolve: {
+          warning: null
+        }
       });
     }
     // TODO more than just 404

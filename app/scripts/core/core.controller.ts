@@ -28,7 +28,10 @@ module ngApp.core.controllers {
           keyboard: false,
           backdropClass: "warning-backdrop",
           animation: false,
-          size: "lg"
+          size: "lg",
+          resolve: {
+            warning: null
+          }
         });
       }
 
@@ -42,7 +45,10 @@ module ngApp.core.controllers {
             keyboard: false,
             backdropClass: "warning-backdrop",
             animation: false,
-            size: "lg"
+            size: "lg",
+            resolve: {
+              warning: null
+            }
           });
           bowserWarningModal.result.then(() => {
             this.$cookies.put("browser-checked", "true");
@@ -61,7 +67,10 @@ module ngApp.core.controllers {
           keyboard: false,
           backdropClass: "warning-backdrop",
           animation: false,
-          size: "lg"
+          size: "lg",
+          resolve: {
+            warning: null
+          }
         });
 
         modalInstance.result.then(() => {
