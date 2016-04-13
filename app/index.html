@@ -31,7 +31,7 @@
   <link rel="stylesheet" href="libs/ngprogress-lite/ngprogress-lite.css">
   <link rel="stylesheet" href="libs/xmldisplay/xmldisplay.css">
   <link rel="stylesheet" href="libs/ng-tags-input/ng-tags-input.css">
-  
+
   <link rel="stylesheet" href="libs/ng-sortable/dist/ng-sortable.css"></link>
 <!--  <link rel="stylesheet" href="libs/ng-sortable/dist/ng-sortable.style.css"></link>-->
   <!-- build:css css/styles.css -->
@@ -63,10 +63,36 @@
       #loadingScreen { display: none; }
     </style>
     <div id="body" tabindex="0">
-      <p class="noscript">
-        Javascript is required to use the features of this website.
-      </p>
+      <header id="gdc-header" class="container-fluid navbar navbar-default navbar-static-top" role="banner">
+        <div class="row legacy-header" style="padding: 15px 0;">
+          <div class="col-md-9">
+            <a class="navbar-brand" data-ui-sref="search.files" data-translate="" tabindex="0" href="/legacy-archive/search/f">
+              <span class="ng-scope">GDC Legacy Archive</span>
+            </a>
+
+            <div style="font-size: 1.1rem">The legacy data is the original data that uses the old genome build hg19 as produced by the original submitter. The legacy data is not actively being updated in any way. Users should migrate to the harmonized data.
+              <br>Please visit the <a href="https://gdc-portal.nci.nih.gov/">GDC Data Portal</a>.
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <a class="gdc-data-portal-brand" href="https://gdc-portal.nci.nih.gov/" data-translate="" tabindex="1">
+              <div class="ng-scope"><i class="gdc-data-portal-icon">GDC Data Portal</i></div>
+              <div class="ng-scope">Launch the<br><strong>GDC Data Portal</strong></div>
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <div class="container-fluid">
+        <div class="row">
+          <div class="alert alert-info clearfix col-lg-8 col-lg-offset-2">
+              Javascript is required to use the features of this website. Please enable Javascript and reload the page.
+          </div>
+        </div>
+      </div>
     </div>
+
   </noscript>
 
   <div id="skip" class="gdc-body" data-ui-view role="main" tabindex="0"></div>
