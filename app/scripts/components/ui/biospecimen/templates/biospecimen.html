@@ -3,7 +3,23 @@
     <div class="panel panel-default">
       <div class="panel-heading clearfix">
         <h3 class="panel-title pull-left" data-translate>Biospecimen</h3>
-        <data-download-button ng-if="bc.bioSpecimenFile" data-files=bc.bioSpecimenFile data-copy="Download Biospecimen XML" data-dlcopy="Downloading" data-classes="btn pull-right" />
+
+        <export-cases-button
+          ng-disabled="bc.hasNoBiospecimen"
+          data-filter-key-values=bc.biospecimenDataExportFilters
+          data-expands=bc.biospecimenDataExportExpands
+          data-filename=bc.biospecimenDataExportFileName
+          data-size=1
+          data-text-normal="Export"
+          data-text-in-progress="Processing"
+          data-style-class="btn pull-right btn-primary">
+        </export-cases-button>
+      </div>
+
+      <div ng-if="bc.hasNoBiospecimen"
+        class="table table-striped table-hover table-condensed table-bordered table-vertical"
+        style="border-top: 0; padding-left: 2rem">
+        <h3>No biospecimen found.</h3>
       </div>
       <div class="panel-body">
         <div class="col-lg-5 col-md-5">
@@ -55,7 +71,7 @@
               <span data-ng-click="bc.displayBioSpecimenDocument($event, sample, 'sample')"
                     data-ng-keypress="bc.displayBioSpecimenDocument($event, sample, 'sample')"
                     class="biospecimen-id"
-                    data-ng-class="{ selected: sample === bc.activeBioSpecimenDoc, highlighted: foundBySearch(sample.submitter_id) }"
+                    data-ng-class="{ selected: sample === bc.activeBioSpecimenDoc, highlighted: foundBySearch(sample.submitter_id, 'submitter_id') }"
                     data-ng-bind-html="(sample.submitter_id | highlight:searchTerm ) || sample.submitter_id">
               </span>
 
@@ -95,19 +111,20 @@
                             class="biospecimen-id"
                             data-ng-class="{ selected: portion === bc.activeBioSpecimenDoc }">
                         <span data-ng-if="portion.submitter_id"
-                              data-ng-class="{ highlighted: foundBySearch(portion.submitter_id) }"
+                              data-ng-class="{ highlighted: foundBySearch(portion.submitter_id, 'submitter_id') }"
                               data-ng-bind-html="(portion.submitter_id | highlight:searchTerm) || portion.submitter_id">
                         </span>
                         <span data-ng-if="!portion.submitter_id">
-                          <span data-translate>TARGET Portion</span>
+                          data-ng-class="{ highlighted: foundBySearch(portion.portion_id, 'portion_id') }"
                           {{ $index + 1 }}
+                          data-ng-bind-html="(portion.portion_id | highlight:searchTerm) || portion.portion_id">
                         </span>
                       </span>
 
                       <div data-ng-if="portion.slides.length" data-ng-class="{ hidden: !portion.expanded }"
                            aria-expanded="portion.expanded">
                         <div class="biospecimen-row section">
-                          <i class="fa fa-plus-square-o action" data-ng-if="!portion.slides.expanded"
+                          <i class="fa fa-plus-square action" data-ng-if="!portion.slides.expanded"
                              data-ng-click="expandTree($event, portion.slides)"
                              data-ng-keypress="expandTree($event, portion.slides)"
                              aria-label="Expand Slides for {{ portion.submitter_id }}"></i>
@@ -127,11 +144,11 @@
                                data-ng-class="{ selected: slide === bc.activeBioSpecimenDoc }">
                             <i class="fa fa-file-o"></i>
                             <span data-ng-if="slide.submitter_id"
-                                  data-ng-class="{ highlighted: foundBySearch(slide.submitter_id) }"
+                                  data-ng-class="{ highlighted: foundBySearch(slide.submitter_id, 'submitter_id') }"
                                   data-ng-bind-html="(slide.submitter_id | highlight:searchTerm) || slide.submitter_id"></span>
                             <span data-ng-if="!slide.submitter_id">
-                              <span data-translate>TARGET Slide</span>
-                              {{ $index + 1 }}
+                              data-ng-class="{ highlighted: foundBySearch(slide.slide_id, 'slide_id') }"
+                              data-ng-bind-html="(slide.slide_id | highlight:searchTerm) || slide.slide_id">
                             </span>
                           </div>
                         </div>
@@ -172,12 +189,12 @@
                                   class="biospecimen-id"
                                   data-ng-class="{ selected: analyte === bc.activeBioSpecimenDoc }">
                               <span data-ng-if="analyte.submitter_id"
-                                    data-ng-class="{ highlighted: foundBySearch(analyte.submitter_id) }"
+                                    data-ng-class="{ highlighted: foundBySearch(analyte.submitter_id, 'submitter_id') }"
                                     data-ng-bind-html="(analyte.submitter_id | highlight:searchTerm) || analyte.submitter_id">
                               </span>
                               <span data-ng-if="!analyte.submitter_id">
-                                <span data-translate>TARGET Analyte</span>
-                                {{ $index + 1 }}
+                                data-ng-class="{ highlighted: foundBySearch(analyte.analyte_id, 'analyte_id') }"
+                                data-ng-bind-html="(analyte.analyte_id | highlight:searchTerm) || analyte.analyte_id">
                               </span>
                             </span>
 
@@ -205,12 +222,12 @@
                                      data-ng-class="{ selected: aliquot === bc.activeBioSpecimenDoc }">
                                   <i class="fa fa-file-o"></i>
                                   <span data-ng-if="aliquot.submitter_id"
-                                        data-ng-class="{ highlighted: foundBySearch(aliquot.submitter_id) }"
+                                        data-ng-class="{ highlighted: foundBySearch(aliquot.submitter_id, 'submitter_id') }"
                                         data-ng-bind-html="(aliquot.submitter_id | highlight:searchTerm) || aliquot.submitter_id">
                                   </span>
                                   <span data-ng-if="!aliquot.submitter_id">
-                                    <span data-translate>TARGET Aliquot</span>
-                                    {{ $index + 1 }}
+                                    data-ng-class="{ highlighted: foundBySearch(aliquot.aliquot_id, 'aliquot_id') }"
+                                    data-ng-bind-html="(aliquot.aliquot_id | highlight:searchTerm) || aliquot.aliquot_id">
                                   </span>
                                 </div>
                               </div>
