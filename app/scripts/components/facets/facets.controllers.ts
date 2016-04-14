@@ -114,7 +114,9 @@ module ngApp.components.facets.controllers {
 
       this.terms = terms;
       this.actives = this.FacetService.getActives(this.name, terms);
-      this.inactives = _.difference(terms, this.actives);
+      // TODO: Currently there is some complication supporting _missing properly thereby we're hiding
+      // _missing in facets. Once we fully support _missing, #reject should be removed.
+      this.inactives = _.reject(_.difference(terms, this.actives), (term) => term.key === '_missing');
     }
 
     toggle(event: any, property: string) {
