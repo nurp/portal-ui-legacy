@@ -33,7 +33,7 @@ module ngApp.projects.models {
         {
             name: "Entity Type",
             id: "entity_type",
-            td: row => row.entity_type,
+              td: (row, $scope) => $scope.$filter("humanify")(row.entity_type),
             sortable: true
         },
         {
@@ -101,10 +101,8 @@ module ngApp.projects.models {
           "classification",
           "case_id",
           "notes",
-          "project.program.name"
-        ],
-        expand: [
-          "project"
+          "project.program.name",
+          "project.project_id"
         ]
     }
     angular.module("annotations.table.model", [])

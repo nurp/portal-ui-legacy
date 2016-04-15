@@ -37,7 +37,6 @@ module ngApp.annotations.controllers {
     refresh() {
       this.AnnotationsService.getAnnotations({
         fields: this.AnnotationsTableModel.fields,
-        expand: this.AnnotationsTableModel.expand,
         facets: [
           "annotation_id",
           "classification",

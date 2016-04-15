@@ -124,14 +124,12 @@ module ngApp.search.controllers {
       this.FacetsConfigService.setFields('files', this.SearchTableFilesModel.facets);
       var fileOptions = {
         fields: this.SearchTableFilesModel.fields,
-        expand: this.SearchTableFilesModel.expand,
         facets: _.pluck(this.FacetsConfigService.fieldsMap['files'], 'name')
       };
 
       this.FacetsConfigService.setFields('cases', this.SearchTableParticipantsModel.facets);
       var participantOptions = {
         fields: this.SearchTableParticipantsModel.fields,
-        expand: this.SearchTableParticipantsModel.expand,
         facets: _.pluck(this.FacetsConfigService.fieldsMap['cases'], 'name')
       };
 
