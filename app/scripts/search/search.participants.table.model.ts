@@ -281,15 +281,15 @@ module ngApp.search.models {
             {name: "project.project_id", title: "Project", collapsed: false, facetType: "terms"},
             {name: "project.disease_type", title: "Disease Type", collapsed: false, facetType: "terms"},
             {name: "demographic.gender", title: "Gender", collapsed: false, facetType: "terms"},
-            {name: "diagnoses.age_at_diagnosis", title: "Age at diagnosis", hasGraph: true, collapsed: false, facetType: "range", unitsMap: [
-              {
-                "label": "years",
-                "conversionDivisor": 365,
-              },
-              {
-                "label": "days",
-                "conversionDivisor": 1,
-              }
+            {name: "diagnoses.age_at_diagnosis", title: "Age at diagnosis", collapsed: false, facetType: "range", unitsMap: [
+                            {
+                              "label": "years",
+                              "conversionDivisor": 365.25,
+                            },
+                            {
+                              "label": "days",
+                              "conversionDivisor": 1,
+                            }
             ]},
             {name: "diagnoses.vital_status", title: "Vital Status", collapsed: false, facetType: "terms"},
             {name: "diagnoses.days_to_death", title: "Days to Death", collapsed: false, facetType: "range", hasGraph: true},
