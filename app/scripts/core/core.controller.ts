@@ -1,6 +1,7 @@
 module ngApp.core.controllers {
   import ICartService = ngApp.cart.services.ICartService;
   import INotifyService = ng.cgNotify.INotifyService;
+  import IUserService = ngApp.components.user.services.IUserService;
 
   export interface ICoreController {
     showWarning: boolean;
@@ -16,7 +17,12 @@ module ngApp.core.controllers {
                 private notify: INotifyService,
                 $location: ng.ILocationService,
                 private $cookies: ng.cookies.ICookiesService,
+                UserService: IUserService,
                 private $uibModal: any) {
+
+      $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams, options) {
+          UserService.login();
+      });
 
       // display login failed warning
       if(_.get($location.search(), 'error') === 'You are not authorized to gdc services') {
@@ -28,7 +34,10 @@ module ngApp.core.controllers {
           keyboard: false,
           backdropClass: "warning-backdrop",
           animation: false,
-          size: "lg"
+          size: "lg",
+          resolve: {
+            warning: null
+          }
         });
       }
 
@@ -42,7 +51,10 @@ module ngApp.core.controllers {
             keyboard: false,
             backdropClass: "warning-backdrop",
             animation: false,
-            size: "lg"
+            size: "lg",
+            resolve: {
+              warning: null
+            }
           });
           bowserWarningModal.result.then(() => {
             this.$cookies.put("browser-checked", "true");
@@ -61,7 +73,10 @@ module ngApp.core.controllers {
           keyboard: false,
           backdropClass: "warning-backdrop",
           animation: false,
-          size: "lg"
+          size: "lg",
+          resolve: {
+            warning: null
+          }
         });
 
         modalInstance.result.then(() => {

@@ -17,6 +17,7 @@ module ngApp.cart.controllers {
     cartTableConfig: any;
     projectCountChartConfig: any;
     fileCountChartConfig: any;
+    fileCountChartData: any[];
   }
 
   class CartController implements ICartController {
@@ -27,6 +28,7 @@ module ngApp.cart.controllers {
     cartTableConfig: any;
     projectCountChartConfig: any;
     fileCountChartConfig: any;
+    fileCountChartData: Object[];
     helpHidden: boolean = false;
     participantCount: number;
 
@@ -59,6 +61,10 @@ module ngApp.cart.controllers {
 
       $scope.$on("cart-update", (event) => {
           this.refresh();
+      });
+
+      $scope.$on("gdc-user-reset", () => {
+        this.refresh();
       });
 
       this.projectCountChartConfig = {
@@ -145,24 +151,29 @@ module ngApp.cart.controllers {
         this.files = {};
         return;
       }
-
       var filters = {'content': [{'content': {'field': 'files.file_id', 'value': fileIds}, 'op': 'in'}], 'op': 'and'};
       var fileOptions = {
         filters: filters,
-        fields: ['access', 'file_name', 'file_id', 'data_type', 'data_format', 'file_size', 'annotations.annotation_id'],
-        expand: ['cases', 'cases.project'],
-        facets: ['cases.case_id'],
+        fields: ['access',
+                 'file_name',
+                 'file_id',
+                 'data_type',
+                 'data_format',
+                 'file_size',
+                 'annotations.annotation_id',
+                 'cases.case_id',
+                 'cases.project.project_id',
+                 'cases.project.name']
       };
       this.FilesService.getFiles(fileOptions, 'POST').then((data: IFiles) => {
         this.files = this.files || {};
         if (!_.isEqual(this.files.hits, data.hits)) {
           this.files = data;
-          this.getSummary();
+          this.ParticipantsService.getParticipants({filters: filters, size: 0}, 'POST').then((data: IParticipants) => {
+            this.participantCount = data.pagination.total;
+            })
         }
-      });
-      this.ParticipantsService.getParticipants({filters: filters, size: 0}, 'POST').then((data: IParticipants) => {
-        this.participantCount = data.pagination.total;
-      });
+      }).finally(() => this.getSummary() );
     }
 
     getTotalSize(): number {
