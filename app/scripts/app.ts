@@ -32,6 +32,7 @@ import IGDCConfig = ngApp.IGDCConfig;
 import INotifyService = ng.cgNotify.INotifyService;
 import IUserService = ngApp.components.user.services.IUserService;
 import IProjectsService = ngApp.projects.services.IProjectsService;
+import ILocalStorageService = ngApp.core.services.ILocalStorageService;
 
 // Cross-Site Request Forgery (CSRF) Prevention
 // https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet#General_Recommendation:_Synchronizer_Token_Pattern
@@ -69,7 +70,6 @@ function appConfig($urlRouterProvider: ng.ui.IUrlRouterProvider,
   **/
   var csrftoken = document.cookie.replace(/(?:(?:^|.*;\s*)csrftoken\s*\=\s*([^;]*).*$)|^.*$/, "$1");
   $httpProvider.defaults.headers.common['X-CSRFToken'] = csrftoken;
-
 }
 
 /* @ngInject */
@@ -84,16 +84,19 @@ function appRun(gettextCatalog: any,
                 UserService: IUserService,
                 ProjectsService: IProjectsService,
                 $window: ng.IWindowService,
-                $uibModal: any) {
+                $uibModal: any,
+                LocalStorageService: ILocalStorageService) {
 
   if ($cookies.get("GDC-Portal-Sha") !== config.commitHash) {
     $cookies.put("GDC-Portal-Sha", config.commitHash);
-    $window.localStorage.removeItem("gdc-archive-Annotations-col");
-    $window.localStorage.removeItem("gdc-archive-Files-col");
-    $window.localStorage.removeItem("gdc-archive-Cart-col");
-    $window.localStorage.removeItem("gdc-archive-cart-items");
-    $window.localStorage.removeItem("gdc-archive-cart-updated");
-    $window.localStorage.removeItem("gdc-archive-facet-config");
+    [
+      "gdc-archive-Annotations-col",
+      "gdc-archive-Files-col",
+      "gdc-archive-Cart-col",
+      "gdc-archive-cart-items",
+      "gdc-archive-cart-updated",
+      "gdc-archive-facet-config",
+    ].forEach(item => LocalStorageService.removeItem(item))
   }
   gettextCatalog.debug = true;
 
@@ -103,14 +106,17 @@ function appRun(gettextCatalog: any,
     CoreService.xhrDone();
     if (response.status === 500) {
       $uibModal.open({
-                templateUrl: "core/templates/internal-server-error.html",
-                controller: "WarningController",
-                controllerAs: "wc",
-                backdrop: "static",
-                keyboard: false,
-                backdropClass: "warning-backdrop",
-                animation: false,
-                size: "lg"
+        templateUrl: "core/templates/internal-server-error.html",
+        controller: "WarningController",
+        controllerAs: "wc",
+        backdrop: "static",
+        keyboard: false,
+        backdropClass: "warning-backdrop",
+        animation: false,
+        size: "lg",
+        resolve: {
+          warning: null
+        }
       });
     }
     // TODO more than just 404

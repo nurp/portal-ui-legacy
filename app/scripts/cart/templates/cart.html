@@ -14,7 +14,7 @@
         <count-card title="File Size" icon="fa-save" data="cc.summary.fs.value | size"></count-card>
       </div>
       <div class="col-lg-3 col-sm-6">
-        <summary-card data-data="cc.summary.cases['cases.project.project_id'].buckets"
+        <summary-card data-data="cc.summary['project.project_id'].buckets"
                       height="177"
                       data-mode="graph"
                       data-grouping-title="Project"
@@ -36,7 +36,7 @@
           </div>
           <div style="padding: 10px">
             <p data-translate>
-              <strong>Download Manifest</strong>: Downloading and analyzing large BAMs or large number of files can be very resource intensive and so it is recommended to use the GDC Client for this purpose. The GDC Client provides several different download modes to provide the most efficient transfer possible. For more info, click
+              <strong>Download Manifest</strong>: Downloading and analyzing large BAMs or large number of files can be very resource intensive and so it is recommended to use the GDC Data Transfer Tool for this purpose. The GDC Data Transfer Tool provides several different download modes to provide the most efficient transfer possible. For more info, click
                <a target="_blank" href="https://gdc.nci.nih.gov/node/7967">here</a>.
             </p>
             <p data-translate>
@@ -126,7 +126,7 @@
                   id="clear-button"
                   data-ng-click="cc.removeAll()">
                 <i class="fa fa-remove"></i>
-                <span data-translate>All Files ({{cc.files.hits.length}})</span>
+                <span data-translate>All Files ({{cc.CartService.getFiles().length}})</span>
               </a>
             </split-control-option>
             <split-control-option data-option-label-text="Remove Unauthorized Files">

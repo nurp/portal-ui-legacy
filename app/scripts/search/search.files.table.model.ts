@@ -26,7 +26,16 @@ module ngApp.search.models {
       }, {
         name: "File UUID",
         id: "file_id",
+        toolTipText: row => row.file_id,
         td: row => '<a href="/legacy-archive/files/' + row.file_id + '">' + row.file_id + '</a>',
+        sortable: true,
+        hidden: true,
+        tdClassName: 'truncated-cell'
+      }, {
+        name: "File Submitter ID",
+        id: "submitter_id",
+        toolTipText: row => row.submitter_id,
+        td: row => row.submitter_id,
         sortable: true,
         hidden: true,
         tdClassName: 'truncated-cell'
@@ -41,6 +50,7 @@ module ngApp.search.models {
       }, {
         name: "File Name",
         id: "file_name",
+        toolTipText: row => row.file_name,
         td: row => '<a href="/legacy-archive/files/' + row.file_id + '">' + row.file_name + '</a>',
         sortable: true,
         tdClassName: 'truncated-cell'
@@ -53,6 +63,7 @@ module ngApp.search.models {
       }, {
         name: "Project",
         id: "cases.project.project_id",
+        toolTipText: row => _.unique(_.map(row.cases, p => p.project.name)).join(', '),
         td: row => _.unique(_.map(row.cases, p => p.project.project_id)).join('<br>'),
         sortable: true
       }, {
@@ -135,7 +146,6 @@ module ngApp.search.models {
       {name: "data_type", title: "Data Type", collapsed: false, facetType: "terms", removable: false },
       {name: "experimental_strategy", title: "Experimental Strategy", collapsed: false, facetType: "terms", removable: false },
       {name: "data_format", title: "Data Format", collapsed: false, facetType: "terms", removable: false },
-      {name: "origin", title: "File Origin", collapsed: true, facetType: "terms", removable: false },
       {name: "platform", title: "Platform", collapsed: true, facetType: "terms", removable: false },
       {name: "access", title: "Access Level", collapsed: true, facetType: "terms", removable: false },
       {name: "state", title: "File Status", collapsed: true, facetType: "terms", removable: false },

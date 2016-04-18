@@ -263,6 +263,13 @@ module ngApp.components.facets.controllers {
       return this.FacetService.autoComplete(this.$scope.entity, query, this.$scope.field);
     }
 
+    prefixValue(query: string): ng.IPromise<any> {
+      term = query.replace(/\*/g, '') + '*';
+      var model = { term: term };
+      model[this.$scope.field.split('.').pop()] = term;
+      return [model];
+    }
+
     remove(term: string): void {
       this.FacetService.removeTerm(this.$scope.field, term);
       this.refresh();
@@ -646,9 +653,9 @@ module ngApp.components.facets.controllers {
             facetFields: (CustomFacetsService: ICustomFacetsService): ng.IPromise<any> => {
               return CustomFacetsService.getFacetFields(this.$scope.docType);
             },
-            facetsConfig: () => { return this.$scope.facetsConfig; },
-            aggregations: () => { return this.$scope.aggregations; },
-            docType: () => { return this.$scope.docType; }
+            facetsConfig: () => this.$scope.facetsConfig,
+            aggregations: () => this.$scope.aggregations,
+            docType: () => this.$scope.docType
           }
       });
     }

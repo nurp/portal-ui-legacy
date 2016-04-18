@@ -17,6 +17,7 @@ module ngApp.cart.controllers {
     cartTableConfig: any;
     projectCountChartConfig: any;
     fileCountChartConfig: any;
+    fileCountChartData: any[];
   }
 
   class CartController implements ICartController {
@@ -27,6 +28,7 @@ module ngApp.cart.controllers {
     cartTableConfig: any;
     projectCountChartConfig: any;
     fileCountChartConfig: any;
+    fileCountChartData: Object[];
     helpHidden: boolean = false;
     participantCount: number;
 
@@ -61,6 +63,10 @@ module ngApp.cart.controllers {
           this.refresh();
       });
 
+      $scope.$on("gdc-user-reset", () => {
+        this.refresh();
+      });
+
       this.projectCountChartConfig = {
         textValue: "file_size.value",
         textFilter: "size",
@@ -86,8 +92,7 @@ module ngApp.cart.controllers {
       this.clinicalDataExportFilters = this.biospecimenDataExportFilters = {
         'files.file_id': this.CartService.getFileIds()
       };
-      // TODO: Change `clinical` to those clinical objects (5 of them) once the data model change occurs.
-      this.clinicalDataExportExpands = ['clinical'];
+      this.clinicalDataExportExpands = ['demographic', 'diagnoses', 'family_histories', 'exposures'];
       this.clinicalDataExportFileName = 'clinical.cart';
 
       this.biospecimenDataExportExpands =
@@ -146,24 +151,29 @@ module ngApp.cart.controllers {
         this.files = {};
         return;
       }
-
       var filters = {'content': [{'content': {'field': 'files.file_id', 'value': fileIds}, 'op': 'in'}], 'op': 'and'};
       var fileOptions = {
         filters: filters,
-        fields: ['access', 'file_name', 'file_id', 'data_type', 'data_format', 'file_size', 'annotations.annotation_id'],
-        expand: ['cases', 'cases.project'],
-        facets: ['cases.case_id'],
+        fields: ['access',
+                 'file_name',
+                 'file_id',
+                 'data_type',
+                 'data_format',
+                 'file_size',
+                 'annotations.annotation_id',
+                 'cases.case_id',
+                 'cases.project.project_id',
+                 'cases.project.name']
       };
       this.FilesService.getFiles(fileOptions, 'POST').then((data: IFiles) => {
         this.files = this.files || {};
         if (!_.isEqual(this.files.hits, data.hits)) {
           this.files = data;
-          this.getSummary();
+          this.ParticipantsService.getParticipants({filters: filters, size: 0}, 'POST').then((data: IParticipants) => {
+            this.participantCount = data.pagination.total;
+            })
         }
-      });
-      this.ParticipantsService.getParticipants({filters: filters, size: 0}, 'POST').then((data: IParticipants) => {
-        this.participantCount = data.pagination.total;
-      });
+      }).finally(() => this.getSummary() );
     }
 
     getTotalSize(): number {
@@ -183,10 +193,17 @@ module ngApp.cart.controllers {
     }
 
     removeAll() {
-      this.CartService.removeAll();
+      // edge case where there is only 1 file in the cart,
+      // need to pass the file to CartService.remove because CartService
+      // does not store file names and the file name is displayed in
+      // remove notification
+      if (this.files.pagination.count === 1) {
+        this.CartService.remove(this.files.hits);
+      } else {
+        this.CartService.removeAll();
+      }
       this.lastModified = this.CartService.lastModified;
-      this.files = this.CartService.getFiles();
-      this.getSummary();
+      this.files = {};
     }
 
     getManifest(selectedOnly: boolean = false) {
@@ -217,7 +234,9 @@ module ngApp.cart.controllers {
     constructor(private CartService: ICartService) {}
 
     addToCart(): void {
-      this.CartService.addFiles([this.file], true);
+      if (this.CartService.getCartVacancySize() < 1) {
+        this.CartService.sizeWarning();
+      } else this.CartService.addFiles([this.file], true);
     }
 
     removeFromCart(): void {

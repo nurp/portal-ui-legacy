@@ -3,6 +3,7 @@ module ngApp.components.user.services {
   import IFile = ngApp.files.models.IFile;
   import ILocationService = ngApp.components.location.ILocationService;
   import IGDCConfig = ngApp.IGDCConfig;
+  import INotifyService = ng.cgNotify.INotifyService;
 
   export interface IUserService {
     login(): void;
@@ -18,6 +19,7 @@ module ngApp.components.user.services {
 
   class UserService implements IUserService {
     currentUser: IUser;
+    isFetching: boolean = false;
 
     /* @ngInject */
     constructor(private AuthRestangular: restangular.IService,
@@ -26,6 +28,7 @@ module ngApp.components.user.services {
                 private $cookies: ng.cookies.ICookiesService,
                 private $window: ng.IWindowService,
                 private $uibModal: any,
+                private notify: INotifyService,
                 private config: IGDCConfig,
                 private $log: ng.ILogService) {
       if (config.fake_auth) {
@@ -46,21 +49,33 @@ module ngApp.components.user.services {
     }
 
     login(): void {
-      this.AuthRestangular.all("user")
-      .withHttpConfig({
-        withCredentials: true
-      })
-      .post({}, {})
-      .then((data) => {
-          data.isFiltered = true;
-          this.setUser(data);
-      }, (response) => {
-        if(response.status === 401) {
-          return;
-        } else {
-          this.$log.error("Error logging in, response status " + response.status);
-        }
-      });
+      if (!this.isFetching) {
+        this.isFetching = true;
+        this.AuthRestangular.all("user")
+        .withHttpConfig({
+          withCredentials: true
+        })
+        .post({}, {})
+        .then((data) => {
+            data.isFiltered = true;
+            this.setUser(data);
+        }, (response) => {
+          if(response.status === 401) {
+            if (this.currentUser) {
+              this.currentUser = undefined;
+              this.notify({
+                message: "",
+                messageTemplate: "<span data-translate>Session expired or unauthorized.</span>",
+                container: "#notification",
+                classes: "alert-warning"
+              });
+            }
+          } else {
+            this.$log.error("Error logging in, response status " + response.status);
+          }
+        })
+        .finally(() => this.isFetching = false);
+      }
     }
 
     getToken(): void {
@@ -80,16 +95,7 @@ module ngApp.components.user.services {
           this.$window.saveAs(file.data, "gdc-user-token." + this.$window.moment().format() + ".txt");
         }, (response) => {
           if(response.status === 401) {
-            var loginWarningModal = this.$uibModal.open({
-              templateUrl: "core/templates/request-access-to-download-single.html",
-              controller: "LoginToDownloadController",
-              controllerAs: "wc",
-              backdrop: "static",
-              keyboard: false,
-              backdropClass: "warning-backdrop",
-              animation: false,
-              size: "lg"
-            });
+            this.login();
           } else {
             this.$log.error("Error logging in, response status " + response.status);
           }
