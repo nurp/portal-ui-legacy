@@ -1,10 +1,12 @@
 language: node_js
 node_js:
-- '0.12'
+- 'stable'
+sudo: false
 cache:
   npm: true
-  bower: true
-sudo: false
 notifications:
+  email: false
   slack:
     secure: Njn9VjYMUJcb8jfvusetb13uC0rcQ1NN6KumKxc6/jBCRoQ7uhQbqhcemZDK/7s/jRUGYTkb72u5QJxgVHcYDMchO9aOCVI3xs8veQ6j6shOCJbSIHGby1nkuwDPNzyyYh5mjJVDiWbiIBOzOaMko0QT//Ce1IitBBkyTEtQPcg=
+before_install:
+  - npm config set spin false
