@@ -33,7 +33,6 @@ export default Relay.createContainer(CaseTable, {
           hasPreviousPage
           startCursor
           endCursor
-          total
         }
         edges {
           node {
