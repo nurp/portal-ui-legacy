@@ -182,6 +182,39 @@ function appRun(gettextCatalog: any,
     CoreService.setLoadedState(true);
   });
 
+  // Version Info
+
+  console.groupCollapsed(
+    "%c★ UI Git Info\n"
+  + "=============",
+    "color: rgb(173, 30, 30); font-weight: bold;"
+  )
+
+  console.info("%cTag: %c" + config.tag,
+    "font-weight: bold;", "color: rgb(89, 139, 214);"
+  )
+
+  console.info("%cCommit Link: %c" + config.commitLink,
+    "font-weight: bold;", "color: rgb(89, 139, 214);"
+  )
+
+  console.groupEnd()
+
+  console.groupCollapsed(
+    "%c★ API Git Info\n"
+  + "==============",
+    "color: rgb(173, 30, 30); font-weight: bold;"
+  )
+
+  console.info("%cTag: %c" + config.apiTag,
+    "font-weight: bold;", "color: rgb(89, 139, 214);"
+  )
+
+  console.info("%cCommit Link: %c" + config.apiCommitLink,
+    "font-weight: bold;", "color: rgb(89, 139, 214);"
+  )
+
+  console.groupEnd()
 }
 
 angular
