@@ -275,7 +275,7 @@ module ngApp.search.models {
           "summary.data_types",
         ],
         facets: [
-            {name: "case_id", title: "Case", collapsed: false, facetType: "free-text", placeholder: "Case Barcode or Uuid"},
+            {name: "case_id", title: "Case", collapsed: false, facetType: "free-text", placeholder: "UUID, Submitter ID"},
             {name: "project.primary_site", title: "Primary Site", collapsed: false, facetType: "terms"},
             {name: "project.program.name", title: "Cancer Program", collapsed: false, facetType: "terms"},
             {name: "project.project_id", title: "Project", collapsed: false, facetType: "terms"},
