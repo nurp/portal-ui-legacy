@@ -1,12 +1,34 @@
 import Relay from 'react-relay';
-import { div, h1, button, table, thead, tbody, tr, th, h } from 'react-hyperscript-helpers';
+import { div, h1, button, table, thead, tr, th, h } from 'react-hyperscript-helpers';
 
-import FileTr from 'components/FileTr';
+import FileTBody from 'components/FileTBody';
 
 export const FileTable = props => {
-  console.log(props);
+  console.log(1, props);
   return div([
-    h1(`Files ${props.hits.pagination.count} : ${props.hits.pagination.total}`),
+    h1(`Files ${props.files.hits.pagination.count} : ${props.files.hits.pagination.total}`),
+    button({
+      onClick: () => {
+        props.relay.setVariables({
+          offset: 0,
+          filters: {
+            op: '=',
+            content: {
+              field: 'files.access',
+              value: 'controlled',
+            },
+          },
+        });
+      },
+    }, 'Add Filters!'),
+    button({
+      onClick: () => {
+        props.relay.setVariables({
+          offset: 0,
+          filters: null,
+        });
+      },
+    }, 'Remove Filters!'),
     table([
       thead([
         tr([
@@ -19,55 +41,56 @@ export const FileTable = props => {
           th('Size'),
         ]),
       ]),
-      tbody(
-        ((props.hits || {}).edges || []).map(e => (
-          h(FileTr, {
-            key: e.node.id,
-            file: e.node,
-          })
-        ))
-      ),
+      h(FileTBody, props.files.hits),
     ]),
-    props.hits.pagination.offset > 0 && button({
-      onClick: () => props.handleBBack(),
+    button({
+      onClick: () => props.relay.setVariables({
+        offset: 0,
+        filters: null,
+      }),
     }, '<<'),
-    props.hits.pagination.offset > 0 && button({
-      onClick: () => props.handleBack(props.hits.pagination.offset - 20),
+    button({
+      onClick: () => props.relay.setVariables({
+        offset: props.files.hits.pagination.offset - 20,
+        filters: null,
+      }),
     }, '<'),
-    props.hits.pagination.offset < props.hits.pagination.total - 20 && button({
-      onClick: () => props.handleForward(props.hits.pagination.offset + 20),
+    button({
+      onClick: () => props.relay.setVariables({
+        offset: props.files.hits.pagination.offset + 20,
+        filters: null,
+      }),
     }, '>'),
-    props.hits.pagination.offset < props.hits.pagination.total - 20 && button({
-      onClick: () => props.handleFForward(
-        props.hits.pagination.total - props.hits.pagination.total % 20
-      ),
+    button({
+      onClick: () => props.relay.setVariables({
+        offset: props.files.hits.pagination.total - props.files.hits.pagination.total % 20,
+        filters: null,
+      }),
     }, '>>'),
   ]);
 };
 
 export default Relay.createContainer(FileTable, {
+  initialVariables: {
+    first: 20,
+    offset: 0,
+    filters: null,
+  },
   fragments: {
-    hits: () => Relay.QL`
-      fragment on FileConnection {
-        pagination {
-          total
-          size
-          count
-          offset
-          sort
-        }
-        pageInfo {
-          hasNextPage
-          hasPreviousPage
-          startCursor
-          endCursor
-        }
-        edges {
-          node {
-            id
-            ${FileTr.getFragment('file')}
+    files: () => Relay.QL`
+      fragment on Files {
+        hits(first: $first offset: $offset, filters: $filters) {
+          pagination {
+            total
+            size
+            count
+            offset
+            sort
           }
-        }
+          edges {
+            ${FileTBody.getFragment('edges')}
+          }
+      }
       }
     `,
   },
