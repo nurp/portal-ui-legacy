@@ -5,7 +5,7 @@ import FileTable from 'components/FileTable';
 import CaseTable from 'components/CaseTable';
 
 export const App = (props) => {
-  console.log(0, props);
+  console.log(0, props.relay.getPendingTransactions(props.viewer));
   return div({
     children: [
       props.children,

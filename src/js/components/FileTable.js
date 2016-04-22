@@ -1,4 +1,5 @@
 import Relay from 'react-relay';
+import { Link } from 'react-router';
 import { div, h1, button, table, thead, tr, th, h } from 'react-hyperscript-helpers';
 
 import FileTBody from 'components/FileTBody';
@@ -43,29 +44,38 @@ export const FileTable = props => {
       ]),
       h(FileTBody, props.files.hits),
     ]),
-    button({
-      onClick: () => props.relay.setVariables({
-        offset: 0,
-        filters: null,
-      }),
+    h(Link, {
+      to: {
+        pathname: '/files',
+        query: {
+          offset: 0,
+        },
+      },
     }, '<<'),
-    button({
-      onClick: () => props.relay.setVariables({
-        offset: props.files.hits.pagination.offset - 20,
-        filters: null,
-      }),
+    h(Link, {
+      to: {
+        pathname: '/files',
+        query: {
+          offset: props.relay.route.params.offset - props.relay.route.params.first,
+        },
+      },
     }, '<'),
-    button({
-      onClick: () => props.relay.setVariables({
-        offset: props.files.hits.pagination.offset + 20,
-        filters: null,
-      }),
+    h(Link, {
+      to: {
+        pathname: '/files',
+        query: {
+          offset: props.relay.route.params.offset + props.relay.route.params.first,
+        },
+      },
     }, '>'),
-    button({
-      onClick: () => props.relay.setVariables({
-        offset: props.files.hits.pagination.total - props.files.hits.pagination.total % 20,
-        filters: null,
-      }),
+    h(Link, {
+      to: {
+        pathname: '/files',
+        query: {
+          offset: props.files.hits.pagination.total - props.files.hits.pagination.total % 20,
+        },
+      },
+      disabled: true,
     }, '>>'),
   ]);
 };

@@ -1,15 +1,18 @@
 import Relay from 'react-relay';
 import { Route } from 'react-router';
-import { div, h } from 'react-hyperscript-helpers';
+import { h } from 'react-hyperscript-helpers';
 
 import App from 'components/App';
 import FileTable from 'components/FileTable';
+
+const parseIntParam = (str, defaults) => (
+  str ? Math.max(parseInt(str, 10), 0) : defaults
+);
 
 export default (
   h(Route, {
     path: '/',
     component: App,
-    renderLoading: () => div('beep!'),
     queries: {
       viewer: () => Relay.QL`query { viewer }`,
     },
@@ -17,11 +20,10 @@ export default (
       h(Route, {
         path: '/files',
         component: FileTable,
-        renderLoading: () => div('beep!!'),
         queryParams: ['offset', 'first'],
         prepareParams: params => ({
-          offset: params.offset ? parseInt(params.offset, 10) : 0,
-          first: params.first ? parseInt(params.first, 10) : 20,
+          offset: parseIntParam(params.offset, 0),
+          first: parseIntParam(params.first, 20),
         }),
         queries: {
           files: () => Relay.QL`query { files }`,

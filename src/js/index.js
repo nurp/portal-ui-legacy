@@ -16,6 +16,9 @@ ReactDOM.render(
   h(Router, {
     history: browserHistory,
     routes,
+    onReadyStateChange: readyState => {
+      console.log(99, readyState);
+    },
     render: applyRouterMiddleware(useRelay),
   }),
   document.getElementById('react-relay-example')
