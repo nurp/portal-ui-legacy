@@ -57,7 +57,7 @@ module ngApp.cart.directives {
 
 
   // add to cart on summary
-  function AddToCartAllButton(SearchTableFilesModel: TableiciousConfig) {
+  function AddToCartAllButton(SearchTableFilesModel: TableiciousConfig): ng.IDirective {
     return {
       restrict: 'E',
       scope: {},
@@ -72,7 +72,7 @@ module ngApp.cart.directives {
   }
 
   // add to cart dropdown on top of file search
-  function AddToCartAllDropDown(SearchTableFilesModel: TableiciousConfig) {
+  function AddToCartAllDropDown(SearchTableFilesModel: TableiciousConfig): ng.IDirective {
     return {
       restrict: 'E',
       scope: {},
@@ -259,26 +259,24 @@ module ngApp.cart.directives {
       restrict:"AE",
       scope: true,
       link: ($scope, $element, $attrs) => {
-        const scope = $scope;
-        scope.active = false;
+        $scope.active = false;
 
         const inProgress = () => {
-          scope.active = true;
+          $scope.active = true;
           $attrs.$set('disabled', 'disabled');
         };
         const done = () => {
-          scope.active = false;
+          $scope.active = false;
           $element.removeAttr('disabled');
         };
-        const files = [].concat(CartService.getFiles());
-        const params = { ids: files.map(f => f.file_id) };
-        const url = config.api + '/manifest?annotations=true&related_files=true';
-        const clickHandler = () => {
-          const checkProgress = scope.download(params, url, () => $element, 'POST');
-          checkProgress(inProgress, done);
-        };
 
-        $element.on('click', clickHandler);
+        $element.on('click', () => {
+          const files = [].concat(CartService.getFiles());
+          const params = { ids: files.map(f => f.file_id) };
+          const url = config.api + '/manifest?annotations=true&related_files=true';
+          const checkProgress = $scope.download(params, url, () => $element, 'POST');
+          checkProgress(inProgress, done);
+        });
       }
     };
   }
@@ -289,7 +287,6 @@ module ngApp.cart.directives {
       scope: true,
       link: (scope, $element, $attrs) => {
         scope.active = false;
-
         const inProgress = () => {
           scope.active = true;
           $attrs.$set('disabled', 'disabled');
@@ -298,15 +295,13 @@ module ngApp.cart.directives {
           scope.active = false;
           $element.removeAttr('disabled');
         };
-        const files = [].concat(CartService.getFiles());
-        const params = { ids: files.map(f => f.file_id) };
-        const url = config.api + '/data/metadata_files';
-        const clickHandler = () => {
+        $element.on('click', () => {
+          const files = [].concat(CartService.getFiles());
+          const params = { ids: files.map(f => f.file_id) };
+          const url = config.api + '/data/metadata_files';
           const checkProgress = scope.download(params, url, () => $element, 'POST');
           checkProgress(inProgress, done);
-        };
-
-        $element.on('click', clickHandler);
+        });
       }
     };
   }
@@ -316,74 +311,73 @@ module ngApp.cart.directives {
       restrict:"AE",
       scope: true,
       link: ($scope, $element, $attrs) => {
-        const scope = $scope;
-        const isLoggedIn = UserService.currentUser;
-        const authorizedInCart = CartService.getAuthorizedFiles();
-        const unauthorizedInCart = CartService.getUnauthorizedFiles();
-
-        scope.active = false;
-        scope.meta = {
-          unauthorized: unauthorizedInCart,
-          authorized: authorizedInCart
-        };
-
-        const inProgress = () => {
-          scope.active = true;
-          $attrs.$set('disabled', 'disabled');
-        };
-        const done = () => {
-          scope.active = false;
-          $element.removeAttr('disabled');
-        };
-        const files = [].concat(authorizedInCart);
-        const params = { ids: files.map(f => f.file_id) };
-        const url = config.api + '/data?annotations=true&related_files=true';
-
-        const download = () => {
-          const checkProgress = scope.download(params, url, () => $element, 'POST');
-          checkProgress(inProgress, done);
-        };
-        const showLoginModal = () => {
-          var modalInstance = $uibModal.open({
-            templateUrl: "core/templates/login-to-download.html",
-            controller: "LoginToDownloadController",
-            controllerAs: "wc",
-            backdrop: true,
-            keyboard: true,
-            scope: scope,
-            size: "lg",
-            animation: false
-          });
-
-          modalInstance.result.then((a) => {
-            if (a && authorizedInCart.length > 0) {
-              download();
-            } else if (!a) {
-              // Cancel Pressed
-              done();
-            }
-          });
-        };
-        const showRequestAccessModal = () => {
-          var modalInstance = $uibModal.open({
-            templateUrl: "core/templates/request-access-to-download.html",
-            controller: "LoginToDownloadController",
-            controllerAs: "wc",
-            backdrop: true,
-            keyboard: true,
-            scope: scope,
-            size: "lg",
-            animation: false
-          });
-
-          modalInstance.result.then((a) => {
-            if (a && authorizedInCart.length > 0) {
-              download();
-            }
-          });
-        };
-
         $element.on('click', () => {
+          const isLoggedIn = UserService.currentUser;
+          const authorizedInCart = CartService.getAuthorizedFiles();
+          const unauthorizedInCart = CartService.getUnauthorizedFiles();
+
+          $scope.active = false;
+          $scope.meta = {
+            unauthorized: unauthorizedInCart,
+            authorized: authorizedInCart
+          };
+
+          const inProgress = () => {
+            $scope.active = true;
+            $attrs.$set('disabled', 'disabled');
+          };
+          const done = () => {
+            $scope.active = false;
+            $element.removeAttr('disabled');
+          };
+          const files = [].concat(authorizedInCart);
+          const params = { ids: files.map(f => f.file_id) };
+          const url = config.api + '/data?annotations=true&related_files=true';
+
+          const download = () => {
+            const checkProgress = $scope.download(params, url, () => $element, 'POST');
+            checkProgress(inProgress, done);
+          };
+          const showLoginModal = () => {
+            var modalInstance = $uibModal.open({
+              templateUrl: "core/templates/login-to-download.html",
+              controller: "LoginToDownloadController",
+              controllerAs: "wc",
+              backdrop: true,
+              keyboard: true,
+              scope: $scope,
+              size: "lg",
+              animation: false
+            });
+
+            modalInstance.result.then((a) => {
+              if (a && authorizedInCart.length > 0) {
+                download();
+              } else if (!a) {
+                // Cancel Pressed
+                done();
+              }
+            });
+          };
+          const showRequestAccessModal = () => {
+            var modalInstance = $uibModal.open({
+              templateUrl: "core/templates/request-access-to-download.html",
+              controller: "LoginToDownloadController",
+              controllerAs: "wc",
+              backdrop: true,
+              keyboard: true,
+              scope: $scope,
+              size: "lg",
+              animation: false
+            });
+
+            modalInstance.result.then((a) => {
+              if (a && authorizedInCart.length > 0) {
+                download();
+              }
+            });
+          };
+
           if (CartService.getUnauthorizedFiles().length) {
             if (isLoggedIn) showRequestAccessModal();
             else showLoginModal();
