@@ -2,7 +2,10 @@
   "extends": "airbnb",
   "parser": "babel-eslint",
   "rules": {
-    "strict": 0
+    "strict": 0,
+    "jsx-a11y/img-uses-alt": 0,
+    "jsx-a11y/redundant-alt": 0,
+    "jsx-a11y/valid-aria-role": 0
   },
   "env": {
     "browser": true,
@@ -10,7 +13,8 @@
     "jasmine": true
   },
   "plugins": [
-    "react"
+    "react",
+    "jsx-a11y"
   ],
   "globals": {
     "__BASE__": true,
