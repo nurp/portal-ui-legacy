@@ -234,7 +234,7 @@ module ngApp.components.facets.services {
               : _.pluck(this.SearchTableParticipantsModel.facets, "name"),
             datum.field
           )
-        ), f => _.merge(f, { description: 'this is a description' }));
+        ), f => f);
       });
     }
 
