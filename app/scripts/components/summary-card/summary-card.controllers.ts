@@ -1,70 +1,45 @@
 module ngApp.components.summaryCard.controllers {
 
+  import IFacetService = ngApp.components.facets.services.IFacetService;
+  import ILocationService = ngApp.components.location.services.ILocationService;
+
   interface ISummaryCardController {
+    addFilters(item: any): void;
+    clearFilters(): void;
   }
 
   class SummaryCardController implements ISummaryCardController {
 
     /* @ngInject */
-    constructor(private $scope, public LocationService: ILocationService,
-                private $state: ng.ui.IStateService) {}
+    constructor(
+      private $scope,
+      private LocationService: ILocationService,
+      private FacetService: IFacetService
+    ) {}
 
-    addFilters(item: any, state: string) {
-      var params;
+    addFilters(item: any) {
       var config = this.$scope.config;
+      var filters = this.FacetService.ensurePath(this.LocationService.filters());
 
-      if (!config.filters || (!config.filters[item[config.displayKey]] &&
-          !config.filters["default"])) {
+      if (!config.filters ||
+        (!config.filters[item[config.displayKey]] && !config.filters.default)) {
         return;
       }
 
-      if (config.filters[item[config.displayKey]]) {
-        var filters = config.filters[item[config.displayKey]];
-        params = filters.params;
-      } else {
-        params = {
-          filters: config.filters["default"].params.filters(item[config.displayKey])
-        };
-      }
+      var params = config.filters[item[config.displayKey]]
+        ? config.filters[item[config.displayKey]].params
+        : { filters: config.filters.default.params.filters(item[config.displayKey]) };
 
-      if (config.state) {
-        this.$state.go(state || config.state.name, {
-          filters: params.filters
-        }, {inherit: false});
-        return;
-      }
+      var newFilter = JSON.parse(params.filters).content[0]; // there is always just one
 
-      var filters = this.LocationService.filters();
+      filters.content = (filters.content || []).some(filter => _.isEqual(filter, newFilter))
+        ? filters.content
+        : filters.content.concat(newFilter);
 
-      if (!filters.content) {
-        filters.content = [];
-        filters.op = "and";
-      }
-
-      var newFilters = angular.fromJson(params.filters);
-
-      _.forEach(newFilters.content, (filter) => {
-        var oldFilter = _.find(filters.content, (oFilter) => {
-          return oFilter.content.field === filter.content.field;
-        });
-
-        if (oldFilter) {
-          // Playing with the idea that if attempting to add the exact same
-          // value then we should remove it as a "reverse"
-          if (!_.isEqual(oldFilter.content.value, filter.content.value)) {
-            oldFilter.content.value.concat(filter.content.value);
-          } else {
-            filters.content.splice(filters.content.indexOf(filter), 1);
-          }
-        } else {
-          filters.content.push(filter);
-        }
-      });
-
-      this.LocationService.setFilters(filters);
+      this.LocationService.setFilters(filters.content.length ? filters : null);
     }
 
-    clearFilters() {
+    clearFilters(): void {
       var filters = this.LocationService.filters();
 
       filters.content = _.reject(filters.content, (filter) => {
