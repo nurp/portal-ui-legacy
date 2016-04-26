@@ -136,9 +136,10 @@ module ngApp.search.controllers {
       this.FilesService.getFiles(fileOptions).then((data: IFiles) => {
         this.files = this.files || {};
         this.files.aggregations = data.aggregations;
+        this.files.pagination = data.pagination;
 
         if (!_.isEqual(this.files.hits, data.hits)) {
-          this.files = data;
+          this.files.hits = data.hits;
           this.tabSwitch = false;
           if (this.SearchState.tabs.files.active) {
             this.SearchState.setActive("tabs", "files", "hasLoadedOnce");
@@ -153,9 +154,10 @@ module ngApp.search.controllers {
       this.ParticipantsService.getParticipants(participantOptions).then((data: IParticipants) => {
         this.participants = this.participants || {};
         this.participants.aggregations = data.aggregations;
-
+        this.participants.pagination = data.pagination;
+        
         if (!_.isEqual(this.participants.hits, data.hits)) {
-          this.participants = data;
+          this.participants.hits = data.hits;
           this.tabSwitch = false;
           if (this.SearchState.tabs.participants.active) {
             this.SearchState.setActive("tabs", "participants", "hasLoadedOnce");
