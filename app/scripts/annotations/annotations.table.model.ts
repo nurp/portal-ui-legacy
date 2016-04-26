@@ -16,23 +16,23 @@ module ngApp.projects.models {
             id: "case_id",
             td: row => row.case_id,
             sortable: true,
-              tdClassName: 'truncated-cell',
-              toolTipText: row => row.case_id
-          },
-          {
-              name: "Program",
-              id: "project.program.name",
-              td: row => row.project && row.project.program && row.project.program.name,
-              sortable: true,
-              hidden: true
-          },
-          {
-              name: "Project",
-              id: "project.project_id",
-              td: row => row.project && '<a href="projects/'+row.project.project_id +
-                         '">' + row.project.project_id + '</a>',
-              sortable: true,
-              toolTipText: row => row.project.name
+            tdClassName: 'truncated-cell',
+            toolTipText: row => row.case_id
+        },
+        {
+            name: "Program",
+            id: "project.program.name",
+            td: row => row.project && row.project.program && row.project.program.name,
+            sortable: true,
+            hidden: true
+        },
+        {
+            name: "Project",
+            id: "project.project_id",
+            td: row => row.project && '<a href="projects/'+row.project.project_id +
+                       '">' + row.project.project_id + '</a>',
+            sortable: true,
+            toolTipText: row => row.project.name
         },
         {
             name: "Entity Type",
