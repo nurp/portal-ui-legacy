@@ -6,7 +6,7 @@ module ngApp.components.ui.biospecimen.controllers {
   export interface IBiospecimenController {
     activeBioSpecimenDoc: any;
     activeBioSpecimenDocType: string;
-    displayBioSpecimenDocument(event: any, doc: any, type: string): void;
+    displayBioSpecimenDocument(doc: any, type: string): void;
     downloadBiospecimenXML(participant_id: string): void;
     bioSpecimenFileId: string;
     bioSpecimenFile: any;
@@ -18,22 +18,26 @@ module ngApp.components.ui.biospecimen.controllers {
     bioSpecimenFileId: string;
 
     /* @ngInject */
-    constructor(private LocationService: ILocationService,
-                private config: IGDCConfig, $scope) {
+    constructor(
+      private LocationService: ILocationService,
+      private config: IGDCConfig,
+      $scope
+    ) {
       $scope.participant.samples.expanded = true;
       this.activeBioSpecimenDoc = $scope.participant.samples[0];
       this.activeBioSpecimenDocType = "sample";
 
-      this.bioSpecimenFile =  _.find($scope.participant.files, (file) => {
+      this.bioSpecimenFile = _.find($scope.participant.files, (file) => {
         return file.data_subtype.toLowerCase() === "biospecimen data";
       });
-    }
 
-    displayBioSpecimenDocument(event: any, doc: any, type: string): void {
-      if (event.which === 1 || event.which === 13) {
-        this.activeBioSpecimenDocType = type;
-        this.activeBioSpecimenDoc = doc;
-      }
+
+
+
+      $scope.$on('displayBioSpecimenDocument', (event, data) => {
+        this.activeBioSpecimenDocType = data.type;
+        this.activeBioSpecimenDoc = data.doc;
+      })
     }
 
     displayBioSpecimenDocumentRow(key, value): boolean {
