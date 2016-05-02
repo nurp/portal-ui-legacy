@@ -36,7 +36,9 @@
           <tr>
             <th data-translate scope="row">Project ID</th>
             <td>
+              <span data-uib-tooltip="{{ ::ac.ProjectsService.projectIdMapping[ ac.annotation.project.project_id ] }}">
                 {{ ::ac.annotation.project.project_id }}
+              </span>
             </td>
           </tr>
           <tr>
