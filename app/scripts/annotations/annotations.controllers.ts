@@ -4,6 +4,7 @@ module ngApp.annotations.controllers {
   import ICoreService = ngApp.core.services.ICoreService;
   import IAnnotationsService = ngApp.annotations.services.IAnnotationsService;
   import TableiciousConfig = ngApp.components.tables.directives.tableicious.TableiciousConfig;
+  import IProjectsService = ngApp.projects.services.IProjectsService;
 
   export interface IAnnotationsController {
     annotations: IAnnotations;
@@ -37,7 +38,6 @@ module ngApp.annotations.controllers {
     refresh() {
       this.AnnotationsService.getAnnotations({
         fields: this.AnnotationsTableModel.fields,
-        expand: this.AnnotationsTableModel.expand,
         facets: [
           "annotation_id",
           "classification",
@@ -67,7 +67,9 @@ module ngApp.annotations.controllers {
 
   class AnnotationController implements IAnnotationController {
     /* @ngInject */
-    constructor(public annotation: IAnnotation, private CoreService: ICoreService) {
+    constructor(public annotation: IAnnotation,
+                public ProjectsService: IProjectsService,
+                private CoreService: ICoreService) {
       CoreService.setPageTitle("Annotation", annotation.annotation_id);
     }
   }

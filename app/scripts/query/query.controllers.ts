@@ -95,21 +95,20 @@ module ngApp.query.controllers {
       });
 
       var fileOptions = {
-        fields: this.SearchTableFilesModel.fields,
-        expand: this.SearchTableFilesModel.expand
+        fields: this.SearchTableFilesModel.fields
       };
 
       var participantOptions = {
         fields: this.SearchTableParticipantsModel.fields,
-        expand: this.SearchTableParticipantsModel.expand,
       };
 
       this.FilesService.getFiles(fileOptions).then((data: IFiles) => {
         this.files = this.files || {};
         this.files.aggregations = data.aggregations;
+        this.files.pagination = data.pagination;
 
         if (!_.isEqual(this.files.hits, data.hits)) {
-          this.files = data;
+          this.files.hits = data.hits;
           this.tabSwitch = false;
           if (this.QState.tabs.files.active) {
             this.QState.setActive("files", "hasLoadedOnce");
@@ -124,9 +123,10 @@ module ngApp.query.controllers {
       this.ParticipantsService.getParticipants(participantOptions).then((data: IParticipants) => {
         this.participants = this.participants || {};
         this.participants.aggregations = data.aggregations;
-
+        this.participants.pagination = data.pagination
+        
         if (!_.isEqual(this.participants.hits, data.hits)) {
-          this.participants = data;
+          this.participants.hits = data.hits;
           this.tabSwitch = false;
           if (this.QState.tabs.participants.active) {
             this.QState.setActive("participants", "hasLoadedOnce");

@@ -25,64 +25,41 @@ module ngApp.components.ui.control.directives {
         // Included for extensibility
       },
       link: ($scope: ISplitControlScope, $element: ng.IAugmentedJQuery, $attrs: ng.IAttributes) => {
-
-        const scope = $scope;
+        var loadingState = false;
+        var childStates = {};
 
         function _initListeners() {
-          var _timeOutHandle = null;
+          $element.keydown(function(e) {
+            if(e.which == 13) { // enter key
+              $element.find('#' + $scope.uiControl.id).click();
+            }
+          });
 
-          $element.focus(
-            () => {
-              scope.$evalAsync(() => {
-                scope.uiControl.isOpen = true;
-                $element.find('#' + $scope.uiControl.id).focus();
-              });
-
-              if (_timeOutHandle) {
-                clearTimeout(_timeOutHandle);
-                _timeOutHandle = null;
-              }
-            });
-
-          /*$element.blur(() => {
-              _timeOutHandle = setTimeout(() => {
-
-                scope.$evalAsync(() => {
-                  scope.uiControl.isOpen = false;
-                });
-
-              }, 500)
-            });*/
-
-            // if (typeof scope[$attrs.isLoadingIndicatorFlag] === 'undefined') {
-            //   $scope[$attrs.isLoadingIndicatorFlag] = false;
-            // }
-
-            scope.$watch(() => {
-              return  scope[$attrs.isLoadingIndicatorFlag];
-            }, (isLoading) => {
-              scope.uiControl.isLoading = isLoading;
-            });
-
+          $scope.$watch(() => loadingState, (isLoading) => {
+            $scope.uiControl.isLoading = isLoading;
+          });
         }
 
         function _init() {
-          scope.uiControl = {
+          $scope.uiControl = {
             id: 'split-control-' + (new Date().getTime()),
-            isOpen: false,
             isLoading: false,
             controlLabelText: $attrs.controlLabelText || 'Action Label',
             srLabel: $attrs.srLabel || 'Split Control',
             shouldSplitControl: $attrs.noSplit === 'true' ? false : true,
-            iconClasses: $attrs.iconClasses || false
+            iconClasses: $attrs.iconClasses || false,
+            btnType: $attrs.btnType || 'primary'
+          };
+
+          $scope.reportStatus = (id, status) => {
+            _.set(childStates, [id], status);
+            loadingState = _.some(_.values(childStates), (s) => s);
           };
 
           _initListeners();
         }
 
         _init();
-
-
       }
   };
 }
@@ -95,11 +72,26 @@ module ngApp.components.ui.control.directives {
       transclude: true,
       require: "^splitControl",
       templateUrl: "components/ui/controls/templates/split-control-option.html",
-      link: () => {
+      link: (scope, element, attributes, controller, transclude) => {
+        const myId = scope.id;
+        var loadingState = false;
+        var childStates = {};
+
+        scope.reportStatus = (id, status) => {
+          _.set(childStates, [id], status);
+          loadingState = _.some(_.values(childStates), (s) => s);
+        };
+
+        scope.$watch(() => loadingState, (isLoading) => {
+          scope.$parent.$parent.reportStatus(myId, isLoading);
+        });
+
+        transclude(scope.$new(), (clone) => {
+          element.append(clone);
+        });
       }
     };
   }
-
 
   angular.module("ui.control.directives", [])
     .directive("splitControl", SplitControl)

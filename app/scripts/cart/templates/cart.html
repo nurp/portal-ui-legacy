@@ -63,16 +63,17 @@
       <div class="pull-right">
           <split-control data-control-label-text="Download" data-no-split="true" data-icon-classes="fa fa-download">
               <split-control-option data-option-label-text="Download Manifest File">
-                <a data-download-manifest-cart data-downloader id="manifest-button" href="javascript:void(0)">
+                <button data-download-manifest-cart data-downloader id="manifest-button" href="javascript:void(0)">
                   <i class="fa" ng-class="{'fa-download': !active, 'fa-spinner fa-pulse': active}"></i>
                   <span data-translate>Manifest</span>
-                </a>
+                </button>
               </split-control-option>
 
               <split-control-option data-option-label-text="Download Cart (Web Browser)">
-                <a download-button-all-cart data-downloader id="download-all-button" href="javascript:void(0)">
-                  <i class="fa" ng-class="{'fa-download': !active, 'fa-spinner fa-pulse': active}"></i> <span data-translate>Cart</span>
-                </a>
+                <button download-button-all-cart data-downloader id="download-all-button" href="javascript:void(0)">
+                  <i class="fa" ng-class="{'fa-download': !active, 'fa-spinner fa-pulse': active}"></i>
+                  <span data-translate>Cart</span>
+                </button>
               </split-control-option>
 
               <hr class="dropdown-rule" />
@@ -102,10 +103,10 @@
               </split-control-option>
 
               <split-control-option data-option-label-text="Download Metadata Files">
-                <a data-download-metadata-files data-downloader id="download-metadata-files-button" href="javascript:void(0)">
+                <button data-download-metadata-files data-downloader id="download-metadata-files-button" href="javascript:void(0)">
                   <i class="fa" ng-class="{'fa-download': !active, 'fa-spinner fa-pulse': active}"></i>
                   <span data-translate>&nbsp;SRA XML, MAGE-TAB</span>
-                </a>
+                </button>
               </split-control-option>
 
               <split-control-option data-option-label-text="Download Metadata">
@@ -119,15 +120,17 @@
           </split-control>
 
           <split-control data-control-label-text="Remove From Cart"
-            data-btn-type="danger"
             data-no-split="true" data-icon-classes="fa fa-trash-o">
             <split-control-option data-option-label-text="Remove All Files">
-              <a type="button"
+              <span>
+                <button
+                  tabindex="0"
                   id="clear-button"
                   data-ng-click="cc.removeAll()">
-                <i class="fa fa-remove"></i>
-                <span data-translate>All Files ({{cc.CartService.getFiles().length}})</span>
-              </a>
+                  <i class="fa fa-remove"></i>
+                  <span data-translate>All Files ({{cc.CartService.getFiles().length}})</span>
+                </button>
+              </span>
             </split-control-option>
             <split-control-option data-option-label-text="Remove Unauthorized Files">
               <remove-unauthorized-files-button data-ng-if="cc.CartService.getUnauthorizedFiles().length"></remove-unauthorized-files-button>

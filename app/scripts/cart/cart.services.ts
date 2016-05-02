@@ -183,7 +183,7 @@ module ngApp.cart.services {
     }
 
     getUnauthorizedFiles(): IFile[] {
-      return this.files.filter((file)=>{
+      return this.files.filter( (file) => {
         return !this.UserService.userCanDownloadFile(file);
       });
     }
@@ -237,32 +237,27 @@ module ngApp.cart.services {
     }
 
     sizeWarning() {
-      var cartAvailable = this.getCartVacancySize(),
-          template = ["Only", this.$filter("number")(cartAvailable)];
+      var cartAvailable = this.getCartVacancySize()
+      var template = [
+        "The cart is limited to " + this.$filter("number")(this.getMaxSize()) + " files.",
+        !this.files.length
+          ? "Please narrow down your search criteria to be able to add files to your cart."
+          : this.files.length < this.getMaxSize()
+            ? this.$filter("number")(cartAvailable) + getRemaining() + "can be added to the cart."
+            : "You cannot add anymore files to the cart."
+      ];
 
-      if (cartAvailable !== this.getMaxSize()) {
-        if (cartAvailable > 1) {
-          template.push("more");
-          template.push("files");
-        } else if (cartAvailable === 1) {
-          template.push("more");
-          template.push("file");
-        } else {
-          template = ["No more files"];
-        }
-      } else {
-        template.push("files");
+      function getRemaining() {
+        return cartAvailable > 1 ? " more files " : " more file ";
       }
 
-      template.push("can be added to the cart.");
-
-      template = "<span>" + this.gettextCatalog.getString(template.join(" ")) + "</span>";
+      var messageTemplate = "<span>" + this.gettextCatalog.getString(template.join(" ")) + "</span>";
 
       this.notify.config({ duration: 5000 });
       this.notify.closeAll();
       this.notify({
         message: "",
-        messageTemplate: template,
+        messageTemplate: messageTemplate,
         container: "#notification",
         classes: "alert-warning"
       });
@@ -270,7 +265,7 @@ module ngApp.cart.services {
 
     buildAddedMsg(added: Array<Object>, alreadyIn: Array<Object>): string {
       var message = this.gettextCatalog.getPlural(added.length,
-                    "<span>Added <strong>" + _.get(_.first(added), "file_name") + "</strong> to the cart.",
+                    "<span>Added <strong class='word-break-all'>" + _.get(_.first(added), "file_name", "1 file") + "</strong> to the cart.",
                     "<span>Added <strong>" + added.length + "</strong> files to the cart.");
 
       if (alreadyIn.length) {
@@ -287,7 +282,7 @@ module ngApp.cart.services {
 
     buildRemovedMsg(removedFiles: IFile[]): string {
       var message = this.gettextCatalog.getPlural(removedFiles.length,
-                    "<span>Removed <strong>" + _.get(_.first(removedFiles), "file_name") + "</strong> from the cart.",
+                    "<span>Removed <strong class='word-break-all'>" + _.get(_.first(removedFiles), "file_name", "1 file") + "</strong> from the cart.",
                     "<span>Removed <strong>" + removedFiles.length + "</strong> files from the cart.");
 
       if (removedFiles.length !== 0) {
@@ -307,7 +302,7 @@ module ngApp.cart.services {
           return { remaining: acc.remaining, removed: acc.removed.concat(fileToRemove)};
         }
         return { remaining: acc.remaining.concat(f), removed: acc.removed};
-      } ,{ remaining: [], removed: [] });
+      } , { remaining: [], removed: [] });
       this.lastModifiedFiles = partitioned.removed;
       this.notify.closeAll();
       this.notify({

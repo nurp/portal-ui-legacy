@@ -134,11 +134,10 @@ module ngApp.search.models {
       "archive.archive_id",
       "experimental_strategy",
       "center.name",
-    ],
-    expand: [
-      "cases",
-      "cases.project",
-      "cases.clinical"
+      "submitter_id",
+      "cases.case_id",
+      "cases.project.project_id",
+      "cases.project.name"
     ],
     facets: [
       {name: "file_id", title: "File", collapsed: false, facetType: "free-text", placeholder: "File name or ID", removable: false },
@@ -146,9 +145,8 @@ module ngApp.search.models {
       {name: "data_type", title: "Data Type", collapsed: false, facetType: "terms", removable: false },
       {name: "experimental_strategy", title: "Experimental Strategy", collapsed: false, facetType: "terms", removable: false },
       {name: "data_format", title: "Data Format", collapsed: false, facetType: "terms", removable: false },
-      {name: "platform", title: "Platform", collapsed: true, facetType: "terms", removable: false },
-      {name: "access", title: "Access Level", collapsed: true, facetType: "terms", removable: false },
-      {name: "state", title: "File Status", collapsed: true, facetType: "terms", removable: false },
+      {name: "platform", title: "Platform", collapsed: false, facetType: "terms", removable: false },
+      {name: "access", title: "Access Level", collapsed: false, facetType: "terms", removable: false },
     ]
   };
   angular.module("search.table.files.model", [])

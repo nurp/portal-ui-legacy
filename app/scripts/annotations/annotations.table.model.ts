@@ -8,14 +8,16 @@ module ngApp.projects.models {
             id: "annotation_id",
             td: row => '<a href="/legacy-archive/annotations/'+row.annotation_id+'">' + row.annotation_id + '</a>',
             sortable: true,
-            tdClassName: 'truncated-cell'
+            tdClassName: 'truncated-cell',
+            toolTipText: row => row.annotation_id
           },
         {
             name: "Case UUID",
             id: "case_id",
             td: row => row.case_id,
             sortable: true,
-            tdClassName: 'truncated-cell'
+            tdClassName: 'truncated-cell',
+            toolTipText: row => row.case_id
         },
         {
             name: "Program",
@@ -27,13 +29,15 @@ module ngApp.projects.models {
         {
             name: "Project",
             id: "project.project_id",
-            td: row => row.project.project_id,
-            sortable: true
+            td: row => row.project && '<a href="projects/'+row.project.project_id +
+                       '">' + row.project.project_id + '</a>',
+            sortable: true,
+            toolTipText: row => row.project.name
         },
         {
             name: "Entity Type",
             id: "entity_type",
-            td: row => row.entity_type,
+              td: (row, $scope) => $scope.$filter("humanify")(row.entity_type),
             sortable: true
         },
         {
@@ -41,7 +45,8 @@ module ngApp.projects.models {
             id: "entity_id",
             td: row => row.entity_id,
             sortable: true,
-            tdClassName: 'truncated-cell'
+            tdClassName: 'truncated-cell',
+            toolTipText: row => row.entity_id
         },
         {
             name: "Entity Barcode",
@@ -68,12 +73,6 @@ module ngApp.projects.models {
             td: (row, $scope) => row.created_datetime && $scope.$filter('date')(row.created_datetime, 'yyyy-MM-dd'),
         },
         {
-            name: "Annotator",
-            id: "creator",
-            td: row => row.creator,
-            sortable: true
-        },
-        {
             name: "Status",
             id: "status",
             td: row => row.status,
@@ -92,7 +91,6 @@ module ngApp.projects.models {
           "annotation_id",
           "category",
           "created_datetime",
-          "creator",
           "status",
           "entity_type",
           "entity_id",
@@ -101,11 +99,10 @@ module ngApp.projects.models {
           "classification",
           "case_id",
           "notes",
-          "project.program.name"
-        ],
-        expand: [
-          "project"
-        ]
+          "project.program.name",
+          "project.project_id",
+          "project.name"
+          ]
     }
     angular.module("annotations.table.model", [])
         .value("AnnotationsTableModel", AnnotationsTableModel);

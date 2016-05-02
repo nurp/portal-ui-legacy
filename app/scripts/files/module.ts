@@ -13,6 +13,9 @@ module ngApp.files {
       resolve: {
         file: ($stateParams: ng.ui.IStateParamsService, FilesService: IFilesService): ng.IPromise<IFile> => {
           return FilesService.getFile($stateParams["fileId"], {
+            expand: [
+              "metadata_files"
+            ],
             fields: [
               "state",
               "md5sum",
@@ -27,20 +30,16 @@ module ngApp.files {
               "platform",
               "experimental_strategy",
               "center.short_name",
-              "created_datetime",
-              "uploaded_datetime",
               "cases.case_id",
               "cases.project.project_id",
               "annotations.annotation_id",
               "annotations.entity_id",
               "tags",
-              "submitter_id"
-            ],
-            expand: [
-              "archive",
-              "related_files",
-              "metadata_files",
-              "associated_entities"
+              "submitter_id",
+              "archive.archive_id",
+              "associated_entities.entity_id",
+              "associated_entities.entity_type",
+              "associated_entities.case_id",
             ]
           });
         }

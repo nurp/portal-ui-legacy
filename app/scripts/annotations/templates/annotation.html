@@ -36,7 +36,9 @@
           <tr>
             <th data-translate scope="row">Project ID</th>
             <td>
+              <span data-uib-tooltip="{{ ::ac.ProjectsService.projectIdMapping[ ac.annotation.project.project_id ] }}">
                 {{ ::ac.annotation.project.project_id }}
+              </span>
             </td>
           </tr>
           <tr>
@@ -50,10 +52,6 @@
           <tr>
             <th data-translate scope="row">Created On</th>
             <td>{{ ::ac.annotation.created_datetime | date:'yyyy-MM-dd' }}</td>
-          <tr>
-            <th data-translate scope="row">Created By</th>
-            <td>{{ ::ac.annotation.creator | humanify }}</td>
-          </tr>
           <tr>
             <th data-translate scope="row">Status</th>
             <td>{{ ::ac.annotation.status }}</td>

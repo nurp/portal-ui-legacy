@@ -234,7 +234,7 @@ module ngApp.components.facets.services {
               : _.pluck(this.SearchTableParticipantsModel.facets, "name"),
             datum.field
           )
-        ), f => _.merge(f, { description: 'this is a description' }));
+        ), f => f);
       });
     }
 
@@ -274,7 +274,7 @@ module ngApp.components.facets.services {
           name: fieldName,
           title: fieldName,
           collapsed: false,
-          facetType: fieldType === 'long' ? 'range' : fieldName.includes('datetime') ? 'datetime' : 'terms',
+          facetType: fieldType === 'long' ? 'range' : _.includes(fieldName, 'datetime') ? 'datetime' : 'terms',
           removable: true
       });
       this.save();

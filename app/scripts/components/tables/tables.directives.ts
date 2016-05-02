@@ -14,6 +14,7 @@ module ngApp.components.tables.directives {
       scope: {
         title: "@",
         headings:"=",
+        defaultHeadings: "=",
         saved: "="
       },
       replace: true,
@@ -26,7 +27,7 @@ module ngApp.components.tables.directives {
           $window.localStorage.setItem('gdc-archive-' + $scope.title + '-col', angular.toJson(save));
         }
 
-        var defaults = _.cloneDeep($scope.headings);
+        var defaults = $scope.defaultHeadings;
 
         $scope.headings = $scope.saved.length ?
           _.map($scope.saved, s => _.merge(_.find($scope.headings, {id: s.id}), s)) :
@@ -34,6 +35,7 @@ module ngApp.components.tables.directives {
 
         $scope.restoreDefaults = function() {
           $scope.headings = _.cloneDeep(defaults);
+          saveSettings();
         }
 
         $scope.toggleVisibility = function (item) {
@@ -86,7 +88,8 @@ module ngApp.components.tables.directives {
       scope: {
         paging: "=",
         page: "@",
-        config: '=',
+        headings: "=",
+        title: "@",
         update: "=",
         data: "=",
         saved: "="

@@ -261,35 +261,40 @@ module ngApp.search.models {
           "project.primary_site",
           "project.program.name",
           "project.disease_type",
-          "submitter_id"
+          "submitter_id",
+          "clinical.icd_10",
+          "demographic.gender",
+          "demographic.race",
+          "demographic.ethnicity",
+          "diagnoses.year_of_diagnosis",
+          "diagnoses.vital_status",
+          "diagnoses.days_to_death",
+          "diagnoses.age_at_diagnosis"
         ],
         expand: [
           "summary.data_types",
-          "clinical",
-          "demographic",
-          "diagnoses"
         ],
         facets: [
-            {name: "case_id", title: "Case", collapsed: false, facetType: "free-text", placeholder: "Case Barcode or Uuid"},
+            {name: "case_id", title: "Case", collapsed: false, facetType: "free-text", placeholder: "UUID, Submitter ID"},
             {name: "project.primary_site", title: "Primary Site", collapsed: false, facetType: "terms"},
             {name: "project.program.name", title: "Cancer Program", collapsed: false, facetType: "terms"},
             {name: "project.project_id", title: "Project", collapsed: false, facetType: "terms"},
-            {name: "project.disease_type", title: "Disease Type", collapsed: false, facetType: "terms"},
-            {name: "demographic.gender", title: "Gender", collapsed: true, facetType: "terms"},
-            {name: "diagnoses.age_at_diagnosis", title: "Age at diagnosis", hasGraph: true, collapsed: false, facetType: "range", unitsMap: [
-              {
-                "label": "years",
-                "conversionDivisor": 365,
-              },
-              {
-                "label": "days",
-                "conversionDivisor": 1,
-              }
+            {name: "project.disease_type", title: "Disease Type", collapsed: false, facetType: "terms", showTooltip: true},
+            {name: "demographic.gender", title: "Gender", collapsed: false, facetType: "terms"},
+            {name: "diagnoses.age_at_diagnosis", title: "Age at diagnosis", collapsed: false, facetType: "range", unitsMap: [
+                            {
+                              "label": "years",
+                              "conversionDivisor": 365.25,
+                            },
+                            {
+                              "label": "days",
+                              "conversionDivisor": 1,
+                            }
             ]},
             {name: "diagnoses.vital_status", title: "Vital Status", collapsed: false, facetType: "terms"},
-            {name: "diagnoses.days_to_death", title: "Days to Death", collapsed: true, facetType: "range", hasGraph: true},
-            {name: "demographic.race", title: "Race", collapsed: true, facetType: "terms"},
-            {name: "demographic.ethincity", title: "Ethnicity", collapsed: true, facetType: "terms"}
+            {name: "diagnoses.days_to_death", title: "Days to Death", collapsed: false, facetType: "range", hasGraph: true},
+            {name: "demographic.race", title: "Race", collapsed: false, facetType: "terms"},
+            {name: "demographic.ethnicity", title: "Ethnicity", collapsed: false, facetType: "terms"}
         ]
     };
     angular.module("search.table.participants.model", [])
