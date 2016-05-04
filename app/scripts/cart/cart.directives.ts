@@ -57,7 +57,7 @@ module ngApp.cart.directives {
 
 
   // add to cart on summary
-  function AddToCartAllButton(SearchTableFilesModel: TableiciousConfig): ng.IDirective {
+  function AddToCartAllButton(SearchTableFilesModel: TableiciousConfig) {
     return {
       restrict: 'E',
       scope: {},
@@ -72,7 +72,7 @@ module ngApp.cart.directives {
   }
 
   // add to cart dropdown on top of file search
-  function AddToCartAllDropDown(SearchTableFilesModel: TableiciousConfig): ng.IDirective {
+  function AddToCartAllDropDown(SearchTableFilesModel: TableiciousConfig) {
     return {
       restrict: 'E',
       scope: {},
@@ -125,7 +125,7 @@ module ngApp.cart.directives {
         });
 
         this.getFiles = function() {
-          this.retreivingFiles = true;
+          this.retrievingFiles = true;
           var filters = LocationService.filters();
           if (filters.op !== "and") {
             filters = {op: "and", content: [filters]};
@@ -145,12 +145,12 @@ module ngApp.cart.directives {
 
           if (this.areFiltersApplied) {
             FilesService.getFiles({
-              fields: SearchTableFilesModel.fields,
-              expand: SearchTableFilesModel.expand,
+              fields: ["file_name", "file_id"],
+              expand: [],
               filters: filters,
               size: CartService.getCartVacancySize()
             }).then((data) => {
-              this.retreivingFiles = this.files.length ? false : true;
+              this.retrievingFiles = this.files.length ? false : true;
               this.filteredRelatedFiles = data;
             });
           }
@@ -172,9 +172,9 @@ module ngApp.cart.directives {
               ]
             }).then((data) => {
               if (this.areFiltersApplied) {
-                this.retreivingFiles = this.filteredRelatedFiles ? false: true;
+                this.retrievingFiles = this.filteredRelatedFiles ? false: true;
               } else {
-                this.retreivingFiles = false;
+                this.retrievingFiles = false;
               }
               var fs = _.map(data.files, f => {
                 f.cases = [{
@@ -259,79 +259,8 @@ module ngApp.cart.directives {
       restrict:"AE",
       scope: true,
       link: ($scope, $element, $attrs) => {
-        $scope.active = false;
-
-        const reportStatus = _.isFunction($scope.$parent.reportStatus) ?
-          _.partial($scope.$parent.reportStatus, $scope.$id) :
-          () => {};
-
-        const inProgress = () => {
-          $scope.active = true;
-          reportStatus($scope.active);
-          $attrs.$set('disabled', 'disabled');
-        };
-        const done = () => {
+        $element.on('click', () => {
           $scope.active = false;
-          reportStatus($scope.active);
-          $element.removeAttr('disabled');
-        };
-
-        $element.on('click', () => {
-          const files = [].concat(CartService.getFiles());
-          const params = { ids: files.map(f => f.file_id) };
-          const url = config.api + '/manifest?annotations=true&related_files=true';
-          const checkProgress = $scope.download(params, url, () => $element, 'POST');
-          checkProgress(inProgress, done);
-        });
-      }
-    };
-  }
-
-  function DownloadMetadataFiles(CartService, $uibModal, config: IGDCConfig) {
-    return {
-      restrict:"AE",
-      scope: true,
-      link: (scope, $element, $attrs) => {
-        scope.active = false;
-        const reportStatus = _.isFunction(scope.$parent.reportStatus) ?
-          _.partial(scope.$parent.reportStatus, scope.$id) :
-          () => {};
-        const inProgress = () => {
-          scope.active = true;
-          reportStatus(scope.active);
-          $attrs.$set('disabled', 'disabled');
-        };
-        const done = () => {
-          scope.active = false;
-          reportStatus(scope.active);
-          $element.removeAttr('disabled');
-        };
-        $element.on('click', () => {
-          const files = [].concat(CartService.getFiles());
-          const params = { ids: files.map(f => f.file_id) };
-          const url = config.api + '/data/metadata_files';
-          const checkProgress = scope.download(params, url, () => $element, 'POST');
-          checkProgress(inProgress, done);
-        });
-      }
-    };
-  }
-
-  function DownloadButtonAllCart(UserService, CartService, $uibModal, config: IGDCConfig) {
-    return {
-      restrict:"AE",
-      scope: true,
-      link: ($scope, $element, $attrs) => {
-        $element.on('click', () => {
-          const isLoggedIn = UserService.currentUser;
-          const authorizedInCart = CartService.getAuthorizedFiles();
-          const unauthorizedInCart = CartService.getUnauthorizedFiles();
-
-          $scope.active = false;
-          $scope.meta = {
-            unauthorized: unauthorizedInCart,
-            authorized: authorizedInCart
-          };
 
           const reportStatus = _.isFunction($scope.$parent.reportStatus) ?
             _.partial($scope.$parent.reportStatus, $scope.$id) :
@@ -347,59 +276,153 @@ module ngApp.cart.directives {
             reportStatus($scope.active);
             $element.removeAttr('disabled');
           };
-          const files = [].concat(authorizedInCart);
+          const files = [].concat(CartService.getFiles());
           const params = { ids: files.map(f => f.file_id) };
-          const url = config.api + '/data?annotations=true&related_files=true';
+          const url = config.api + '/manifest?annotations=true&related_files=true';
 
-          const download = () => {
-            const checkProgress = $scope.download(params, url, () => $element, 'POST');
+          const checkProgress = $scope.download(params, url, () => $element, 'POST');
+          checkProgress(inProgress, done);
+        });
+      }
+    };
+  }
+
+  function DownloadMetadataFiles(CartService, $uibModal, config: IGDCConfig) {
+    return {
+      restrict:"AE",
+      scope: true,
+      link: ($scope, $element, $attrs) => {
+        $element.on('click', () => {
+
+          $scope.active = false;
+
+          const reportStatus = _.isFunction($scope.$parent.reportStatus)
+            ? _.partial($scope.$parent.reportStatus, $scope.$id)
+            : () => {};
+
+          const inProgress = () => {
+            $scope.active = true;
+            reportStatus($scope.active);
+            $attrs.$set('disabled', 'disabled');
+          };
+          const done = () => {
+            $scope.active = false;
+            reportStatus($scope.active);
+            $element.removeAttr('disabled');
+          };
+          const files = [].concat(CartService.getFiles());
+          const params = { ids: files.map(f => f.file_id) };
+          const url = config.api + '/data/metadata_files';
+          const checkProgress = $scope.download(params, url, () => $element, 'POST');
+          checkProgress(inProgress, done);
+        });
+      }
+    };
+  }
+
+  function DownloadButtonAllCart(UserService, CartService, $uibModal, config: IGDCConfig) {
+    return {
+      restrict:"AE",
+      scope: true,
+      link: ($scope, $element, $attrs) => {
+        const scope = $scope;
+        scope.active = false;
+
+        const reportStatus = _.isFunction(scope.$parent.reportStatus) ?
+          _.partial(scope.$parent.reportStatus, scope.$id) :
+          () => {};
+        const inProgress = () => {
+          scope.active = true;
+          reportStatus(scope.active);
+          $attrs.$set('disabled', 'disabled');
+        };
+        const done = () => {
+          scope.active = false;
+          reportStatus(scope.active);
+          $element.removeAttr('disabled');
+        };
+        const url = config.api + '/data?annotations=true&related_files=true';
+        const download = (files) => {
+          if ((files || []).length > 0) {
+            const params = { ids: files.map(f => f.file_id) };
+            const checkProgress = scope.download(params, url, () => $element, 'POST');
             checkProgress(inProgress, done);
-          };
-          const showLoginModal = () => {
-            var modalInstance = $uibModal.open({
-              templateUrl: "core/templates/login-to-download.html",
-              controller: "LoginToDownloadController",
-              controllerAs: "wc",
-              backdrop: true,
-              keyboard: true,
-              scope: $scope,
-              size: "lg",
-              animation: false
-            });
-
-            modalInstance.result.then((a) => {
-              if (a && authorizedInCart.length > 0) {
-                download();
-              } else if (!a) {
-                // Cancel Pressed
-                done();
-              }
-            });
-          };
-          const showRequestAccessModal = () => {
-            var modalInstance = $uibModal.open({
-              templateUrl: "core/templates/request-access-to-download.html",
-              controller: "LoginToDownloadController",
-              controllerAs: "wc",
-              backdrop: true,
-              keyboard: true,
-              scope: $scope,
-              size: "lg",
-              animation: false
-            });
-
-            modalInstance.result.then((a) => {
-              if (a && authorizedInCart.length > 0) {
-                download();
-              }
-            });
-          };
-
-          if (CartService.getUnauthorizedFiles().length) {
-            if (isLoggedIn) showRequestAccessModal();
-            else showLoginModal();
           }
-          else download();
+        };
+
+        $element.on('click', () => {
+          const authorizedInCart = CartService.getAuthorizedFiles()
+          const unauthorizedInCart = CartService.getUnauthorizedFiles();
+          const files = [].concat(authorizedInCart);
+          // "meta" is referenced in the html templates used below.
+          scope.meta = {
+            unauthorized: unauthorizedInCart,
+            authorized: authorizedInCart
+          };
+
+          if (unauthorizedInCart.length) {
+            if (UserService.currentUser) {
+              // Makes sure the user session has not expired.
+              UserService.loginPromise().then(() => {
+                // Session is still active.
+                const modalInstance = $uibModal.open({
+                  templateUrl: "core/templates/request-access-to-download.html",
+                  controller: "LoginToDownloadController",
+                  controllerAs: "wc",
+                  backdrop: true,
+                  keyboard: true,
+                  scope: scope,
+                  size: "lg",
+                  animation: false
+                });
+
+                modalInstance.result.then((a) => {
+                  if (a) {
+                    download(files);
+                  }
+                });
+              }, (response) => {
+                console.log('User session has expired.', response);
+
+                const modalInstance = $uibModal.open({
+                  templateUrl: "core/templates/session-expired.html",
+                  controller: "LoginToDownloadController",
+                  controllerAs: "wc",
+                  backdrop: true,
+                  keyboard: true,
+                  scope: scope,
+                  size: "lg",
+                  animation: false
+                });
+
+                modalInstance.result.then((a) => {
+                  UserService.logout();
+                });
+              });
+
+            } else {
+              // User is NOT logged in.
+              const modalInstance = $uibModal.open({
+                templateUrl: "core/templates/login-to-download.html",
+                controller: "LoginToDownloadController",
+                controllerAs: "wc",
+                backdrop: true,
+                keyboard: true,
+                scope: scope,
+                size: "lg",
+                animation: false
+              });
+
+              modalInstance.result.then((a) => {
+                if (a) {
+                  download(files);
+                }
+              });
+            }
+          }
+          else {
+            download(files);
+          }
         });
       }
     };
