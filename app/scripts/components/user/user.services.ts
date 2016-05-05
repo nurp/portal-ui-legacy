@@ -17,9 +17,15 @@ module ngApp.components.user.services {
     hasProjects(): boolean;
   }
 
+  const broadcastReset = (context) => {
+    context.$rootScope.$broadcast("gdc-user-reset");
+  };
+
   class UserService implements IUserService {
     currentUser: IUser;
     isFetching: boolean = false;
+
+
 
     /* @ngInject */
     constructor(private AuthRestangular: restangular.IService,
@@ -57,7 +63,6 @@ module ngApp.components.user.services {
         })
         .post({}, {})
         .then((data) => {
-            data.isFiltered = true;
             this.setUser(data);
         }, (response) => {
           if(response.status === 401) {
@@ -76,6 +81,19 @@ module ngApp.components.user.services {
         })
         .finally(() => this.isFetching = false);
       }
+    }
+
+    loginPromise() {
+      return this.AuthRestangular.all("user")
+        .withHttpConfig({
+          withCredentials: true
+        })
+        .post({}, {});
+    }
+
+    logout(): void {
+      broadcastReset(this);
+      this.currentUser = undefined;
     }
 
     getToken(): void {
@@ -104,20 +122,24 @@ module ngApp.components.user.services {
     }
 
     setUser(user: IUser): void {
-      this.currentUser = { username: user.username,
-                           projects: {
-                            gdc_ids: _.reduce(user.projects.gdc_ids || {}, (acc, p, key) => {
-                             if (p.indexOf("_member_") !== -1) {
-                              acc.push(key);
-                             }
-                             return acc;
-                           }, [])}
-                         };
-      this.$rootScope.$broadcast("gdc-user-reset");
+      this.currentUser = {
+        username: user.username,
+        isFiltered: false, // Enable this line when 'Only My Projects' toggle is added: _.get(this, 'currentUser.isFiltered', true),
+        projects: {
+          gdc_ids: _.reduce(user.projects.gdc_ids || {}, (acc, p, key) => {
+            if (p.indexOf("_member_") !== -1) {
+              acc.push(key);
+            }
+            return acc;
+          }, [])
+        }
+      };
+
+      broadcastReset(this);
     }
 
     toggleFilter(): void {
-      this.$rootScope.$broadcast("gdc-user-reset");
+      broadcastReset(this);
     }
 
     hasProjects(): boolean {
