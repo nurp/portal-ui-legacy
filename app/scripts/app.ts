@@ -31,7 +31,6 @@ import IRootScope = ngApp.IRootScope;
 import IGDCConfig = ngApp.IGDCConfig;
 import INotifyService = ng.cgNotify.INotifyService;
 import IUserService = ngApp.components.user.services.IUserService;
-import IProjectsService = ngApp.projects.services.IProjectsService;
 import ILocalStorageService = ngApp.core.services.ILocalStorageService;
 
 function logVersionInfo (config) {
@@ -116,7 +115,6 @@ function appRun(gettextCatalog: any,
                 notify: INotifyService,
                 $cookies: ng.cookies.ICookiesService,
                 UserService: IUserService,
-                ProjectsService: IProjectsService,
                 $window: ng.IWindowService,
                 $uibModal: any,
                 LocalStorageService: ILocalStorageService) {
@@ -195,17 +193,6 @@ function appRun(gettextCatalog: any,
 
   UserService.login();
 
-  ProjectsService.getProjects({
-    size: 100
-  })
-  .then((data) => {
-    var mapping = {};
-    _.each(data.hits, (project) => {
-      mapping[project.project_id] = project.name;
-    });
-    ProjectsService.projectIdMapping = mapping;
-  });
-
   $rootScope.$on("$stateChangeStart", () => {
     // Page change
     //CoreService.setLoadedState(false);
@@ -242,7 +229,6 @@ angular
       "ngApp.files",
       "ngApp.annotations",
     //   "ngApp.home",
-      "ngApp.projects",
       "ngApp.components",
       "ngApp.cart",
       "ngApp.cases",
