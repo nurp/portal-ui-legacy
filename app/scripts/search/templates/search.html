@@ -43,6 +43,19 @@
         </div>
       </div>
 
+      <div class="alert alert-info clearfix">
+        <div class="spacing-left">
+          <add-to-cart-all-button data-size="{{ sc.files.pagination.total }}"></add-to-cart-all-button>
+          <download-manifest-button
+            classes="btn btn-primary"
+            data-icon="fa-download"
+            data-copy="Download Manifest"
+            data-dlcopy="Downloading"
+            data-size="sc.files.pagination.total">
+          </download-manifest-button>
+        </div>
+      </div>
+
       <div class="pane-section"
            data-ng-show="sc.SearchState.tabs.files.active">
         <div data-ng-include="'search/templates/search.files.html'"></div>
