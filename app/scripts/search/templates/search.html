@@ -43,20 +43,6 @@
         </div>
       </div>
 
-      <ul class="nav nav-tabs">
-        <li role="presentation"
-            data-ng-class="{ active: sc.SearchState.tabs.files.active }"
-            data-ng-click="sc.select('tabs', 'files')"
-            id="search-files">
-            <a
-              data-ng-href="{{
-              sc.$state.href('search.files', sc.LocationService.search().filters
-              )}}">
-              {{ 'Files' | translate }} ({{sc.files.pagination.total| number:0}})
-            </a>
-
-        </li>
-      </ul>
       <div class="pane-section"
            data-ng-show="sc.SearchState.tabs.files.active">
         <div data-ng-include="'search/templates/search.files.html'"></div>
