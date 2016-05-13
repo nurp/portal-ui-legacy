@@ -56,7 +56,7 @@ module ngApp.search.models {
         tdClassName: 'truncated-cell'
       }, {
         name: "Cases",
-        id: "cases",
+        id: "cases.case_id",
         td: row => row.cases.length,
         thClassName: 'text-right',
         tdClassName: 'text-right'
