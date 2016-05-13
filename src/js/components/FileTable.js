@@ -1,6 +1,6 @@
 import Relay from 'react-relay';
 import { Link } from 'react-router';
-import { div, h1, button, table, thead, tr, th, h } from 'react-hyperscript-helpers';
+import { div, h1, table, thead, tr, th, h } from 'react-hyperscript-helpers';
 
 import FileTBody from 'components/FileTBody';
 
@@ -8,26 +8,30 @@ export const FileTable = props => {
   console.log(1, props);
   return div([
     h1(`Files ${props.files.hits.pagination.count} : ${props.files.hits.pagination.total}`),
-    button({
-      onClick: () => {
-        props.relay.setVariables({
+    h(Link, {
+      to: {
+        pathname: '/files',
+        query: {
+          ...props.relay.route.params,
           offset: 0,
-          filters: {
+          filters: btoa(JSON.stringify({
             op: '=',
             content: {
               field: 'files.access',
               value: 'controlled',
             },
-          },
-        });
+          })),
+        },
       },
     }, 'Add Filters!'),
-    button({
-      onClick: () => {
-        props.relay.setVariables({
+    h(Link, {
+      to: {
+        pathname: '/files',
+        query: {
+          ...props.relay.route.params,
           offset: 0,
           filters: null,
-        });
+        },
       },
     }, 'Remove Filters!'),
     table([
@@ -48,41 +52,45 @@ export const FileTable = props => {
       to: {
         pathname: '/files',
         query: {
+          ...props.relay.route.params,
           offset: 0,
         },
       },
-    }, '<<'),
+    }, ' << '),
     h(Link, {
       to: {
         pathname: '/files',
         query: {
+          ...props.relay.route.params,
           offset: props.relay.route.params.offset - props.relay.route.params.first,
         },
       },
-    }, '<'),
+    }, ' < '),
     h(Link, {
       to: {
         pathname: '/files',
         query: {
+          ...props.relay.route.params,
           offset: props.relay.route.params.offset + props.relay.route.params.first,
         },
       },
-    }, '>'),
+    }, ' > '),
     h(Link, {
       to: {
         pathname: '/files',
         query: {
+          ...props.relay.route.params,
           offset: props.files.hits.pagination.total - props.files.hits.pagination.total % 20,
         },
       },
       disabled: true,
-    }, '>>'),
+    }, ' >> '),
   ]);
 };
 
 export default Relay.createContainer(FileTable, {
   initialVariables: {
-    first: 20,
+    first: 0,
     offset: 0,
     filters: null,
   },

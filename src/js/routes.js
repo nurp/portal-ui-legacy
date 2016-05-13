@@ -9,6 +9,10 @@ const parseIntParam = (str, defaults) => (
   str ? Math.max(parseInt(str, 10), 0) : defaults
 );
 
+const parseJsonParam = (str, defaults) => (
+  str ? JSON.parse(atob(str)) : defaults
+);
+
 export default (
   h(Route, {
     path: '/',
@@ -20,10 +24,11 @@ export default (
       h(Route, {
         path: '/files',
         component: FileTable,
-        queryParams: ['offset', 'first'],
+        queryParams: ['offset', 'first', 'filters'],
         prepareParams: params => ({
           offset: parseIntParam(params.offset, 0),
           first: parseIntParam(params.first, 20),
+          filters: parseJsonParam(params.filters, null),
         }),
         queries: {
           files: () => Relay.QL`query { files }`,
