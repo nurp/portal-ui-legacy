@@ -1,3 +1,41 @@
+<a name"1.0.0"></a>
+## 1.0.0 (2016-05-16)
+
+
+#### Bug Fixes
+
+* **annotations:**
+  * remove project link ([b7527edb](https://github.com/NCI-GDC/portal-ui-legacy/commit/b7527edb))
+  * column widths ([8b32ebcd](https://github.com/NCI-GDC/portal-ui-legacy/commit/8b32ebcd))
+* **app:**
+  * 508 fixes across site ([5cfae0ea](https://github.com/NCI-GDC/portal-ui-legacy/commit/5cfae0ea), closes [PGDC-2390](https://jira.opensciencedatacloud.org/browse/PGDC-2390))
+  * 2330 allow dots in search ([ae68dac6](https://github.com/NCI-GDC/portal-ui-legacy/commit/ae68dac6), closes [PGDC-2330](https://jira.opensciencedatacloud.org/browse/PGDC-2330))
+  * use auth endpoint for download links ([7ad9a91c](https://github.com/NCI-GDC/portal-ui-legacy/commit/7ad9a91c))
+  * ProjectsService.projectIdMapping ([c0f2da70](https://github.com/NCI-GDC/portal-ui-legacy/commit/c0f2da70))
+  * update link to data_transfer tool ([9d1f94e4](https://github.com/NCI-GDC/portal-ui-legacy/commit/9d1f94e4))
+  * 2245 only allow a-zA-Z0-9-_ ([dae5acd4](https://github.com/NCI-GDC/portal-ui-legacy/commit/dae5acd4), closes [PGDC-2245](https://jira.opensciencedatacloud.org/browse/PGDC-2245))
+* **cart:** 1028 reload from localstorage ([ee7514af](https://github.com/NCI-GDC/portal-ui-legacy/commit/ee7514af), closes [PGDC-1028](https://jira.opensciencedatacloud.org/browse/PGDC-1028))
+* **components:** 2362 check message key in resp ([721efefd](https://github.com/NCI-GDC/portal-ui-legacy/commit/721efefd), closes [PGDC-2362](https://jira.opensciencedatacloud.org/browse/PGDC-2362))
+* **exportTable:** 2220 include case_id ([78dfae17](https://github.com/NCI-GDC/portal-ui-legacy/commit/78dfae17), closes [PGDC-2220](https://jira.opensciencedatacloud.org/browse/PGDC-2220))
+* **git:** 2241 reinstated commit info ([67b9ec43](https://github.com/NCI-GDC/portal-ui-legacy/commit/67b9ec43), closes [PGDC-2241](https://jira.opensciencedatacloud.org/browse/PGDC-2241))
+* **rangeFacet:**
+  * 2356 radios selected by default ([5a029785](https://github.com/NCI-GDC/portal-ui-legacy/commit/5a029785), closes [PGDC-2356](https://jira.opensciencedatacloud.org/browse/PGDC-2356))
+  * 2398 change year conversion rules ([bc3b8cfe](https://github.com/NCI-GDC/portal-ui-legacy/commit/bc3b8cfe), closes [PGDC-2398](https://jira.opensciencedatacloud.org/browse/PGDC-2398))
+* **search:**
+  * 2196 remove unnecessary tab ([fddc6b94](https://github.com/NCI-GDC/portal-ui-legacy/commit/fddc6b94))
+  * don't autoscroll ([96766597](https://github.com/NCI-GDC/portal-ui-legacy/commit/96766597), closes [PGDC-2254](https://jira.opensciencedatacloud.org/browse/PGDC-2254))
+* **searchBar:** 2311 make textarea resizable ([54ab8fef](https://github.com/NCI-GDC/portal-ui-legacy/commit/54ab8fef), closes [PGDC-2311](https://jira.opensciencedatacloud.org/browse/PGDC-2311))
+* **session:** 2247 check user session on download ([ca6305ba](https://github.com/NCI-GDC/portal-ui-legacy/commit/ca6305ba), closes [PGDC-2247](https://jira.opensciencedatacloud.org/browse/PGDC-2247), [PGDC-2275](https://jira.opensciencedatacloud.org/browse/PGDC-2275))
+
+
+#### Features
+
+* **app:**
+  * 2196 dl manifest btn, files to cart btn ([1fefd43d](https://github.com/NCI-GDC/portal-ui-legacy/commit/1fefd43d), closes [PGDC-2196](https://jira.opensciencedatacloud.org/browse/PGDC-2196))
+  * 2300 loading spinner ([c9e75be9](https://github.com/NCI-GDC/portal-ui-legacy/commit/c9e75be9), closes [PGDC-2300](https://jira.opensciencedatacloud.org/browse/PGDC-2300))
+* **downloader:** 2347 improved waiting message ([630b91f3](https://github.com/NCI-GDC/portal-ui-legacy/commit/630b91f3), closes [PGDC-2347](https://jira.opensciencedatacloud.org/browse/PGDC-2347))
+
+
 <a name"0.3.24.3"></a>
 ### 0.3.24.3 (2016-04-29)
 
