@@ -29,8 +29,7 @@ module ngApp.projects.models {
         {
             name: "Project",
             id: "project.project_id",
-            td: row => row.project && '<a href="projects/'+row.project.project_id +
-                       '">' + row.project.project_id + '</a>',
+            td: row => row.project && row.project.project_id,
             sortable: true,
             toolTipText: row => row.project.name
         },

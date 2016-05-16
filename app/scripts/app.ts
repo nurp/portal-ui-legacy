@@ -195,16 +195,14 @@ function appRun(gettextCatalog: any,
 
   UserService.login();
 
-  ProjectsService.getProjects({
-    size: 100
-  })
-  .then((data) => {
-    var mapping = {};
-    _.each(data.hits, (project) => {
-      mapping[project.project_id] = project.name;
+  ProjectsService.getProjects({ size: 100 })
+    .then(data => {
+      ProjectsService.projectIdMapping =
+        data.hits.reduce((acc, project) => {
+          acc[project.project_id] = project.name;
+          return acc;
+        }, {});
     });
-    ProjectsService.projectIdMapping = mapping;
-  });
 
   $rootScope.$on("$stateChangeStart", () => {
     // Page change
@@ -239,15 +237,13 @@ angular
       "ngApp.search",
       "ngApp.query",
       "ngApp.participants",
+      "ngApp.projects",
       "ngApp.files",
       "ngApp.annotations",
-    //   "ngApp.home",
-      "ngApp.projects",
       "ngApp.components",
       "ngApp.cart",
       "ngApp.cases",
       "ngApp.notFound",
-    //   "ngApp.reports",
       "templates"
     ])
     .config(appConfig)

@@ -45,6 +45,7 @@ module ngApp.query.controllers {
 
     /* @ngInject */
     constructor(private $scope: IQueryScope,
+                private $rootScope: IRootScope,
                 private $state: ng.ui.IStateService,
                 public QState: IQueryState,
                 public CartService: ICartService,
@@ -57,6 +58,7 @@ module ngApp.query.controllers {
                 private SearchTableFilesModel: TableiciousConfig,
                 private SearchTableParticipantsModel: TableiciousConfig,
                 SearchChartConfigs) {
+
       var data = $state.current.data || {};
       this.QState.setActive(data.tab, "active");
       CoreService.setPageTitle("Query");
@@ -131,7 +133,7 @@ module ngApp.query.controllers {
         this.participants = this.participants || {};
         this.participants.aggregations = data.aggregations;
         this.participants.pagination = data.pagination
-        
+
         if (!_.isEqual(this.participants.hits, data.hits)) {
           this.participants.hits = data.hits;
           this.tabSwitch = false;

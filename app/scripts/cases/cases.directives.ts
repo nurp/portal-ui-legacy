@@ -13,30 +13,33 @@ module ngApp.cases.directives {
       textInProgress: '@',
       styleClass: '@',
       icon: '@',
-      ngDisabled: '=',
+      ngDisabled: '='
     },
-    template: '<button ng-class="[styleClass || \'btn btn-primary\']" data-downloader> \
+    template: '<button tabindex="0" ng-class="[styleClass || \'btn btn-primary\']" data-downloader> \
               <i class="fa {{icon || \'fa-download\'}}" ng-class="{\'fa-spinner\': active, \'fa-pulse\': active}" /> \
-              <span ng-if="textNormal"><span ng-if="! active">&nbsp;{{ ::textNormal }}</span> \
-              <span ng-if="active">&nbsp;{{ ::textInProgress }}</span></span></button>',
+              <span ng-if="textNormal"><span ng-if="! active">&nbsp;{{ textNormal }}</span> \
+                <span ng-if="active">&nbsp;{{ ::textInProgress }}</span></span></button>',
     link: (scope, $element, $attrs) => {
-      if (! scope.ngDisabled) {
-        $element.on('click', () => {
-          const reportStatus = _.isFunction(scope.$parent.reportStatus) ?
-            _.partial(scope.$parent.reportStatus, scope.$id) :
-            () => {};
+      $element.on('click', () => {
+        if (!scope.ngDisabled) {
+          const reportStatus = _.isFunction(scope.$parent.reportStatus)
+            ? _.partial(scope.$parent.reportStatus, scope.$id)
+            : () => {};
 
           const inProgress = () => {
             scope.active = true;
             reportStatus(scope.active);
             $attrs.$set('disabled', 'disabled');
           };
+
           const done = () => {
             scope.active = false;
             reportStatus(scope.active);
             $element.removeAttr('disabled');
           };
-          const url = config.api + '/cases';
+
+          const url = config.auth_api + '/cases';
+
           const filters = {
             op: 'and',
             content: _.values(_.mapValues(scope.filterKeyValues, (value, key) => ({
@@ -61,8 +64,8 @@ module ngApp.cases.directives {
           const checkProgress = scope.download(params, url, () => $element, 'POST');
 
           checkProgress(inProgress, done);
-        });
-      }
+        }
+      });
       scope.active = false;
     }
   });

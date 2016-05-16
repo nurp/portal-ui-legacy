@@ -4,7 +4,6 @@ module ngApp.annotations.controllers {
   import ICoreService = ngApp.core.services.ICoreService;
   import IAnnotationsService = ngApp.annotations.services.IAnnotationsService;
   import TableiciousConfig = ngApp.components.tables.directives.tableicious.TableiciousConfig;
-  import IProjectsService = ngApp.projects.services.IProjectsService;
 
   export interface IAnnotationsController {
     annotations: IAnnotations;
@@ -18,8 +17,13 @@ module ngApp.annotations.controllers {
     annotations: IAnnotations;
 
     /* @ngInject */
-    constructor(private $scope: IAnnotationsScope, private AnnotationsService: IAnnotationsService,
-                private CoreService: ICoreService, private AnnotationsTableModel:TableiciousConfig) {
+    constructor(
+      private $scope: IAnnotationsScope,
+      private $rootScope: IRootScope,
+      private AnnotationsService: IAnnotationsService,
+      private CoreService: ICoreService,
+      private AnnotationsTableModel:TableiciousConfig
+    ) {
       CoreService.setPageTitle("Annotations");
       $scope.$on("$locationChangeSuccess", (event, next: string) => {
         if (next.indexOf("annotations") !== -1) {
@@ -36,6 +40,7 @@ module ngApp.annotations.controllers {
     }
 
     refresh() {
+      this.$rootScope.$emit('ShowLoadingScreen');
       this.AnnotationsService.getAnnotations({
         fields: this.AnnotationsTableModel.fields,
         facets: [
@@ -52,6 +57,7 @@ module ngApp.annotations.controllers {
           "project.project_id"
         ]
       }).then((data) => {
+        this.$rootScope.$emit('ClearLoadingScreen');
         if (!data.hits.length) {
           this.CoreService.setSearchModelState(true);
         }
@@ -68,7 +74,6 @@ module ngApp.annotations.controllers {
   class AnnotationController implements IAnnotationController {
     /* @ngInject */
     constructor(public annotation: IAnnotation,
-                public ProjectsService: IProjectsService,
                 private CoreService: ICoreService) {
       CoreService.setPageTitle("Annotation", annotation.annotation_id);
     }
