@@ -299,8 +299,10 @@ module ngApp.components.facets.controllers {
     constructor(private $scope: IRangeFacetScope,
                 private LocationService: ILocationService,
                 private FacetService: IFacetService) {
-
-      $scope.data = {};
+      $scope.data = $scope.facet || { count: '0',
+                      max: '0',
+                      min: '0'
+                    };
       $scope.lowerBoundOriginalDays = null;
       $scope.upperBoundOriginalDays = null;
 
@@ -308,7 +310,7 @@ module ngApp.components.facets.controllers {
       $scope.$on("$locationChangeSuccess", () => this.refresh());
 
       $scope.$watch("facet", (n, o) => {
-        if (n === o) {
+        if (n === o || n === undefined) {
           return;
         }
         if (n) {
