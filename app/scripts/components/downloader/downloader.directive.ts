@@ -8,10 +8,11 @@ module ngApp.components.downloader.directive {
     $uibModal: any,
     notify: INotifyService,
     $rootScope: IRootScope,
-    $log: ng.ILogService
+    $log: ng.ILogService,
+    $browser: ng.IBrowserService
   ): ng.IDirective {
 
-    const cookiePath = document.querySelector('base').getAttribute('href');
+    const cookiePath = $browser.baseHref().replace(/\/$/, '');
     const _$ = $window.jQuery;
     const iFrameIdPrefix = '__downloader_iframe__';
     const formIdPrefix = '__downloader_form__';
@@ -84,7 +85,7 @@ module ngApp.components.downloader.directive {
           // The downloadToken cookie is removed before the server sends the response
           if (cookieStillThere()) {
             const error = handleError();
-            $cookies.remove(cookieKey);
+            $cookies.remove(cookieKey, { path: cookiePath });
             finished();
             showErrorModal(error);
           } else {
@@ -165,7 +166,7 @@ module ngApp.components.downloader.directive {
           const cookieKey = navigator.cookieEnabled ?
             Math.abs(hashString(JSON.stringify(params) + downloadToken)).toString(16) : null;
           if (cookieKey) {
-            $cookies.put(cookieKey, downloadToken);
+            $cookies.put(cookieKey, downloadToken, { path: cookiePath });
             _.assign(params, {
               downloadCookieKey: cookieKey,
               downloadCookiePath: cookiePath
@@ -194,7 +195,7 @@ module ngApp.components.downloader.directive {
             form.submit();
           });
 
-          return cookieKey ? _.partial(progressChecker, iFrame, cookieKey, downloadToken) :
+          return $cookies.get(cookieKey) ? _.partial(progressChecker, iFrame, cookieKey, downloadToken) :
             _.partial(cookielessChecker, iFrame);
         };
       }
