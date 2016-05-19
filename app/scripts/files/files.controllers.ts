@@ -49,11 +49,11 @@ module ngApp.files.controllers {
         }
       });
 
-      //insert cases into related_files for checking isUserProject when downloading
-      _.forEach(file.related_files, (related_file) => {
-        related_file['cases'] = file.cases;
-      });
+      const addCases = nestedFile => nestedFile.cases = file.cases;
 
+      // insert cases into related / metadata files for checking isUserProject when downloading
+      (file.related_files || []).forEach(addCases);
+      (file.metadata_files || []).forEach(addCases);
     }
 
     isInCart(): boolean {
@@ -135,4 +135,3 @@ module ngApp.files.controllers {
       .controller("BAMFailedModalController", BAMFailedModalController)
       .controller("FileController", FileController);
 }
-
