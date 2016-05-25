@@ -1,3 +1,32 @@
+<a name"1.1.0"></a>
+## 1.1.0 (2016-05-25)
+
+
+#### Bug Fixes
+
+* **app:**
+  * 2497 img size with no css, th scope ([801c5877](https://github.com/NCI-GDC/portal-ui-legacy/commit/801c5877), closes [PGDC-2497](https://jira.opensciencedatacloud.org/browse/PGDC-2497))
+  * file_size.value -> file_size ([4f05e98e](https://github.com/NCI-GDC/portal-ui-legacy/commit/4f05e98e))
+* **cart:**
+  * 2439 add all to cart options ([fe8b5528](https://github.com/NCI-GDC/portal-ui-legacy/commit/fe8b5528), closes [PGDC-2439](https://jira.opensciencedatacloud.org/browse/PGDC-2439))
+  * add all on page displays size warning ([f999bc21](https://github.com/NCI-GDC/portal-ui-legacy/commit/f999bc21), closes [PGDC-2409](https://jira.opensciencedatacloud.org/browse/PGDC-2409))
+* **files:**
+  * 2469 add project info for dl access ([34001f8f](https://github.com/NCI-GDC/portal-ui-legacy/commit/34001f8f), closes [PGDC-2469](https://jira.opensciencedatacloud.org/browse/PGDC-2469))
+  * 2419 display platform ([7b3f1e16](https://github.com/NCI-GDC/portal-ui-legacy/commit/7b3f1e16), closes [PGDC-2419](https://jira.opensciencedatacloud.org/browse/PGDC-2419))
+* **rangeFacet:**
+  * don't convert to days if not told ([601bfe75](https://github.com/NCI-GDC/portal-ui-legacy/commit/601bfe75), closes [PGDC-2444](https://jira.opensciencedatacloud.org/browse/PGDC-2444))
+  * no NaN, doesn't reset ([a1e5579d](https://github.com/NCI-GDC/portal-ui-legacy/commit/a1e5579d), closes [PGDC-2414](https://jira.opensciencedatacloud.org/browse/PGDC-2414))
+* **table:** click on list item to arrange not icon ([33e147a8](https://github.com/NCI-GDC/portal-ui-legacy/commit/33e147a8))
+* **tables:** 1771 improve sort ux ([2d4b8461](https://github.com/NCI-GDC/portal-ui-legacy/commit/2d4b8461), closes [PGDC-1771](https://jira.opensciencedatacloud.org/browse/PGDC-1771))
+
+
+#### Features
+
+* **customFacets:** 1858 filter empty checkbox ([3d73f01c](https://github.com/NCI-GDC/portal-ui-legacy/commit/3d73f01c), closes [PGDC-1858](https://jira.opensciencedatacloud.org/browse/PGDC-1858))
+* **facets:** 2351 style custom facet list ([6850665e](https://github.com/NCI-GDC/portal-ui-legacy/commit/6850665e), closes [PGDC-2351](https://jira.opensciencedatacloud.org/browse/PGDC-2351))
+* **user:** 2455 show expiry modal on token dl ([ccfbea63](https://github.com/NCI-GDC/portal-ui-legacy/commit/ccfbea63), closes [PGDC-2455](https://jira.opensciencedatacloud.org/browse/PGDC-2455))
+
+
 <a name"1.0.0"></a>
 ## 1.0.0 (2016-05-16)
 
