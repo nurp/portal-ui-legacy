@@ -204,7 +204,7 @@ module ngApp.search.models {
             td: (row, $scope) => {
               const primaryDiagnosis = (row.diagnoses || [])
                 .reduce(youngestDiagnosis, { age_at_diagnosis: Infinity });
-              return (row.diagnoses && $scope.$filter("number")(primaryDiagnosis.days_to_death, 0)) || "--"
+              return (row.diagnoses && $scope.$filter("number")(primaryDiagnosis.days_to_death, 0)) || "--";
             },
             sortable: false,
             hidden: true
@@ -214,7 +214,7 @@ module ngApp.search.models {
             td: (row, $scope) => {
               const primaryDiagnosis = (row.diagnoses || [])
                 .reduce(youngestDiagnosis, { age_at_diagnosis: Infinity });
-              return row.diagnoses && $scope.$filter("humanify")(primaryDiagnosis.vital_status)
+              return row.diagnoses && $scope.$filter("humanify")(primaryDiagnosis.vital_status) || '--';
             },
             sortable: false,
             hidden: true
@@ -237,13 +237,13 @@ module ngApp.search.models {
         }, {
             name: 'Ethnicity',
             id: 'demographic.ethnicity',
-            td: (row, $scope) => row.demographic && $scope.$filter("humanify")(row.demographic.ethnicity),
+            td: (row, $scope) => row.demographic && $scope.$filter("humanify")(row.demographic.ethnicity) || '--',
             sortable: false,
             hidden: true
         }, {
             name: 'Race',
             id: 'demographic.race',
-            td: (row, $scope) => row.demographic && $scope.$filter("humanify")(row.demographic.race),
+            td: (row, $scope) => row.demographic && $scope.$filter("humanify")(row.demographic.race) || '--',
             sortable: false,
             hidden: true
         }, {

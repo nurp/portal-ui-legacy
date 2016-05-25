@@ -35,7 +35,7 @@ module ngApp.search.models {
         name: "File Submitter ID",
         id: "submitter_id",
         toolTipText: row => row.submitter_id,
-        td: row => row.submitter_id,
+        td: row => row.submitter_id || '--',
         sortable: true,
         hidden: true,
         tdClassName: 'truncated-cell'
@@ -64,17 +64,17 @@ module ngApp.search.models {
         name: "Project",
         id: "cases.project.project_id",
         toolTipText: row => _.unique(_.map(row.cases, p => p.project.name)).join(', '),
-        td: row => _.unique(_.map(row.cases, p => p.project.project_id)).join('<br>'),
+        td: row => _.unique(_.map(row.cases, p => p.project.project_id)).join('<br>') || '--',
         sortable: true
       }, {
         name: "Data Category",
         id: "data_category",
-        td: row => row.data_category,
+        td: row => row.data_category || '--',
         sortable: true
       }, {
         name: "Data Format",
         id: "data_format",
-        td: row => row.data_format,
+        td: row => row.data_format || '--',
         sortable: true
       }, {
         name: "Size",
@@ -103,13 +103,13 @@ module ngApp.search.models {
       }, {
         name: "Data Type",
         id: "data_type",
-        td: (row, $scope) => row.data_type && $scope.$filter("humanify")(row.data_type),
+        td: (row, $scope) => $scope.$filter("humanify")(row.data_type),
         sortable: false,
         hidden: true
       }, {
         name: "Experimental Strategy",
         id: "experimental_strategy",
-        td: (row, $scope) => row.experimental_strategy && $scope.$filter("humanify")(row.experimental_strategy),
+        td: (row, $scope) => $scope.$filter("humanify")(row.experimental_strategy),
         sortable: false,
         hidden: true
       }, {
