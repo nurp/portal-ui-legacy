@@ -15,6 +15,7 @@ module ngApp.components.summaryCard.directives {
         title: "@",
         mode: "@",
         tableId: "@",
+        showCases: "=",
         groupingTitle: "@",
       },
       link: function($scope) {
@@ -58,6 +59,7 @@ module ngApp.components.summaryCard.directives {
             }
 
             var color = d3.scale.category20();
+
             _.forEach(newVal, (item, index) => {
               item.color = color(index);
             });

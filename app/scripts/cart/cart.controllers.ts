@@ -69,7 +69,7 @@ module ngApp.cart.controllers {
       });
 
       this.projectCountChartConfig = {
-        textValue: "file_size.value",
+        textValue: "file_size",
         textFilter: "size",
         label: "file",
         sortKey: "doc_count",
@@ -80,7 +80,7 @@ module ngApp.cart.controllers {
       };
 
       this.fileCountChartConfig = {
-        textValue: "file_size.value",
+        textValue: "file_size",
         textFilter: "size",
         label: "file",
         sortKey: "doc_count",
@@ -134,12 +134,12 @@ module ngApp.cart.controllers {
         {
           key: 'authorized',
           doc_count: authCountAndFileSizes.authorized.count || 0,
-          file_size: { value: authCountAndFileSizes.authorized.file_size }
+          file_size: authCountAndFileSizes.authorized.file_size
         },
         {
           key: 'unauthorized',
           doc_count: authCountAndFileSizes.unauthorized.count || 0,
-          file_size: { value: authCountAndFileSizes.unauthorized.file_size }
+          file_size: authCountAndFileSizes.unauthorized.file_size
         }
       ], (i) => i.doc_count);
     }
@@ -309,25 +309,33 @@ module ngApp.cart.controllers {
       });
     }
 
-    addAll(): void {
-      if ((this.files || []).length) {
-        this.CartService.addFiles(this.files, false);
-      } else if (this.size > this.CartService.getCartVacancySize()) {
-        this.CartService.sizeWarning();
+    addAll(files = []): void {
+      if (files.length) {
+        if (files.length > this.CartService.getCartVacancySize()) {
+          this.CartService.sizeWarning();
+        } else {
+          this.CartService.addFiles(files, false);
+        }
       } else {
-        var addingMsgPromise = this.$timeout(() => {
-          this.notify({
-            message: "",
-            messageTemplate: "<span data-translate>Adding <strong>" + this.size + "</strong> files to cart</span>",
-            container: "#notification",
-            classes: "alert-info"
-          });
-        }, 1000);
 
-        this.getFiles().then((data) => {
-          this.CartService.addFiles(data.hits, false);
-          this.$timeout.cancel(addingMsgPromise);
-        });
+        if (this.size > this.CartService.getCartVacancySize()) {
+          this.CartService.sizeWarning();
+        } else {
+
+          var addingMsgPromise = this.$timeout(() => {
+            this.notify({
+              message: "",
+              messageTemplate: "<span data-translate>Adding <strong>" + this.size + "</strong> files to cart</span>",
+              container: "#notification",
+              classes: "alert-info"
+            });
+          }, 1000);
+
+          this.getFiles().then(data => {
+            this.CartService.addFiles(data.hits, false);
+            this.$timeout.cancel(addingMsgPromise);
+          }).catch(e => console.log(e));
+        }
       }
     }
   }

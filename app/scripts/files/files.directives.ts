@@ -170,7 +170,7 @@ module ngApp.files.directives {
       },
       templateUrl: "files/templates/download-manifest-button.html",
       link: ($scope, $element, $attrs) => {
-        
+
         const togglePopover = shouldBeOpen => $scope.$apply(() => {
           $scope.open = shouldBeOpen;
           if (shouldBeOpen) {
@@ -185,7 +185,7 @@ module ngApp.files.directives {
         $element.on('mouseenter', () => togglePopover(true));
 
         $element.on('mouseleave', _.debounce(() => {
-          if (!$('.popover').is(':hover')) togglePopover(false);
+          if (!$('.popover').filter(':hover')) togglePopover(false);
         }, 700));
 
         $scope.active = false;

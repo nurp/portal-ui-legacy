@@ -90,24 +90,10 @@ module ngApp.search.controllers {
       $scope.fileTableConfig = this.SearchTableFilesModel;
       $scope.participantTableConfig = this.SearchTableParticipantsModel;
 
+      this.FacetsConfigService.setFields('files', this.SearchTableFilesModel.facets);
+      this.FacetsConfigService.setFields('cases', this.SearchTableParticipantsModel.facets);
       this.refresh();
       this.chartConfigs = SearchChartConfigs;
-      this.ageAtDiagnosisUnitsMap = [
-        {
-          "label": "years",
-          "conversionDivisor": 365,
-        },
-        {
-          "label": "days",
-          "conversionDivisor": 1,
-        }
-      ];
-      this.daysToDeathUnitsMap = [
-        {
-          "label": "days",
-          "conversionDivisor": 1,
-        }
-      ];
     }
 
     refresh() {
@@ -123,7 +109,6 @@ module ngApp.search.controllers {
         return;
       }
 
-
       this.$rootScope.$emit('ShowLoadingScreen');
       this.filesLoading = true;
       this.participantsLoading = true;
@@ -133,15 +118,14 @@ module ngApp.search.controllers {
         this.tabSwitch = false;
       });
 
-      this.FacetsConfigService.setFields('files', this.SearchTableFilesModel.facets);
       var fileOptions = {
         fields: this.SearchTableFilesModel.fields,
         facets: _.pluck(this.FacetsConfigService.fieldsMap['files'], 'name')
       };
 
-      this.FacetsConfigService.setFields('cases', this.SearchTableParticipantsModel.facets);
       var participantOptions = {
         fields: this.SearchTableParticipantsModel.fields,
+        expand: this.SearchTableParticipantsModel.expand,
         facets: _.pluck(this.FacetsConfigService.fieldsMap['cases'], 'name')
       };
 
