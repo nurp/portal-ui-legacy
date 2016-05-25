@@ -53,6 +53,9 @@ export const FileTable = props => {
         pathname: '/files',
         query: {
           ...props.relay.route.params,
+          filters: props.relay.route.params.filters
+            ? btoa(JSON.stringify(props.relay.route.params.filters))
+            : null,
           offset: 0,
         },
       },
@@ -62,6 +65,9 @@ export const FileTable = props => {
         pathname: '/files',
         query: {
           ...props.relay.route.params,
+          filters: props.relay.route.params.filters
+            ? btoa(JSON.stringify(props.relay.route.params.filters))
+            : null,
           offset: props.relay.route.params.offset - props.relay.route.params.first,
         },
       },
@@ -71,6 +77,9 @@ export const FileTable = props => {
         pathname: '/files',
         query: {
           ...props.relay.route.params,
+          filters: props.relay.route.params.filters
+            ? btoa(JSON.stringify(props.relay.route.params.filters))
+            : null,
           offset: props.relay.route.params.offset + props.relay.route.params.first,
         },
       },
@@ -83,7 +92,6 @@ export const FileTable = props => {
           offset: props.files.hits.pagination.total - props.files.hits.pagination.total % 20,
         },
       },
-      disabled: true,
     }, ' >> '),
   ]);
 };
