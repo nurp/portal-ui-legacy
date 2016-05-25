@@ -128,7 +128,9 @@ module ngApp.components.tables.controllers {
       this.LocalStorageService.setItem('gdc-archive-' + this.$scope.title + '-col', save);
     }
 
-    updateSorting(): void {
+    updateSorting(event): void {
+      if (event) event.stopPropagation();
+
       this.saveToLocalStorage();
 
       if (this.$scope.update) {

@@ -30,7 +30,7 @@
         <tr>
           <th data-ng-if="groupingTitle" data-translate>{{::groupingTitle}}</th>
           <td data-ng-if="!groupingTitle"></td>
-          <th data-translate>Cases</th>
+          <th data-translate data-ng-if="showCases">Cases</th>
           <th data-translate>Files</th>
           <th data-translate data-ng-if="!config.hideFileSize">File Size</th>
         </tr>
@@ -44,8 +44,8 @@
               {{ item[config.displayKey] | humanify }}
             </a>
           </th>
-          <td class="text-right">
-            <a data-ng-if="item.case_count" data-ng-click="sc.addFilters(item, 'search.participants')">
+          <td class="text-right" data-ng-if="showCases">
+            <a data-ng-if="item.case_count">
               {{ item.case_count | number }}
             </a>
             <span data-ng-if="!item.case_count">0</span>
@@ -60,7 +60,7 @@
 
             <span data-ng-if="!item[config.sortKey]">0</span>
           </td>
-          <td class="text-right" data-ng-if="!config.hideFileSize">{{ item.file_size.value | size }}</td>
+          <td class="text-right" data-ng-if="!config.hideFileSize">{{ item.file_size | size }}</td>
         </tr>
       </tbody>
     </table>
