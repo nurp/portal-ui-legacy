@@ -215,6 +215,11 @@ function appRun(gettextCatalog: any,
     // Page change
     CoreService.setLoadedState(true);
   });
+  
+  $rootScope.$on("$stateChangeError", () => {
+    $state.go("404", {}, { location: "replace" });
+  });
+
 }
 
 angular
