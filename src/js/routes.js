@@ -3,7 +3,7 @@ import { Route } from 'react-router';
 import { h } from 'react-hyperscript-helpers';
 
 import App from 'components/App';
-import FileTable from 'components/FileTable';
+import FilesRoute from 'routes/FilesRoute';
 
 const parseIntParam = (str, defaults) => (
   str ? Math.max(parseInt(str, 10), 0) : defaults
@@ -23,7 +23,7 @@ export default (
     children: [
       h(Route, {
         path: '/files',
-        component: FileTable,
+        component: FilesRoute,
         queryParams: ['offset', 'first', 'filters'],
         prepareParams: params => ({
           offset: parseIntParam(params.offset, 0),
