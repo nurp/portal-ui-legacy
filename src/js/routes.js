@@ -24,14 +24,13 @@ export default (
       h(Route, {
         path: '/files',
         component: FilesRoute,
-        queryParams: ['offset', 'first', 'filters'],
-        prepareParams: params => ({
-          offset: parseIntParam(params.offset, 0),
-          first: parseIntParam(params.first, 20),
-          filters: parseJsonParam(params.filters, null),
+        prepareParams: (params, { location: { query } }) => ({
+          offset: parseIntParam(query.offset, 0),
+          first: parseIntParam(query.first, 20),
+          filters: parseJsonParam(query.filters, null),
         }),
         queries: {
-          files: () => Relay.QL`query { files }`,
+          viewer: () => Relay.QL`query { viewer }`,
         },
       }),
     ],

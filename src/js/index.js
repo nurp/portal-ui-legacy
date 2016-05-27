@@ -20,6 +20,7 @@ ReactDOM.render(
       console.log(99, readyState);
     },
     render: applyRouterMiddleware(useRelay),
+    environment: Relay.Store,
   }),
   document.getElementById('react-relay-example')
 );

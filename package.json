@@ -16,12 +16,11 @@
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
     "react-hyperscript-helpers": "^1.1.0",
-    "react-relay": "0.8.0",
-    "react-router": "2.3.0",
-    "react-router-relay": "0.12.0"
+    "react-relay": "^0.9.0",
+    "react-router": "^2.4.1",
+    "react-router-relay": "^0.13.2"
   },
   "devDependencies": {
-    "babel": "^6.5.2",
     "babel-core": "^6.9.0",
     "babel-eslint": "^6.0.4",
     "babel-loader": "^6.2.4",
@@ -34,7 +33,7 @@
     "babel-preset-react-hmre": "^1.1.1",
     "babel-preset-stage-0": "^6.5.0",
     "babel-register": "^6.9.0",
-    "babel-relay-plugin": "^0.8.1",
+    "babel-relay-plugin": "^0.9.0",
     "babel-runtime": "^6.9.0",
     "chai": "3.5.0",
     "chalk": "^1.1.3",
