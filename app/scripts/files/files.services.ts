@@ -152,7 +152,7 @@ module ngApp.files.services {
       var defaults = {
         size: paging.size,
         from: paging.from,
-        sort: paging.sort || "file_name:asc",
+        sort: paging.sort || "cases.project.project_id:asc",
         filters: this.LocationService.filters()
       };
 

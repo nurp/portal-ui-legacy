@@ -1,3 +1,12 @@
+<a name"1.1.1"></a>
+### 1.1.1 (2016-05-27)
+
+
+#### Bug Fixes
+
+* **search:** default sort by project_id ([dcd7506e](https://github.com/NCI-GDC/portal-ui-legacy/commit/dcd7506e), closes [PGDC-2534](https://jira.opensciencedatacloud.org/browse/PGDC-2534))
+
+
 <a name"1.1.0"></a>
 ## 1.1.0 (2016-05-25)
 
