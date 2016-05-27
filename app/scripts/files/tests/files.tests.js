@@ -49,11 +49,11 @@ describe('Files:', function () {
 
   describe('Service:', function () {
 
-    it('should get all files', inject(function (FilesService) {
+    it('should get files', inject(function (FilesService) {
       sinon.spy(FilesService.ds, 'get');
 
       var fs = {hits: [], facets: [], pagination: {}};
-      httpBackend.whenGET("/files?filters=%7B%7D&from=1&size=20&sort=file_name:asc").respond(fs);
+      httpBackend.whenGET("/files?filters=%7B%7D&from=1&size=20&sort=cases.project.project_id:asc").respond(fs);
 
       FilesService.getFiles();
       httpBackend.flush();
