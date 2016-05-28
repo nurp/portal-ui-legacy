@@ -22,7 +22,7 @@ export default Relay.createContainer(FilesRoute, {
     viewer: () => Relay.QL`
       fragment on Root {
         files {
-          aggregations {
+          aggregations(filters: $filters) {
             ${FileAggregations.getFragment('aggregations')}
           }
           hits(first: $first offset: $offset, filters: $filters) {
