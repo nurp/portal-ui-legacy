@@ -1,13 +1,5 @@
 {
   "presets": [
-    "react", "es2015", "stage-0",
-    {
-      "plugins": [ "./config/webpack/plugins/babelRelayPlugin" ]
-    }
-  ],
-  "env": {
-    "development": {
-      "presets": ["react-hmre"]
-    }
-  }
+    "es2015", "stage-0",
+  ]
 }

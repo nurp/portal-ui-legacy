@@ -23,6 +23,19 @@ export default {
         loader: 'babel',
         exclude: ['node_modules'],
         include: `${config.get('dir_src')}/js`,
+        query: {
+          presets: [
+            'react', 'es2015-webpack', 'stage-0',
+            {
+              plugins: ['./config/webpack/plugins/babelRelayPlugin'],
+            },
+          ],
+          env: {
+            development: {
+              presets: ['react-hmre'],
+            },
+          },
+        },
       },
       {
         test: /\.json$/,
@@ -33,7 +46,7 @@ export default {
   },
   resolve: {
     extentions: ['', '.js', '.jsx'],
-    modulesDirectories: ['web_modules', 'node_modules'],
+    modules: ['node_modules'],
     alias: {
       react: path.resolve(path.join(config.get('path_project'), 'node_modules', 'react')),
       routes: path.resolve(path.join(config.get('path_project'), 'src', 'js', 'routes')),

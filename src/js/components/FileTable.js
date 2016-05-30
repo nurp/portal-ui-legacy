@@ -1,5 +1,4 @@
 import Relay from 'react-relay';
-import { Link } from 'react-router';
 import { h2, div, table, thead, tr, th, h } from 'react-hyperscript-helpers';
 
 import FileTBody from 'components/FileTBody';

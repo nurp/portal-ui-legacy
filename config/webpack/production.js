@@ -15,6 +15,10 @@ export default {
   },
   plugins: [
     ...webpackConfig.plugins,
+    new webpack.LoaderOptionsPlugin({
+      minimize: true,
+      debug: false,
+    }),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
       mangle: {

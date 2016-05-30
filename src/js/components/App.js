@@ -1,8 +1,8 @@
 import Relay from 'react-relay';
-import { div, h } from 'react-hyperscript-helpers';
+import { div } from 'react-hyperscript-helpers';
 
-import FileTable from 'components/FileTable';
-import CaseTable from 'components/CaseTable';
+// import FileTable from 'components/FileTable';
+// import CaseTable from 'components/CaseTable';
 
 export const App = (props) => {
   console.log(0, props.relay.getPendingTransactions(props.viewer));
@@ -21,7 +21,11 @@ export default Relay.createContainer(App, {
       fragment on Root {
         cases {
           hits(first: 2) {
-            ${CaseTable.getFragment('hits')}
+            edges {
+              node {
+                id
+              }
+            }
           }
         }
 
