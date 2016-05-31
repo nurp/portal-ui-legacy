@@ -1,31 +1,29 @@
 import 'babel-polyfill';
+import React from 'react';
 import ReactDOM from 'react-dom';
-import { h } from 'react-hyperscript-helpers';
 import Relay from 'react-relay';
 
-import { applyRouterMiddleware, Router, browserHistory } from 'react-router';
-import useRelay from 'react-router-relay';
+import { AppContainer } from 'react-hot-loader';
 
-import routes from './routes';
+import Root from './Root';
 
-Relay.injectNetworkLayer(
-  new Relay.DefaultNetworkLayer('http://localhost:5000/graphql')
-);
+// Don't inject everytime file is hot-reloaded
+if (!Relay.Store._storeData._networkLayer._implementation) {
+  Relay.injectNetworkLayer(
+    new Relay.DefaultNetworkLayer('http://localhost:5000/graphql')
+  );
+}
 
 ReactDOM.render(
-  h(Router, {
-    history: browserHistory,
-    routes,
-    onReadyStateChange: readyState => {
-      console.log(99, readyState);
-    },
-    render: applyRouterMiddleware(useRelay),
-    environment: Relay.Store,
-  }),
+  <AppContainer><Root /></AppContainer>,
   document.getElementById('react-relay-example')
 );
 
-// h(Relay.RootContainer, {
-//   Component: App,
-//   route: new AppHomeRoute(),
-// }),
+if (module.hot) {
+  module.hot.accept(Root, () => {
+    ReactDOM.render(
+      <AppContainer><Root /></AppContainer>,
+      document.getElementById('react-relay-example')
+    );
+  });
+}

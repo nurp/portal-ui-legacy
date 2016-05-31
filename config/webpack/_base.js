@@ -27,14 +27,12 @@ export default {
           presets: [
             'react', 'es2015-webpack', 'stage-0',
             {
-              plugins: ['./config/webpack/plugins/babelRelayPlugin'],
+              plugins: [
+                './config/webpack/plugins/babelRelayPlugin',
+                'react-hot-loader/babel',
+              ],
             },
           ],
-          env: {
-            development: {
-              presets: ['react-hmre'],
-            },
-          },
         },
       },
       {

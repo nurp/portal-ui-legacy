@@ -25,7 +25,7 @@ export const FileAggregations = props => {
           })),
         },
       },
-    }, b.key), span([b.doc_count + 999])]))),
+    }, b.key), span([b.doc_count + 0])]))),
     h3('Platform!'),
     div(props.aggregations.platform.buckets.map(b => div([h(Link, {
       to: {

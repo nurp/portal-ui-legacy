@@ -23,6 +23,7 @@ export default {
     ...webpackConfig.entry,
     bundle: [
       'webpack-hot-middleware/client?reload=true',
+      'react-hot-loader/patch',
       ...webpackConfig.entry.bundle,
     ],
   },
