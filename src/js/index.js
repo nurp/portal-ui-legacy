@@ -14,16 +14,18 @@ if (!Relay.Store._storeData._networkLayer._implementation) {
   );
 }
 
+const rootEl = document.getElementById('react-relay-example');
+
 ReactDOM.render(
   <AppContainer><Root /></AppContainer>,
-  document.getElementById('react-relay-example')
+  rootEl
 );
 
 if (module.hot) {
   module.hot.accept(Root, () => {
     ReactDOM.render(
       <AppContainer><Root /></AppContainer>,
-      document.getElementById('react-relay-example')
+      rootEl
     );
   });
 }

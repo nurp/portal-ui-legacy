@@ -5,12 +5,9 @@ import useRelay from 'react-router-relay';
 
 import routes from './routes';
 
-const cRoutes = {
-  ...routes,
-};
-
 const Root = () => (
   h(Router, {
+    key: 1,
     history: browserHistory,
     routes,
     onReadyStateChange: readyState => {

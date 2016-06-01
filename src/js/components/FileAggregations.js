@@ -26,7 +26,7 @@ export const FileAggregations = props => {
         },
       },
     }, b.key), span([b.doc_count + 0])]))),
-    h3('Platform!'),
+    h3('Platform'),
     div(props.aggregations.platform.buckets.map(b => div([h(Link, {
       to: {
         pathname: '/files',

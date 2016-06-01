@@ -1,19 +1,19 @@
 import Relay from 'react-relay';
-import { div } from 'react-hyperscript-helpers';
+import { Link } from 'react-router';
+import { h, div } from 'react-hyperscript-helpers';
 
-// import FileTable from 'components/FileTable';
-// import CaseTable from 'components/CaseTable';
-
-export const App = (props) => {
-  console.log(0, props.relay.getPendingTransactions(props.viewer));
-  return div({
+export const App = (props) => (
+  div({
     children: [
+      h(Link, {
+        to: {
+          pathname: '/files',
+        },
+      }, '~~~files~~~'),
       props.children,
-      // h(FileTable, props.viewer),
-      // h(CaseTable, props.viewer.cases),
     ],
-  });
-};
+  })
+);
 
 export default Relay.createContainer(App, {
   fragments: {
