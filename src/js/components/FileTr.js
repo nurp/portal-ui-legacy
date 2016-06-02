@@ -1,10 +1,17 @@
 import Relay from 'react-relay';
-import { tr, td } from 'react-hyperscript-helpers';
+import { tr, td, h } from 'react-hyperscript-helpers';
+import { Link } from 'react-router';
 
 const FileTr = ({ node }) => (
   tr([
     td(node.access),
-    td(node.file_name),
+    td([
+      h(Link, {
+        to: {
+          pathname: `/files/${node.file_id}`,
+        },
+      }, node.file_name),
+    ]),
     td(`${node.cases.length}`),
     td(`${[...new Set(node.cases.map(c => c.project.project_id))]}`),
     td(node.data_category),

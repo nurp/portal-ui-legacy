@@ -1,9 +1,16 @@
 import Relay from 'react-relay';
-import { tr, td } from 'react-hyperscript-helpers';
+import { tr, td, h } from 'react-hyperscript-helpers';
+import { Link } from 'react-router';
 
 const AnnotationTr = ({ node }) => (
   tr([
-    td(node.annotation_id),
+    td([
+      h(Link, {
+        to: {
+          pathname: `/annotations/${node.annotation_id}`,
+        },
+      }, node.annotation_id),
+    ]),
     td(node.case_id),
     td(node.project.project_id),
     td(node.entity_type),
