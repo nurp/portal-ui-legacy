@@ -22,6 +22,7 @@ export default {
   plugins: [
     ...webpackConfig.plugins,
     new webpack.optimize.CommonsChunkPlugin(LIBS_BUNDLE),
+    new webpack.optimize.AggressiveMergingPlugin(),
     new HtmlWebpackPlugin({
       template: path.resolve(path.join(config.get('path_project'), 'src', 'index.html')),
       filename: '../index.html',

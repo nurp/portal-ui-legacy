@@ -5,9 +5,15 @@ import useRelay from 'react-router-relay';
 
 import routes from './routes';
 
+// Don't inject everytime file is hot-reloaded
+if (!Relay.Store._storeData._networkLayer._implementation) {
+  Relay.injectNetworkLayer(
+    new Relay.DefaultNetworkLayer('http://localhost:8080/api/graphql')
+  );
+}
+
 const Root = () => (
   h(Router, {
-    key: 1,
     history: browserHistory,
     routes,
     onReadyStateChange: readyState => {

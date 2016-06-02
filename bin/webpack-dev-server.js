@@ -24,7 +24,7 @@ if (isDevelopment) {
   console.log('⌛  Webpack bundling assets for the first time...');
 }
 
-app.use('/graphql', proxy(config.get('proxy'), {
+app.use('/api', proxy(config.get('proxy'), {
   forwardPath: req => (
     require('url').parse(req.url).path
   ),

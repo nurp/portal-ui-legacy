@@ -33,11 +33,16 @@ export const FileAggregations = props => {
         query: {
           ...props.relay.route.params,
           filters: btoa(JSON.stringify({
-            op: '=',
-            content: {
-              field: 'files.platform',
-              value: b.key,
-            },
+            op: 'and',
+            content: [
+              {
+                op: '=',
+                content: {
+                  field: 'files.platform',
+                  value: b.key,
+                },
+              },
+            ],
           })),
         },
       },

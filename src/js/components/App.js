@@ -2,34 +2,15 @@ import Relay from 'react-relay';
 import { Link } from 'react-router';
 import { h, div } from 'react-hyperscript-helpers';
 
-export const App = (props) => (
+const App = (props) => (
   div({
     children: [
-      h(Link, {
-        to: {
-          pathname: '/files',
-        },
-      }, '~~~files~~~'),
+      h(Link, { to: { pathname: '/' } }, '~~~home~~~'),
+      h(Link, { to: { pathname: '/files' } }, '~~~files~~~'),
+      h(Link, { to: { pathname: '/annotations' } }, '~~~annotations~~~'),
       props.children,
     ],
   })
 );
 
-export default Relay.createContainer(App, {
-  fragments: {
-    viewer: () => Relay.QL`
-      fragment on Root {
-        cases {
-          hits(first: 2) {
-            edges {
-              node {
-                id
-              }
-            }
-          }
-        }
-
-      }
-    `,
-  },
-});
+export default App;
