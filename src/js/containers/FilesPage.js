@@ -1,9 +1,9 @@
 import Relay from 'react-relay';
 import { div, h } from 'react-hyperscript-helpers';
 
-import CaseAggregations from 'components/CaseAggregations';
-import FileAggregations from 'components/FileAggregations';
-import FileTable from 'components/FileTable';
+import CaseAggregations from 'containers/CaseAggregations';
+import FileAggregations from 'containers/FileAggregations';
+import FileTable from 'containers/FileTable';
 
 export const FilesPage = props => (
   div([

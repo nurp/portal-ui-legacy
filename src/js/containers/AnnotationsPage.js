@@ -1,15 +1,16 @@
 import Relay from 'react-relay';
 import { div, h } from 'react-hyperscript-helpers';
 
-import AnnotationTable from 'components/AnnotationTable';
-import AnnotationsAggregations from 'components/AnnotationsAggregations';
+import AnnotationTable from 'containers/AnnotationTable';
+import AnnotationsAggregations from 'containers/AnnotationsAggregations';
 
-export const AnnotationsPage = props => (
-  div([
+export const AnnotationsPage = props => {
+  console.log('AnnotationsPage', props);
+  return div([
     h(AnnotationsAggregations, { aggregations: props.viewer.annotations.aggregations }),
     h(AnnotationTable, { hits: props.viewer.annotations.hits }),
-  ])
-);
+  ]);
+};
 
 export default Relay.createContainer(AnnotationsPage, {
   initialVariables: {

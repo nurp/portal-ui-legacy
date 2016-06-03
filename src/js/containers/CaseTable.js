@@ -1,7 +1,7 @@
 import Relay from 'react-relay';
 import { table, thead, tbody, tr, th, h } from 'react-hyperscript-helpers';
 
-import CaseTr from 'components/CaseTr';
+import CaseTr from 'containers/CaseTr';
 
 export const CaseTable = props => (
   table([

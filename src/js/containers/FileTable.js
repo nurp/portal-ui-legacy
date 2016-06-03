@@ -1,8 +1,8 @@
 import Relay from 'react-relay';
 import { h2, div, table, thead, tr, th, h } from 'react-hyperscript-helpers';
 
-import FileTBody from 'components/FileTBody';
-import FilePagination from 'components/FilePagination';
+import FileTBody from 'containers/FileTBody';
+import Pagination from 'containers/Pagination';
 
 export const FileTable = props => {
   console.log('FileTable', props);
@@ -22,7 +22,7 @@ export const FileTable = props => {
       ]),
       h(FileTBody, { edges: props.hits.edges }),
     ]),
-    h(FilePagination, { pagination: props.hits.pagination }),
+    h(Pagination, { pathname: '/files', pagination: props.hits.pagination }),
   ]);
 };
 
@@ -38,7 +38,7 @@ export default Relay.createContainer(FileTable, {
         pagination {
           count
           total
-          ${FilePagination.getFragment('pagination')}
+          ${Pagination.getFragment('pagination')}
         }
         edges {
           ${FileTBody.getFragment('edges')}

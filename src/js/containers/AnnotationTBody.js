@@ -1,7 +1,7 @@
 import Relay from 'react-relay';
 import { tbody, h } from 'react-hyperscript-helpers';
 
-import AnnotationTr from 'components/AnnotationTr';
+import AnnotationTr from 'containers/AnnotationTr';
 
 export const AnnotationTBody = props => {
   console.log(2, props);

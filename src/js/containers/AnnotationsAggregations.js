@@ -1,10 +1,20 @@
 import Relay from 'react-relay';
-import { Link } from 'react-router';
+import { Link, withRouter } from 'react-router';
 import { div, span, h3, h } from 'react-hyperscript-helpers';
+
+import TermFacet from 'components/TermFacet';
 
 export const AnnotationsAggregations = props => {
   console.log('AnnotationsAggregations', props);
+  console.log(props.router.createLocation({ query: { a: 1 } }));
+
   return div([
+    h(TermFacet, {
+      pathname: '/annotations',
+      field: 'annotations.classification',
+      params: props.relay.route.params,
+      buckets: props.aggregations.classification.buckets,
+    }),
     h3('Classification'),
     div(props.aggregations.classification.buckets.map(b => div([h(Link, {
       to: {
@@ -29,7 +39,10 @@ export const AnnotationsAggregations = props => {
   ]);
 };
 
-export default Relay.createContainer(AnnotationsAggregations, {
+export default Relay.createContainer(withRouter(AnnotationsAggregations), {
+  prepareVariable: prevState => {
+    console.log('aa: ', prevState);
+  },
   fragments: {
     aggregations: () => Relay.QL`
       fragment on AnnotationsAgg {

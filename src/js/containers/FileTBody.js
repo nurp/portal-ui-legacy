@@ -1,7 +1,7 @@
 import Relay from 'react-relay';
 import { tbody, h } from 'react-hyperscript-helpers';
 
-import FileTr from 'components/FileTr';
+import FileTr from 'containers/FileTr';
 
 export const FileTBody = props => {
   console.log(2, props);
