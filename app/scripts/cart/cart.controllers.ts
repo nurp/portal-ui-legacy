@@ -155,24 +155,27 @@ module ngApp.cart.controllers {
       var filters = {'content': [{'content': {'field': 'files.file_id', 'value': fileIds}, 'op': 'in'}], 'op': 'and'};
       var fileOptions = {
         filters: filters,
-        fields: ['access',
-                 'file_name',
-                 'file_id',
-                 'data_type',
-                 'data_format',
-                 'file_size',
-                 'annotations.annotation_id',
-                 'cases.case_id',
-                 'cases.project.project_id',
-                 'cases.project.name']
+        fields: [
+          'access',
+          'file_name',
+          'file_id',
+          'data_type',
+          'data_format',
+          'file_size',
+          'annotations.annotation_id',
+          'cases.case_id',
+          'cases.project.project_id',
+          'cases.project.name'
+        ],
       };
       this.FilesService.getFiles(fileOptions, 'POST').then((data: IFiles) => {
         this.files = this.files || {};
         if (!_.isEqual(this.files.hits, data.hits)) {
           this.files = data;
-          this.ParticipantsService.getParticipants({filters: filters, size: 0}, 'POST').then((data: IParticipants) => {
-            this.participantCount = data.pagination.total;
-            })
+          this.ParticipantsService.getParticipants({filters: filters, size: 0}, 'POST')
+            .then((data: IParticipants) => {
+              this.participantCount = data.pagination.total;
+            });
         }
       }).finally(() => this.getSummary() );
     }
