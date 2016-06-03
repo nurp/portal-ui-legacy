@@ -1,3 +1,14 @@
+<a name"1.1.2"></a>
+### 1.1.2 (2016-06-03)
+
+
+#### Bug Fixes
+
+* **cart:**
+  * cannot download cart with over 5gb ([ce5d5c6c](https://github.com/NCI-GDC/portal-ui-legacy/commit/190cdc1))
+  * 2496 problem with undo removal ([add19fdf](https://github.com/NCI-GDC/portal-ui-legacy/commit/add19fdf), closes [PGDC-2496](https://jira.opensciencedatacloud.org/browse/PGDC-2496))
+
+
 <a name"1.1.1"></a>
 ### 1.1.1 (2016-05-27)
 
