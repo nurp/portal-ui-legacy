@@ -21,11 +21,13 @@ module ngApp.components.ui.biospecimen.controllers {
     constructor(
       private LocationService: ILocationService,
       private config: IGDCConfig,
+      private BiospecimenService,
       $scope
     ) {
       $scope.participant.samples.expanded = true;
       this.activeBioSpecimenDoc = $scope.participant.samples[0];
       this.activeBioSpecimenDocType = "sample";
+        this.BiospecimenService.expandFirstWithChildren($scope.participant.samples);
 
       this.bioSpecimenFile = _.find($scope.participant.files, (file) => {
         return file.data_subtype.toLowerCase() === "biospecimen data";
