@@ -3,6 +3,13 @@ import webpack from 'webpack';
 
 import config from '../';
 
+const babelPlugins = false // config.get('globals').TEST_ENV
+  ? []
+  : [
+    './config/webpack/plugins/babelRelayPlugin',
+    'react-hot-loader/babel',
+  ];
+
 export default {
   target: 'web',
   devtool: '#source-map',
@@ -27,10 +34,7 @@ export default {
           presets: [
             'react', 'es2015-webpack', 'stage-0',
             {
-              plugins: [
-                './config/webpack/plugins/babelRelayPlugin',
-                'react-hot-loader/babel',
-              ],
+              plugins: babelPlugins,
             },
           ],
         },
@@ -55,6 +59,7 @@ export default {
   plugins: [
     new webpack.DefinePlugin({
       'process.env': config.get('globals')['process.env'],
+      __API__: JSON.stringify(config.get('globals').__API__),
       __DEV__: JSON.stringify(config.get('globals').__DEV__),
       __PROD__: JSON.stringify(config.get('globals').__PROD__),
       __DEBUG__: JSON.stringify(config.get('globals').__DEBUG__),

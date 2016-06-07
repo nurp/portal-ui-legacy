@@ -1,4 +1,3 @@
-import Relay from 'react-relay';
 import { Link } from 'react-router';
 import { h, div } from 'react-hyperscript-helpers';
 

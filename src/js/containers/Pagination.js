@@ -1,13 +1,14 @@
 import Relay from 'react-relay';
 import { Link } from 'react-router';
 import { div, h } from 'react-hyperscript-helpers';
+import { prepareJsonParam } from 'routes/utils';
 
 export const Pagination = props => {
   console.log('Pagination', props);
 
   const filters = (
     props.relay.route.params.filters
-      ? btoa(JSON.stringify(props.relay.route.params.filters))
+      ? prepareJsonParam(props.relay.route.params.filters)
       : null
   );
 

@@ -8,7 +8,7 @@ import routes from './routes';
 // Don't inject everytime file is hot-reloaded
 if (!Relay.Store._storeData._networkLayer._implementation) {
   Relay.injectNetworkLayer(
-    new Relay.DefaultNetworkLayer('http://localhost:8080/api/graphql')
+    new Relay.DefaultNetworkLayer(`${__API__}graphql`)
   );
 }
 

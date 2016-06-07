@@ -11,13 +11,19 @@ config.set('path_project', path.resolve(__dirname, '..'));
 // User Configuration
 // ------------------------------------
 // NOTE: Due to limitations with Webpack's custom require, which is used for
-// looking up all *.spec.js files, if you edit dir_test you must also edit
+// looking up all *.test.js files, if you edit dir_test you must also edit
 // the path in ~/karma.entry.js.
 config.set('dir_src', path.join(config.get('path_project'), 'src'));
 config.set('dir_dist', path.join(config.get('path_project'), 'dist'));
 
+// ------------------------------------
+// Webpack
+// ------------------------------------
 config.set('webpack_host', process.env.HOST || 'localhost');
 config.set('webpack_port', process.env.PORT || 8080);
+config.set('webpack_public_path',
+  `http://${config.get('webpack_host')}:${config.get('webpack_port')}/`
+);
 config.set('proxy', process.env.PROXY || 'http://localhost:5000');
 
 /*  *********************************************
@@ -36,6 +42,7 @@ config.set('globals', {
   'process.env': {
     NODE_ENV: JSON.stringify(process.env.NODE_ENV),
   },
+  __API__: process.env.GDC_API || `${config.get('webpack_public_path')}api/`,
   NODE_ENV: process.env.NODE_ENV || 'stage',
   __DEV__: process.env.NODE_ENV === 'development',
   __PROD__: process.env.NODE_ENV === 'production',
@@ -43,13 +50,6 @@ config.set('globals', {
   TEST_ENV: process.env.CI ? 'ci' : (process.env.TEST_ENV || 'single'),
   __BASE__: process.env.BASE || '',
 });
-
-// ------------------------------------
-// Webpack
-// ------------------------------------
-config.set('webpack_public_path',
-  `http://${config.get('webpack_host')}:${config.get('webpack_port')}/`
-);
 
 // ------------------------------------
 // Utilities
