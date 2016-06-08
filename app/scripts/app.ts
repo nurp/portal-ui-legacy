@@ -90,7 +90,7 @@ function appConfig($urlRouterProvider: ng.ui.IUrlRouterProvider,
                    ) {
   $compileProvider.debugInfoEnabled(!config.production);
   $locationProvider.html5Mode(true);
-  $urlRouterProvider.otherwise("search/f");
+  $urlRouterProvider.otherwise("/404");
   RestangularProvider.setBaseUrl(config.api);
   RestangularProvider.setDefaultHttpFields({
     cache: true
@@ -215,7 +215,7 @@ function appRun(gettextCatalog: any,
     // Page change
     CoreService.setLoadedState(true);
   });
-  
+
   $rootScope.$on("$stateChangeError", () => {
     $state.go("404", {}, { location: "replace" });
   });
