@@ -30,7 +30,13 @@
           <tr>
             <th data-translate scope="row">Case UUID</th>
             <td>
-                {{ ::ac.annotation.case_id }}
+              {{ ::ac.annotation.case_id || '--' }}
+            </td>
+          </tr>
+          <tr>
+            <th data-translate scope="row">Case Submitter ID</th>
+            <td>
+              {{ ::ac.annotation.case_submitter_id || '--' }}
             </td>
           </tr>
           <tr>
