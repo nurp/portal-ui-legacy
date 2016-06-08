@@ -108,7 +108,6 @@ module ngApp.cart.services {
 
   export interface ICartService {
     files: IFile[];
-    lastModified: Moment;
     getFiles(): IFile[];
     getFileIds(): string[];
     add(file: IFile): void;
@@ -131,7 +130,6 @@ module ngApp.cart.services {
 
   class CartService implements ICartService {
     files: IFile[];
-    lastModified: Moment;
     lastModifiedFiles: IFile[];
 
     private static GDC_CART_KEY = "gdc-archive-cart-items";
