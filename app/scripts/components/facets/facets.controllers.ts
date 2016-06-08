@@ -288,6 +288,10 @@ module ngApp.components.facets.controllers {
       this.actives = this.FacetService.getActiveIDs(this.$scope.field);
     }
 
+    clear() {
+      this.actives.forEach(term => this.FacetService.removeTerm(this.$scope.field, term));
+    }
+
   }
 
   class RangeFacetController extends Toggleable {
@@ -369,8 +373,8 @@ module ngApp.components.facets.controllers {
 
     refresh(): void {
       this.activesWithOperator = this.FacetService.getActivesWithOperator(this.$scope.field);
-      this.$scope.lowerBoundFinal = this.activesWithOperator['>='] || null;
-      this.$scope.upperBoundFinal = this.activesWithOperator['<='] || null;
+      this.$scope.lowerBoundFinal = this.lowerFacetAdded = this.activesWithOperator['>='] || null;
+      this.$scope.upperBoundFinal = this.upperFacetAdded = this.activesWithOperator['<='] || null;
       this.convertMaxMin();
       this.convertUserInputs();
     }
@@ -392,6 +396,12 @@ module ngApp.components.facets.controllers {
       } else {
         this.FacetService.removeTerm(this.$scope.field, null, "<=");
       }
+    }
+
+    clear() {
+      this.FacetService.removeTerm(this.$scope.field, null, ">=");
+      this.FacetService.removeTerm(this.$scope.field, null, "<=");
+      this.upperFacetAdded = this.lowerFacetAdded = false;
     }
   }
 
@@ -426,6 +436,7 @@ module ngApp.components.facets.controllers {
       var actives = this.FacetService.getActivesWithValue(this.$scope.name);
       if (_.size(actives) > 0) {
         this.$scope.date = this.$window.moment(actives[this.$scope.name]).toDate();
+        this.facetAdded = true;
       }
     }
 
@@ -441,6 +452,11 @@ module ngApp.components.facets.controllers {
         this.FacetService.removeTerm(this.name, undefined, '>=');
       }
       this.FacetService.addTerm(this.name, this.$window.moment(this.$scope.date).format('YYYY-MM-DD'), '>=');
+    }
+
+    clear() {
+      this.FacetService.removeTerm(this.name, this.$window.moment(this.$scope.date).format('YYYY-MM-DD'));
+      this.facetAdded = false;
     }
 
   }
