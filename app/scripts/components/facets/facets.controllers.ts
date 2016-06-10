@@ -503,7 +503,10 @@ module ngApp.components.facets.controllers {
               _this.$uibModalStack.dismissAll();
               break;
             case KeyCode.Tab:
-              e.preventDefault();
+              const activeId = document.activeElement.id;
+              if (activeId !== 'show-fields-checkbox' && activeId !== 'quick-search-input') {
+                _this.setSelectedIndex(Cycle.Down);
+              }
               break;
           }
       };
