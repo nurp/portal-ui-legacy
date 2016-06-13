@@ -4,11 +4,9 @@ const KARMA_ENTRY_FILE = 'karma.entry.js';
 
 export default config => {
   config.set({
-    browsers: ['PhantomJS'],
+    browsers: ['Chrome'],
     // karma only needs to know about the test bundle
     files: [
-      'node_modules/babel-polyfill/dist/polyfill.js',
-      'node_modules/phantomjs-polyfill/bind-polyfill.js',
       KARMA_ENTRY_FILE,
     ],
     // run the bundle through the webpack and sourcemap plugins
@@ -17,7 +15,7 @@ export default config => {
     },
     frameworks: ['chai-sinon', 'mocha'],
     plugins: [
-      'karma-phantomjs-launcher',
+      'karma-chrome-launcher',
       'karma-chai-sinon',
       'karma-mocha',
       'karma-mocha-reporter',
