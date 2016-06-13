@@ -13,17 +13,10 @@ describe('routes', () => {
         expect(utils.parseIntParam(null, 10)).to.equal(10);
       });
     });
-    describe('prepareJsonParam', () => {
-      it('should turn objects into base64 strings', () => {
-        const obj = { test: 1 };
-        const b64 = btoa(JSON.stringify(obj));
-        expect(utils.prepareJsonParam(obj)).to.deep.equal(b64);
-      });
-    });
     describe('parseJsonParam', () => {
       it('should handle base64 strings', () => {
         const obj = { test: 1 };
-        const b64 = btoa(JSON.stringify(obj));
+        const b64 = JSON.stringify(obj);
         expect(utils.parseJsonParam(b64, {})).to.deep.equal(obj);
       });
       it('should handle defaults', () => {
