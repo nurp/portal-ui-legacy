@@ -6,12 +6,11 @@ const TermFacet = props => {
     op: 'and',
     content: [],
   };
-
+  const dotField = props.field.replace(/__/g, '.');
   return div([
-    h3(props.field),
+    h3(dotField),
     div(props.buckets.map(bucket => {
       const mergeFilters = (filters, b) => {
-        console.log(filters);
         return {
           op: 'and',
           content: [
@@ -19,7 +18,7 @@ const TermFacet = props => {
             {
               op: 'in',
               content: {
-                field: props.field,
+                field: dotField,
                 value: [b.key],
               },
             },
@@ -28,7 +27,6 @@ const TermFacet = props => {
       };
 
       const mergedFilters = mergeFilters(props.params.filters || wrapAnd, bucket);
-      console.log(bucket.key, mergedFilters);
       return div([
         h(Link, {
           to: {
@@ -36,7 +34,7 @@ const TermFacet = props => {
             query: {
               ...props.params,
               offset: 0,
-              filters: btoa(JSON.stringify(mergedFilters)),
+              filters: JSON.stringify(mergedFilters),
             },
           },
         }, bucket.key),

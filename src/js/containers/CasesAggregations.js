@@ -3,21 +3,21 @@ import { div, h } from 'react-hyperscript-helpers';
 
 import TermFacet from 'components/TermFacet';
 
-export const AnnotationsAggregations = props => {
-  const docType = 'annotations';
+export const CasesAggregations = props => {
+  const docType = 'cases';
   const facets = [
-    'classification',
-    'category',
-    'entity_type',
+    'demographic__ethnicity',
+    'demographic__gender',
+    'demographic__race',
+    'diagnoses__vital_status',
+    'project__disease_type',
     'project__primary_site',
-    'project__program__name',
     'project__project_id',
-    'status',
   ];
   return div([
     facets.map(f => h(TermFacet, {
       key: `${docType}.${f}`,
-      pathname: `/${docType}`,
+      pathname: '/files',
       field: `${docType}.${f}`,
       params: props.relay.route.params,
       buckets: props.aggregations[f].buckets,
@@ -25,23 +25,35 @@ export const AnnotationsAggregations = props => {
   ]);
 };
 
-export default Relay.createContainer(AnnotationsAggregations, {
+export default Relay.createContainer(CasesAggregations, {
   fragments: {
     aggregations: () => Relay.QL`
-      fragment on AnnotationsAgg {
-        category {
+      fragment on CasesAgg {
+        demographic__ethnicity {
           buckets {
             doc_count
             key
           }
         }
-        classification {
+        demographic__gender {
           buckets {
             doc_count
             key
           }
         }
-        entity_type {
+        demographic__race {
+          buckets {
+            doc_count
+            key
+          }
+        }
+        diagnoses__vital_status {
+          buckets {
+            doc_count
+            key
+          }
+        }
+        project__disease_type {
           buckets {
             doc_count
             key
@@ -53,19 +65,7 @@ export default Relay.createContainer(AnnotationsAggregations, {
             key
           }
         }
-        project__program__name {
-          buckets {
-            doc_count
-            key
-          }
-        }
         project__project_id {
-          buckets {
-            doc_count
-            key
-          }
-        }
-        status {
           buckets {
             doc_count
             key

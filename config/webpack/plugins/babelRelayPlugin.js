@@ -9,7 +9,6 @@ const response = request('POST', graphqlHubUrl, {
     query: introspectionQuery,
   },
 });
-
 const schema = JSON.parse(response.body.toString('utf-8'));
 
 module.exports = babelRelayPlugin(schema.data, {

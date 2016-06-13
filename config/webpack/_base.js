@@ -3,7 +3,7 @@ import webpack from 'webpack';
 
 import config from '../';
 
-const babelPlugins = false // config.get('globals').TEST_ENV
+const babelPlugins = config.get('globals').TEST_ENV
   ? []
   : [
     './config/webpack/plugins/babelRelayPlugin',

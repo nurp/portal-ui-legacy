@@ -3,11 +3,11 @@ export const parseIntParam = (str, defaults) => (
 );
 
 export const parseJsonParam = (str, defaults) => (
-  str ? JSON.parse(atob(str)) : defaults
+  str ? JSON.parse(str) : defaults
 );
 
 export const prepareJsonParam = (obj) => (
-  btoa(JSON.stringify(obj))
+  JSON.stringify(obj)
 );
 
 export const prepareViewerParams = (params, { location: { query } }) => ({

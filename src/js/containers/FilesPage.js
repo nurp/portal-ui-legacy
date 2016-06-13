@@ -1,14 +1,14 @@
 import Relay from 'react-relay';
 import { div, h } from 'react-hyperscript-helpers';
 
-import CaseAggregations from 'containers/CaseAggregations';
-import FileAggregations from 'containers/FileAggregations';
+import CasesAggregations from 'containers/CasesAggregations';
+import FilesAggregations from 'containers/FilesAggregations';
 import FileTable from 'containers/FileTable';
 
 export const FilesPage = props => (
   div([
-    h(CaseAggregations, { aggregations: props.viewer.cases.aggregations }),
-    h(FileAggregations, { aggregations: props.viewer.files.aggregations }),
+    h(CasesAggregations, { aggregations: props.viewer.cases.aggregations }),
+    h(FilesAggregations, { aggregations: props.viewer.files.aggregations }),
     h(FileTable, { hits: props.viewer.files.hits }),
   ])
 );
@@ -24,12 +24,12 @@ export default Relay.createContainer(FilesPage, {
       fragment on Root {
         cases {
           aggregations(filters: $filters) {
-            ${CaseAggregations.getFragment('aggregations')}
+            ${CasesAggregations.getFragment('aggregations')}
           }
         }
         files {
           aggregations(filters: $filters) {
-            ${FileAggregations.getFragment('aggregations')}
+            ${FilesAggregations.getFragment('aggregations')}
           }
           hits(first: $first offset: $offset, filters: $filters) {
             ${FileTable.getFragment('hits')}

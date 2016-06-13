@@ -3,16 +3,15 @@ import { div, h } from 'react-hyperscript-helpers';
 
 import TermFacet from 'components/TermFacet';
 
-export const AnnotationsAggregations = props => {
-  const docType = 'annotations';
+export const FilesAggregations = props => {
+  const docType = 'files';
   const facets = [
-    'classification',
-    'category',
-    'entity_type',
-    'project__primary_site',
-    'project__program__name',
-    'project__project_id',
-    'status',
+    'access',
+    'data_category',
+    'data_format',
+    'data_type',
+    'experimental_strategy',
+    'platform',
   ];
   return div([
     facets.map(f => h(TermFacet, {
@@ -25,47 +24,41 @@ export const AnnotationsAggregations = props => {
   ]);
 };
 
-export default Relay.createContainer(AnnotationsAggregations, {
+export default Relay.createContainer(FilesAggregations, {
   fragments: {
     aggregations: () => Relay.QL`
-      fragment on AnnotationsAgg {
-        category {
+      fragment on FilesAgg {
+        access {
           buckets {
             doc_count
             key
           }
         }
-        classification {
+        data_category {
           buckets {
             doc_count
             key
           }
         }
-        entity_type {
+        data_format {
           buckets {
             doc_count
             key
           }
         }
-        project__primary_site {
+        data_type {
           buckets {
             doc_count
             key
           }
         }
-        project__program__name {
+        experimental_strategy {
           buckets {
             doc_count
             key
           }
         }
-        project__project_id {
-          buckets {
-            doc_count
-            key
-          }
-        }
-        status {
+        platform {
           buckets {
             doc_count
             key
