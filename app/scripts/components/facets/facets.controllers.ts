@@ -480,7 +480,8 @@ module ngApp.components.facets.controllers {
                   private FacetsConfigService: IFacetsConfigService,
                   private CustomFacetsService: ICustomFacetsService,
                   private aggregations: any,
-                  public docType: string) {
+                  public docType: string,
+                  public title: string) {
       this.selectedIndex = 0;
 
       var _this = this;
@@ -663,7 +664,8 @@ module ngApp.components.facets.controllers {
             },
             facetsConfig: () => this.$scope.facetsConfig,
             aggregations: () => this.$scope.aggregations,
-            docType: () => this.$scope.docType
+            docType: () => this.$scope.docType,
+            title: () => this.$scope.title,
           }
       });
     }
