@@ -27,6 +27,12 @@ export default config => {
     sauceLabs: {
       testName: 'GDC Legacy Portal UI',
       recordScreenshots: false,
+      tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER,
+      sauceConnect: false,
+      connectOptions: {
+        port: 5757,
+        logfile: 'sauce_connect.log',
+      },
     },
     coverageReporter: {
       dir: 'coverage',
