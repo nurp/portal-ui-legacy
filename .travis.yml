@@ -9,10 +9,9 @@ notifications:
 before_install:
 - npm config set spin false
 script:
-- npm test
-- NODE_ENV=production npm run build
-- NODE_ENV=production npm run server &
-- npm run browser
+- NODE_ENV=production make dist
+- make server &
+- make browser
 after_success:
 - bash <(curl -s https://codecov.io/bash)
 addons:
