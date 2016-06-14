@@ -1,5 +1,5 @@
 import webpack from 'webpack';
-import CompressionPlugin from 'compression-webpack-plugin';
+// import CompressionPlugin from 'compression-webpack-plugin';
 
 import webpackConfig from './stage';
 
