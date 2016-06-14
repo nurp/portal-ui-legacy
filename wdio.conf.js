@@ -1,5 +1,5 @@
 exports.config = {
-    
+
     //
     // =================
     // Service Providers
@@ -10,8 +10,8 @@ exports.config = {
     //
     user: process.env.SAUCE_USERNAME,
     key: process.env.SAUCE_ACCESS_KEY,
-    
-    
+
+
     //
     // ==================
     // Specify Test Files
@@ -80,7 +80,7 @@ exports.config = {
     //
     // Set a base URL in order to shorten url command calls. If your url parameter starts
     // with "/", then the base url gets prepended.
-    baseUrl: 'http://localhost',
+    baseUrl: 'http://localhost:8080',
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 10000,
@@ -128,7 +128,7 @@ exports.config = {
     // The only one supported by default is 'dot'
     // see also: http://webdriver.io/guide/testrunner/reporters.html
     reporters: ['dot'],
-    
+
     //
     // Options to be passed to Mocha.
     // See the full list at http://mochajs.org/

@@ -36,7 +36,7 @@
     "babel-runtime": "^6.9.0",
     "chai": "3.5.0",
     "chalk": "^1.1.3",
-    "compression-webpack-plugin": "0.2.0",
+    "compression-webpack-plugin": "^0.3.1",
     "connect-gzip-static": "1.0.0",
     "conventional-changelog": "1.1.0",
     "david": "^7.0.2",
@@ -93,6 +93,6 @@
     "server:stage": "NODE_ENV=stage make build server",
     "server:prod": "NODE_ENV=production make build server",
     "build": "make build",
-    "test": "NODE_ENV=production make dist server browser"
+    "test": "TEST_ENV=single NODE_ENV=production make dist server browser"
   }
 }
