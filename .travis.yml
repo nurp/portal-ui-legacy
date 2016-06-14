@@ -10,7 +10,8 @@ before_install:
 - npm config set spin false
 script:
 - npm test
-- npm run server:prod &
+- NODE_ENV=production npm run build
+- NODE_ENV=production npm run server &
 - npm run browser
 after_success:
 - bash <(curl -s https://codecov.io/bash)
