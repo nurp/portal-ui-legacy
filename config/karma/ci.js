@@ -28,11 +28,13 @@ export default config => {
       base: 'SauceLabs',
       browserName: 'chrome',
       version: 'latest',
+      platform: 'Linux',
     },
     SL_Firefox_Linux: {
       base: 'SauceLabs',
       browserName: 'firefox',
       version: 'latest',
+      platform: 'Linux',
     },
     SL_Chrome_Windows_10: {
       base: 'SauceLabs',
@@ -52,16 +54,10 @@ export default config => {
       version: 'latest',
       platform: 'Windows 10',
     },
-    SL_Edge_Windows_10: {
-      base: 'SauceLabs',
-      browserName: 'edge',
-      version: 'latest',
-      platform: 'Windows 10',
-    },
     SL_Firefox_NCI_Windows_8: {
       base: 'SauceLabs',
       browserName: 'firefox',
-      version: '38.7.1',
+      version: '38',
       platform: 'Windows 8',
     },
   };
