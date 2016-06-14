@@ -92,6 +92,6 @@
     "server:stage": "NODE_ENV=stage make build server",
     "server:prod": "NODE_ENV=production make build server",
     "build": "make build",
-    "test": "make dist server browser"
+    "test": "make prepare; NODE_ENV=production make build; NODE_ENV=production make server & ; make browser"
   }
 }
