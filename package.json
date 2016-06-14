@@ -75,6 +75,10 @@
     "sinon": "^1.17.4",
     "sinon-chai": "2.8.0",
     "sync-request": "^3.0.1",
+    "wdio-dot-reporter": "0.0.5",
+    "wdio-mocha-framework": "^0.3.1",
+    "wdio-sauce-service": "^0.2.2",
+    "webdriverio": "^4.0.9",
     "webpack": "^2.1.0-beta.13",
     "webpack-dev-middleware": "^1.6.1",
     "webpack-dev-server": "^2.1.0-beta.0",
@@ -89,6 +93,6 @@
     "server:stage": "NODE_ENV=stage make build server",
     "server:prod": "NODE_ENV=production make build server",
     "build": "make build",
-    "test": "make prepare"
+    "test": "NODE_ENV=production make dist server browser"
   }
 }

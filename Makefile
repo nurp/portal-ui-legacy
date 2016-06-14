@@ -38,6 +38,10 @@ dist: prepare build
 prepare: lint test-once
 	@$(PRINT_OK)
 
+browser:
+	wdio wdio.conf.js
+	@$(PRINT_OK)
+
 test:
 	TEST_ENV=watch karma start karma.config.js
 
