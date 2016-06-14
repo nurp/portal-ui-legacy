@@ -3,10 +3,31 @@ const path = require('path');
 export default config => {
   const single = require('./single').default(config);
 
+  // Browsers to run on Sauce Labs
+  // Check out https://saucelabs.com/platforms for all browser/OS combos
+  const customLaunchers = {
+    SL_Chrome: {
+      base: 'SauceLabs',
+      browserName: 'chrome',
+    },
+    SL_Firefox: {
+      base: 'SauceLabs',
+      browserName: 'firefox',
+    },
+  };
+
   config.set({
     ...single,
-    reporters: [...single.reporters, 'coverage'],
-    plugins: [...single.plugins, 'karma-coverage'],
+    // Increase timeout in case connection in CI is slow
+    captureTimeout: 120000,
+    customLaunchers,
+    browsers: Object.keys(customLaunchers),
+    reporters: [...single.reporters, 'coverage', 'saucelabs'],
+    plugins: [...single.plugins, 'karma-sauce-launcher', 'karma-coverage'],
+    sauceLabs: {
+      testName: 'GDC Legacy Portal UI',
+      recordScreenshots: false,
+    },
     coverageReporter: {
       dir: 'coverage',
       reporters: [

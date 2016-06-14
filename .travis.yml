@@ -1,13 +1,18 @@
 language: node_js
 node_js:
-- 'node'
+- node
 sudo: false
 notifications:
   email: false
   slack:
     secure: Njn9VjYMUJcb8jfvusetb13uC0rcQ1NN6KumKxc6/jBCRoQ7uhQbqhcemZDK/7s/jRUGYTkb72u5QJxgVHcYDMchO9aOCVI3xs8veQ6j6shOCJbSIHGby1nkuwDPNzyyYh5mjJVDiWbiIBOzOaMko0QT//Ce1IitBBkyTEtQPcg=
 before_install:
-  - npm config set spin false
-  - npm install -g npm
+- npm config set spin false
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+- bash <(curl -s https://codecov.io/bash)
+addons:
+  sauce_connect:
+    access_key:
+      secure: v+ppvdPZmHP74kRrm3fdeEFkfGl5Y+NTBzf/yf9ln/zMfkcOm3kaxWy6vuf/SW61RuIWRjCLJplYq9azJS5c3d0z/cbjc7kF2IuNkYUzQtfVqLUCUu+YMHAfiR0BiGfEwNY7tJrBt++EBS+u/Jf/yENqGYR9OWMwjylHMZf/GF941EQtV1pp3S6Z5q3A9f5gErzN0x89AbEPV/NxDViVLSoOdhZfxVyFaec8JB0NE6QF0XWyATBaBtuCaiMbi4PD91HS5B6pt6Wdt5jTFRIUM3HINpYjJNv1OHOMC6/Yu1o3/00XJQPea+PeBMV3ko92WEqE89ZgCnNxKEnHEbHHuHXT2WY3/FUskfDDNdmVv+OMb7RnGaj7OzCBKE+ofiI5+iFPxM3DlxzEWEMs8QHstz6wXIWV5qgmuxKEfA3KzqKm0iavaDx1QndCfFDMw3JdZdY0NdAqaOIL4hjsd1BnWIp7vcAAD2bTG01RvGcZ33PvHYSxg2GJg3FCk6UiY/Kzfg9yTjaCwMyVKxiHcnrIptZzu+Chg1SvjrSeGYpBjd+JiZoUJOcbur+A1sPsTRlyz2pmDm3ql5GSwoX11yMjUJ2It7N5gslkXO636P1lfqd5OnxYdGeNWHTxk82xfskSik4cb1sCvvaGm4nMdmfgYFex7LJ58GSjQ1KFNln7ouQ=
+    username:
+      secure: dxaUp8NET/FKxoKwHAIWq1srMeoPqvdT10yf7V3YkxtedZDyVujB9UkrkZ0PAO4xKFzcLjCCWPPnmLxk3tQ0YyJwvpl1yku0mqmMcquI0k5aGHq1Lyg69hKszBTjP78w9LxqGYYk1U6n1me/OPvHs6LeWuZntAWp7VnTzGuVavAn5rp8mVTuicH1IpKAzDJp0r6+QBZaLX2mKGcEVLLN9zS48aRKRtBYfGWrkqwYHmaqhff3kcBvWqgPtHSVIAukWSIEPrPYO3yVNEfFUPSlDknU3nxZnyYUOHW05qlMWGUpZM2+pCQBNm1m7mX3jI13bprrixcLt60cmUVrAPuGT2mGM3cU+xu0dcM/+3eoS1jwKCFTUzTQ67Az3Lnc0f4rrObYAQK3KSMRA7lcMyUgMO+xKFoXFWLcaGofUcOLNxzgVppXS/sW+53VfV9KLQog6Zj+rmRws32aCdcNMv+YajbWh7a2eZpzSHHSY3J2kq/6HNK6hBJMVrmtDjkX/QTSJgoi+FBRaRmjnc2OeWYdJZSD1HKHoEJRaQlkU1gmljka9XojAHJRFz6iAbsAh+20B9N2xfRvYMACLfUvQuGxb6j9vjMptRhs0uJf6OtXYiKsnYv5mSYip7EnM2HzARyoIIHwLuvoBy1csMI0uNlwlKwmivSvq/UiQzaWLYO3bmQ=
