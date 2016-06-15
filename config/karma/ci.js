@@ -51,12 +51,6 @@ export const customLaunchers = {
     version: 'latest',
     platform: 'Windows 10',
   },
-  SL_IE_Windows_8: {
-    base: 'SauceLabs',
-    browserName: 'internet explorer',
-    version: '9',
-    platform: 'Windows 7',
-  },
 };
 
 export default config => {
