@@ -31,7 +31,7 @@ export default {
   // directory is where your package.json resides, so `wdio` will be called from there.
   //
   specs: [
-    path.join(config.get('dir_src'), './e2e/**/*.js'),
+    path.join(config.get('dir_src'), 'e2e/**/*.js'),
   ],
   // Patterns to exclude.
   exclude: [
