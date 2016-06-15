@@ -70,7 +70,7 @@ export default config => {
     browserNoActivityTimeout: 30000,
     customLaunchers,
     browsers: Object.keys(customLaunchers),
-    reporters: ['coverage', 'saucelabs'],
+    reporters: ['multibrowser-summary', 'coverage', 'saucelabs'],
     plugins: [...single.plugins, 'karma-sauce-launcher', 'karma-coverage'],
     sauceLabs: {
       testName: 'Unit Tests',
@@ -83,6 +83,10 @@ export default config => {
         port: 5757,
         logfile: 'sauce_connect.log',
       },
+    },
+    verboseReporter: {
+      color: 'full',
+      // output: 'only-failure',
     },
     coverageReporter: {
       dir: 'coverage',
