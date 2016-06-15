@@ -21,7 +21,6 @@ describe('routes', () => {
       });
       it('should handle defaults', () => {
         const obj = { test: 1 };
-        Object.values(obj);
         expect(utils.parseJsonParam(null, obj)).to.equal(obj);
       });
     });
