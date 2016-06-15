@@ -7,6 +7,7 @@ export default config => {
     browsers: ['Chrome'],
     // karma only needs to know about the test bundle
     files: [
+      'node_modules/babel-polyfill/dist/polyfill.js',
       KARMA_ENTRY_FILE,
     ],
     // run the bundle through the webpack and sourcemap plugins
