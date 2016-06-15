@@ -51,12 +51,6 @@ export const customLaunchers = {
     version: 'latest',
     platform: 'Windows 10',
   },
-  SL_Firefox_NCI_Windows_8: {
-    base: 'SauceLabs',
-    browserName: 'firefox',
-    version: '38',
-    platform: 'Windows 8',
-  },
 };
 
 export default config => {
