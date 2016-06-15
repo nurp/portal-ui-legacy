@@ -26,6 +26,11 @@ describe('routes', () => {
         myMap.get(NaN); // "not a number"
         expect(utils.parseJsonParam(null, obj)).to.equal(obj);
       });
+      it('IE test', () => {
+        const myMap = new Map();
+        myMap.set(NaN, 'not a number');
+        expect(myMap.get(NaN)).to.equal('not a number');
+      });
     });
     describe('prepareNodeParams', () => {
       it('should create a base64 id', () => {
