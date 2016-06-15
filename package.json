@@ -93,6 +93,5 @@
     "server:prod": "NODE_ENV=production make build server",
     "build": "make build",
     "test": "make prepare",
-    "browser": "make browser"
   }
 }

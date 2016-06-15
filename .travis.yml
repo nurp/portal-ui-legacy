@@ -12,11 +12,10 @@ before_script:
 - "export DISPLAY=:99.0"
 - "sh -e /etc/init.d/xvfb start"
 - NODE_ENV=production make build
-- sleep 3
 - make server &
 - sleep 3
 script:
-- make -j prepare browser
+- make browser
 after_success:
 - bash <(curl -s https://codecov.io/bash)
 addons:
