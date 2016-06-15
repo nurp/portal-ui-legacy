@@ -9,8 +9,12 @@ notifications:
 before_install:
 - npm config set spin false
 before_script:
+- "export DISPLAY=:99.0"
+- "sh -e /etc/init.d/xvfb start"
 - NODE_ENV=production make build
+- sleep 3
 - make server &
+- sleep 3
 script:
 - make -j prepare browser
 after_success:

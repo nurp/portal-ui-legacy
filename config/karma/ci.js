@@ -66,6 +66,7 @@ export default config => {
     ...single,
     // Increase timeout in case connection in CI is slow
     captureTimeout: 120000,
+    browserNoActivityTimeout: 30000,
     customLaunchers,
     browsers: Object.keys(customLaunchers),
     reporters: [...single.reporters, 'coverage', 'saucelabs'],
