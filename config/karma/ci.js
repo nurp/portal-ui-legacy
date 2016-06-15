@@ -71,7 +71,12 @@ export default config => {
     customLaunchers,
     browsers: Object.keys(customLaunchers),
     reporters: ['multibrowser-summary', 'coverage', 'saucelabs'],
-    plugins: [...single.plugins, 'karma-sauce-launcher', 'karma-coverage'],
+    plugins: [
+      ...single.plugins,
+      'karma-multibrowser-reporter',
+      'karma-sauce-launcher',
+      'karma-coverage',
+    ],
     sauceLabs: {
       testName: 'Unit Tests',
       tags: ['unit'],
