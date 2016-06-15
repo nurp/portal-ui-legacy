@@ -21,7 +21,7 @@ describe('routes', () => {
       });
       it('should handle defaults', () => {
         const obj = { test: 1 };
-        Object.values(obj);
+        Number.isInteger(true);
         expect(utils.parseJsonParam(null, obj)).to.equal(1);
       });
     });
