@@ -7,6 +7,8 @@ export default config => {
   // Check out https://saucelabs.com/platforms for all browser/OS combos
   const customLaunchers = {
     SL_Chrome_OSX: {
+      name: 'Chrome OSX',
+      testName: 'COSX',
       base: 'SauceLabs',
       browserName: 'chrome',
       version: 'latest',
@@ -72,7 +74,7 @@ export default config => {
     reporters: [...single.reporters, 'coverage', 'saucelabs'],
     plugins: [...single.plugins, 'karma-sauce-launcher', 'karma-coverage'],
     sauceLabs: {
-      testName: 'GDC Legacy Portal UI',
+      // testName: 'Unit Test Suite',
       recordScreenshots: false,
       tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER,
       startConnect: false,

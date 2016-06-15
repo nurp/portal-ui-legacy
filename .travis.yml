@@ -15,7 +15,7 @@ before_script:
 - make server &
 - sleep 3
 script:
-- make browser
+- make -j prepare browser
 after_success:
 - bash <(curl -s https://codecov.io/bash)
 addons:
