@@ -70,7 +70,7 @@ export default config => {
     browserNoActivityTimeout: 30000,
     customLaunchers,
     browsers: Object.keys(customLaunchers),
-    reporters: [...single.reporters, 'coverage', 'saucelabs'],
+    reporters: ['coverage', 'saucelabs'],
     plugins: [...single.plugins, 'karma-sauce-launcher', 'karma-coverage'],
     sauceLabs: {
       testName: 'Unit Tests',
