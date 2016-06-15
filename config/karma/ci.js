@@ -54,8 +54,8 @@ export const customLaunchers = {
   SL_IE_Windows_8: {
     base: 'SauceLabs',
     browserName: 'internet explorer',
-    version: '8',
-    platform: 'XP',
+    version: '9',
+    platform: 'Windows 7',
   },
 };
 
