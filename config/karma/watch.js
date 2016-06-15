@@ -5,10 +5,9 @@ export default config => {
     ...base,
     autoWatch: true,
     singleRun: false,
-    reporters: ['mocha'],
     mochaReporter: {
+      ...config.mochaReporter,
       output: 'autowatch',
-      showDiff: true,
     },
   });
 

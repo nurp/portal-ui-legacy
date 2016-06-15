@@ -5,7 +5,10 @@ export default config => {
     ...base,
     autoWatch: false,
     singleRun: true,
-    reporters: ['progress'],
+    mochaReporter: {
+      ...config.mochaReporter,
+      output: 'minimal',
+    },
   });
 
   return config;

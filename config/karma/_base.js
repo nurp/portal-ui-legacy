@@ -14,6 +14,10 @@ export default config => {
       [KARMA_ENTRY_FILE]: ['webpack', 'sourcemap'],
     },
     frameworks: ['chai-sinon', 'mocha'],
+    reporters: ['mocha'],
+    mochaReporter: {
+      showDiff: true,
+    },
     plugins: [
       'karma-chrome-launcher',
       'karma-chai-sinon',
