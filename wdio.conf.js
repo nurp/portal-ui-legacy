@@ -8,14 +8,21 @@ exports.config = {
     // should work too though). These services define specific user and key (or access key)
     // values you need to put in here in order to connect to these services.
     //
+    waitforTimeout: 10000,
     user: process.env.SAUCE_USERNAME,
     key: process.env.SAUCE_ACCESS_KEY,
-    sauceConnect: false,
-    sauceConnectOpts: {
-      tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER,
-      port: 5757,
-      logfile: 'sauce_connect.log'
-    },
+    host: 'ondemand.saucelabs.com',
+    port: 80,
+    desiredCapabilities: {
+       browserName: 'chrome',
+       version: 'latest',
+       'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,
+       'idle-timeout': 30000,
+       name: 'integration',
+       platform: 'Mac 10.10',
+       build: process.env.TRAVIS_BUILD_NUMBER,
+       captureHtml: true
+   },
     //
     // ==================
     // Specify Test Files
@@ -137,7 +144,8 @@ exports.config = {
     // Options to be passed to Mocha.
     // See the full list at http://mochajs.org/
     mochaOpts: {
-        ui: 'bdd'
+        ui: 'bdd',
+        timeout: 50000
     },
     //
     // =====
