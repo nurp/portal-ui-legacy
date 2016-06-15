@@ -1,3 +1,10 @@
+const baseCapability = {
+  tags: ['integration'],
+  'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,
+  build: process.env.TRAVIS_BUILD_NUMBER,
+  'idle-timeout': 30000,
+};
+
 exports.config = {
 
   //
@@ -50,13 +57,11 @@ exports.config = {
   // https://docs.saucelabs.com/reference/platforms-configurator
   //
   capabilities: [{
-    name: 'Chrome Integration',
+    ...baseCapability,
+    name: 'Integration',
     browserName: 'chrome',
     version: 'latest',
     platform: 'Mac 10.10',
-    'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,
-    build: process.env.TRAVIS_BUILD_NUMBER,
-    'idle-timeout': 30000,
   }],
   //
   // ===================
