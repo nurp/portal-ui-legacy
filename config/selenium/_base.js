@@ -1,5 +1,6 @@
 import path from 'path';
 import config from '../';
+import { customLaunchers } from '../karma/ci';
 
 const baseCapability = {
   tags: ['integration'],
@@ -7,6 +8,11 @@ const baseCapability = {
   build: process.env.TRAVIS_BUILD_NUMBER,
   'idle-timeout': 30000,
 };
+
+const capabilities = customLaunchers.values().map(c => ({
+  ...c,
+  ...baseCapability,
+}));
 
 export default {
 
@@ -59,13 +65,7 @@ export default {
   // Sauce Labs platform configurator - a great tool to configure your capabilities:
   // https://docs.saucelabs.com/reference/platforms-configurator
   //
-  capabilities: [{
-    ...baseCapability,
-    // name: 'Integration',
-    browserName: 'chrome',
-    version: 'latest',
-    platform: 'Mac 10.10',
-  }],
+  capabilities,
   //
   // ===================
   // Test Configurations

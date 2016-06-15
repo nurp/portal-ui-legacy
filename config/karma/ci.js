@@ -1,66 +1,66 @@
 const path = require('path');
 
+// Browsers to run on Sauce Labs
+// Check out https://saucelabs.com/platforms for all browser/OS combos
+export const customLaunchers = {
+  SL_Chrome_OSX: {
+    base: 'SauceLabs',
+    browserName: 'chrome',
+    version: 'latest',
+    platform: 'OS X 10.11',
+  },
+  SL_Firefox_OSX: {
+    base: 'SauceLabs',
+    browserName: 'firefox',
+    version: 'latest',
+    platform: 'OS X 10.11',
+  },
+  SL_Safari_OSX: {
+    base: 'SauceLabs',
+    browserName: 'safari',
+    version: 'latest',
+    platform: 'OS X 10.11',
+  },
+  SL_Chrome_Linux: {
+    base: 'SauceLabs',
+    browserName: 'chrome',
+    version: 'latest',
+    platform: 'Linux',
+  },
+  SL_Firefox_Linux: {
+    base: 'SauceLabs',
+    browserName: 'firefox',
+    version: 'latest',
+    platform: 'Linux',
+  },
+  SL_Chrome_Windows_10: {
+    base: 'SauceLabs',
+    browserName: 'chrome',
+    version: 'latest',
+    platform: 'Windows 10',
+  },
+  SL_Firefox_Windows_10: {
+    base: 'SauceLabs',
+    browserName: 'firefox',
+    version: 'latest',
+    platform: 'Windows 10',
+  },
+  SL_IE_Windows_10: {
+    base: 'SauceLabs',
+    browserName: 'internet explorer',
+    version: 'latest',
+    platform: 'Windows 10',
+  },
+  SL_Firefox_NCI_Windows_8: {
+    base: 'SauceLabs',
+    browserName: 'firefox',
+    version: '38',
+    platform: 'Windows 8',
+  },
+};
+
 export default config => {
   const single = require('./single').default(config);
-
-  // Browsers to run on Sauce Labs
-  // Check out https://saucelabs.com/platforms for all browser/OS combos
-  const customLaunchers = {
-    SL_Chrome_OSX: {
-      base: 'SauceLabs',
-      browserName: 'chrome',
-      version: 'latest',
-      platform: 'OS X 10.11',
-    },
-    SL_Firefox_OSX: {
-      base: 'SauceLabs',
-      browserName: 'firefox',
-      version: 'latest',
-      platform: 'OS X 10.11',
-    },
-    SL_Safari_OSX: {
-      base: 'SauceLabs',
-      browserName: 'safari',
-      version: 'latest',
-      platform: 'OS X 10.11',
-    },
-    SL_Chrome_Linux: {
-      base: 'SauceLabs',
-      browserName: 'chrome',
-      version: 'latest',
-      platform: 'Linux',
-    },
-    SL_Firefox_Linux: {
-      base: 'SauceLabs',
-      browserName: 'firefox',
-      version: 'latest',
-      platform: 'Linux',
-    },
-    SL_Chrome_Windows_10: {
-      base: 'SauceLabs',
-      browserName: 'chrome',
-      version: 'latest',
-      platform: 'Windows 10',
-    },
-    SL_Firefox_Windows_10: {
-      base: 'SauceLabs',
-      browserName: 'firefox',
-      version: 'latest',
-      platform: 'Windows 10',
-    },
-    SL_IE_Windows_10: {
-      base: 'SauceLabs',
-      browserName: 'internet explorer',
-      version: 'latest',
-      platform: 'Windows 10',
-    },
-    SL_Firefox_NCI_Windows_8: {
-      base: 'SauceLabs',
-      browserName: 'firefox',
-      version: '38',
-      platform: 'Windows 8',
-    },
-  };
 
   config.set({
     ...single,
