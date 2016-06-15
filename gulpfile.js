@@ -14,7 +14,7 @@ var mkdirp = require("mkdirp");
 var env = {
   api: process.env.GDC_API || "http://localhost:5000",
   auth: process.env.GDC_AUTH || "https://gdc-portal.nci.nih.gov/auth",
-  base: process.env.GDC_BASE || "/legacy",
+  base: process.env.GDC_BASE || "/",
   port: process.env.GDC_PORT || 3000,
   fake_auth: process.env.GDC_FAKE_AUTH || false,
 };
@@ -141,6 +141,7 @@ gulp.task("config", function () {
       content = content.replace(/__COMMIT__/g, stdout.replace(/[\r\n]/, ""));
       content = content.replace(/__API__/, env.api);
       content = content.replace(/__AUTH__/g, env.auth);
+      content = content.replace(/__BASE__/g, env.base);
       content = content.replace(/__PRODUCTION__/, production);
       content = content.replace(/__FAKE_AUTH__/, env.fake_auth);
 

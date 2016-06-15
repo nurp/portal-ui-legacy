@@ -90,6 +90,10 @@ function appConfig($urlRouterProvider: ng.ui.IUrlRouterProvider,
                    ) {
   $compileProvider.debugInfoEnabled(!config.production);
   $locationProvider.html5Mode(true);
+
+  // redirect from base path to file search page, but keep otherwise for 404
+  $urlRouterProvider.when("/", "/search/f");
+
   $urlRouterProvider.otherwise("/404");
   RestangularProvider.setBaseUrl(config.api);
   RestangularProvider.setDefaultHttpFields({
@@ -107,19 +111,22 @@ function appConfig($urlRouterProvider: ng.ui.IUrlRouterProvider,
 }
 
 /* @ngInject */
-function appRun(gettextCatalog: any,
-                Restangular: restangular.IProvider,
-                $state: ng.ui.IStateService,
-                CoreService: ICoreService,
-                $rootScope: IRootScope,
-                config: IGDCConfig,
-                notify: INotifyService,
-                $cookies: ng.cookies.ICookiesService,
-                UserService: IUserService,
-                ProjectsService: IProjectsService,
-                $window: ng.IWindowService,
-                $uibModal: any,
-                LocalStorageService: ILocalStorageService) {
+function appRun(
+  gettextCatalog: any,
+  Restangular: restangular.IProvider,
+  $state: ng.ui.IStateService,
+  CoreService: ICoreService,
+  $rootScope: IRootScope,
+  config: IGDCConfig,
+  notify: INotifyService,
+  $cookies: ng.cookies.ICookiesService,
+  UserService: IUserService,
+  ProjectsService: IProjectsService,
+  $window: ng.IWindowService,
+  $location,
+  $uibModal: any,
+  LocalStorageService: ILocalStorageService
+) {
 
   if ($cookies.get("GDC-Portal-Sha") !== config.commitHash) {
     $cookies.put("GDC-Portal-Sha", config.commitHash);
