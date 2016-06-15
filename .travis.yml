@@ -8,10 +8,11 @@ notifications:
     secure: Njn9VjYMUJcb8jfvusetb13uC0rcQ1NN6KumKxc6/jBCRoQ7uhQbqhcemZDK/7s/jRUGYTkb72u5QJxgVHcYDMchO9aOCVI3xs8veQ6j6shOCJbSIHGby1nkuwDPNzyyYh5mjJVDiWbiIBOzOaMko0QT//Ce1IitBBkyTEtQPcg=
 before_install:
 - npm config set spin false
-script:
-- NODE_ENV=production make dist
+after_install:
+- NODE_ENV=production make build
 - make server &
-- make browser
+script:
+- make -j prepare browser
 after_success:
 - bash <(curl -s https://codecov.io/bash)
 addons:

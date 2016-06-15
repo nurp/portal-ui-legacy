@@ -1,6 +1,6 @@
 describe('DuckDuckGo search', function() {
     it('searches for WebdriverIO', function() {
-        browser.url('https://duckduckgo.com/');
+        browser.url('http://localhost.com:8080/');
         browser.setValue('#search_form_input_homepage', 'WebdriverIO');
         browser.click('#search_button_homepage');
 
