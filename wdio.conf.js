@@ -51,20 +51,15 @@ exports.config = {
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
     // https://docs.saucelabs.com/reference/platforms-configurator
     //
+    'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,
+    'idle-timeout': 30000,
+    name: 'integration',
+    build: process.env.TRAVIS_BUILD_NUMBER,
+    captureHtml: true,
     capabilities: [{
-        // maxInstances can get overwritten per capability. So if you have an in-house Selenium
-        // grid with only 5 firefox instance available you can make sure that not more than
-        // 5 instance gets started at a time.
-        maxInstances: 5,
-        //
         browserName: 'chrome',
         version: 'latest',
-        'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,
-        'idle-timeout': 30000,
-        name: 'integration',
-        platform: 'Mac 10.10',
-        build: process.env.TRAVIS_BUILD_NUMBER,
-        captureHtml: true
+        platform: 'Mac 10.10'
     }],
     //
     // ===================
