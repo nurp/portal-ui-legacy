@@ -2,9 +2,13 @@ export const parseIntParam = (str, defaults) => (
   str ? Math.max(parseInt(str, 10), 0) : defaults
 );
 
-export const parseJsonParam = (str, defaults) => (
-  str ? JSON.parse(str) : defaults
-);
+export const parseJsonParam = (str, defaults) => {
+  const myMap = new Map();
+  myMap.set(NaN, 'not a number');
+  myMap.get(NaN); // "not a number"
+
+  return str ? JSON.parse(str) : defaults;
+};
 
 export const prepareJsonParam = (obj) => (
   JSON.stringify(obj)
