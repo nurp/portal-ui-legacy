@@ -9,7 +9,7 @@ const baseCapability = {
   'idle-timeout': 30000,
 };
 
-const capabilities = customLaunchers.values().map(c => ({
+const capabilities = Object.values(customLaunchers).map(c => ({
   ...c,
   ...baseCapability,
 }));
