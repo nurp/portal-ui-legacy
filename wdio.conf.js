@@ -13,16 +13,6 @@ exports.config = {
     key: process.env.SAUCE_ACCESS_KEY,
     host: 'ondemand.saucelabs.com',
     port: 80,
-    desiredCapabilities: {
-       browserName: 'chrome',
-       version: 'latest',
-       'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,
-       'idle-timeout': 30000,
-       name: 'integration',
-       platform: 'Mac 10.10',
-       build: process.env.TRAVIS_BUILD_NUMBER,
-       captureHtml: true
-   },
     //
     // ==================
     // Specify Test Files
@@ -67,7 +57,14 @@ exports.config = {
         // 5 instance gets started at a time.
         maxInstances: 5,
         //
-        browserName: 'firefox'
+        browserName: 'chrome',
+        version: 'latest',
+        'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,
+        'idle-timeout': 30000,
+        name: 'integration',
+        platform: 'Mac 10.10',
+        build: process.env.TRAVIS_BUILD_NUMBER,
+        captureHtml: true
     }],
     //
     // ===================
