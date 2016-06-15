@@ -91,7 +91,7 @@ export default config => {
     },
     verboseReporter: {
       color: 'full',
-      // output: 'only-failure',
+      output: 'only-failure',
     },
     coverageReporter: {
       dir: 'coverage',
