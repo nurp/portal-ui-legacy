@@ -64,6 +64,7 @@ export default config => {
 
   config.set({
     ...single,
+    logLevel: config.LOG_ERROR,
     // Increase timeout in case connection in CI is slow
     captureTimeout: 120000,
     browserNoActivityTimeout: 30000,
