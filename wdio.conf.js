@@ -1,3 +1,5 @@
+require('babel-register');
+
 const baseCapability = {
   tags: ['integration'],
   'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,
