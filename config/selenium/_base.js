@@ -1,3 +1,6 @@
+import path from 'path';
+import config from '../';
+
 const baseCapability = {
   tags: ['integration'],
   'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,
@@ -28,7 +31,7 @@ export default {
   // directory is where your package.json resides, so `wdio` will be called from there.
   //
   specs: [
-    './e2e/**/*.js',
+    path.join(config.get('dir_src'), './e2e/**/*.js'),
   ],
   // Patterns to exclude.
   exclude: [
@@ -81,7 +84,7 @@ export default {
   coloredLogs: true,
   //
   // Saves a screenshot to a given path if a command fails.
-  screenshotPath: './errorShots/',
+  // screenshotPath: './errorShots/',
   //
   // Set a base URL in order to shorten url command calls. If your url parameter starts
   // with "/", then the base url gets prepended.
@@ -138,8 +141,8 @@ export default {
   // Options to be passed to Mocha.
   // See the full list at http://mochajs.org/
   mochaOpts: {
-      ui: 'bdd',
-      timeout: 50000
+    ui: 'bdd',
+    timeout: 50000,
   },
   //
   // =====
@@ -156,10 +159,9 @@ export default {
   //
   // Gets executed before test execution begins. At this point you can access all global
   // variables, such as `browser`. It is the perfect place to define custom commands.
-  before: function (capabilities, specs) {
-    var chai = require('chai');
+  before: (capabilities, specs) => {
+    const chai = require('chai');
     global.expect = chai.expect;
-    chai.Should();
   },
   //
   // Hook that gets executed before the suite starts
