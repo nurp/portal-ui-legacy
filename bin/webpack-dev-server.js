@@ -25,9 +25,15 @@ if (isDevelopment) {
 }
 
 app.use('/api', proxy(config.get('proxy'), {
-  forwardPath: req => (
-    require('url').parse(req.url).path
-  ),
+  forwardPath: req => {
+    const url = require('url');
+    console.log(config.get('proxy'));
+    console.log(req.url);
+    console.log(url.parse(req.url));
+    console.log(url.parse(req.url).path);
+    return url.parse(req.url).path
+
+  },
 }));
 
 app.get(/^((?!(.js|.css|.ico)).)*$/, (req, res) => {

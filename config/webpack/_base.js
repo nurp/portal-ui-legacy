@@ -6,7 +6,7 @@ import config from '../';
 const babelPlugins = config.get('globals').TEST_ENV
   ? []
   : [
-    './config/webpack/plugins/babelRelayPlugin',
+    path.join(__dirname, 'plugins', 'babelRelayPlugin'),
     'react-hot-loader/babel',
   ];
 

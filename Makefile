@@ -21,7 +21,10 @@ PRINT_ENV = printf "$@ $(NODE_ENV_STRING)\n" | $(AWK_CMD)
 all: install dist
 
 server:
-	$(Q) node server.babel
+	$(Q) babel-node server
+
+schema:
+	$(Q) babel-node bin/updateRelaySchema
 
 install:
 	$(Q) npm install --loglevel error

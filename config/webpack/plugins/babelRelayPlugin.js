@@ -1,15 +1,9 @@
 // inside that file
+import chalk from 'chalk';
 import babelRelayPlugin from 'babel-relay-plugin';
-import { introspectionQuery } from 'graphql/utilities';
-import request from 'sync-request';
+import schema from '../../../data/schema.json';
 
-const graphqlHubUrl = 'http://localhost:5000/graphql';
-const response = request('POST', graphqlHubUrl, {
-  json: {
-    query: introspectionQuery,
-  },
-});
-const schema = JSON.parse(response.body.toString('utf-8'));
+console.log(`⇅  Loading ${chalk.white('GraphQL schema')} into ${chalk.white('Relay')}`);
 
 module.exports = babelRelayPlugin(schema.data, {
   abortOnError: true,
