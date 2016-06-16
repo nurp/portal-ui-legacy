@@ -51,7 +51,7 @@
     "eslint-plugin-react": "^5.1.1",
     "expect": "^1.20.1",
     "express": "4.13.4",
-    "express-http-proxy": "^0.7.0",
+    "express-http-proxy": "^0.7.1",
     "graceful-fs": "^4.1.4",
     "html-webpack-plugin": "^2.19.0",
     "isparta-loader": "2.0.0",
