@@ -1,3 +1,52 @@
+<a name"1.2.0"></a>
+## 1.2.0 (2016-06-30)
+
+
+#### Bug Fixes
+
+* **app:**
+  * redirect from '/' to 'search/f' ([3b2bb5b6](https://github.com/NCI-GDC/portal-ui-legacy/commit/3b2bb5b6))
+  * 2477 otherwise 404, w/link back to files ([89bc0526](https://github.com/NCI-GDC/portal-ui-legacy/commit/89bc0526), closes [PGDC-2477](https://jira.opensciencedatacloud.org/browse/PGDC-2477))
+* **cart:**
+  * cannot download cart with over 5gb ([190cdc14](https://github.com/NCI-GDC/portal-ui-legacy/commit/190cdc14))
+  * 2496 problem with undo removal ([add19fdf](https://github.com/NCI-GDC/portal-ui-legacy/commit/add19fdf), closes [PGDC-2496](https://jira.opensciencedatacloud.org/browse/PGDC-2496))
+* **components:**
+  * use actual checkbox in facet ([f89fbaef](https://github.com/NCI-GDC/portal-ui-legacy/commit/f89fbaef))
+  * correct label for 508 ([8579f60b](https://github.com/NCI-GDC/portal-ui-legacy/commit/8579f60b))
+  * 2527 don't humanify fields ([734aa0cd](https://github.com/NCI-GDC/portal-ui-legacy/commit/734aa0cd), closes [PGDC-2527](https://jira.opensciencedatacloud.org/browse/PGDC-2527))
+* **customFacet:** 2517 can tab in modal ([931c274d](https://github.com/NCI-GDC/portal-ui-legacy/commit/931c274d), closes [PGDC-2517](https://jira.opensciencedatacloud.org/browse/PGDC-2517))
+* **downloader:** 2450 jquery :hover error ([f9f89699](https://github.com/NCI-GDC/portal-ui-legacy/commit/f9f89699), closes [PGDC-2450](https://jira.opensciencedatacloud.org/browse/PGDC-2450))
+* **exportTable:** 2446 switch icon to download ([37750e8d](https://github.com/NCI-GDC/portal-ui-legacy/commit/37750e8d), closes [PGDC-2446](https://jira.opensciencedatacloud.org/browse/PGDC-2446))
+* **quicksearch:** 2513 unhighlight, open on enter ([4425d4ff](https://github.com/NCI-GDC/portal-ui-legacy/commit/4425d4ff), closes [PGDC-2513](https://jira.opensciencedatacloud.org/browse/PGDC-2513))
+* **rangeFacet:** 2478 use ageDisplay in max/min ([e9ef9009](https://github.com/NCI-GDC/portal-ui-legacy/commit/e9ef9009), closes [PGDC-2478](https://jira.opensciencedatacloud.org/browse/PGDC-2478))
+* **route:** 2488 empty page when param is missing ([0936e3a2](https://github.com/NCI-GDC/portal-ui-legacy/commit/0936e3a2), closes [PGDC-2488](https://jira.opensciencedatacloud.org/browse/PGDC-2488))
+* **search:**
+  * 2447 more '--' for missing values ([1acaa81a](https://github.com/NCI-GDC/portal-ui-legacy/commit/1acaa81a), closes [PGDC-2447](https://jira.opensciencedatacloud.org/browse/PGDC-2447))
+  * 2538 any type on filter ([919e3443](https://github.com/NCI-GDC/portal-ui-legacy/commit/919e3443), closes [PGDC-2538](https://jira.opensciencedatacloud.org/browse/PGDC-2538))
+* **tables:** improve sorting UX ([23fed6bf](https://github.com/NCI-GDC/portal-ui-legacy/commit/23fed6bf))
+
+
+#### Features
+
+* **annotation:** 747 case submitter_id in table ([cb6206c0](https://github.com/NCI-GDC/portal-ui-legacy/commit/cb6206c0), closes [PGDC-747](https://jira.opensciencedatacloud.org/browse/PGDC-747))
+* **app:**
+  * 2393 retry failed api calls once ([e0cc0647](https://github.com/NCI-GDC/portal-ui-legacy/commit/e0cc0647), closes [PGDC-2393](https://jira.opensciencedatacloud.org/browse/PGDC-2393))
+  * 2573 visited link darker ([4b175a91](https://github.com/NCI-GDC/portal-ui-legacy/commit/4b175a91), closes [PGDC-2573](https://jira.opensciencedatacloud.org/browse/PGDC-2573))
+  * 2477 404 on stateChangeError ([eb9c138a](https://github.com/NCI-GDC/portal-ui-legacy/commit/eb9c138a), closes [PGDC-2477](https://jira.opensciencedatacloud.org/browse/PGDC-2477))
+* **customFacet:** 2549 rename title ([ce5206be](https://github.com/NCI-GDC/portal-ui-legacy/commit/ce5206be), closes [PGDC-2549](https://jira.opensciencedatacloud.org/browse/PGDC-2549))
+* **facets:**
+  * 1222 allow custom facet ids ([0e28afcf](https://github.com/NCI-GDC/portal-ui-legacy/commit/0e28afcf), closes [PGDC-1222](https://jira.opensciencedatacloud.org/browse/PGDC-1222))
+  * 2578 reset on all facet types ([834dc211](https://github.com/NCI-GDC/portal-ui-legacy/commit/834dc211), closes [PGDC-2578](https://jira.opensciencedatacloud.org/browse/PGDC-2578))
+  * 1875 clear facet button ([bae5e3bc](https://github.com/NCI-GDC/portal-ui-legacy/commit/bae5e3bc), closes [PGDC-1875](https://jira.opensciencedatacloud.org/browse/PGDC-1875))
+* **file:**
+  * 2536 show archive sub id & revision ([f2dfbeac](https://github.com/NCI-GDC/portal-ui-legacy/commit/f2dfbeac), closes [PGDC-2536](https://jira.opensciencedatacloud.org/browse/PGDC-2536))
+  * 2230 proj id in props table ([3a1d7937](https://github.com/NCI-GDC/portal-ui-legacy/commit/3a1d7937), closes [PGDC-2230](https://jira.opensciencedatacloud.org/browse/PGDC-2230))
+  * 1993 filter / scroll entity table ([eee86c14](https://github.com/NCI-GDC/portal-ui-legacy/commit/eee86c14), closes [PGDC-1993](https://jira.opensciencedatacloud.org/browse/PGDC-1993))
+* **search:** 2586 missing msg ([37d8fddb](https://github.com/NCI-GDC/portal-ui-legacy/commit/37d8fddb), closes [PGDC-2586](https://jira.opensciencedatacloud.org/browse/PGDC-2586))
+* **table:** added filter+scroll to long table. ([5e0a6811](https://github.com/NCI-GDC/portal-ui-legacy/commit/5e0a6811), closes [PGDC-1993](https://jira.opensciencedatacloud.org/browse/PGDC-1993))
+* **tables:** 35 arrow for asc/desc (no alpha) ([8633aeb5](https://github.com/NCI-GDC/portal-ui-legacy/commit/8633aeb5), closes [PGDC-35](https://jira.opensciencedatacloud.org/browse/PGDC-35))
+
+
 <a name"1.1.2"></a>
 ### 1.1.2 (2016-06-03)
 
