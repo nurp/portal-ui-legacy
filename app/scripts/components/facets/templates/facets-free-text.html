@@ -29,12 +29,7 @@
         {{ active }}
     </span>
   </p>
-
-  <div>
-  </div>
-  <label for="{{ 'autocomplete-' + title }}"
-         data-ng-if="!ftc.collapsed"
-         >{{ 'Search for' | translate }} {{ placeholder | translate }}</label>
+  
   <div class="input-group" data-ng-if="!ftc.collapsed">
     <span data-ng-if="ftc.autocomplete" class="input-group-addon">
       <span class="fa fa-search"></span>
