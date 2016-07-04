@@ -5,7 +5,7 @@ import { customLaunchers } from '../karma/ci';
 const baseCapability = {
   tags: ['integration'],
   'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,
-  build: process.env.TRAVIS_BUILD_NUMBER,
+  build: `${process.env.TRAVIS_REPO_SLUG}:${process.env.TRAVIS_BUILD_NUMBER}`,
   'idle-timeout': 30000,
 };
 

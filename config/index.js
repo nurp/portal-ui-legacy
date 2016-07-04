@@ -42,7 +42,7 @@ config.set('globals', {
   'process.env': {
     NODE_ENV: JSON.stringify(process.env.NODE_ENV),
   },
-  __API__: process.env.API || `${config.get('webpack_public_path')}api/`,
+  __API__: process.env.API || '/api/',
   NODE_ENV: process.env.NODE_ENV || 'stage',
   __DEV__: process.env.NODE_ENV === 'development',
   __PROD__: process.env.NODE_ENV === 'production',
