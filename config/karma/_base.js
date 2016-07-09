@@ -1,10 +1,21 @@
 import webpack from '../webpack/development';
+import path from 'path';
 
 const KARMA_ENTRY_FILE = 'karma.entry.js';
 
 export default config => {
   config.set({
-    browsers: ['Chrome'],
+    browsers: ['Chrome_with_debugging'],
+
+    customLaunchers: {
+      Chrome_with_debugging: {
+        base: 'Chrome',
+        chromeDataDir: path.resolve(__dirname, '.chrome'),
+        flags: [
+          '--remote-debugging-port=9222',
+        ],
+      },
+    },
     // karma only needs to know about the test bundle
     files: [
       'node_modules/babel-polyfill/dist/polyfill.js',
