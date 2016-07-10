@@ -1,10 +1,10 @@
 import Relay from 'react-relay';
 import { a, tr, td } from 'react-hyperscript-helpers';
 
-const ContainerTr = ({ node }) => (
-  tr([
-    td(node.Image),
-    td(node.Names),
+const ContainerTr = ({ node }) => {
+  const pullRequest = node.Image.split(':')[1];
+  return tr([
+    td(pullRequest),
     td(node.Created),
     td(node.State),
     td(node.Status),
@@ -17,30 +17,20 @@ const ContainerTr = ({ node }) => (
       });
     })
   ),
-  ])
-);
+  ]);
+};
 
 export default Relay.createContainer(ContainerTr, {
   fragments: {
     node: () => Relay.QL`
       fragment on Container {
-        id
-        Names
         Image
-        ImageID
         Created
         State
         Status
         Ports {
           PublicPort
           PrivatePort
-        }
-        NetworkSettings {
-          Networks {
-            bridge {
-              IPAddress
-            }
-          }
         }
       }
     `,

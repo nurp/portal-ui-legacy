@@ -17,7 +17,11 @@ export const TagsPage = props => {
   }
 
   return div([
-    h(TagTable, { tags: props.viewer.tags, handleOnClick: deploy }),
+    h(TagTable, {
+      tags: props.viewer.tags,
+      containers: props.viewer.containers,
+      handleOnClick: deploy,
+    }),
   ]);
 };
 
@@ -26,6 +30,9 @@ export default Relay.createContainer(TagsPage, {
     viewer: () => Relay.QL`
       fragment on User {
         ${CreateContainerMutation.getFragment('viewer')},
+        containers(first:100) {
+          ${TagTable.getFragment('containers')}
+        }
         tags(first: 100) {
           ${TagTable.getFragment('tags')}
         }

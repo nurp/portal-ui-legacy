@@ -8,7 +8,6 @@ export const ContainerTable = props => (
     table([
       thead([
         tr([
-          th('Repo'),
           th('Pull Request'),
           th('Created'),
           th('State'),

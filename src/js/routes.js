@@ -9,6 +9,7 @@ export default (
   h(Route, {
     path: '/',
     component: App,
+    indexRoute: { onEnter: (nextState, replace) => replace('/containers/tags') },
     children: [
       ContainersRoute,
     ],

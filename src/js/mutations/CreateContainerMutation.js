@@ -37,8 +37,7 @@ export default class CreateContainerMutation extends Relay.Mutation {
     return {
       containerEdge: {
         node: {
-          Names: [this.props.name],
-          Image: this.props.Image,
+          Image: `${this.props.Image}:${this.props.name}`,
           State: 'Deploying',
         },
       },
