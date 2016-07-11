@@ -1,13 +1,13 @@
 import Relay from 'react-relay';
-import { Link } from 'react-router';
-import { div, h } from 'react-hyperscript-helpers';
+import { div, h, h2 } from 'react-hyperscript-helpers';
 
 import ContainerTable from 'containers/ContainerTable';
 
 export const ContainersPage = props => (
   div([
+    h2('Running Pull Requests'),
     h(ContainerTable, { containers: props.viewer.containers }),
-    h(Link, { to: { pathname: '/containers/tags' } }, 'Deploy new Container'),
+    h2('Deploy new Pull Request'),
     props.children,
   ])
 );
