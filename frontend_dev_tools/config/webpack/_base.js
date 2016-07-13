@@ -27,12 +27,12 @@ export default {
     loaders: [
       {
         test: /\.jsx?$/,
-        loader: 'babel',
+        loader: `${__dirname}/../../node_modules/babel-loader`,
         exclude: ['node_modules'],
         include: `${config.get('dir_src')}/js`,
         query: {
           presets: [
-            'react', 'es2015-webpack', 'stage-0',
+            `${__dirname}/../../node_modules/babel-preset-react`, `${__dirname}/../../node_modules/babel-preset-es2015-webpack`, `${__dirname}/../../node_modules/babel-preset-stage-0`,
             {
               plugins: babelPlugins,
             },

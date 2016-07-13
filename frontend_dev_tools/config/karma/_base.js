@@ -1,3 +1,4 @@
+import configSettings from '..';
 import webpack from '../webpack/development';
 import path from 'path';
 
@@ -10,7 +11,7 @@ export default config => {
     customLaunchers: {
       Chrome_with_debugging: {
         base: 'Chrome',
-        chromeDataDir: path.resolve(__dirname, '.chrome'),
+        chromeDataDir: path.resolve(configSettings.get('path_project'), '.chrome'),
         flags: [
           '--remote-debugging-port=9222',
         ],
@@ -45,7 +46,16 @@ export default config => {
     // LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
     logLevel: config.LOG_INFO,
 
-    webpack,
+    webpack: {
+      ...webpack,
+      devtool: 'inline-source-map',
+      externals: {
+        'cheerio': 'window',
+        'react/addons': true,
+        'react/lib/ExecutionEnvironment': true,
+        'react/lib/ReactContext': true
+      },
+    },
     webpackMiddleware: {
       ...webpack.devServer,
       quiet: true,

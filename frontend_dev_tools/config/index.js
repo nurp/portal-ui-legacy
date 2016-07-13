@@ -5,7 +5,7 @@ const config = new Map();
 // ------------------------------------
 // Project
 // ------------------------------------
-config.set('path_project', path.resolve(__dirname, '..'));
+config.set('path_project', path.resolve(__dirname, '../..'));
 
 // ------------------------------------
 // User Configuration

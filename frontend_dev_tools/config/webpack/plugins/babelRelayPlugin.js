@@ -2,7 +2,7 @@
 import chalk from 'chalk';
 import babelRelayPlugin from 'babel-relay-plugin';
 import config from '../../';
-import schema from '../../../data/schema.json';
+const schema = require(`${config.get('path_project')}/data/schema.json`);
 
 console.log(`⇅  Loading ${chalk.white('GraphQL schema')} into ${chalk.white('Relay')}`);
 
