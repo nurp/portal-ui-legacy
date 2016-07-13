@@ -6,11 +6,11 @@
     "type": "git",
     "url": "https://github.com/NCI-GDC/deployment-dashboard.git"
   },
-  "homepage": "https://github.com/NCI-GDC/deployment-dashboard",
+  "homepage": "https://github.com/NCI-GDC/deploybot-ui",
   "author": {
     "name": "Shane Wilson",
     "email": "shane.wilson@oicr.on.ca",
-    "url": "https://github.com/shanewilson/"
+    "url": "https://github.com/NCI-GDC/"
   },
   "dependencies": {
     "react": "^15.1.0",
