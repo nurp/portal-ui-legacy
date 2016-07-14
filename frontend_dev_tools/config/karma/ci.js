@@ -79,6 +79,7 @@ export default config => {
     plugins: [
       ...single.plugins,
       // 'karma-sauce-launcher',
+      'karma-firefox-launcher',
       'karma-coverage'
     ],
     // sauceLabs: {
