@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "repository": {
     "type": "git",
-    "url": "https://github.com/NCI-GDC/deployment-dashboard.git"
+    "url": "https://github.com/NCI-GDC/deploy-tool-ui.git"
   },
   "homepage": "https://github.com/NCI-GDC/deploybot-ui",
   "author": {
@@ -31,7 +31,6 @@
   },
   "scripts": {
     "start": "make -j test-watch server",
-    "test": "make prepare",
-    "after_install": "cd frontend_dev_tools && npm install"
+    "test": "make prepare"
   }
 }
