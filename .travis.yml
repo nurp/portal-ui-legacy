@@ -5,7 +5,7 @@ sudo: required
 services:
 - docker
 before_install:
-- cd frontend_dev_tools && make install
+- cd frontend_dev_tools && make install && cd ..
 before_script:
 - export DISPLAY=:99.0
 - sh -e /etc/init.d/xvfb start
