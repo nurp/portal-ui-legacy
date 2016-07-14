@@ -1,15 +1,13 @@
 PROJECT = "Frontend Dev Tools"
 
-PROJECT_DIR ?= ./frontend_dev_tools
-PATH  := $(PROJECT_DIR)/node_modules/.bin:$(PATH)
+FDT_DIR ?= .
+PATH  := $(FDT_DIR)/node_modules/.bin:$(PATH)
 SHELL := /bin/bash
 
 ifndef VERBOSE
 	Q := @
 	NIL := > /dev/null 2>&1
 endif
-
-NODE_ENV ?= development
 
 NO_COLOR=\033[0m
 OK_COLOR=\033[32;01m
@@ -22,13 +20,22 @@ PRINT_ENV = printf "$@ $(NODE_ENV_STRING)\n" | $(AWK_CMD)
 .PHONY: all
 all: install dist
 
+.PHONY: server-stage
+server-stage: export NODE_ENV = stage
+server-stage: build server
+
+.PHONY: server-prod
+server-prod: export NODE_ENV = production
+server-prod: build server
+
 .PHONY: server
+server: export NODE_ENV?=development
 server:
-	$(Q) babel-node ${PROJECT_DIR}/server
+	$(Q) babel-node ${FDT_DIR}/server
 
 .PHONY: schema
 schema:
-	$(Q) babel-node ${PROJECT_DIR}/bin/updateRelaySchema
+	$(Q) babel-node ${FDT_DIR}/bin/updateRelaySchema
 
 .PHONY: install
 install:
@@ -36,12 +43,14 @@ install:
 	@$(PRINT_OK)
 
 .PHONY: build
+build: export NODE_ENV ?= stage
 build: clean-dist
 	@$(PRINT_ENV)
-	$(Q) webpack
+	$(Q) webpack --config ${FDT_DIR}/webpack.config.js
 	@$(PRINT_OK)
 
 .PHONY: dist
+dist: export NODE_ENV ?= production
 dist: prepare build
 	@$(PRINT_OK)
 
@@ -51,16 +60,21 @@ prepare: lint test-once
 
 .PHONY: browser
 browser:
-	$(Q) wdio wdio.conf.js
+	$(Q) wdio ${FDT_DIR}/wdio.conf.js
 	@$(PRINT_OK)
 
 .PHONY: test
-test:
-	TEST_ENV=watch karma start ${PROJECT_DIR}/karma.config.js
+test-watch: export TEST_ENV=watch
+test-watch: test
+
 
 .PHONY: test-once
-test-once:
-	TEST_ENV=single karma start ${PROJECT_DIR}/karma.config.js
+test-once: export TEST_ENV=single
+test-once: test
+
+.PHONY: test
+test:
+	$(Q) karma start ${FDT_DIR}/karma.config.js
 	@$(PRINT_OK)
 
 .PHONY: lint
@@ -90,9 +104,4 @@ update:
 .PHONY: upgrade
 upgrade:
 	$(Q) david update
-	@$(PRINT_OK)
-
-.PHONY: logs
-logs:
-	$(Q) node ${PROJECT_DIR}/bin/changelog.js
 	@$(PRINT_OK)

@@ -2,6 +2,7 @@
 set -euo pipefail
 IFS=$'\n\t'
 
+docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" quay.io
 docker build -t deploybot-ui .
 
 # If this is not a pull request, update the branch's docker tag.

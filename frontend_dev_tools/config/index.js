@@ -5,8 +5,8 @@ const config = new Map();
 // ------------------------------------
 // Project
 // ------------------------------------
-config.set('path_project', path.resolve(__dirname, '../..'));
-
+config.set('path_project', process.env.PWD);
+config.set('fdt_modules', path.resolve(path.join(__dirname, '..', 'node_modules')));
 // ------------------------------------
 // User Configuration
 // ------------------------------------
@@ -43,7 +43,7 @@ config.set('globals', {
     NODE_ENV: JSON.stringify(process.env.NODE_ENV),
   },
   __API__: process.env.API || '/api/',
-  NODE_ENV: process.env.NODE_ENV || 'stage',
+  NODE_ENV: process.env.NODE_ENV || 'development',
   __DEV__: process.env.NODE_ENV === 'development',
   __PROD__: process.env.NODE_ENV === 'production',
   __DEBUG__: process.env.NODE_ENV === 'development' && parseInt(process.env.DEBUG, 10) === 1,

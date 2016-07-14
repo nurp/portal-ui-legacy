@@ -4,12 +4,12 @@
   "version": "0.0.1",
   "repository": {
     "type": "git",
-    "url": "https://github.com/NCI-GDC/deployment-dashboard.git"
+    "url": "https://github.com/shanewilson/frontend-dev-tools.git"
   },
-  "homepage": "https://github.com/NCI-GDC/deployment-dashboard",
+  "homepage": "https://github.com/shanewilson/frontend-dev-tools",
   "author": {
     "name": "Shane Wilson",
-    "email": "shane.wilson@oicr.on.ca",
+    "email": "shanezilla@gmail.com",
     "url": "https://github.com/shanewilson/"
   },
   "dependencies": {
@@ -29,7 +29,6 @@
     "chalk": "^1.1.3",
     "compression-webpack-plugin": "^0.3.1",
     "connect-gzip-static": "1.0.0",
-    "conventional-changelog": "1.1.0",
     "david": "^7.0.2",
     "escope": "^3.6.0",
     "eslint": "^3.0.0",
@@ -37,7 +36,7 @@
     "eslint-loader": "^1.4.0",
     "eslint-plugin-babel": "^3.2.0",
     "eslint-plugin-import": "^1.8.1",
-    "eslint-plugin-jsx-a11y": "^1.3.0",
+    "eslint-plugin-jsx-a11y": "^2.0.1",
     "eslint-plugin-react": "^5.1.1",
     "expect": "^1.20.1",
     "express": "^4.14.0",
@@ -63,7 +62,7 @@
     "sinon": "^1.17.4",
     "sinon-chai": "2.8.0",
     "sync-request": "^3.0.1",
-    "wdio-dot-reporter": "0.0.5",
+    "wdio-dot-reporter": "0.0.6",
     "wdio-mocha-framework": "^0.3.1",
     "wdio-sauce-service": "^0.2.2",
     "webdriverio": "^4.0.9",

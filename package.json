@@ -30,11 +30,7 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "start": "NODE_ENV=development make -j test server",
-    "server:dev": "NODE_ENV=development make server",
-    "server:stage": "NODE_ENV=stage make build server",
-    "server:prod": "NODE_ENV=production make build server",
-    "build": "make build",
+    "start": "make -j test-watch server",
     "test": "make prepare"
   }
 }

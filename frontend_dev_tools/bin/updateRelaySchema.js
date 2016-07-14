@@ -1,6 +1,6 @@
 #!/usr/bin/env babel-node
 
-import fs from 'fs';
+import fs from 'graceful-fs';
 import path from 'path';
 import { introspectionQuery } from 'graphql/utilities';
 import request from 'sync-request';
