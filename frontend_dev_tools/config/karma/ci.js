@@ -3,6 +3,13 @@ const path = require('path');
 // Browsers to run on Sauce Labs
 // Check out https://saucelabs.com/platforms for all browser/OS combos
 export const customLaunchers = {
+  Chrome_travis_ci: {
+    base: 'Chrome',
+    flags: ['--no-sandbox']
+  }
+};
+
+export const customLauncherss = {
   SL_Chrome_OSX: {
     base: 'SauceLabs',
     browserName: 'chrome',
@@ -71,20 +78,24 @@ export default config => {
     customLaunchers,
     browsers: Object.keys(customLaunchers),
     reporters: [...single.reporters, 'coverage', 'saucelabs'],
-    plugins: [...single.plugins, 'karma-sauce-launcher', 'karma-coverage'],
-    sauceLabs: {
-      testName: 'Unit Tests',
-      tags: ['unit'],
-      recordScreenshots: false,
-      recordVideo: false,
-      tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER,
-      build: `${process.env.TRAVIS_REPO_SLUG}:${process.env.TRAVIS_BUILD_NUMBER}`,
-      startConnect: false,
-      connectOptions: {
-        port: 5757,
-        logfile: 'sauce_connect.log',
-      },
-    },
+    plugins: [
+      ...single.plugins,
+      // 'karma-sauce-launcher',
+      'karma-coverage'
+    ],
+    // sauceLabs: {
+    //   testName: 'Unit Tests',
+    //   tags: ['unit'],
+    //   recordScreenshots: false,
+    //   recordVideo: false,
+    //   tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER,
+    //   build: `${process.env.TRAVIS_REPO_SLUG}:${process.env.TRAVIS_BUILD_NUMBER}`,
+    //   startConnect: false,
+    //   connectOptions: {
+    //     port: 5757,
+    //     logfile: 'sauce_connect.log',
+    //   },
+    // },
     coverageReporter: {
       dir: 'coverage',
       reporters: [
