@@ -19,7 +19,7 @@ export default {
   output: {
     path: path.join(config.get('dir_dist'), config.get('globals').__BASE__, 'js'),
     pathInfo: true,
-    publicPath: `/${path.join(config.get('globals').__BASE__, 'js/')}`,
+    publicPath: path.join('/', config.get('globals').__BASE__, 'js/'),
     filename: 'bundle.js',
   },
   module: {
