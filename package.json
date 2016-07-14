@@ -31,6 +31,7 @@
   },
   "scripts": {
     "start": "make -j test-watch server",
-    "test": "make prepare"
+    "test": "make prepare",
+    "after_install": "cd frontend_dev_tools && npm install"
   }
 }
