@@ -46,6 +46,10 @@ install:
 build: export NODE_ENV ?= stage
 build: clean-dist
 	@$(PRINT_ENV)
+	pwd
+	ls
+	echo ${PATH}
+	echo $FDT_DIR}
 	$(Q) webpack --config ${FDT_DIR}/webpack.config.js
 	@$(PRINT_OK)
 
