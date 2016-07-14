@@ -50,10 +50,10 @@ export default config => {
       ...webpack,
       devtool: 'inline-source-map',
       externals: {
-        'cheerio': 'window',
+        cheerio: 'window',
         'react/addons': true,
         'react/lib/ExecutionEnvironment': true,
-        'react/lib/ReactContext': true
+        'react/lib/ReactContext': true,
       },
     },
     webpackMiddleware: {

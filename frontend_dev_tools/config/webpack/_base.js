@@ -27,12 +27,14 @@ export default {
     loaders: [
       {
         test: /\.jsx?$/,
-        loader: `${__dirname}/../../node_modules/babel-loader`,
+        loader: `${config.get('fdt_modules')}/babel-loader`,
         exclude: ['node_modules'],
         include: `${config.get('dir_src')}/js`,
         query: {
           presets: [
-            `${__dirname}/../../node_modules/babel-preset-react`, `${__dirname}/../../node_modules/babel-preset-es2015-webpack`, `${__dirname}/../../node_modules/babel-preset-stage-0`,
+            `${config.get('fdt_modules')}/babel-preset-react`,
+            `${config.get('fdt_modules')}/babel-preset-es2015-webpack`,
+            `${config.get('fdt_modules')}/babel-preset-stage-0`,
             {
               plugins: babelPlugins,
             },

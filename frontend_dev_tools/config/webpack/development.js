@@ -22,7 +22,7 @@ export default {
   entry: {
     ...webpackConfig.entry,
     bundle: [
-      `${__dirname}/../../node_modules/webpack-hot-middleware/client?reload=true`,
+      `${config.get('fdt_modules')}/webpack-hot-middleware/client?reload=true`,
       'react-hot-loader/patch',
       ...webpackConfig.entry.bundle,
     ],
