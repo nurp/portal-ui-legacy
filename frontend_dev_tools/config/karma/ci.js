@@ -2,13 +2,6 @@ const path = require('path');
 
 // Browsers to run on Sauce Labs
 // Check out https://saucelabs.com/platforms for all browser/OS combos
-export const customLaunchers = {
-  Chrome_travis_ci: {
-    base: 'Chrome',
-    flags: ['--no-sandbox']
-  }
-};
-
 export const customLauncherss = {
   SL_Chrome_OSX: {
     base: 'SauceLabs',
@@ -71,12 +64,13 @@ export default config => {
 
   config.set({
     ...single,
+    browsers: ['Firefox'],
     logLevel: config.LOG_ERROR,
     // Increase timeout in case connection in CI is slow
     captureTimeout: 120000,
     browserNoActivityTimeout: 30000,
-    customLaunchers,
-    browsers: Object.keys(customLaunchers),
+    // customLaunchers,
+    // browsers: Object.keys(customLaunchers),
     reporters: [
       ...single.reporters,
       'coverage',
