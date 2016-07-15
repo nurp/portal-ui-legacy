@@ -35,10 +35,15 @@ export default {
             `${config.get('fdt_modules')}/babel-preset-react`,
             `${config.get('fdt_modules')}/babel-preset-es2015-webpack`,
             `${config.get('fdt_modules')}/babel-preset-stage-0`,
-            {
-              plugins: babelPlugins,
-            },
           ],
+          env: {
+            development: {
+              plugins: [
+                path.join(__dirname, 'plugins', 'babelRelayPlugin'),
+                'react-hot-loader/babel',
+              ]
+            },
+          }
         },
       },
       {
@@ -53,10 +58,10 @@ export default {
     modules: ['node_modules'],
     alias: {
       react: path.resolve(path.join(config.get('path_project'), 'node_modules', 'react')),
-      routes: path.resolve(path.join(config.get('path_project'), 'src', 'js', 'routes')),
-      components: path.resolve(path.join(config.get('path_project'), 'src', 'js', 'components')),
-      containers: path.resolve(path.join(config.get('path_project'), 'src', 'js', 'containers')),
-      mutations: path.resolve(path.join(config.get('path_project'), 'src', 'js', 'mutations')),
+      routes: path.resolve(path.join(config.get('dir_src'), 'js', 'routes')),
+      components: path.resolve(path.join(config.get('dir_src'), 'js', 'components')),
+      containers: path.resolve(path.join(config.get('dir_src'), 'js', 'containers')),
+      mutations: path.resolve(path.join(config.get('dir_src'), 'js', 'mutations')),
     },
   },
   plugins: [

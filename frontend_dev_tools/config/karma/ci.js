@@ -1,8 +1,9 @@
-const path = require('path');
+// import path from 'path';
+// import configSettings from '../';
 
 // Browsers to run on Sauce Labs
 // Check out https://saucelabs.com/platforms for all browser/OS combos
-export const customLauncherss = {
+export const customLaunchers = {
   SL_Chrome_OSX: {
     base: 'SauceLabs',
     browserName: 'chrome',
@@ -64,13 +65,12 @@ export default config => {
 
   config.set({
     ...single,
-    browsers: ['Firefox'],
     logLevel: config.LOG_ERROR,
     // Increase timeout in case connection in CI is slow
     captureTimeout: 120000,
     browserNoActivityTimeout: 30000,
-    // customLaunchers,
-    // browsers: Object.keys(customLaunchers),
+    customLaunchers,
+    browsers: Object.keys(customLaunchers),
     reporters: [
       ...single.reporters,
       'coverage',
@@ -78,23 +78,23 @@ export default config => {
     ],
     plugins: [
       ...single.plugins,
-      // 'karma-sauce-launcher',
-      'karma-firefox-launcher',
+      'karma-sauce-launcher',
+      // 'karma-firefox-launcher',
       'karma-coverage'
     ],
-    // sauceLabs: {
-    //   testName: 'Unit Tests',
-    //   tags: ['unit'],
-    //   recordScreenshots: false,
-    //   recordVideo: false,
-    //   tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER,
-    //   build: `${process.env.TRAVIS_REPO_SLUG}:${process.env.TRAVIS_BUILD_NUMBER}`,
-    //   startConnect: false,
-    //   connectOptions: {
-    //     port: 5757,
-    //     logfile: 'sauce_connect.log',
-    //   },
-    // },
+    sauceLabs: {
+      testName: 'Unit Tests',
+      tags: ['unit'],
+      recordScreenshots: false,
+      recordVideo: false,
+      tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER,
+      build: `${process.env.TRAVIS_REPO_SLUG}:${process.env.TRAVIS_BUILD_NUMBER}`,
+      startConnect: false,
+      connectOptions: {
+        port: 5757,
+        logfile: 'sauce_connect.log',
+      },
+    },
     coverageReporter: {
       dir: 'coverage',
       reporters: [
@@ -103,21 +103,17 @@ export default config => {
     },
     webpack: {
       ...single.webpack,
-      isparta: {
-        embedSource: true,
-        noAutoWrap: true,
-      },
       module: {
         ...single.webpack.module,
         preLoaders: [
           ...single.webpack.module.preLoaders,
           // transpile and instrument testing files with isparta
-          {
-            test: /\.js$/,
-            include: path.resolve('src/js/'),
-            exclude: /test.js$/,
-            loader: 'isparta',
-          },
+          // {
+          //   test: /\.js$/,
+          //   include: path.resolve(path.join(configSettings.get('dir_src'), 'js')),
+          //   exclude: /test.js$/,
+          //   loader: 'isparta',
+          // },
         ],
       },
     },

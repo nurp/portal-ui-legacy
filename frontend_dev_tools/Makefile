@@ -73,6 +73,7 @@ test-once: export TEST_ENV=single
 test-once: test
 
 .PHONY: test
+test: export NODE_ENV=test
 test:
 	$(Q) karma start ${FDT_DIR}/karma.config.js
 	@$(PRINT_OK)
