@@ -3,12 +3,7 @@ import webpack from 'webpack';
 
 import config from '../';
 
-const babelPlugins = config.get('globals').TEST_ENV === 'watch'
-  ? []
-  : [
-    path.join(__dirname, 'plugins', 'babelRelayPlugin'),
-    'react-hot-loader/babel',
-  ];
+const babelRelayPlugin = path.join(__dirname, 'plugins', 'babelRelayPlugin');
 
 export default {
   target: 'web',
@@ -39,8 +34,18 @@ export default {
           env: {
             development: {
               plugins: [
-                path.join(__dirname, 'plugins', 'babelRelayPlugin'),
-                'react-hot-loader/babel',
+                babelRelayPlugin,
+                'react-hot-loader/babel'
+              ]
+            },
+            stage: { plugins: [babelRelayPlugin] },
+            production: { plugins: [babelRelayPlugin] },
+            single: { plugins: [babelRelayPlugin] },
+            watch: { plugins: [] },
+            ci: {
+              plugins: [
+                babelRelayPlugin,
+                `${config.get('fdt_modules')}/babel-plugin-istanbul`
               ]
             },
           }

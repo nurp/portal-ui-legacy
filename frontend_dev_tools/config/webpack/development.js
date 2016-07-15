@@ -18,7 +18,6 @@ const devServer = {
 
 export default {
   ...webpackConfig,
-  // devtool: 'cheap-module-eval-source-map', - vscode debugging doesn't work with inline sourcemaps
   entry: {
     ...webpackConfig.entry,
     bundle: [

@@ -29,7 +29,7 @@ server-prod: export NODE_ENV = production
 server-prod: build server
 
 .PHONY: server
-server: export NODE_ENV?=development
+server: export NODE_ENV ?= development
 server:
 	$(Q) babel-node ${FDT_DIR}/server
 
@@ -49,31 +49,28 @@ build: clean-dist
 	$(Q) webpack --config ${FDT_DIR}/webpack.config.js
 	@$(PRINT_OK)
 
-.PHONY: dist
-dist: export NODE_ENV ?= production
-dist: prepare build
-	@$(PRINT_OK)
-
-.PHONY: prepare
-prepare: lint test-once
-	@$(PRINT_OK)
-
 .PHONY: browser
 browser:
 	$(Q) wdio ${FDT_DIR}/wdio.conf.js
 	@$(PRINT_OK)
 
 .PHONY: test
+test-watch: export BABEL_ENV=watch
 test-watch: export TEST_ENV=watch
 test-watch: test
 
+.PHONY: test-ci
+test-ci: export BABEL_ENV=ci
+test-ci: export TEST_ENV=ci
+test-ci: test
 
 .PHONY: test-once
+test-once: export BABEL_ENV=single
 test-once: export TEST_ENV=single
 test-once: test
 
 .PHONY: test
-test: export NODE_ENV=test
+test: export NODE_ENV ?= development
 test:
 	$(Q) karma start ${FDT_DIR}/karma.config.js
 	@$(PRINT_OK)

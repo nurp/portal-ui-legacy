@@ -2,4 +2,4 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-make prepare
+make lint test-ci browser

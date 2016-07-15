@@ -47,7 +47,7 @@ config.set('globals', {
   __DEV__: process.env.NODE_ENV === 'development',
   __PROD__: process.env.NODE_ENV === 'production',
   __DEBUG__: process.env.NODE_ENV === 'development' && parseInt(process.env.DEBUG, 10) === 1,
-  TEST_ENV: process.env.CI ? 'ci' : process.env.TEST_ENV,
+  TEST_ENV: process.env.TEST_ENV,
   __BASE__: process.env.BASE || '',
 });
 

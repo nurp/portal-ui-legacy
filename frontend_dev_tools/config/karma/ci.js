@@ -1,5 +1,5 @@
-// import path from 'path';
-// import configSettings from '../';
+import path from 'path';
+import configSettings from '../';
 
 // Browsers to run on Sauce Labs
 // Check out https://saucelabs.com/platforms for all browser/OS combos
@@ -74,12 +74,11 @@ export default config => {
     reporters: [
       ...single.reporters,
       'coverage',
-      // 'saucelabs'
+      'saucelabs'
     ],
     plugins: [
       ...single.plugins,
       'karma-sauce-launcher',
-      // 'karma-firefox-launcher',
       'karma-coverage'
     ],
     sauceLabs: {
@@ -96,27 +95,11 @@ export default config => {
       },
     },
     coverageReporter: {
-      dir: 'coverage',
+      dir: `${configSettings.get('path_project')}/coverage`,
       reporters: [
         { type: 'lcov', subdir: '.', file: 'lcov.info' },
       ],
-    },
-    webpack: {
-      ...single.webpack,
-      module: {
-        ...single.webpack.module,
-        preLoaders: [
-          ...single.webpack.module.preLoaders,
-          // transpile and instrument testing files with isparta
-          // {
-          //   test: /\.js$/,
-          //   include: path.resolve(path.join(configSettings.get('dir_src'), 'js')),
-          //   exclude: /test.js$/,
-          //   loader: 'isparta',
-          // },
-        ],
-      },
-    },
+    }
   });
 
   return config;
