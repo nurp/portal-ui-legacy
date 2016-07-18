@@ -18,7 +18,10 @@ const Row = ({ children, style, flex, ...rest }) => (
 Row.propTypes = {
   children: PropTypes.node,
   style: PropTypes.object,
-  flex: PropTypes.number,
+  flex: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
 };
 
 export default Row;

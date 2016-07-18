@@ -55,6 +55,7 @@ export default {
       components: path.resolve(path.join(config.get('path_project'), 'src', 'js', 'components')),
       containers: path.resolve(path.join(config.get('path_project'), 'src', 'js', 'containers')),
       uikit: path.resolve(path.join(config.get('path_project'), 'src', 'js', 'uikit')),
+      theme: path.resolve(path.join(config.get('path_project'), 'src', 'js', 'theme')),
     },
   },
   plugins: [

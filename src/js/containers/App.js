@@ -1,20 +1,30 @@
-import { Link } from 'react-router';
-import { h, div } from 'react-hyperscript-helpers';
+import React, { PropTypes } from 'react';
+import Radium, { Style } from 'radium';
 import { Row, Column } from 'uikit/Flex';
+import Header from 'components/Header';
+import Footer from 'components/Footer';
+import global from 'theme/global';
 
-const App = (props) => (
-  h(Column, {
-    children: [
-      div({
-        children: [
-          h(Link, { to: { pathname: '/' } }, '~~~home~~~'),
-          h(Link, { to: { pathname: '/files' } }, '~~~files~~~'),
-          h(Link, { to: { pathname: '/annotations' } }, '~~~annotations~~~'),
-          h(Row, { children: props.children }),
-        ],
-      }),
-    ],
-  })
+const styles = {
+  wrapper: {
+    minHeight: '100vh',
+  },
+  main: {
+    padding: '2rem 2rem 13rem 2rem',
+  },
+};
+
+const App = ({ children }) => (
+  <Column style={styles.wrapper}>
+    <Style rules={global} />
+    <Header />
+    <Row style={styles.main}>{children}</Row>
+    <Footer config={{}} />
+  </Column>
 );
 
-export default App;
+App.propTypes = {
+  children: PropTypes.node,
+};
+
+export default Radium(App);

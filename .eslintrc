@@ -8,6 +8,7 @@
     jsx-a11y/valid-aria-role: 0
     no-underscore-dangle: 0
     import/no-unresolved: 0
+    new-cap: 0
   env:
     browser: true
     mocha: true
