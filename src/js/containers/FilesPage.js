@@ -6,26 +6,18 @@ import FileTable from 'containers/FileTable';
 
 import SearchPage from 'components/SearchPage';
 
-// export const FilesPage = props => (
-//   div([
-//     h(CasesAggregations, { aggregations: props.viewer.cases.aggregations }),
-//     h(FilesAggregations, { aggregations: props.viewer.files.aggregations }),
-//     h(FileTable, { hits: props.viewer.files.hits }),
-//   ])
-// );
-
 const FilesPage = ({ viewer }) => {
   const Aggregations = {
     Cases: <CasesAggregations aggregations={viewer.cases.aggregations} />,
     Files: <FilesAggregations aggregations={viewer.files.aggregations} />,
   };
 
-  const ResultsTable = <FileTable hits={viewer.files.hits} />;
+  const Results = <FileTable hits={viewer.files.hits} />;
 
   return (
     <SearchPage
       Aggregations={Aggregations}
-      ResultsTable={ResultsTable}
+      Results={Results}
     />
   );
 };

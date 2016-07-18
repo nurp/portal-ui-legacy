@@ -23,7 +23,7 @@ const styles = {
 
 const Files = ({
   Aggregations,
-  ResultsTable,
+  Results,
   location,
 }) => (
   <Row flex="1">
@@ -50,13 +50,13 @@ const Files = ({
         Start searching by selecting a facet
       </Info>
 
-      {ResultsTable}
+      {Results}
     </Column>
   </Row>
 );
 
 Files.propTypes = {
-  ResultsTable: PropTypes.node,
+  Results: PropTypes.node,
   Aggregations: PropTypes.oneOfType([
     PropTypes.node,
     PropTypes.object,
