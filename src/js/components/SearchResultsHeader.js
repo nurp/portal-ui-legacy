@@ -7,11 +7,11 @@ const SearchResultsHeader = ({ type, total, count, location }) => (
     <Column>
       <h2>{type}</h2>
       <span>
-        Showing
+        <span>Showing </span>
         <strong>
           {1 + (+location.query.offset || 0)} - {(+location.query.offset + count) || 20}
         </strong>
-        of
+        <span> of</span>
         <strong> {total.toLocaleString()}</strong> {type}
       </span>
     </Column>

@@ -1,16 +1,12 @@
 import React, { PropTypes } from 'react';
 import Radium from 'radium';
-import { Link as L, withRouter } from 'react-router';
 import { Row, Column } from 'uikit/Flex';
 import Button from 'uikit/Button';
-import Tabs from 'uikit/Tabs';
 import Info from 'uikit/Alerts/Info';
 import theme from 'theme';
 import LeftArrow from 'react-icons/lib/fa/long-arrow-left';
 import ShoppingCartIcon from 'react-icons/lib/fa/shopping-cart';
 import DownloadIcon from 'react-icons/lib/fa/download';
-
-const Link = Radium(L);
 
 const styles = {
   facetsPanel: {
@@ -26,26 +22,12 @@ const styles = {
 };
 
 const Files = ({
-  Aggregations,
   Results,
-  location,
+  Facets,
 }) => (
   <Row flex="1">
     <Column style={styles.facetsPanel}>
-      <Tabs
-        tabs={[
-          <Link key="tab1" to="/files?facetTab=cases">Cases</Link>,
-          <Link key="tab2" to="/files?facetTab=files">Files</Link>,
-        ]}
-        activeIndex={
-          location.query.facetTab === 'cases' ? 0 : 1
-        }
-        activeComponent={
-          location.query.facetTab === 'cases'
-            ? Aggregations.Cases
-            : Aggregations.Files
-        }
-      />
+      {Facets}
     </Column>
 
     <Column style={styles.content}>
@@ -66,11 +48,8 @@ const Files = ({
 
 Files.propTypes = {
   Results: PropTypes.node,
-  Aggregations: PropTypes.oneOfType([
-    PropTypes.node,
-    PropTypes.object,
-  ]),
+  Facets: PropTypes.node,
   location: PropTypes.object,
 };
 
-export default withRouter(Radium(Files));
+export default Radium(Files);

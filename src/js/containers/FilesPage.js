@@ -3,7 +3,7 @@ import Relay from 'react-relay';
 import CasesAggregations from 'containers/CasesAggregations';
 import FilesAggregations from 'containers/FilesAggregations';
 import FileTable from 'containers/FileTable';
-
+import FileFacets from 'components/FileFacets';
 import SearchPage from 'components/SearchPage';
 
 const FilesPage = ({ viewer }) => {
@@ -13,10 +13,11 @@ const FilesPage = ({ viewer }) => {
   };
 
   const Results = <FileTable hits={viewer.files.hits} />;
+  const Facets = <FileFacets Aggregations={Aggregations} />;
 
   return (
     <SearchPage
-      Aggregations={Aggregations}
+      Facets={Facets}
       Results={Results}
     />
   );

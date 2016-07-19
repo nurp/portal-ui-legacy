@@ -7,6 +7,8 @@ import { center } from 'theme/mixins';
 import Color from 'color';
 import ShoppingCartIcon from 'react-icons/lib/fa/shopping-cart';
 import LoginIcon from 'react-icons/lib/fa/sign-in';
+import AnnotationIcon from 'react-icons/lib/fa/align-left';
+import FileIcon from 'react-icons/lib/fa/file-text';
 
 const Link = Radium(L);
 
@@ -29,19 +31,28 @@ const styles = {
   faded: {
     color: 'rgb(191, 191, 191)',
   },
+  marginLeft: {
+    marginLeft: '0.7rem',
+  },
 };
 
 const Nav = () => (
   <Row style={styles.nav}>
     <Row flex="1" />
     <Row flex="1">
-      <Link to="/files" style={styles.link}>Files</Link>
-      <Link to="/annotations" style={styles.link}>Annotations</Link>
+      <Link to="/files" style={styles.link}>
+        <FileIcon style={styles.faded} />
+        <span style={styles.marginLeft}>Files</span>
+      </Link>
+      <Link to="/annotations" style={styles.link}>
+        <AnnotationIcon style={styles.faded} />
+        <span style={styles.marginLeft}>Annotations</span>
+      </Link>
     </Row>
     <Row>
       <a style={styles.link}>
         <LoginIcon style={styles.faded} />
-        <span style={{ marginLeft: '0.7rem' }}>Login</span>
+        <span style={styles.marginLeft}>Login</span>
       </a>
       <Link to="/cart" style={styles.link}>
         <ShoppingCartIcon style={styles.faded} />

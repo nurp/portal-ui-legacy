@@ -1,16 +1,26 @@
+import React, { PropTypes } from 'react';
 import Relay from 'react-relay';
-import { div, h } from 'react-hyperscript-helpers';
-
+import SearchPage from 'components/SearchPage';
 import AnnotationTable from 'containers/AnnotationTable';
 import AnnotationsAggregations from 'containers/AnnotationsAggregations';
 
-export const AnnotationsPage = props => {
-  console.log('AnnotationsPage', props);
-  return div([
-    h(AnnotationsAggregations, { aggregations: props.viewer.annotations.aggregations }),
-    h(AnnotationTable, { hits: props.viewer.annotations.hits }),
-  ]);
+const AnnotationsPage = ({ viewer }) => {
+  const Facets = <AnnotationsAggregations aggregations={viewer.annotations.aggregations} />;
+  const Results = <AnnotationTable hits={viewer.annotations.hits} />;
+
+  return (
+    <SearchPage
+      Facets={Facets}
+      Results={Results}
+    />
+  );
 };
+
+AnnotationsPage.propTypes = {
+  viewer: PropTypes.object,
+};
+
+export { AnnotationsPage };
 
 export default Relay.createContainer(AnnotationsPage, {
   initialVariables: {

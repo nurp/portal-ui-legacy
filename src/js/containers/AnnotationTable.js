@@ -1,31 +1,43 @@
+import React, { PropTypes } from 'react';
 import Relay from 'react-relay';
-import { h2, div, table, thead, tr, th, h } from 'react-hyperscript-helpers';
-
 import AnnotationTBody from 'containers/AnnotationTBody';
 import Pagination from 'containers/Pagination';
+import SearchResults from 'components/SearchResults';
+import Table from 'uikit/Table';
 
-export const AnnotationTable = props => {
-  console.log('AnnotationTable', props);
-  return div([
-    h2(`Annotations ${props.hits.pagination.count} : ${props.hits.pagination.total}`),
-    table([
-      thead([
-        tr([
-          th('UUID'),
-          th('Case UUID'),
-          th('Project'),
-          th('Entity Type'),
-          th('Entity UUID'),
-          th('Category'),
-          th('Classification'),
-          th('Date Created'),
-        ]),
-      ]),
-      h(AnnotationTBody, { edges: props.hits.edges }),
-    ]),
-    h(Pagination, { pathname: '/annotations', pagination: props.hits.pagination }),
-  ]);
+const AnnotationTable = ({ hits }) => {
+  const TableComponent = (
+    <Table
+      columns={[
+        'UUID',
+        'Case UUID',
+        'Project',
+        'Entity Type',
+        'Entity UUID',
+        'Category',
+        'Classification',
+        'Date Created',
+      ]}
+      body={<AnnotationTBody edges={hits.edges} />}
+    />
+  );
+
+  return (
+    <SearchResults
+      type="annotations"
+      total={hits.pagination.total}
+      count={hits.pagination.count}
+      Table={TableComponent}
+      Pagination={<Pagination pathname="/annotations" pagination={hits.pagination} />}
+    />
+  );
 };
+
+AnnotationTable.propTypes = {
+  hits: PropTypes.object,
+};
+
+export { AnnotationTable };
 
 export default Relay.createContainer(AnnotationTable, {
   initialVariables: {
