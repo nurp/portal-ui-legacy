@@ -5,6 +5,8 @@ import { Row } from 'uikit/Flex';
 import theme from 'theme';
 import { center } from 'theme/mixins';
 import Color from 'color';
+import ShoppingCartIcon from 'react-icons/lib/fa/shopping-cart';
+import LoginIcon from 'react-icons/lib/fa/sign-in';
 
 const Link = Radium(L);
 
@@ -24,6 +26,9 @@ const styles = {
     },
     ...center,
   },
+  faded: {
+    color: 'rgb(191, 191, 191)',
+  },
 };
 
 const Nav = () => (
@@ -34,8 +39,14 @@ const Nav = () => (
       <Link to="/annotations" style={styles.link}>Annotations</Link>
     </Row>
     <Row>
-      <a style={styles.link}>Login</a>
-      <Link to="/cart" style={styles.link}>Cart</Link>
+      <a style={styles.link}>
+        <LoginIcon style={styles.faded} />
+        <span style={{ marginLeft: '0.7rem' }}>Login</span>
+      </a>
+      <Link to="/cart" style={styles.link}>
+        <ShoppingCartIcon style={styles.faded} />
+        <span style={{ marginLeft: '0.7rem' }}>Cart</span>
+      </Link>
     </Row>
   </Row>
 );

@@ -15,12 +15,14 @@ const SearchResults = ({
 }) => (
   <Card>
     <Column>
-      <SearchResultsHeader
-        type={type}
-        count={count}
-        total={total}
-        Pagination={Pagination}
-      />
+      <Row style={{ padding: '1rem' }}>
+        <SearchResultsHeader
+          type={type}
+          count={count}
+          total={total}
+          Pagination={Pagination}
+        />
+      </Row>
       <Row>{Table}</Row>
       <Row>
         <Row>Show <button>{paginationMax} ^</button> results</Row>

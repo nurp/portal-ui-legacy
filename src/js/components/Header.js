@@ -36,6 +36,7 @@ const styles = {
     display: 'flex',
     fontSize: '1.5rem',
     transition: 'background-color 0.2s ease',
+    textDecoration: 'none',
     ':hover': {
       color: '#fff',
       textDecoration: 'none',

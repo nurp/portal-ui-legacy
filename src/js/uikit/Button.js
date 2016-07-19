@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react';
+import Radium from 'radium';
 import theme from 'theme';
+import Color from 'color';
 
 const styles = {
   button: {
@@ -10,6 +12,10 @@ const styles = {
     backgroundColor: theme.primary,
     color: 'white',
     border: '1px solid transparent',
+    transition: '0.25s ease',
+    ':hover': {
+      backgroundColor: Color(theme.primary).lighten(0.3).rgbString(),
+    },
   },
 };
 
@@ -22,4 +28,4 @@ Button.propTypes = {
   style: PropTypes.object,
 };
 
-export default Button;
+export default Radium(Button);

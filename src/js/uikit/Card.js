@@ -3,7 +3,6 @@ import theme from 'theme';
 
 const styles = {
   card: {
-    padding: '1rem',
     backgroundColor: 'white',
     border: `1px solid ${theme.greyScale4}`,
   },
