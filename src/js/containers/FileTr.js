@@ -1,24 +1,28 @@
+import React, { PropTypes } from 'react';
 import Relay from 'react-relay';
-import { tr, td, h } from 'react-hyperscript-helpers';
 import { Link } from 'react-router';
+import Tr from 'uikit/Table/Tr';
+import Td from 'uikit/Table/Td';
 
 const FileTr = ({ node }) => (
-  tr([
-    td(node.access),
-    td([
-      h(Link, {
-        to: {
-          pathname: `/files/${node.file_id}`,
-        },
-      }, node.file_name),
-    ]),
-    td(`${node.cases.length}`),
-    td(`${[...new Set(node.cases.map(c => c.project.project_id))]}`),
-    td(node.data_category),
-    td(node.data_format),
-    td(`${node.file_size}B`),
-  ])
+  <Tr>
+    <Td>{node.access}</Td>
+    <Td>
+      <Link to={{ pathname: `/files/${node.file_id}` }}>{node.file_name}</Link>
+    </Td>
+    <Td>{node.cases.length}</Td>
+    <Td>{[...new Set(node.cases.map(c => c.project.project_id))]}</Td>
+    <Td>{node.data_category}</Td>
+    <Td>{node.data_format}</Td>
+    <Td>{node.file_size}B</Td>
+  </Tr>
 );
+
+FileTr.propTypes = {
+  node: PropTypes.object,
+};
+
+export { FileTr };
 
 export default Relay.createContainer(FileTr, {
   fragments: {

@@ -3,7 +3,7 @@ import Relay from 'react-relay';
 import FileTBody from 'containers/FileTBody';
 import Pagination from 'containers/Pagination';
 import SearchResults from 'components/SearchResults';
-import Table from 'components/Table';
+import Table from 'uikit/Table';
 //
 const FileTable = ({ hits }) => {
   const TableComponent = (

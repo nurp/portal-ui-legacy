@@ -17,7 +17,7 @@ const styles = {
     backgroundColor: 'white',
   },
   content: {
-    marginLeft: '30px',
+    marginLeft: '18px',
     width: `calc(100% - ${theme.facetsPanelWidth})`,
   },
 };
