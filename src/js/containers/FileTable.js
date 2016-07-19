@@ -3,35 +3,34 @@ import Relay from 'react-relay';
 import FileTBody from 'containers/FileTBody';
 import Pagination from 'containers/Pagination';
 import SearchResults from 'components/SearchResults';
+import Table from 'components/Table';
 //
-// export const FileTable = props => {
-//   console.log('FileTable', props);
-//   return div([
-//     h2(`Files ${props.hits.pagination.count} : ${props.hits.pagination.total}`),
-//     table([
-//       thead([
-//         tr([
-//           th('Access'),
-//           th('Name'),
-//           th('Cases'),
-//           th('Projects'),
-//           th('Category'),
-//           th('Format'),
-//           th('Size'),
-//         ]),
-//       ]),
-//       h(FileTBody, { edges: props.hits.edges }),
-//     ]),
-//     h(Pagination, { pathname: '/files', pagination: props.hits.pagination }),
-//   ]);
-// };
+const FileTable = ({ hits }) => {
+  const TableComponent = (
+    <Table
+      columns={[
+        'Access',
+        'Name',
+        'Cases',
+        'Projects',
+        'Category',
+        'Format',
+        'Size',
+      ]}
+      body={<FileTBody edges={hits.edges} />}
+    />
+  );
 
-const FileTable = ({ hits }) => (
-  <SearchResults
-    type="files"
-    total={hits.pagination.total}
-  />
-);
+  return (
+    <SearchResults
+      type="files"
+      total={hits.pagination.total}
+      count={hits.pagination.count}
+      Table={TableComponent}
+      Pagination={<Pagination pathname="/files" pagination={hits.pagination} />}
+    />
+  );
+};
 
 FileTable.propTypes = {
   hits: PropTypes.object,

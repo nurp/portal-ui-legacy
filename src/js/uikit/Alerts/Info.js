@@ -7,7 +7,7 @@ const styles = {
   alert: {
     marginBottom: '3rem',
     alignItems: 'center',
-    padding: '3rem',
+    padding: '2.6rem',
     fontSize: '1.5rem',
     color: 'black',
     backgroundColor: theme.greyScale4,

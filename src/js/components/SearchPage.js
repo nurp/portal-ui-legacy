@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import Radium from 'radium';
 import { Link as L, withRouter } from 'react-router';
 import { Row, Column } from 'uikit/Flex';
+import Button from 'uikit/Button';
 import Tabs from 'uikit/Tabs';
 import Info from 'uikit/Alerts/Info';
 import theme from 'theme';
@@ -48,6 +49,11 @@ const Files = ({
       <Info>
         <i style="fa fa-long-arrow-left" />
         Start searching by selecting a facet
+      </Info>
+
+      <Info>
+        <Button>Add all files to the cart</Button>
+        <Button style={{ marginLeft: '1rem' }}>Download Manifest</Button>
       </Info>
 
       {Results}
