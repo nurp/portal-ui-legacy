@@ -1,28 +1,30 @@
+import React, { PropTypes } from 'react';
 import Relay from 'react-relay';
-import { div, h } from 'react-hyperscript-helpers';
-
+import { fileFacets } from 'models/fileFacets';
 import TermFacet from 'components/TermFacet';
 
-export const FilesAggregations = props => {
-  const docType = 'files';
-  const facets = [
-    'access',
-    'data_category',
-    'data_format',
-    'data_type',
-    'experimental_strategy',
-    'platform',
-  ];
-  return div([
-    facets.map(f => h(TermFacet, {
-      key: `${docType}.${f}`,
-      pathname: `/${docType}`,
-      field: `${docType}.${f}`,
-      params: props.relay.route.params,
-      buckets: props.aggregations[f].buckets,
-    })),
-  ]);
+const docType = 'files';
+
+const FilesAggregations = props => (
+  <div>
+    {fileFacets.filter(f => f.facetType === 'terms').map(f =>
+      <TermFacet
+        key={`${docType}.${f.name}`}
+        pathname={`/${docType}`}
+        title={f.title}
+        params={props.relay.route.params}
+        buckets={((props.aggregations[f.name] || {}).buckets || [])}
+      />
+    )}
+  </div>
+);
+
+FilesAggregations.propTypes = {
+  relay: PropTypes.object,
+  aggregations: PropTypes.object,
 };
+
+export { FilesAggregations };
 
 export default Relay.createContainer(FilesAggregations, {
   fragments: {

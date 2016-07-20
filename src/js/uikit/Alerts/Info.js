@@ -1,13 +1,12 @@
 import React, { PropTypes } from 'react';
-import Radium from 'radium';
 import { Row } from 'uikit/Flex';
 import theme from 'theme';
 
 const styles = {
   alert: {
-    marginBottom: '3rem',
+    marginBottom: '2rem',
     alignItems: 'center',
-    padding: '2.6rem',
+    padding: '2rem',
     fontSize: '1.5rem',
     color: 'black',
     backgroundColor: theme.greyScale4,
@@ -24,4 +23,4 @@ Info.propTypes = {
   children: PropTypes.node,
 };
 
-export default Radium(Info);
+export default Info;
