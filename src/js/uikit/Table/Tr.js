@@ -1,4 +1,7 @@
+// Vendor
 import React, { PropTypes } from 'react';
+
+/*----------------------------------------------------------------------------*/
 
 const Tr = ({ children, style }) => (
   <tr style={style}>{children}</tr>

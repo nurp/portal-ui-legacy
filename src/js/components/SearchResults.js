@@ -3,8 +3,7 @@ import { withRouter } from 'react-router';
 import { Row, Column } from 'uikit/Flex';
 import Card from 'uikit/Card';
 import SearchResultsHeader from 'components/SearchResultsHeader';
-
-const paginationMax = 20;
+import SearchResultsFooter from 'components/SearchResultsFooter';
 
 const SearchResults = ({
   type,
@@ -24,10 +23,7 @@ const SearchResults = ({
         />
       </Row>
       <Row>{Table}</Row>
-      <Row>
-        <Row>Show <button>{paginationMax} ^</button> results</Row>
-        <Row style={{ marginLeft: 'auto' }}>{Pagination}</Row>
-      </Row>
+      <SearchResultsFooter Pagination={Pagination} />
     </Column>
   </Card>
 );

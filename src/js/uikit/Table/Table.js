@@ -1,4 +1,7 @@
+// Vendor
 import React, { PropTypes } from 'react';
+
+/*----------------------------------------------------------------------------*/
 
 const styles = {
   table: {
@@ -14,18 +17,19 @@ const styles = {
   },
 };
 
-const Table = props => (
-  <table style={styles.table}>
+const Table = ({ columns, body, style }) => (
+  <table style={{ ...styles.table, ...style }}>
     <thead>
-      <tr>{props.columns.map(x => <th style={styles.th} key={x}>{x}</th>)}</tr>
+      <tr>{columns.map(x => <th style={styles.th} key={x}>{x}</th>)}</tr>
     </thead>
-    {props.body}
+    {body}
   </table>
 );
 
 Table.propTypes = {
   columns: PropTypes.node,
   body: PropTypes.node,
+  style: PropTypes.object,
 };
 
 export default Table;

@@ -1,5 +1,7 @@
-/* @flow */
+// Vendor
 import React, { PropTypes } from 'react';
+
+/*----------------------------------------------------------------------------*/
 
 const baseStyle = {
   display: 'flex',

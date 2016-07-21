@@ -1,9 +1,13 @@
-import { h } from 'react-hyperscript-helpers';
+// Vendor
+import React from 'react';
 import Relay from 'react-relay';
 import { applyRouterMiddleware, Router, browserHistory } from 'react-router';
 import useRelay from 'react-router-relay';
 
+// Custom
 import routes from './routes';
+
+/*----------------------------------------------------------------------------*/
 
 // Don't inject everytime file is hot-reloaded
 if (!Relay.Store._storeData._networkLayer._implementation) {
@@ -13,15 +17,15 @@ if (!Relay.Store._storeData._networkLayer._implementation) {
 }
 
 const Root = () => (
-  h(Router, {
-    history: browserHistory,
-    routes,
-    onReadyStateChange: readyState => {
+  <Router
+    history={browserHistory}
+    routes={routes}
+    onReadyStateChange={readyState => {
       console.log(99, readyState);
-    },
-    render: applyRouterMiddleware(useRelay),
-    environment: Relay.Store,
-  })
+    }}
+    render={applyRouterMiddleware(useRelay)}
+    environment={Relay.Store}
+  />
 );
 
 export default Root;

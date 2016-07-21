@@ -1,4 +1,7 @@
+// Vendor
 import React, { PropTypes } from 'react';
+
+/*----------------------------------------------------------------------------*/
 
 const styles = {
   td: {
@@ -7,12 +10,13 @@ const styles = {
   },
 };
 
-const Td = ({ children }) => (
-  <td style={styles.td}>{children}</td>
+const Td = ({ children, style }) => (
+  <td style={{ ...styles.td, ...style }}>{children}</td>
 );
 
 Td.propTypes = {
   children: PropTypes.node,
+  style: PropTypes.object,
 };
 
 export default Td;

@@ -1,8 +1,13 @@
+// Vendor
 import React, { Children, cloneElement, PropTypes } from 'react';
 import Radium from 'radium';
+import Color from 'color';
+
+// Custom
 import { Row, Column } from 'uikit/Flex';
 import theme from 'theme';
-import Color from 'color';
+
+/*----------------------------------------------------------------------------*/
 
 const borderStyle = `1px solid ${theme.greyScale4}`;
 

@@ -1,10 +1,13 @@
-/* @flow */
+// Vendor
 import React, { PropTypes } from 'react';
 
+// Custom
 import Row from './Row';
 
+/*----------------------------------------------------------------------------*/
+
 const Column = ({ children, style, ...rest }) => (
-  <Row {...rest} style={{ ...style, flexDirection: 'column' }}>
+  <Row style={{ ...style, flexDirection: 'column' }} {...rest}>
     {children}
   </Row>
 );

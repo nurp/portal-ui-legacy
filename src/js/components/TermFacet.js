@@ -12,6 +12,7 @@ const styles = {
     color: '#bb0e3d',
     fontSize: '1.7rem',
     marginBottom: '0.5rem',
+    cursor: 'pointer',
   },
   bucketRow: {
     padding: '0.3rem 0',
@@ -55,7 +56,7 @@ const TermFacet = ({
   return (
     <Column style={styles.container}>
       <Row style={styles.header} onClick={() => toggleCollapsed(x => !x)}>
-        <AngleIcon />
+        <AngleIcon style={{ transform: `rotate(${collapsed ? 270 : 0}deg)` }} />
         {title}
       </Row>
       {!collapsed &&
@@ -99,6 +100,8 @@ TermFacet.propTypes = {
   pathname: PropTypes.string,
   params: PropTypes.object,
   filters: PropTypes.object,
+  collapsed: PropTypes.bool,
+  toggleCollapsed: PropTypes.func,
 };
 
 export default withState('collapsed', 'toggleCollapsed', false)(TermFacet);

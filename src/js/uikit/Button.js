@@ -1,7 +1,12 @@
+// Vendor
 import React, { PropTypes } from 'react';
 import Radium from 'radium';
-import theme from 'theme';
 import Color from 'color';
+
+// Custom
+import theme from 'theme';
+
+/*----------------------------------------------------------------------------*/
 
 const styles = {
   button: {

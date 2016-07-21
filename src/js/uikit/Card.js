@@ -1,5 +1,10 @@
+// Vendor
 import React, { PropTypes } from 'react';
+
+// Custom
 import theme from 'theme';
+
+/*----------------------------------------------------------------------------*/
 
 const styles = {
   card: {
@@ -8,12 +13,13 @@ const styles = {
   },
 };
 
-const Card = ({ children }) => (
-  <div style={styles.card}>{children}</div>
+const Card = ({ children, style }) => (
+  <div style={{ ...styles.card, ...style }}>{children}</div>
 );
 
 Card.propTypes = {
   children: PropTypes.node,
+  style: PropTypes.object,
 };
 
 export default Card;
