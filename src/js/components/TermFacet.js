@@ -6,6 +6,7 @@ import AngleIcon from 'react-icons/lib/fa/angle-down';
 
 // Custom
 import { Row, Column } from 'uikit/Flex';
+import A from 'uikit/A';
 import theme from 'theme';
 
 /*----------------------------------------------------------------------------*/
@@ -104,7 +105,7 @@ const TermFacet = ({
                   <input type="checkbox" />
                   {bucket.key}
                 </Link>
-                <span style={styles.countBubble}>{bucket.doc_count}</span>
+                <A style={styles.countBubble}>{bucket.doc_count}</A>
               </Row>
             );
           })}
@@ -113,8 +114,8 @@ const TermFacet = ({
             <Row style={styles.bottomRow}>
               <Row style={styles.toggleMore} onClick={() => toggleShowMore()}>
                 {state.showingMore
-                  ? <span>Less...</span>
-                  : <span>{buckets.length - 5} More...</span>
+                  ? <A>Less...</A>
+                  : <A>{buckets.length - 5} More...</A>
                 }
               </Row>
             </Row>
