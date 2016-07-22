@@ -5,6 +5,7 @@ import { Link } from 'react-router';
 import AngleIcon from 'react-icons/lib/fa/angle-down';
 
 // Custom
+import CountBubble from 'components/CountBubble';
 import { Row, Column } from 'uikit/Flex';
 import A from 'uikit/A';
 import theme from 'theme';
@@ -27,15 +28,6 @@ const styles = {
   bucketLink: {
     color: '#3a3a3a',
     textDecoration: 'none',
-  },
-  countBubble: {
-    marginLeft: 'auto',
-    backgroundColor: '#5b5151',
-    fontSize: '1rem',
-    color: 'white',
-    padding: '.2em .6em .3em',
-    borderRadius: '.25em',
-    fontWeight: 'bold',
   },
   toggleMore: {
     marginLeft: 'auto',
@@ -105,7 +97,7 @@ const TermFacet = ({
                   <input type="checkbox" />
                   {bucket.key}
                 </Link>
-                <A style={styles.countBubble}>{bucket.doc_count}</A>
+                <CountBubble>{bucket.doc_count}</CountBubble>
               </Row>
             );
           })}
