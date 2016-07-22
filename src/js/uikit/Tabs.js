@@ -58,12 +58,13 @@ const styles = {
 };
 
 const Tabs = ({
-  activeComponent,
-  activeIndex,
   style,
   tabs,
+  activeIndex,
+  activeComponent,
+  ...props,
 }) => (
-  <Column style={style}>
+  <Column style={style} {...props}>
     <Row>
       {Children.map(tabs, (child, i) => cloneElement(child, {
         style: {
@@ -85,5 +86,7 @@ Tabs.propTypes = {
   style: PropTypes.object,
   tabs: PropTypes.node,
 };
+
+/*----------------------------------------------------------------------------*/
 
 export default Radium(Tabs);

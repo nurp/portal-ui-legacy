@@ -26,6 +26,7 @@ const global = {
   a: {
     color: theme.primary,
     cursor: 'pointer',
+    textDecoration: 'none',
   },
   h2: {
     textTransform: 'capitalize',

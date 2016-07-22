@@ -24,13 +24,16 @@ const styles = {
   },
 };
 
-const Button = ({ children, style }) => (
-  <button style={{ ...styles.button, ...(style || {}) }}>{children}</button>
+const Button = ({ style, children, ...props }) => (
+  <button style={{ ...styles.button, ...style }} {...props}>{children}</button>
 );
 
 Button.propTypes = {
   children: PropTypes.node,
   style: PropTypes.object,
+  onClick: PropTypes.func,
 };
+
+/*----------------------------------------------------------------------------*/
 
 export default Radium(Button);

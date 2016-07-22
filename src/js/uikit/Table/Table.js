@@ -17,8 +17,8 @@ const styles = {
   },
 };
 
-const Table = ({ columns, body, style }) => (
-  <table style={{ ...styles.table, ...style }}>
+const Table = ({ style, body, columns, ...props }) => (
+  <table style={{ ...styles.table, ...style }} {...props}>
     <thead>
       <tr>{columns.map(x => <th style={styles.th} key={x}>{x}</th>)}</tr>
     </thead>

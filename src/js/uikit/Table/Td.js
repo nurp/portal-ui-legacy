@@ -10,13 +10,15 @@ const styles = {
   },
 };
 
-const Td = ({ children, style }) => (
-  <td style={{ ...styles.td, ...style }}>{children}</td>
+const Td = ({ style, children, ...props }) => (
+  <td style={{ ...styles.td, ...style }} {...props}>{children}</td>
 );
 
 Td.propTypes = {
   children: PropTypes.node,
   style: PropTypes.object,
 };
+
+/*----------------------------------------------------------------------------*/
 
 export default Td;

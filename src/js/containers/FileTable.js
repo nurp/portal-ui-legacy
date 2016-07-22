@@ -5,7 +5,7 @@ import Pagination from 'containers/Pagination';
 import SearchResults from 'components/SearchResults';
 import Table from 'uikit/Table';
 //
-const FileTable = ({ hits }) => {
+const FileTable = props => {
   const TableComponent = (
     <Table
       columns={[
@@ -17,17 +17,17 @@ const FileTable = ({ hits }) => {
         'Format',
         'Size',
       ]}
-      body={<FileTBody edges={hits.edges} />}
+      body={<FileTBody edges={props.hits.edges} />}
     />
   );
 
   return (
     <SearchResults
       type="files"
-      total={hits.pagination.total}
-      count={hits.pagination.count}
+      total={props.hits.pagination.total}
+      count={props.hits.pagination.count}
       Table={TableComponent}
-      Pagination={<Pagination pathname="/files" pagination={hits.pagination} />}
+      Pagination={<Pagination pathname="/files" pagination={props.hits.pagination} />}
     />
   );
 };

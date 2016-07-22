@@ -5,6 +5,8 @@ export default {
    */
 
   primary: 'rgb(131, 0, 30)',
+  primaryLight1: 'rgb(187, 14, 61)',
+
 
   // greyscale
 
@@ -17,5 +19,5 @@ export default {
    *  Dimensions
    */
 
-  facetsPanelWidth: '30rem',
+  facetsPanelWidth: '35rem',
 };

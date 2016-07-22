@@ -11,8 +11,8 @@ const baseStyle = {
   outline: 'none',
 };
 
-const Row = ({ children, style, flex, ...rest }) => (
-  <div style={{ ...baseStyle, flex, ...style }} {...rest}>
+const Row = ({ flex, style, children, ...props }) => (
+  <div style={{ ...baseStyle, flex, ...style }} {...props}>
     {children}
   </div>
 );
@@ -25,5 +25,7 @@ Row.propTypes = {
     PropTypes.number,
   ]),
 };
+
+/*----------------------------------------------------------------------------*/
 
 export default Row;

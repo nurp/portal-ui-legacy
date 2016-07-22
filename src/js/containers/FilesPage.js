@@ -6,13 +6,13 @@ import FileTable from 'containers/FileTable';
 import FileFacets from 'components/FileFacets';
 import SearchPage from 'components/SearchPage';
 
-const FilesPage = ({ viewer }) => {
+const FilesPage = props => {
   const Aggregations = {
-    Cases: <CasesAggregations aggregations={viewer.cases.aggregations} />,
-    Files: <FilesAggregations aggregations={viewer.files.aggregations} />,
+    Cases: <CasesAggregations aggregations={props.viewer.cases.aggregations} />,
+    Files: <FilesAggregations aggregations={props.viewer.files.aggregations} />,
   };
 
-  const Results = <FileTable hits={viewer.files.hits} />;
+  const Results = <FileTable hits={props.viewer.files.hits} />;
   const Facets = <FileFacets Aggregations={Aggregations} />;
 
   return (

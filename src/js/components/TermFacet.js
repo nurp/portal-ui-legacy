@@ -1,15 +1,21 @@
+// Vendor
 import React, { PropTypes } from 'react';
-import { withState } from 'recompose';
+import { compose, withState, mapProps } from 'recompose';
 import { Link } from 'react-router';
-import { Row, Column } from 'uikit/Flex';
 import AngleIcon from 'react-icons/lib/fa/angle-down';
+
+// Custom
+import { Row, Column } from 'uikit/Flex';
+import theme from 'theme';
+
+/*----------------------------------------------------------------------------*/
 
 const styles = {
   container: {
     padding: '1rem 1.2rem',
   },
   header: {
-    color: '#bb0e3d',
+    color: theme.primaryLight1,
     fontSize: '1.7rem',
     marginBottom: '0.5rem',
     cursor: 'pointer',
@@ -30,6 +36,19 @@ const styles = {
     borderRadius: '.25em',
     fontWeight: 'bold',
   },
+  toggleMore: {
+    marginLeft: 'auto',
+    color: theme.primaryLight1,
+    fontSize: '1.2rem',
+    cursor: 'pointer',
+    ':hover': {
+      color: 'blue',
+      textDecoration: 'underline',
+    },
+  },
+  bottomRow: {
+    padding: '0.5rem',
+  },
 };
 
 const mergeFilters = ({ filterContent, value, field }) => ({
@@ -48,20 +67,21 @@ const TermFacet = ({
   buckets,
   pathname,
   params,
-  collapsed,
+  state,
   toggleCollapsed,
+  toggleShowMore,
 }) => {
   const dotField = title.replace(/__/g, '.');
 
   return (
     <Column style={styles.container}>
-      <Row style={styles.header} onClick={() => toggleCollapsed(x => !x)}>
-        <AngleIcon style={{ transform: `rotate(${collapsed ? 270 : 0}deg)` }} />
+      <Row style={styles.header} onClick={() => toggleCollapsed()}>
+        <AngleIcon style={{ transform: `rotate(${state.collapsed ? 270 : 0}deg)` }} />
         {title}
       </Row>
-      {!collapsed &&
-        <div>
-          {buckets.slice(0, 5).map(bucket => {
+      {!state.collapsed &&
+        <Column>
+          {buckets.slice(0, state.showingMore ? Infinity : 5).map(bucket => {
             const mergedFilters = mergeFilters({
               filterContent: (params.filters || {}).content || [],
               value: [bucket.key],
@@ -88,7 +108,18 @@ const TermFacet = ({
               </Row>
             );
           })}
-        </div>
+
+          {buckets.length > 5 &&
+            <Row style={styles.bottomRow}>
+              <Row style={styles.toggleMore} onClick={() => toggleShowMore()}>
+                {state.showingMore
+                  ? <span>Less...</span>
+                  : <span>{buckets.length - 5} More...</span>
+                }
+              </Row>
+            </Row>
+          }
+        </Column>
       }
     </Column>
   );
@@ -100,8 +131,18 @@ TermFacet.propTypes = {
   pathname: PropTypes.string,
   params: PropTypes.object,
   filters: PropTypes.object,
-  collapsed: PropTypes.bool,
+  state: PropTypes.object, // TODO: make shape
   toggleCollapsed: PropTypes.func,
+  toggleShowMore: PropTypes.func,
 };
 
-export default withState('collapsed', 'toggleCollapsed', false)(TermFacet);
+const enhance = compose(
+  withState('state', 'setState', { collapsed: false, showingMore: false }),
+  mapProps(({ setState, ...rest }) => ({
+    toggleCollapsed: () => setState(state => ({ collapsed: !state.collapsed })),
+    toggleShowMore: () => setState(state => ({ showingMore: !state.showingMore })),
+    ...rest,
+  }))
+);
+
+export default enhance(TermFacet);

@@ -18,8 +18,8 @@ const styles = {
   },
 };
 
-const Info = ({ children, style }) => (
-  <Row style={{ ...styles.alert, ...style }}>
+const Info = ({ style, children, ...props }) => (
+  <Row style={{ ...styles.alert, ...style }} {...props}>
     {children}
   </Row>
 );
@@ -28,5 +28,7 @@ Info.propTypes = {
   children: PropTypes.node,
   style: PropTypes.object,
 };
+
+/*----------------------------------------------------------------------------*/
 
 export default Info;

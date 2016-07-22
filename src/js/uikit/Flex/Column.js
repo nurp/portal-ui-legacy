@@ -6,8 +6,8 @@ import Row from './Row';
 
 /*----------------------------------------------------------------------------*/
 
-const Column = ({ children, style, ...rest }) => (
-  <Row style={{ ...style, flexDirection: 'column' }} {...rest}>
+const Column = ({ style, children, ...props }) => (
+  <Row style={{ ...style, flexDirection: 'column' }} {...props}>
     {children}
   </Row>
 );
@@ -16,5 +16,7 @@ Column.propTypes = {
   children: PropTypes.node,
   style: PropTypes.object,
 };
+
+/*----------------------------------------------------------------------------*/
 
 export default Column;
