@@ -1,13 +1,19 @@
 // Vendor
 import React from 'react';
 import Relay from 'react-relay';
+import { createStore, combineReducers } from 'redux';
+import { Provider } from 'react-redux';
 import { applyRouterMiddleware, Router, browserHistory } from 'react-router';
 import useRelay from 'react-router-relay';
 
 // Custom
+import * as reducers from 'dux';
+import { toggleLoading } from 'dux/relayLoading';
 import routes from './routes';
 
 /*----------------------------------------------------------------------------*/
+
+const store = createStore(combineReducers(reducers));
 
 // Don't inject everytime file is hot-reloaded
 if (!Relay.Store._storeData._networkLayer._implementation) {
@@ -17,17 +23,22 @@ if (!Relay.Store._storeData._networkLayer._implementation) {
 }
 
 const Root = () => (
-  <Router
-    history={browserHistory}
-    routes={routes}
-    onReadyStateChange={readyState => {
-      console.log(99, readyState);
-    }}
-    render={applyRouterMiddleware(useRelay)}
-    environment={Relay.Store}
-  />
+  <Provider store={store}>
+    <Router
+      history={browserHistory}
+      routes={routes}
+      onReadyStateChange={readyState => {
+        console.log(99, readyState);
+        if (!readyState.done) store.dispatch(toggleLoading(true));
+        else store.dispatch(toggleLoading(false));
+      }}
+      render={applyRouterMiddleware(useRelay)}
+      environment={Relay.Store}
+    />
+  </Provider>
 );
 
 /*----------------------------------------------------------------------------*/
 
 export default Root;
+export { store };

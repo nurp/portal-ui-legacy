@@ -1,6 +1,7 @@
 // Vendor
 import React, { PropTypes } from 'react';
 import Radium, { Style } from 'radium';
+import { connect } from 'react-redux';
 
 // Custom
 import { Row, Column } from 'uikit/Flex';
@@ -23,7 +24,7 @@ const styles = {
 const App = props => (
   <div>
     <Style rules={global} />
-    <Overlay>test</Overlay>
+    <Overlay show={props.relayLoading}>TODO: Insert loading spinner / message here</Overlay>
     <Column style={styles.wrapper}>
       <Header />
       <Row style={styles.main}>{props.children}</Row>
@@ -34,8 +35,14 @@ const App = props => (
 
 App.propTypes = {
   children: PropTypes.node,
+  relayLoading: PropTypes.bool,
 };
+
+function mstp(state) {
+  console.log('the state is', state);
+  return { relayLoading: state.relayLoading };
+}
 
 /*----------------------------------------------------------------------------*/
 
-export default Radium(App);
+export default Radium(connect(mstp)(App));

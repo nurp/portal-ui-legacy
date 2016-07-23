@@ -10,9 +10,6 @@ const FilesRoute = h(Route, {
   component: FilesPage,
   prepareParams: prepareViewerParams,
   queries: viewerQuery,
-  render({ props }) {
-    return props ? h(FilesPage, props) : h('div', 'loading');
-  },
   onEnter(nextState, replace) {
     // Select the case facet tab by default
     if (!nextState.location.query.facetTab) {

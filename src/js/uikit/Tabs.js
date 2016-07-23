@@ -61,7 +61,7 @@ const Tabs = ({
   style,
   tabs,
   activeIndex,
-  activeComponent,
+  children,
   ...props,
 }) => (
   <Column style={style} {...props}>
@@ -73,12 +73,12 @@ const Tabs = ({
         },
       }))}
     </Row>
-    <Column style={styles.content}>{activeComponent}</Column>
+    <Column style={styles.content}>{children}</Column>
   </Column>
 );
 
 Tabs.propTypes = {
-  activeComponent: PropTypes.element,
+  children: PropTypes.node,
   activeIndex: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,

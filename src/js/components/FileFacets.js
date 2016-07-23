@@ -5,24 +5,21 @@ import Tabs from 'uikit/Tabs';
 
 const Link = Radium(L);
 
+const links = [
+  <Link key="tab1" to="/files?facetTab=cases">Cases</Link>,
+  <Link key="tab2" to="/files?facetTab=files">Files</Link>,
+];
+
 const FileFacets = ({
   location,
-  Aggregations,
+  Aggregations: { Cases, Files },
 }) => (
   <Tabs
-    tabs={[
-      <Link key="tab1" to="/files?facetTab=cases">Cases</Link>,
-      <Link key="tab2" to="/files?facetTab=files">Files</Link>,
-    ]}
-    activeIndex={
-      location.query.facetTab === 'cases' ? 0 : 1
-    }
-    activeComponent={
-      location.query.facetTab === 'cases'
-        ? Aggregations.Cases
-        : Aggregations.Files
-    }
-  />
+    tabs={links}
+    activeIndex={location.query.facetTab === 'cases' ? 0 : 1}
+  >
+    {location.query.facetTab === 'cases' ? Cases : Files}
+  </Tabs>
 );
 
 FileFacets.propTypes = {
