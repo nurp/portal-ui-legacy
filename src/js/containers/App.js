@@ -4,6 +4,7 @@ import Radium, { Style } from 'radium';
 
 // Custom
 import { Row, Column } from 'uikit/Flex';
+import Overlay from 'uikit/Overlay';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 import global from 'theme/global';
@@ -20,12 +21,15 @@ const styles = {
 };
 
 const App = props => (
-  <Column style={styles.wrapper}>
+  <div>
     <Style rules={global} />
-    <Header />
-    <Row style={styles.main}>{props.children}</Row>
-    <Footer config={{}} />
-  </Column>
+    <Overlay>test</Overlay>
+    <Column style={styles.wrapper}>
+      <Header />
+      <Row style={styles.main}>{props.children}</Row>
+      <Footer config={{}} />
+    </Column>
+  </div>
 );
 
 App.propTypes = {
