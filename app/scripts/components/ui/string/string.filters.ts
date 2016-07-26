@@ -18,7 +18,7 @@ module ngApp.components.ui.string {
         // use `--` for null, undefined and empty string
         if (original === null || original === undefined || (angular.isString(original) && original.length === 0)) {
           return '--';
-        // return all other non-strings 
+        // return all other non-strings
         } else if (!angular.isString(original)) return original;
 
         var humanified = "";
@@ -67,16 +67,14 @@ module ngApp.components.ui.string {
   }
 
   // differs from angular's uppercase by not uppering miRNA
-  class Capitalize {
-    constructor() {
-      return function(original: string) {
-        return original.split(' ').map(function (word) {
-              return word.indexOf("miRNA") === -1
-                ? word.charAt(0).toUpperCase() + word.slice(1)
-                : word
-            }).join(' ');
-      };
-    }
+  function Capitalize() {
+    return (original: string) => {
+      return original.split(' ').map(function (word) {
+        return word.indexOf("miRNA") === -1
+          ? word.charAt(0).toUpperCase() + word.slice(1)
+          : word
+      }).join(' ');
+    };
   }
 
   class Titlefy {
@@ -117,19 +115,28 @@ module ngApp.components.ui.string {
 
   class AgeDisplay {
     constructor(gettextCatalog: any) {
-      return function(ageInDays: number) {
-        if (ageInDays < 365) {
-          var daysText = gettextCatalog.getPlural(ageInDays, "day", "days");
-          return ageInDays + " " + daysText;
-        } else {
-          var ageInYears = Math.floor(ageInDays / 365);
-          var remainderDays = Math.ceil(ageInDays % 365);
-          var yearsText = gettextCatalog.getPlural(ageInYears, "year", "years");
-          var daysText = gettextCatalog.getPlural(remainderDays, "day", "days");
-          return ageInYears + " " + yearsText + (remainderDays ? " " + remainderDays + " " + daysText : "");
+      const oneYear = 365.25;
+      const leapThenPair = (years: number, days: number): number[] => (days === 365) ? [years + 1, 0] : [years, days];
+      const timeString = (number: number, singular: string, plural: string): string =>
+        ('' + number + ' ' + gettextCatalog.getPlural(number, singular, plural || singular + 's'));
+      // if ES6 is ever used, use `...` instead.
+      const _timeString = _.spread(timeString);
+
+      return (ageInDays: number, yearsOnly: boolean = false, defaultValue: string = '--'): string => {
+        if (!ageInDays) {
+          return defaultValue;
         }
-      };
+        return _.zip(leapThenPair(Math.floor(ageInDays / oneYear), Math.ceil(ageInDays % oneYear)), ['year', 'day'])
+        .filter(p => yearsOnly ? p[1] === 'year' : p[0] > 0)
+        .map(p => !yearsOnly ? _timeString(p) : p[0])
+        .join(' ')
+        .trim();
+      }
     }
+  }
+
+  function Superscript() {
+    return (original: string): string => original.replace(/\^(\d*)/, '<sup>$1</sup>');
   }
 
   angular.module("string.filters", [])

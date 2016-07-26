@@ -6,17 +6,29 @@ module ngApp.files.controllers {
   import IFilesService = ngApp.files.services.IFilesService;
   import IGqlService = ngApp.components.gql.IGqlService;
 
+  interface ITableFilters {
+    assocEntity: string;
+    readGroup: string;
+  }
+
   export interface IFileController {
     file: IFile;
     isInCart(): boolean;
     handleCartButton(): void;
     archiveCount: number;
     annotationIds: string[];
+    tablesToDisplay: string[];
+    makeSearchPageLink(files: IFile[]): string;
   }
 
   class FileController implements IFileController {
     archiveCount: number = 0;
     annotationIds: string[] = [];
+    tablesToDisplay: string[];
+    tableFilters: ITableFilters = {
+      assocEntity: '',
+      readGroup: ''
+    };
 
     /* @ngInject */
     constructor(public file: IFile,
@@ -50,6 +62,9 @@ module ngApp.files.controllers {
       });
 
       const addCases = nestedFile => nestedFile.cases = file.cases;
+      //insert project into top level because it's in the properties table
+      file.projects = _.reject(_.unique(file.cases.map(c => (c.project || {}).project_id)),
+                                  p => _.isUndefined(p) || _.isNull(p));
 
       // insert cases into related / metadata files for checking isUserProject when downloading
       (file.related_files || []).forEach(addCases);

@@ -14,7 +14,7 @@ var mkdirp = require("mkdirp");
 var env = {
   api: process.env.GDC_API || "http://localhost:5000",
   auth: process.env.GDC_AUTH || "https://gdc-portal.nci.nih.gov/auth",
-  base: process.env.GDC_BASE || "/legacy",
+  base: process.env.GDC_BASE || "/",
   port: process.env.GDC_PORT || 3000,
   fake_auth: process.env.GDC_FAKE_AUTH || false,
 };
@@ -141,6 +141,7 @@ gulp.task("config", function () {
       content = content.replace(/__COMMIT__/g, stdout.replace(/[\r\n]/, ""));
       content = content.replace(/__API__/, env.api);
       content = content.replace(/__AUTH__/g, env.auth);
+      content = content.replace(/__BASE__/g, env.base);
       content = content.replace(/__PRODUCTION__/, production);
       content = content.replace(/__FAKE_AUTH__/, env.fake_auth);
 
@@ -260,20 +261,6 @@ gulp.task('html', ['js:bower', 'ng:templates'], function () {
         .pipe($.replace('.css', '.min.css'))
         .pipe($.replace('src/css/bootcards-desktop.min.css', 'src/css/bootcards-desktop.css'))
         .pipe($.replace('ngprogress-lite.min.css', 'ngprogress-lite.css'));
-    // .pipe(
-    // $.cdnizer({
-    //   allowRev: true,
-    //   allowMin: true,
-    //   fallbackScript: "<script>function cdnizerLoad(u) {document.write('<scr'+'ipt src=\"'+u+'\"></scr'+'ipt>');}</script>",
-    //   fallbackTest: '<script>if(typeof ${ test } === "undefined") cdnizerLoad("${ filepath }");</script>',
-    //   files: [
-    //     'google:angular',
-    //     {
-    //       cdn: 'cdnjs:lodash.js',
-    //       package: 'lodash',
-    //       test: '_'
-    //     }
-    //   ]}))
   }
   return stream
       .pipe($.replace('__BASE__', env.base))
@@ -321,24 +308,16 @@ gulp.task('protractor', ['webdriver'], function () {
 // </tests>
 
 // <typescript>
-//gulp.task('ts:lint', function () {
-//  return gulp.src('app/scripts/**/*.ts')
-//      .pipe($.tslint())
-//      .pipe($.tslint.report('prose', {emitError: true}));
-//});
-
 var tsProject = $.typescript.createProject({
-    "target": "es6",
+    "target": "ES3",
 		"module": "commonjs",
-		"sortOutput": true,
-		"declarationFiles": true,
+		"declaration": true,
 		"noExternalResolve": false
 });
 
 gulp.task('ts:compile', function () {
   var f = production ? 'app.min.js' : 'app.js';
   var tsResult = gulp.src('app/**/*.ts')
-
       .pipe($.typescript(tsProject));
 
   tsResult.dts.pipe(gulp.dest('dist/dts'));

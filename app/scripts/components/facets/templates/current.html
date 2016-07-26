@@ -12,7 +12,7 @@
       <span class="facet-block label label-primary facet-name"
             data-ng-click="cfc.removeTerm(filter.content.field, null, $event, filter.op)"
             data-ng-keypress="cfc.removeTerm(filter.content.field, null, $event, filter.op)">
-        {{ filter.content.field | translate | humanify }}
+        {{ filter.content.field | translate }}
       </span>
       <span data-ng-switch="filter.op">
         <span data-ng-switch-when="in">

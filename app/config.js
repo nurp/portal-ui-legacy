@@ -7,6 +7,7 @@ angular.module("ngApp.config", [])
     "api": "__API__",
     "auth":"__AUTH__",
     "auth_api": "__AUTH__/api/legacy",
+    "base": "__BASE__",
     "supportedAPI": "1",
     "tag": "https://github.com/NCI-GDC/portal-ui-legacy/releases/tag/__VERSION__",
     "production": __PRODUCTION__,
