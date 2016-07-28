@@ -8,7 +8,7 @@ import { notify } from 'dux/notification'
 
 /*----------------------------------------------------------------------------*/
 
-const UPDATE_CART = 'ADD_TO_CART'
+const UPDATE_CART = 'UPDATE_CART'
 
 function toggleInCart(incomingFiles) {
   return (dispatch, getState) => {
