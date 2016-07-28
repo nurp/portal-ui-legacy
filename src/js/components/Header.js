@@ -1,11 +1,16 @@
+// Vendor
 import React from 'react'
 import Radium from 'radium'
 import { Link } from 'react-router'
+import Color from 'color'
+
+// Custom
 import { Row, Column } from 'uikit/Flex'
 import theme from 'theme'
 import { center } from 'theme/mixins'
-import Color from 'color'
 import Nav from 'components/Nav'
+
+/*----------------------------------------------------------------------------*/
 
 const styles = {
   header: {
@@ -79,5 +84,7 @@ const Header = () => (
     <Nav />
   </Column>
 )
+
+/*----------------------------------------------------------------------------*/
 
 export default Radium(Header)

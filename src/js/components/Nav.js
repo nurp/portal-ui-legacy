@@ -1,14 +1,20 @@
+// Vendor
 import React from 'react'
+import { connect } from 'react-redux'
 import Radium from 'radium'
 import { Link as L } from 'react-router'
-import { Row } from 'uikit/Flex'
-import theme from 'theme'
-import { center } from 'theme/mixins'
-import Color from 'color'
 import ShoppingCartIcon from 'react-icons/lib/fa/shopping-cart'
 import LoginIcon from 'react-icons/lib/fa/sign-in'
 import AnnotationIcon from 'react-icons/lib/fa/align-left'
 import FileIcon from 'react-icons/lib/fa/file-text'
+
+// Custom
+import { Row } from 'uikit/Flex'
+import theme from 'theme'
+import { center } from 'theme/mixins'
+import Color from 'color'
+
+/*----------------------------------------------------------------------------*/
 
 const Link = Radium(L)
 
@@ -57,9 +63,21 @@ const Nav = () => (
       <Link to="/cart" style={styles.link}>
         <ShoppingCartIcon style={styles.faded} />
         <span style={{ marginLeft: '0.7rem' }}>Cart</span>
+        <span
+          style={{
+            marginLeft: '0.5rem',
+            padding: '0.4rem 0.6rem',
+            fontSize: '1rem',
+            backgroundColor: '#5b5151',
+          }}
+        >
+          0
+        </span>
       </Link>
     </Row>
   </Row>
 )
 
-export default Radium(Nav)
+/*----------------------------------------------------------------------------*/
+
+export default connect(state => state.cart)(Radium(Nav))
