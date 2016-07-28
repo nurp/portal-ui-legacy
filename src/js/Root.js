@@ -5,6 +5,7 @@ import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import { applyRouterMiddleware, Router, browserHistory } from 'react-router';
 import useRelay from 'react-router-relay';
+import { persistStore } from 'redux-persist'
 
 // Custom
 import * as reducers from 'dux';
@@ -14,6 +15,16 @@ import routes from './routes';
 /*----------------------------------------------------------------------------*/
 
 const store = createStore(combineReducers(reducers));
+
+persistStore(store, { whitelist: ['cart'] }, () => {
+   // Setup initial state - 2 tracks by default
+  const state = STORE.getState();
+   if (!state.phrase || state.phrase.past.length === 0 && state.phrase.present.tracks.length === 0) {
+     STORE.dispatch(phraseCreateTrack())
+     STORE.dispatch(phraseCreateTrack())
+     STORE.dispatch(UndoActions.clearHistory())
+   }
+ })
 
 // Don't inject everytime file is hot-reloaded
 if (!Relay.Store._storeData._networkLayer._implementation) {
