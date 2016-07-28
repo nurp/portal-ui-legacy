@@ -58,6 +58,7 @@ export default {
       theme: path.resolve(path.join(config.get('path_project'), 'src', 'js', 'theme')),
       models: path.resolve(path.join(config.get('path_project'), 'src', 'js', 'models')),
       dux: path.resolve(path.join(config.get('path_project'), 'src', 'js', 'dux')),
+      utils: path.resolve(path.join(config.get('path_project'), 'src', 'js', 'utils')),
     },
   },
   plugins: [

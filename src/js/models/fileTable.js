@@ -4,12 +4,12 @@ import ShoppingCartIcon from 'react-icons/lib/fa/shopping-cart';
 import { Link } from 'react-router';
 import LockedIcon from 'react-icons/lib/fa/lock';
 import UnlockedIcon from 'react-icons/lib/fa/unlock-alt';
-// import _ from 'lodash';
 
 // Custom
 import Button from 'uikit/Button';
 import { Th, Td } from 'uikit/Table';
 import theme from 'theme';
+import { formatFileSize } from 'utils';
 
 /*----------------------------------------------------------------------------*/
 
@@ -34,9 +34,13 @@ const fileTable = [
           style={{
             padding: '3px 5px',
             margin: '0 auto',
-            backgroundColor: 'white',
+            background: 'white',
             color: theme.greyScale2,
             border: `1px solid ${theme.greyScale4}`,
+            ':hover': {
+              background:
+                'linear-gradient(to bottom, #ffffff 50%, #e6e6e6 100%) repeat scroll 0 0 #e6e6e6',
+            },
           }}
         >
           <ShoppingCartIcon />
@@ -107,7 +111,7 @@ const fileTable = [
   {
     name: 'Size',
     id: 'file_size',
-    td: file => <Td key="file_size">{file.file_size || '--'}</Td>,
+    td: file => <Td key="file_size">{formatFileSize(file.file_size) || '--'}</Td>,
     sortable: true,
   },
   {
