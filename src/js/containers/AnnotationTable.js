@@ -1,9 +1,9 @@
-import React, { PropTypes } from 'react';
-import Relay from 'react-relay';
-import AnnotationTBody from 'containers/AnnotationTBody';
-import Pagination from 'containers/Pagination';
-import SearchResults from 'components/SearchResults';
-import Table from 'uikit/Table';
+import React, { PropTypes } from 'react'
+import Relay from 'react-relay'
+import AnnotationTBody from 'containers/AnnotationTBody'
+import Pagination from 'containers/Pagination'
+import SearchResults from 'components/SearchResults'
+import Table from 'uikit/Table'
 
 const AnnotationTable = ({ hits }) => {
   const TableComponent = (
@@ -20,7 +20,7 @@ const AnnotationTable = ({ hits }) => {
       ]}
       body={<AnnotationTBody edges={hits.edges} />}
     />
-  );
+  )
 
   return (
     <SearchResults
@@ -30,14 +30,14 @@ const AnnotationTable = ({ hits }) => {
       Table={TableComponent}
       Pagination={<Pagination pathname="/annotations" pagination={hits.pagination} />}
     />
-  );
-};
+  )
+}
 
 AnnotationTable.propTypes = {
   hits: PropTypes.object,
-};
+}
 
-export { AnnotationTable };
+export { AnnotationTable }
 
 export default Relay.createContainer(AnnotationTable, {
   initialVariables: {
@@ -59,4 +59,4 @@ export default Relay.createContainer(AnnotationTable, {
       }
     `,
   },
-});
+})

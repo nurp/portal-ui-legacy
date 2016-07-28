@@ -1,8 +1,8 @@
 // Vendor
-import React, { PropTypes } from 'react';
+import React, { PropTypes } from 'react'
 
 // Custom
-import Tr from './Tr';
+import Tr from './Tr'
 
 /*----------------------------------------------------------------------------*/
 
@@ -12,7 +12,7 @@ const styles = {
     borderCollapse: 'collapse',
     borderSpacing: 0,
   },
-};
+}
 
 const Table = ({ style, body, headings, ...props }) => (
   <table style={{ ...styles.table, ...style }} {...props}>
@@ -23,12 +23,12 @@ const Table = ({ style, body, headings, ...props }) => (
     </thead>
     {body}
   </table>
-);
+)
 
 Table.propTypes = {
   headings: PropTypes.node,
   body: PropTypes.node,
   style: PropTypes.object,
-};
+}
 
-export default Table;
+export default Table

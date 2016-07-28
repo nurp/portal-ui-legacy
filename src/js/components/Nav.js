@@ -1,16 +1,16 @@
-import React from 'react';
-import Radium from 'radium';
-import { Link as L } from 'react-router';
-import { Row } from 'uikit/Flex';
-import theme from 'theme';
-import { center } from 'theme/mixins';
-import Color from 'color';
-import ShoppingCartIcon from 'react-icons/lib/fa/shopping-cart';
-import LoginIcon from 'react-icons/lib/fa/sign-in';
-import AnnotationIcon from 'react-icons/lib/fa/align-left';
-import FileIcon from 'react-icons/lib/fa/file-text';
+import React from 'react'
+import Radium from 'radium'
+import { Link as L } from 'react-router'
+import { Row } from 'uikit/Flex'
+import theme from 'theme'
+import { center } from 'theme/mixins'
+import Color from 'color'
+import ShoppingCartIcon from 'react-icons/lib/fa/shopping-cart'
+import LoginIcon from 'react-icons/lib/fa/sign-in'
+import AnnotationIcon from 'react-icons/lib/fa/align-left'
+import FileIcon from 'react-icons/lib/fa/file-text'
 
-const Link = Radium(L);
+const Link = Radium(L)
 
 const styles = {
   nav: {
@@ -34,7 +34,7 @@ const styles = {
   marginLeft: {
     marginLeft: '0.7rem',
   },
-};
+}
 
 const Nav = () => (
   <Row style={styles.nav}>
@@ -60,6 +60,6 @@ const Nav = () => (
       </Link>
     </Row>
   </Row>
-);
+)
 
-export default Radium(Nav);
+export default Radium(Nav)

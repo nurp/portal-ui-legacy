@@ -1,6 +1,6 @@
-import Relay from 'react-relay';
-import { tr, td, h } from 'react-hyperscript-helpers';
-import { Link } from 'react-router';
+import Relay from 'react-relay'
+import { tr, td, h } from 'react-hyperscript-helpers'
+import { Link } from 'react-router'
 
 const AnnotationTr = ({ node }) => (
   tr([
@@ -19,7 +19,7 @@ const AnnotationTr = ({ node }) => (
     td(node.classification),
     td(node.created_datetime),
   ])
-);
+)
 
 export default Relay.createContainer(AnnotationTr, {
   fragments: {
@@ -38,4 +38,4 @@ export default Relay.createContainer(AnnotationTr, {
       }
     `,
   },
-});
+})

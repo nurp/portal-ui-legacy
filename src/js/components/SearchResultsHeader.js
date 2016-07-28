@@ -1,6 +1,6 @@
-import React, { PropTypes } from 'react';
-import { withRouter } from 'react-router';
-import { Row, Column } from 'uikit/Flex';
+import React, { PropTypes } from 'react'
+import { withRouter } from 'react-router'
+import { Row, Column } from 'uikit/Flex'
 
 const SearchResultsHeader = ({ type, total, count, location }) => (
   <Row>
@@ -16,13 +16,13 @@ const SearchResultsHeader = ({ type, total, count, location }) => (
       </span>
     </Column>
   </Row>
-);
+)
 
 SearchResultsHeader.propTypes = {
   count: PropTypes.number,
   type: PropTypes.string,
   total: PropTypes.number,
   location: PropTypes.object,
-};
+}
 
-export default withRouter(SearchResultsHeader);
+export default withRouter(SearchResultsHeader)

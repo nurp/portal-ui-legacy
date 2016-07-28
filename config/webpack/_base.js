@@ -1,14 +1,14 @@
-import path from 'path';
-import webpack from 'webpack';
+import path from 'path'
+import webpack from 'webpack'
 
-import config from '../';
+import config from '../'
 
 const babelPlugins = config.get('globals').TEST_ENV === 'watch'
   ? []
   : [
     path.join(__dirname, 'plugins', 'babelRelayPlugin'),
     'react-hot-loader/babel',
-  ];
+  ]
 
 export default {
   target: 'web',
@@ -71,4 +71,4 @@ export default {
       __BASE__: JSON.stringify(config.get('globals').__BASE__),
     }),
   ],
-};
+}

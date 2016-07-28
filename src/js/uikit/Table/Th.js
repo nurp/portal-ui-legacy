@@ -1,5 +1,5 @@
 // Vendor
-import React, { PropTypes } from 'react';
+import React, { PropTypes } from 'react'
 
 /*----------------------------------------------------------------------------*/
 
@@ -10,17 +10,17 @@ const styles = {
     lineHeight: '20px',
     textAlign: 'left',
   },
-};
+}
 
 const Th = ({ style, children, ...props }) => (
   <th style={{ ...styles.th, ...style }} {...props}>{children}</th>
-);
+)
 
 Th.propTypes = {
   children: PropTypes.node,
   style: PropTypes.object,
-};
+}
 
 /*----------------------------------------------------------------------------*/
 
-export default Th;
+export default Th

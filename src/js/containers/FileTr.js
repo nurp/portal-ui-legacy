@@ -1,10 +1,10 @@
 // Vendor
-import React, { PropTypes } from 'react';
-import Relay from 'react-relay';
+import React, { PropTypes } from 'react'
+import Relay from 'react-relay'
 
 // Custom
-import { Tr } from 'uikit/Table';
-import model from 'models/fileTable';
+import { Tr } from 'uikit/Table'
+import model from 'models/fileTable'
 
 /*----------------------------------------------------------------------------*/
 
@@ -12,17 +12,17 @@ const FileTr = ({ node, style }) => (
   <Tr style={style}>
     {model.map(x => x.td(node))}
   </Tr>
-);
+)
 
 
 FileTr.propTypes = {
   node: PropTypes.object,
   style: PropTypes.object,
-};
+}
 
 /*----------------------------------------------------------------------------*/
 
-export { FileTr };
+export { FileTr }
 
 export default Relay.createContainer(FileTr, {
   fragments: {
@@ -42,4 +42,4 @@ export default Relay.createContainer(FileTr, {
       }
     `,
   },
-});
+})

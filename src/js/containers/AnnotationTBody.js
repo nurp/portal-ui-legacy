@@ -1,10 +1,10 @@
-import Relay from 'react-relay';
-import { tbody, h } from 'react-hyperscript-helpers';
+import Relay from 'react-relay'
+import { tbody, h } from 'react-hyperscript-helpers'
 
-import AnnotationTr from 'containers/AnnotationTr';
+import AnnotationTr from 'containers/AnnotationTr'
 
 export const AnnotationTBody = props => {
-  console.log(2, props);
+  console.log(2, props)
   return (
     tbody(
       props.edges.map(e => (
@@ -14,8 +14,8 @@ export const AnnotationTBody = props => {
         })
       ))
     )
-  );
-};
+  )
+}
 
 export default Relay.createContainer(AnnotationTBody, {
   fragments: {
@@ -28,4 +28,4 @@ export default Relay.createContainer(AnnotationTBody, {
       }
     `,
   },
-});
+})

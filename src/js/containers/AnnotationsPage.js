@@ -1,26 +1,26 @@
-import React, { PropTypes } from 'react';
-import Relay from 'react-relay';
-import SearchPage from 'components/SearchPage';
-import AnnotationTable from 'containers/AnnotationTable';
-import AnnotationsAggregations from 'containers/AnnotationsAggregations';
+import React, { PropTypes } from 'react'
+import Relay from 'react-relay'
+import SearchPage from 'components/SearchPage'
+import AnnotationTable from 'containers/AnnotationTable'
+import AnnotationsAggregations from 'containers/AnnotationsAggregations'
 
 const AnnotationsPage = ({ viewer }) => {
-  const Facets = <AnnotationsAggregations aggregations={viewer.annotations.aggregations} />;
-  const Results = <AnnotationTable hits={viewer.annotations.hits} />;
+  const Facets = <AnnotationsAggregations aggregations={viewer.annotations.aggregations} />
+  const Results = <AnnotationTable hits={viewer.annotations.hits} />
 
   return (
     <SearchPage
       Facets={Facets}
       Results={Results}
     />
-  );
-};
+  )
+}
 
 AnnotationsPage.propTypes = {
   viewer: PropTypes.object,
-};
+}
 
-export { AnnotationsPage };
+export { AnnotationsPage }
 
 export default Relay.createContainer(AnnotationsPage, {
   initialVariables: {
@@ -42,4 +42,4 @@ export default Relay.createContainer(AnnotationsPage, {
       }
     `,
   },
-});
+})

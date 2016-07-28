@@ -1,18 +1,18 @@
-import path from 'path';
-import config from '../';
-import { customLaunchers } from '../karma/ci';
+import path from 'path'
+import config from '../'
+import { customLaunchers } from '../karma/ci'
 
 const baseCapability = {
   tags: ['integration'],
   'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,
   build: process.env.TRAVIS_BUILD_NUMBER,
   'idle-timeout': 30000,
-};
+}
 
 const capabilities = Object.keys(customLaunchers).map(k => ({
   ...customLaunchers[k],
   ...baseCapability,
-}));
+}))
 
 export default {
 
@@ -160,8 +160,8 @@ export default {
   // Gets executed before test execution begins. At this point you can access all global
   // variables, such as `browser`. It is the perfect place to define custom commands.
   before: (capabilities, specs) => {
-    const chai = require('chai');
-    global.expect = chai.expect;
+    const chai = require('chai')
+    global.expect = chai.expect
   },
   //
   // Hook that gets executed before the suite starts
@@ -207,4 +207,4 @@ export default {
   // possible to defer the end of the process using a promise.
   // onComplete: function(exitCode) {
   // }
-};
+}

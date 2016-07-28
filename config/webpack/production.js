@@ -1,7 +1,7 @@
-import webpack from 'webpack';
+import webpack from 'webpack'
 // import CompressionPlugin from 'compression-webpack-plugin';
 
-import webpackConfig from './stage';
+import webpackConfig from './stage'
 
 export default {
   ...webpackConfig,
@@ -44,4 +44,4 @@ export default {
     //   minRatio: 0.8,
     // }),
   ],
-};
+}

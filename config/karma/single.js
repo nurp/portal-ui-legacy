@@ -1,5 +1,5 @@
 export default config => {
-  const base = require('./_base').default(config);
+  const base = require('./_base').default(config)
 
   config.set({
     ...base,
@@ -9,7 +9,7 @@ export default config => {
       ...config.mochaReporter,
       output: 'minimal',
     },
-  });
+  })
 
-  return config;
-};
+  return config
+}

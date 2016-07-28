@@ -1,9 +1,9 @@
-import modal from './modal';
-import relayLoading from './relayLoading';
+import modal from './modal'
+import relayLoading from './relayLoading'
 
 /*----------------------------------------------------------------------------*/
 
 export {
   modal,
   relayLoading,
-};
+}

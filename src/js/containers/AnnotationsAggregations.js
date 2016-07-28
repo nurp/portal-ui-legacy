@@ -1,10 +1,10 @@
-import Relay from 'react-relay';
-import { div, h } from 'react-hyperscript-helpers';
+import Relay from 'react-relay'
+import { div, h } from 'react-hyperscript-helpers'
 
-import TermFacet from 'components/TermFacet';
+import TermFacet from 'components/TermFacet'
 
 export const AnnotationsAggregations = props => {
-  const docType = 'annotations';
+  const docType = 'annotations'
   const facets = [
     'classification',
     'category',
@@ -13,7 +13,7 @@ export const AnnotationsAggregations = props => {
     'project__program__name',
     'project__project_id',
     'status',
-  ];
+  ]
   return div([
     facets.map(f => h(TermFacet, {
       key: `${docType}.${f}`,
@@ -22,8 +22,8 @@ export const AnnotationsAggregations = props => {
       params: props.relay.route.params,
       buckets: props.aggregations[f].buckets,
     })),
-  ]);
-};
+  ])
+}
 
 export default Relay.createContainer(AnnotationsAggregations, {
   fragments: {
@@ -74,4 +74,4 @@ export default Relay.createContainer(AnnotationsAggregations, {
       }
     `,
   },
-});
+})

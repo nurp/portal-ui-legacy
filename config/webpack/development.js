@@ -1,7 +1,7 @@
-import webpack from 'webpack';
+import webpack from 'webpack'
 
-import config from '../';
-import webpackConfig from './_base';
+import config from '../'
+import webpackConfig from './_base'
 
 const devServer = {
   contentBase: config.get('dir_src'),
@@ -14,7 +14,7 @@ const devServer = {
     modules: false,
   },
   publicPath: webpackConfig.output.publicPath,
-};
+}
 
 export default {
   ...webpackConfig,
@@ -32,4 +32,4 @@ export default {
     ...webpackConfig.plugins,
   ],
   devServer,
-};
+}

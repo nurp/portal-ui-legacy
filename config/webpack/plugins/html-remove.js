@@ -5,10 +5,10 @@ HtmlRemove.prototype.apply = compiler => {
       htmlPluginData.html = htmlPluginData.html.replace(
         /<!-- html:remove -->[\s\S]*?<!-- \/html:remove -->/g,
         ''
-      );
-      callback(null, htmlPluginData);
-    });
-  });
-};
+      )
+      callback(null, htmlPluginData)
+    })
+  })
+}
 
-export default HtmlRemove;
+export default HtmlRemove

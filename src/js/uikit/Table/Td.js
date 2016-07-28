@@ -1,5 +1,5 @@
 // Vendor
-import React, { PropTypes } from 'react';
+import React, { PropTypes } from 'react'
 
 /*----------------------------------------------------------------------------*/
 
@@ -8,17 +8,17 @@ const styles = {
     padding: '3px',
     border: '1px solid #ddd',
   },
-};
+}
 
 const Td = ({ style, children, ...props }) => (
   <td style={{ ...styles.td, ...style }} {...props}>{children}</td>
-);
+)
 
 Td.propTypes = {
   children: PropTypes.node,
   style: PropTypes.object,
-};
+}
 
 /*----------------------------------------------------------------------------*/
 
-export default Td;
+export default Td

@@ -1,12 +1,12 @@
-import path from 'path';
-import webpack from 'webpack';
-import HtmlRemove from './plugins/html-remove';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
+import path from 'path'
+import webpack from 'webpack'
+import HtmlRemove from './plugins/html-remove'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
 
-import config from '../';
-import webpackConfig from './_base';
+import config from '../'
+import webpackConfig from './_base'
 
-const LIBS_BUNDLE = 'libs';
+const LIBS_BUNDLE = 'libs'
 
 export default {
   ...webpackConfig,
@@ -33,4 +33,4 @@ export default {
     }),
     new HtmlRemove(),
   ],
-};
+}

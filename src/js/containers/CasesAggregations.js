@@ -1,28 +1,28 @@
-import React, { PropTypes } from 'react';
-import Relay from 'react-relay';
-import { caseFacets } from 'models/caseFacets';
-import TermFacet from 'components/TermFacet';
+import React, { PropTypes } from 'react'
+import Relay from 'react-relay'
+import { caseFacets } from 'models/caseFacets'
+import TermFacet from 'components/TermFacet'
 
-const docType = 'cases';
+const docType = 'cases'
 
 const CasesAggregations = props => (
   <div>
     {caseFacets.filter(f => f.facetType === 'terms').map(f =>
       <TermFacet
         key={`${docType}.${f.name}`}
-        pathname={`/files`}
+        pathname={'/files'}
         title={f.title}
         params={props.relay.route.params}
         buckets={((props.aggregations[f.name] || {}).buckets || [])}
       />
     )}
   </div>
-);
+)
 
 CasesAggregations.propTypes = {
   relay: PropTypes.object,
   aggregations: PropTypes.object,
-};
+}
 
 export default Relay.createContainer(CasesAggregations, {
   fragments: {
@@ -73,4 +73,4 @@ export default Relay.createContainer(CasesAggregations, {
       }
     `,
   },
-});
+})

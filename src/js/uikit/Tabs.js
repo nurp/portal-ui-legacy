@@ -1,21 +1,21 @@
 // Vendor
-import React, { Children, cloneElement, PropTypes } from 'react';
-import Radium from 'radium';
-import Color from 'color';
+import React, { Children, cloneElement, PropTypes } from 'react'
+import Radium from 'radium'
+import Color from 'color'
 
 // Custom
-import { Row, Column } from 'uikit/Flex';
-import theme from 'theme';
+import { Row, Column } from 'uikit/Flex'
+import theme from 'theme'
 
 /*----------------------------------------------------------------------------*/
 
-const borderStyle = `1px solid ${theme.greyScale4}`;
+const borderStyle = `1px solid ${theme.greyScale4}`
 
 const tabBorder = {
   borderLeft: borderStyle,
   borderRight: borderStyle,
   borderTop: borderStyle,
-};
+}
 
 const baseTabStyle = {
   padding: '1.2rem 1.8rem',
@@ -30,7 +30,7 @@ const baseTabStyle = {
   marginBottom: '-1px',
   transition: 'background-color 0.2s ease',
   borderRadius: '4px 4px 0 0',
-};
+}
 
 const styles = {
   tab: {
@@ -55,7 +55,7 @@ const styles = {
     border: borderStyle,
     backgroundColor: '#fff',
   },
-};
+}
 
 const Tabs = ({
   style,
@@ -75,7 +75,7 @@ const Tabs = ({
     </Row>
     <Column style={styles.content}>{children}</Column>
   </Column>
-);
+)
 
 Tabs.propTypes = {
   children: PropTypes.node,
@@ -85,8 +85,8 @@ Tabs.propTypes = {
   ]),
   style: PropTypes.object,
   tabs: PropTypes.node,
-};
+}
 
 /*----------------------------------------------------------------------------*/
 
-export default Radium(Tabs);
+export default Radium(Tabs)

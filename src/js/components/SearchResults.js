@@ -1,12 +1,12 @@
 // Vendor
-import React, { PropTypes } from 'react';
-import { withRouter } from 'react-router';
+import React, { PropTypes } from 'react'
+import { withRouter } from 'react-router'
 
 // Custom
-import { Row, Column } from 'uikit/Flex';
-import Card from 'uikit/Card';
-import SearchResultsHeader from 'components/SearchResultsHeader';
-import SearchResultsFooter from 'components/SearchResultsFooter';
+import { Row, Column } from 'uikit/Flex'
+import Card from 'uikit/Card'
+import SearchResultsHeader from 'components/SearchResultsHeader'
+import SearchResultsFooter from 'components/SearchResultsFooter'
 
 /*----------------------------------------------------------------------------*/
 
@@ -17,7 +17,7 @@ const styles = {
   tableContainer: {
     overflow: 'scroll',
   },
-};
+}
 
 const SearchResults = ({
   type,
@@ -40,7 +40,7 @@ const SearchResults = ({
       <SearchResultsFooter Pagination={Pagination} />
     </Column>
   </Card>
-);
+)
 
 SearchResults.propTypes = {
   type: PropTypes.string,
@@ -48,6 +48,6 @@ SearchResults.propTypes = {
   count: PropTypes.number,
   Pagination: PropTypes.node,
   Table: PropTypes.node,
-};
+}
 
-export default withRouter(SearchResults);
+export default withRouter(SearchResults)

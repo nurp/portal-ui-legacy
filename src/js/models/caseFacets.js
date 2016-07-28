@@ -75,4 +75,4 @@ export const caseFacets = [
     collapsed: false,
     facetType: 'terms',
   },
-];
+]

@@ -1,11 +1,11 @@
 // Vendor
-import React, { PropTypes } from 'react';
-import Radium from 'radium';
-import Color from 'color';
+import React, { PropTypes } from 'react'
+import Radium from 'radium'
+import Color from 'color'
 
 // Custom
-import theme from 'theme';
-import { center } from 'theme/mixins';
+import theme from 'theme'
+import { center } from 'theme/mixins'
 
 /*----------------------------------------------------------------------------*/
 
@@ -26,13 +26,13 @@ const styles = {
   },
   margin(left, right) {
     if (left) {
-      return { marginLeft: '0.5rem' };
+      return { marginLeft: '0.5rem' }
     } else if (right) {
-      return { marginRight: '0.5rem' };
+      return { marginRight: '0.5rem' }
     }
-    return {};
+    return {}
   },
-};
+}
 
 const Button = ({ style, children, rightIcon, leftIcon, ...props }) => (
   <button style={{ ...styles.button, ...style }} {...props}>
@@ -40,7 +40,7 @@ const Button = ({ style, children, rightIcon, leftIcon, ...props }) => (
     <span style={{ ...styles.margin(leftIcon, rightIcon), ...center }}>{children}</span>
     {rightIcon}
   </button>
-);
+)
 
 Button.propTypes = {
   children: PropTypes.node,
@@ -48,8 +48,8 @@ Button.propTypes = {
   leftIcon: PropTypes.node,
   rightIcon: PropTypes.node,
   onClick: PropTypes.func,
-};
+}
 
 /*----------------------------------------------------------------------------*/
 
-export default Radium(Button);
+export default Radium(Button)

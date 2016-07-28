@@ -1,15 +1,15 @@
 // Vendor
-import React, { PropTypes } from 'react';
-import Radium from 'radium';
-import LeftArrow from 'react-icons/lib/fa/long-arrow-left';
-import ShoppingCartIcon from 'react-icons/lib/fa/shopping-cart';
-import DownloadIcon from 'react-icons/lib/fa/download';
+import React, { PropTypes } from 'react'
+import Radium from 'radium'
+import LeftArrow from 'react-icons/lib/fa/long-arrow-left'
+import ShoppingCartIcon from 'react-icons/lib/fa/shopping-cart'
+import DownloadIcon from 'react-icons/lib/fa/download'
 
 // Custom
-import { Row, Column } from 'uikit/Flex';
-import Button from 'uikit/Button';
-import Info from 'uikit/Alerts/Info';
-import theme from 'theme';
+import { Row, Column } from 'uikit/Flex'
+import Button from 'uikit/Button'
+import Info from 'uikit/Alerts/Info'
+import theme from 'theme'
 
 /*----------------------------------------------------------------------------*/
 
@@ -27,7 +27,7 @@ const styles = {
     marginLeft: '18px',
     width: `calc(100% - ${theme.facetsPanelWidth})`,
   },
-};
+}
 
 const Files = ({
   Results,
@@ -59,14 +59,14 @@ const Files = ({
       {Results}
     </Column>
   </Row>
-);
+)
 
 Files.propTypes = {
   Results: PropTypes.node,
   Facets: PropTypes.node,
   location: PropTypes.object,
-};
+}
 
 /*----------------------------------------------------------------------------*/
 
-export default Radium(Files);
+export default Radium(Files)

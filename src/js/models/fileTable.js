@@ -1,22 +1,22 @@
 // Vendor
-import React from 'react';
-import { Link } from 'react-router';
-import ShoppingCartIcon from 'react-icons/lib/fa/shopping-cart';
-import LockedIcon from 'react-icons/lib/fa/lock';
-import UnlockedIcon from 'react-icons/lib/fa/unlock-alt';
+import React from 'react'
+import { Link } from 'react-router'
+import ShoppingCartIcon from 'react-icons/lib/fa/shopping-cart'
+import LockedIcon from 'react-icons/lib/fa/lock'
+import UnlockedIcon from 'react-icons/lib/fa/unlock-alt'
 
 // Custom
-import Button from 'uikit/Button';
-import { Th, Td } from 'uikit/Table';
-import { formatFileSize } from 'utils';
-import AddToCartButtonSingle from 'components/AddToCartButtonSingle';
+import Button from 'uikit/Button'
+import { Th, Td } from 'uikit/Table'
+import { formatFileSize } from 'utils'
+import AddToCartButtonSingle from 'components/AddToCartButtonSingle'
 
 /*----------------------------------------------------------------------------*/
 
 function getAnnotations(file) {
   return file.annotations.length === 1
     ? <a href={`annotations/${file.annotations[0].annotation_id}`}>1</a>
-    : <a>more annotations withfilter </a>;
+    : <a>more annotations withfilter </a>
 }
 
 const fileTable = [
@@ -105,9 +105,9 @@ const fileTable = [
     id: 'annotations.annotation_id',
     td: file => {
       if (file.annotations) {
-        return file.annotations.length ? getAnnotations(file) : 0;
+        return file.annotations.length ? getAnnotations(file) : 0
       }
-      return <Td key="annotations.annotation_id"><a>test</a></Td>;
+      return <Td key="annotations.annotation_id"><a>test</a></Td>
     },
   },
   {
@@ -131,8 +131,8 @@ const fileTable = [
     sortable: false,
     hidden: true,
   },
-];
+]
 
 /*----------------------------------------------------------------------------*/
 
-export default fileTable;
+export default fileTable

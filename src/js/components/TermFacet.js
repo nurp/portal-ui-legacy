@@ -1,14 +1,14 @@
 // Vendor
-import React, { PropTypes } from 'react';
-import { compose, withState, mapProps } from 'recompose';
-import { Link } from 'react-router';
-import AngleIcon from 'react-icons/lib/fa/angle-down';
+import React, { PropTypes } from 'react'
+import { compose, withState, mapProps } from 'recompose'
+import { Link } from 'react-router'
+import AngleIcon from 'react-icons/lib/fa/angle-down'
 
 // Custom
-import CountBubble from 'components/CountBubble';
-import { Row, Column } from 'uikit/Flex';
-import A from 'uikit/A';
-import theme from 'theme';
+import CountBubble from 'components/CountBubble'
+import { Row, Column } from 'uikit/Flex'
+import A from 'uikit/A'
+import theme from 'theme'
 
 /*----------------------------------------------------------------------------*/
 
@@ -42,7 +42,7 @@ const styles = {
   bottomRow: {
     padding: '0.5rem',
   },
-};
+}
 
 const mergeFilters = ({ filterContent, value, field }) => ({
   op: 'and',
@@ -53,7 +53,7 @@ const mergeFilters = ({ filterContent, value, field }) => ({
       content: { field, value },
     },
   ],
-});
+})
 
 const TermFacet = ({
   title,
@@ -64,7 +64,7 @@ const TermFacet = ({
   toggleCollapsed,
   toggleShowMore,
 }) => {
-  const dotField = title.replace(/__/g, '.');
+  const dotField = title.replace(/__/g, '.')
 
   return (
     <Column style={styles.container}>
@@ -79,7 +79,7 @@ const TermFacet = ({
               filterContent: (params.filters || {}).content || [],
               value: [bucket.key],
               field: dotField,
-            });
+            })
 
             return (
               <Row key={bucket.key} style={styles.bucketRow}>
@@ -99,7 +99,7 @@ const TermFacet = ({
                 </Link>
                 <CountBubble>{bucket.doc_count}</CountBubble>
               </Row>
-            );
+            )
           })}
 
           {buckets.length > 5 &&
@@ -115,8 +115,8 @@ const TermFacet = ({
         </Column>
       }
     </Column>
-  );
-};
+  )
+}
 
 TermFacet.propTypes = {
   title: PropTypes.string,
@@ -127,7 +127,7 @@ TermFacet.propTypes = {
   state: PropTypes.object, // TODO: make shape
   toggleCollapsed: PropTypes.func,
   toggleShowMore: PropTypes.func,
-};
+}
 
 const enhance = compose(
   withState('state', 'setState', { collapsed: false, showingMore: false }),
@@ -136,8 +136,8 @@ const enhance = compose(
     toggleShowMore: () => setState(state => ({ showingMore: !state.showingMore })),
     ...rest,
   }))
-);
+)
 
 /*----------------------------------------------------------------------------*/
 
-export default enhance(TermFacet);
+export default enhance(TermFacet)

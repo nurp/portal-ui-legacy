@@ -1,8 +1,8 @@
-import Relay from 'react-relay';
-import { div } from 'react-hyperscript-helpers';
+import Relay from 'react-relay'
+import { div } from 'react-hyperscript-helpers'
 
 export const AnnotationPage = props => {
-  console.log('AnnotationPage', props);
+  console.log('AnnotationPage', props)
   return div([
     div(props.node.annotation_id),
     div(props.node.entity_id),
@@ -15,8 +15,8 @@ export const AnnotationPage = props => {
     div(props.node.created_datetime),
     div(props.node.status),
     div(props.node.notes),
-  ]);
-};
+  ])
+}
 
 export default Relay.createContainer(AnnotationPage, {
   fragments: {
@@ -38,4 +38,4 @@ export default Relay.createContainer(AnnotationPage, {
       }
     `,
   },
-});
+})

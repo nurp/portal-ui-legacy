@@ -1,6 +1,6 @@
-import webpack from '../webpack/development';
+import webpack from '../webpack/development'
 
-const KARMA_ENTRY_FILE = 'karma.entry.js';
+const KARMA_ENTRY_FILE = 'karma.entry.js'
 
 export default config => {
   config.set({
@@ -39,7 +39,7 @@ export default config => {
       ...webpack.devServer,
       quiet: true,
     },
-  });
+  })
 
-  return config;
-};
+  return config
+}

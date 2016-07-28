@@ -1,8 +1,8 @@
 // Vendor
-import React, { PropTypes } from 'react';
+import React, { PropTypes } from 'react'
 
 // Custom
-import uikit from './PropTypes';
+import uikit from './PropTypes'
 
 /*----------------------------------------------------------------------------*/
 
@@ -21,7 +21,7 @@ const styles = {
     backgroundColor: 'rgba(255, 255, 255, 0.8)',
     transition: 'opacity 0.35s ease',
   },
-};
+}
 
 const Overlay = ({ children, style, show, ...props }) => (
   <div
@@ -34,13 +34,13 @@ const Overlay = ({ children, style, show, ...props }) => (
   >
     {children}
   </div>
-);
+)
 
 Overlay.propTypes = {
   ...uikit,
   show: PropTypes.bool,
-};
+}
 
 /*----------------------------------------------------------------------------*/
 
-export default Overlay;
+export default Overlay

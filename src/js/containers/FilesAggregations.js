@@ -1,14 +1,14 @@
 // Vendor
-import React, { PropTypes } from 'react';
-import Relay from 'react-relay';
+import React, { PropTypes } from 'react'
+import Relay from 'react-relay'
 
 // Custom
-import { fileFacets } from 'models/fileFacets';
-import TermFacet from 'components/TermFacet';
+import { fileFacets } from 'models/fileFacets'
+import TermFacet from 'components/TermFacet'
 
 /*----------------------------------------------------------------------------*/
 
-const docType = 'files';
+const docType = 'files'
 
 const FilesAggregations = props => (
   <div>
@@ -22,14 +22,14 @@ const FilesAggregations = props => (
       />
     )}
   </div>
-);
+)
 
 FilesAggregations.propTypes = {
   relay: PropTypes.object,
   aggregations: PropTypes.object,
-};
+}
 
-export { FilesAggregations };
+export { FilesAggregations }
 
 export default Relay.createContainer(FilesAggregations, {
   fragments: {
@@ -74,4 +74,4 @@ export default Relay.createContainer(FilesAggregations, {
       }
     `,
   },
-});
+})

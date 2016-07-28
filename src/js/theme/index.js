@@ -21,4 +21,4 @@ export default {
    */
 
   facetsPanelWidth: '35rem',
-};
+}

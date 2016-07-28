@@ -1,9 +1,9 @@
-import { Route } from 'react-router';
-import { h } from 'react-hyperscript-helpers';
+import { Route } from 'react-router'
+import { h } from 'react-hyperscript-helpers'
 
-import FilesPage from 'containers/FilesPage';
-import { prepareViewerParams } from 'routes/utils';
-import { viewerQuery } from 'routes/queries';
+import FilesPage from 'containers/FilesPage'
+import { prepareViewerParams } from 'routes/utils'
+import { viewerQuery } from 'routes/queries'
 
 const FilesRoute = h(Route, {
   path: '/files',
@@ -16,9 +16,9 @@ const FilesRoute = h(Route, {
       replace({
         pathname: '/files',
         query: { facetTab: 'cases' },
-      });
+      })
     }
   },
-});
+})
 
-export default FilesRoute;
+export default FilesRoute

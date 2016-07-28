@@ -1,11 +1,11 @@
-import React from 'react';
-import Radium from 'radium';
-import { Link } from 'react-router';
-import { Row, Column } from 'uikit/Flex';
-import theme from 'theme';
-import { center } from 'theme/mixins';
-import Color from 'color';
-import Nav from 'components/Nav';
+import React from 'react'
+import Radium from 'radium'
+import { Link } from 'react-router'
+import { Row, Column } from 'uikit/Flex'
+import theme from 'theme'
+import { center } from 'theme/mixins'
+import Color from 'color'
+import Nav from 'components/Nav'
 
 const styles = {
   header: {
@@ -51,7 +51,7 @@ const styles = {
     marginRight: '15px',
     display: 'inline-block',
   },
-};
+}
 
 const Header = () => (
   <Column style={styles.header}>
@@ -78,6 +78,6 @@ const Header = () => (
     </Row>
     <Nav />
   </Column>
-);
+)
 
-export default Radium(Header);
+export default Radium(Header)

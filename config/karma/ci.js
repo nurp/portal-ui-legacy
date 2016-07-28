@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require('path')
 
 // Browsers to run on Sauce Labs
 // Check out https://saucelabs.com/platforms for all browser/OS combos
@@ -57,10 +57,10 @@ export const customLaunchers = {
     version: '13',
     platform: 'Windows 10',
   },
-};
+}
 
 export default config => {
-  const single = require('./single').default(config);
+  const single = require('./single').default(config)
 
   config.set({
     ...single,
@@ -110,7 +110,7 @@ export default config => {
         ],
       },
     },
-  });
+  })
 
-  return config;
-};
+  return config
+}

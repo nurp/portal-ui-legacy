@@ -56,6 +56,6 @@ export const fileFacets = [
     facetType: 'terms',
     removable: false,
   },
-];
+]
 
-export default fileFacets;
+export default fileFacets

@@ -1,5 +1,5 @@
 // Vendor
-import React, { PropTypes } from 'react';
+import React, { PropTypes } from 'react'
 
 /*----------------------------------------------------------------------------*/
 
@@ -9,13 +9,13 @@ const baseStyle = {
   boxSizing: 'border-box',
   position: 'relative',
   outline: 'none',
-};
+}
 
 const Row = ({ flex, style, children, ...props }) => (
   <div style={{ ...baseStyle, flex, ...style }} {...props}>
     {children}
   </div>
-);
+)
 
 Row.propTypes = {
   children: PropTypes.node,
@@ -24,8 +24,8 @@ Row.propTypes = {
     PropTypes.string,
     PropTypes.number,
   ]),
-};
+}
 
 /*----------------------------------------------------------------------------*/
 
-export default Row;
+export default Row
