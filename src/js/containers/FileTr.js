@@ -1,14 +1,21 @@
+// Vendor
 import React, { PropTypes } from 'react';
 import Relay from 'react-relay';
 import { Link } from 'react-router';
-import Tr from 'uikit/Table/Tr';
-import Td from 'uikit/Table/Td';
 import LockedIcon from 'react-icons/lib/fa/lock';
 import UnlockedIcon from 'react-icons/lib/fa/unlock-alt';
 
+// Custom
+import Tr from 'uikit/Table/Tr';
+import Td from 'uikit/Table/Td';
+import model from 'models/fileTable';
+
+/*----------------------------------------------------------------------------*/
+
 const FileTr = ({ node, style }) => (
   <Tr style={style}>
-    <Td>
+    {model.map(x => <Td key={x.id}>{x.td(node)}</Td>)}
+    {/*<Td>
       {node.access === 'open' ? <UnlockedIcon /> : <LockedIcon />}
       {node.access}
     </Td>
@@ -19,7 +26,7 @@ const FileTr = ({ node, style }) => (
     <Td>{[...new Set(node.cases.map(c => c.project.project_id))]}</Td>
     <Td>{node.data_category}</Td>
     <Td>{node.data_format}</Td>
-    <Td>{node.file_size}B</Td>
+    <Td>{node.file_size}B</Td>*/}
   </Tr>
 );
 
@@ -28,6 +35,8 @@ FileTr.propTypes = {
   node: PropTypes.object,
   style: PropTypes.object,
 };
+
+/*----------------------------------------------------------------------------*/
 
 export { FileTr };
 

@@ -1,22 +1,20 @@
+// Vendor
 import React, { PropTypes } from 'react';
 import Relay from 'react-relay';
+
+// Custom
 import FileTBody from 'containers/FileTBody';
 import Pagination from 'containers/Pagination';
 import SearchResults from 'components/SearchResults';
-import Table from 'uikit/Table';
-//
+import Table, { Th } from 'uikit/Table';
+import model from 'models/fileTable';
+
+/*----------------------------------------------------------------------------*/
+
 const FileTable = props => {
   const TableComponent = (
     <Table
-      columns={[
-        'Access',
-        'Name',
-        'Cases',
-        'Projects',
-        'Category',
-        'Format',
-        'Size',
-      ]}
+      headings={model.map(x => x.th || <Th>{x.name}</Th>)}
       body={<FileTBody edges={props.hits.edges} />}
     />
   );
@@ -35,6 +33,8 @@ const FileTable = props => {
 FileTable.propTypes = {
   hits: PropTypes.object,
 };
+
+/*----------------------------------------------------------------------------*/
 
 export { FileTable };
 

@@ -20,7 +20,7 @@ const styles = {
     fontSize: '1.2rem',
   },
   logo: {
-    background: 'url(/src/images/NIH-GDC-Legacy-Archive.svg) no-repeat 10px 7px',
+    background: 'url(/images/NIH-GDC-Legacy-Archive.svg) no-repeat 10px 7px',
     minWidth: '275px',
     height: '47px',
     textIndent: '-10000px',
@@ -44,7 +44,7 @@ const styles = {
     },
   },
   activePortalLogo: {
-    background: 'url("/src/images/GDC-App-data-portal.svg") no-repeat 0 0',
+    background: 'url(/images/GDC-App-data-portal.svg) no-repeat 0 0',
     height: '40px',
     width: '4rem',
     textIndent: '-10000px',

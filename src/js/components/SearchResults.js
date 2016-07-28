@@ -1,9 +1,23 @@
+// Vendor
 import React, { PropTypes } from 'react';
 import { withRouter } from 'react-router';
+
+// Custom
 import { Row, Column } from 'uikit/Flex';
 import Card from 'uikit/Card';
 import SearchResultsHeader from 'components/SearchResultsHeader';
 import SearchResultsFooter from 'components/SearchResultsFooter';
+
+/*----------------------------------------------------------------------------*/
+
+const styles = {
+  headerContainer: {
+    padding: '1rem',
+  },
+  tableContainer: {
+    overflow: 'scroll',
+  },
+};
 
 const SearchResults = ({
   type,
@@ -14,7 +28,7 @@ const SearchResults = ({
 }) => (
   <Card>
     <Column>
-      <Row style={{ padding: '1rem' }}>
+      <Row style={styles.headerContainer}>
         <SearchResultsHeader
           type={type}
           count={count}
@@ -22,7 +36,7 @@ const SearchResults = ({
           Pagination={Pagination}
         />
       </Row>
-      <Row>{Table}</Row>
+      <Row style={styles.tableContainer}>{Table}</Row>
       <SearchResultsFooter Pagination={Pagination} />
     </Column>
   </Card>

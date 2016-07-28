@@ -1,6 +1,9 @@
 // Vendor
 import React, { PropTypes } from 'react';
 
+// Custom
+import Tr from './Tr';
+
 /*----------------------------------------------------------------------------*/
 
 const styles = {
@@ -9,25 +12,21 @@ const styles = {
     borderCollapse: 'collapse',
     borderSpacing: 0,
   },
-  th: {
-    backgroundColor: '#dedddd',
-    padding: '3px',
-    lineHeight: '20px',
-    textAlign: 'left',
-  },
 };
 
-const Table = ({ style, body, columns, ...props }) => (
+const Table = ({ style, body, headings, ...props }) => (
   <table style={{ ...styles.table, ...style }} {...props}>
     <thead>
-      <tr>{columns.map(x => <th style={styles.th} key={x}>{x}</th>)}</tr>
+      <Tr>
+        {headings}
+      </Tr>
     </thead>
     {body}
   </table>
 );
 
 Table.propTypes = {
-  columns: PropTypes.node,
+  headings: PropTypes.node,
   body: PropTypes.node,
   style: PropTypes.object,
 };

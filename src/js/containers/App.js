@@ -4,7 +4,7 @@ import Radium, { Style } from 'radium';
 import { connect } from 'react-redux';
 
 // Custom
-import { Row, Column } from 'uikit/Flex';
+import { Column } from 'uikit/Flex';
 import Overlay from 'uikit/Overlay';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
@@ -16,9 +16,6 @@ const styles = {
   wrapper: {
     minHeight: '100vh',
   },
-  main: {
-    padding: '2rem 2.5rem 13rem',
-  },
 };
 
 const App = props => (
@@ -27,7 +24,7 @@ const App = props => (
     <Overlay show={props.relayLoading}>TODO: Insert loading spinner / message here</Overlay>
     <Column style={styles.wrapper}>
       <Header />
-      <Row style={styles.main}>{props.children}</Row>
+      {props.children}
       <Footer config={{}} />
     </Column>
   </div>
@@ -38,11 +35,6 @@ App.propTypes = {
   relayLoading: PropTypes.bool,
 };
 
-function mstp(state) {
-  console.log('the state is', state);
-  return { relayLoading: state.relayLoading };
-}
-
 /*----------------------------------------------------------------------------*/
 
-export default Radium(connect(mstp)(App));
+export default Radium(connect(state => ({ relayLoading: state.relayLoading }))(App));
