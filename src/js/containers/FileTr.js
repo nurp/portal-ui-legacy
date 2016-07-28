@@ -1,32 +1,16 @@
 // Vendor
 import React, { PropTypes } from 'react';
 import Relay from 'react-relay';
-import { Link } from 'react-router';
-import LockedIcon from 'react-icons/lib/fa/lock';
-import UnlockedIcon from 'react-icons/lib/fa/unlock-alt';
 
 // Custom
-import Tr from 'uikit/Table/Tr';
-import Td from 'uikit/Table/Td';
+import { Tr } from 'uikit/Table';
 import model from 'models/fileTable';
 
 /*----------------------------------------------------------------------------*/
 
 const FileTr = ({ node, style }) => (
   <Tr style={style}>
-    {model.map(x => <Td key={x.id}>{x.td(node)}</Td>)}
-    {/*<Td>
-      {node.access === 'open' ? <UnlockedIcon /> : <LockedIcon />}
-      {node.access}
-    </Td>
-    <Td>
-      <Link to={{ pathname: `/files/${node.file_id}` }}>{node.file_name}</Link>
-    </Td>
-    <Td>{node.cases.length}</Td>
-    <Td>{[...new Set(node.cases.map(c => c.project.project_id))]}</Td>
-    <Td>{node.data_category}</Td>
-    <Td>{node.data_format}</Td>
-    <Td>{node.file_size}B</Td>*/}
+    {model.map(x => x.td(node))}
   </Tr>
 );
 

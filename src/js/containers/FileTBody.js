@@ -1,7 +1,12 @@
+// Vendor
 import Relay from 'react-relay';
 import { tbody, h } from 'react-hyperscript-helpers';
+
+// Custom
 import theme from 'theme';
 import FileTr from 'containers/FileTr';
+
+/*----------------------------------------------------------------------------*/
 
 export const FileTBody = props => {
   console.log(2, props);

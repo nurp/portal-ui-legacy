@@ -1,11 +1,15 @@
 // Vendor
 import React from 'react';
 import ShoppingCartIcon from 'react-icons/lib/fa/shopping-cart';
+import { Link } from 'react-router';
+import LockedIcon from 'react-icons/lib/fa/lock';
+import UnlockedIcon from 'react-icons/lib/fa/unlock-alt';
 // import _ from 'lodash';
 
 // Custom
 import Button from 'uikit/Button';
-import { Th } from 'uikit/Table';
+import { Th, Td } from 'uikit/Table';
+import theme from 'theme';
 
 /*----------------------------------------------------------------------------*/
 
@@ -19,67 +23,91 @@ const fileTable = [
   {
     id: 'file_actions',
     th:
-      <Th>
+      <Th key="file_actions">
         <Button style={{ padding: '3px 5px', margin: '0 auto' }}>
           <ShoppingCartIcon />
         </Button>
       </Th>,
-    td: () => <div>add-to-cart-single-icon</div>,
+    td: () =>
+      <Td key="file_actions">
+        <Button
+          style={{
+            padding: '3px 5px',
+            margin: '0 auto',
+            backgroundColor: 'white',
+            color: theme.greyScale2,
+            border: `1px solid ${theme.greyScale4}`,
+          }}
+        >
+          <ShoppingCartIcon />
+        </Button>
+      </Td>,
   },
   {
     name: 'File UUID',
     id: 'file_id',
-    td: file => <a href={`files/${file.file_id}`}>{file.file_id}</a>,
+    td: file =>
+      <Td key="file_id">
+        <Link to={{ pathname: `/files/${file.file_id}` }}>
+          {file.file_id}
+        </Link>
+      </Td>,
     sortable: true,
     hidden: true,
   },
   {
     name: 'File Submitter ID',
     id: 'submitter_id',
-    td: file => file.submitter_id || '--',
+    td: file => <Td key="submitter_id">{file.submitter_id || '--'}</Td>,
     sortable: true,
     hidden: true,
   },
   {
     name: 'Access',
     id: 'access',
-    td: file => file.access,
+    td: file =>
+      <Td key="access">
+        {file.access === 'open' ? <UnlockedIcon /> : <LockedIcon />}
+        {file.access}
+      </Td>,
     sortable: true,
   },
   {
     name: 'File Name',
     id: 'file_name',
-    td: file => <a href={`files/${file.file_id}`}>{file.file_name}</a>,
+    td: file => <Td key="file_name"><a href={`files/${file.file_id}`}>{file.file_name}</a></Td>,
     sortable: true,
   },
   {
     name: 'Cases',
     id: 'cases.case_id',
-    td: file => file.cases.length,
+    td: file => <Td key="cases.case_id">{file.cases.length}</Td>,
   },
-  // {
-  //   name: 'Project',
-  //   id: 'cases.project.project_id',
-  //   // TODO: use Set, [].map
-  //   td: row => _.unique(_.map(row.cases, p => p.project.project_id)).join('<br>') || '--',
-  //   sortable: true,
-  // },
+  {
+    name: 'Project',
+    id: 'cases.project.project_id',
+    td: file =>
+      <Td key="cases.project.project_id">
+        {[...new Set(file.cases.map(c => c.project.project_id))]}
+      </Td>,
+    sortable: true,
+  },
   {
     name: 'Data Category',
     id: 'data_category',
-    td: file => file.data_category || '--',
+    td: file => <Td key="data_category">{file.data_category || '--'}</Td>,
     sortable: true,
   },
   {
     name: 'Data Format',
     id: 'data_format',
-    td: file => file.data_format || '--',
+    td: file => <Td key="data_format">{file.data_format || '--'}</Td>,
     sortable: true,
   },
   {
     name: 'Size',
     id: 'file_size',
-    td: file => file.file_size,
+    td: file => <Td key="file_size">{file.file_size || '--'}</Td>,
     sortable: true,
   },
   {
@@ -89,27 +117,27 @@ const fileTable = [
       if (file.annotations) {
         return file.annotations.length ? getAnnotations(file) : 0;
       }
-      return <a>test</a>;
+      return <Td key="annotations.annotation_id"><a>test</a></Td>;
     },
   },
   {
     name: 'Data Type',
     id: 'data_type',
-    td: file => file.data_type,
+    td: file => <Td key="data_type">{file.data_type || '--'}</Td>,
     sortable: false,
     hidden: true,
   },
   {
     name: 'Experimental Strategy',
     id: 'experimental_strategy',
-    td: file => file.experimental_strategy,
+    td: file => <Td key="experimental_strategy">{file.experimental_strategy || '--'}</Td>,
     sortable: false,
     hidden: true,
   },
   {
     name: 'Platform',
     id: 'platform',
-    td: file => file.platform || '--',
+    td: file => <Td key="platform">{file.platform || '--'}</Td>,
     sortable: false,
     hidden: true,
   },

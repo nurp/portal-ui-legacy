@@ -1,7 +1,12 @@
+// Vendor
 import Relay from 'react-relay';
 import { Link } from 'react-router';
 import { div, h } from 'react-hyperscript-helpers';
+
+// Custom
 import { prepareJsonParam } from 'routes/utils';
+
+/*----------------------------------------------------------------------------*/
 
 export const Pagination = props => {
   console.log('Pagination', props);

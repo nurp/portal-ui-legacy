@@ -14,7 +14,7 @@ import model from 'models/fileTable';
 const FileTable = props => {
   const TableComponent = (
     <Table
-      headings={model.map(x => x.th || <Th>{x.name}</Th>)}
+      headings={model.map(x => x.th || <Th key={x.id}>{x.name}</Th>)}
       body={<FileTBody edges={props.hits.edges} />}
     />
   );

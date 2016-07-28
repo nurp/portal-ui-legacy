@@ -1,10 +1,15 @@
+// Vendor
 import React, { PropTypes } from 'react';
 import Relay from 'react-relay';
+
+// Custom
 import CasesAggregations from 'containers/CasesAggregations';
 import FilesAggregations from 'containers/FilesAggregations';
 import FileTable from 'containers/FileTable';
 import FileFacets from 'components/FileFacets';
 import SearchPage from 'components/SearchPage';
+
+/*----------------------------------------------------------------------------*/
 
 const FilesPage = props => {
   const Aggregations = {

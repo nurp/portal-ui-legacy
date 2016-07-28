@@ -1,7 +1,12 @@
+// Vendor
 import React, { PropTypes } from 'react';
 import Relay from 'react-relay';
+
+// Custom
 import { fileFacets } from 'models/fileFacets';
 import TermFacet from 'components/TermFacet';
+
+/*----------------------------------------------------------------------------*/
 
 const docType = 'files';
 
