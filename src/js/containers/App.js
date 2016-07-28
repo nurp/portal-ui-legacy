@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 // Custom
 import { Column } from 'uikit/Flex'
 import Overlay from 'uikit/Overlay'
+import Notification from 'uikit/Notification'
 import Header from 'components/Header'
 import Footer from 'components/Footer'
 import global from 'theme/global'
@@ -18,13 +19,16 @@ const styles = {
   },
 }
 
-const App = props => (
+const App = ({ relayLoading, notification, children }) => (
   <div>
     <Style rules={global} />
-    <Overlay show={props.relayLoading}>TODO: Insert loading spinner / message here</Overlay>
+    <Overlay show={relayLoading}>TODO: Insert loading spinner / message here</Overlay>
+    <Notification action={notification.action}>
+      {notification.component}
+    </Notification>
     <Column style={styles.wrapper}>
       <Header />
-      {props.children}
+      {children}
       <Footer config={{}} />
     </Column>
   </div>
@@ -33,8 +37,16 @@ const App = props => (
 App.propTypes = {
   children: PropTypes.node,
   relayLoading: PropTypes.bool,
+  notification: PropTypes.object,
+}
+
+function mapStateToProps(state) {
+  return {
+    relayLoading: state.relayLoading,
+    notification: state.notification,
+  }
 }
 
 /*----------------------------------------------------------------------------*/
 
-export default Radium(connect(state => ({ relayLoading: state.relayLoading }))(App))
+export default Radium(connect(mapStateToProps)(App))

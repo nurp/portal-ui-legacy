@@ -27,7 +27,8 @@
     "react-router-relay": "^0.13.2",
     "recompose": "^0.20.2",
     "redux": "^3.5.2",
-    "redux-persist": "^3.2.2"
+    "redux-persist": "^3.2.2",
+    "redux-thunk": "^2.1.0"
   },
   "devDependencies": {
     "babel-cli": "^6.10.1",

@@ -3,16 +3,16 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Radium from 'radium'
 import { Link as L } from 'react-router'
-import ShoppingCartIcon from 'react-icons/lib/fa/shopping-cart'
 import LoginIcon from 'react-icons/lib/fa/sign-in'
 import AnnotationIcon from 'react-icons/lib/fa/align-left'
 import FileIcon from 'react-icons/lib/fa/file-text'
+import Color from 'color'
 
 // Custom
 import { Row } from 'uikit/Flex'
 import theme from 'theme'
 import { center } from 'theme/mixins'
-import Color from 'color'
+import CartLink from 'components/CartLink'
 
 /*----------------------------------------------------------------------------*/
 
@@ -30,7 +30,7 @@ const styles = {
     textDecoration: 'none',
     transition: 'background-color 0.2s ease',
     ':hover': {
-      backgroundColor: Color(theme.$greyScale2).darken(0.5).rgbString(),
+      backgroundColor: Color(theme.greyScale2).darken(0.5).rgbString(),
     },
     ...center,
   },
@@ -60,20 +60,7 @@ const Nav = () => (
         <LoginIcon style={styles.faded} />
         <span style={styles.marginLeft}>Login</span>
       </a>
-      <Link to="/cart" style={styles.link}>
-        <ShoppingCartIcon style={styles.faded} />
-        <span style={{ marginLeft: '0.7rem' }}>Cart</span>
-        <span
-          style={{
-            marginLeft: '0.5rem',
-            padding: '0.4rem 0.6rem',
-            fontSize: '1rem',
-            backgroundColor: '#5b5151',
-          }}
-        >
-          0
-        </span>
-      </Link>
+      <CartLink />
     </Row>
   </Row>
 )

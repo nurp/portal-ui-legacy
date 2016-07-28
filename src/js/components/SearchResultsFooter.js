@@ -1,5 +1,10 @@
+// Vendor
 import React, { PropTypes } from 'react'
+
+// Custom
 import { Row } from 'uikit/Flex'
+
+/*----------------------------------------------------------------------------*/
 
 const paginationMax = 20
 
