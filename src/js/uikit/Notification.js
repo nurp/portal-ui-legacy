@@ -85,7 +85,6 @@ let pageload = true
 const enhance = compose(
   withState('visible', 'setState', false),
   shouldUpdate((props, nextProps) => {
-    console.log('...', props, nextProps)
     if (pageload) {
       pageload = false
       return false
@@ -115,5 +114,7 @@ const enhance = compose(
     ...rest,
   }))
 )
+
+/*----------------------------------------------------------------------------*/
 
 export default enhance(Notification)

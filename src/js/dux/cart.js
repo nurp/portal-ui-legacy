@@ -22,6 +22,7 @@ function toggleInCart(incomingFiles) {
         component:
           <span>
             Added <strong>{incomingFiles.file_name}</strong> to the cart.
+            <button onClick={() => dispatch(toggleInCart(incomingFiles))}>Undo</button>
           </span>,
       }))
     }
@@ -32,6 +33,7 @@ function toggleInCart(incomingFiles) {
         component:
           <span>
             Removed <strong>{incomingFiles.file_name}</strong> from the cart.
+            <button onClick={() => dispatch(toggleInCart(incomingFiles))}>Undo</button>
           </span>,
       }))
     }

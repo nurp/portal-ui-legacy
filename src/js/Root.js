@@ -9,7 +9,7 @@ import useRelay from 'react-router-relay'
 import { persistStore } from 'redux-persist'
 
 // Custom
-import * as reducers from 'dux'
+import reducers from 'dux'
 import { toggleLoading } from 'dux/relayLoading'
 import routes from './routes'
 
