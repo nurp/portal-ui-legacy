@@ -10,6 +10,7 @@ const CasesAggregations = props => (
     {caseFacets.filter(f => f.facetType === 'terms').map(f =>
       <TermFacet
         key={`${docType}.${f.name}`}
+        field={`${docType}.${f.name}`}
         pathname={'/files'}
         title={f.title}
         params={props.relay.route.params}

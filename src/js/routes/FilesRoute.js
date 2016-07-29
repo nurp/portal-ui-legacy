@@ -15,7 +15,7 @@ const FilesRoute = h(Route, {
     if (!nextState.location.query.facetTab) {
       replace({
         pathname: '/files',
-        query: { facetTab: 'cases' },
+        query: { facetTab: 'cases', ...nextState.location.query },
       })
     }
   },

@@ -1,7 +1,7 @@
 // Vendor
 import React, { PropTypes } from 'react'
 import { compose, withState, mapProps } from 'recompose'
-import { Link } from 'react-router'
+import { Link, withRouter } from 'react-router'
 import AngleIcon from 'react-icons/lib/fa/angle-down'
 
 // Custom
@@ -56,6 +56,8 @@ const mergeFilters = ({ filterContent, value, field }) => ({
 })
 
 const TermFacet = ({
+  location,
+  field,
   title,
   buckets,
   pathname,
@@ -64,7 +66,14 @@ const TermFacet = ({
   toggleCollapsed,
   toggleShowMore,
 }) => {
-  const dotField = title.replace(/__/g, '.')
+  const dotField = field.replace(/__/g, '.')
+  const currentFilters = location.query.filters && JSON.parse(location.query.filters).content
+
+  function inCurrentFilters(key) {
+    return currentFilters && currentFilters.some(f =>
+      f.content.field === dotField && f.content.value.includes(key)
+    )
+  }
 
   return (
     <Column style={styles.container}>
@@ -74,7 +83,10 @@ const TermFacet = ({
       </Row>
       {!state.collapsed &&
         <Column>
-          {buckets.slice(0, state.showingMore ? Infinity : 5).map(bucket => {
+          {buckets
+          .reduce((acc, b) => inCurrentFilters(b.key) ? [b, ...acc] : [...acc, b], [])
+          .slice(0, state.showingMore ? Infinity : 5)
+          .map(bucket => {
             const mergedFilters = mergeFilters({
               filterContent: (params.filters || {}).content || [],
               value: [bucket.key],
@@ -88,13 +100,14 @@ const TermFacet = ({
                   to={{
                     pathname,
                     query: {
+                      ...location.query,
                       ...params,
                       offset: 0,
                       filters: JSON.stringify(mergedFilters),
                     },
                   }}
                 >
-                  <input type="checkbox" />
+                  <input type="checkbox" checked={inCurrentFilters(bucket.key)} />
                   {bucket.key}
                 </Link>
                 <CountBubble>{bucket.doc_count}</CountBubble>
@@ -127,9 +140,12 @@ TermFacet.propTypes = {
   state: PropTypes.object, // TODO: make shape
   toggleCollapsed: PropTypes.func,
   toggleShowMore: PropTypes.func,
+  location: PropTypes.object,
+  field: PropTypes.string,
 }
 
 const enhance = compose(
+  withRouter,
   withState('state', 'setState', { collapsed: false, showingMore: false }),
   mapProps(({ setState, ...rest }) => ({
     toggleCollapsed: () => setState(state => ({ collapsed: !state.collapsed })),
