@@ -1,12 +1,13 @@
 // Vendor
 import React, { PropTypes } from 'react'
-import Radium, { Style } from 'radium'
+import Radium, { Style, StyleRoot } from 'radium'
 import { connect } from 'react-redux'
 
 // Custom
 import { Column } from 'uikit/Flex'
 import Overlay from 'uikit/Overlay'
 import Notification from 'uikit/Notification'
+import Particle from 'uikit/Loaders/Particle'
 import Header from 'components/Header'
 import Footer from 'components/Footer'
 import global from 'theme/global'
@@ -20,9 +21,9 @@ const styles = {
 }
 
 const App = ({ relayLoading, notification, children }) => (
-  <div>
+  <StyleRoot>
     <Style rules={global} />
-    <Overlay show={relayLoading}>TODO: Insert loading spinner / message here</Overlay>
+    <Overlay show={relayLoading}><Particle /></Overlay>
     <Notification action={notification.action}>
       {notification.component}
     </Notification>
@@ -31,7 +32,7 @@ const App = ({ relayLoading, notification, children }) => (
       {children}
       <Footer config={{}} />
     </Column>
-  </div>
+  </StyleRoot>
 )
 
 App.propTypes = {

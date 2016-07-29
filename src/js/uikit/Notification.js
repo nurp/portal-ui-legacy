@@ -1,15 +1,12 @@
 // Vendor
 import React, { PropTypes } from 'react'
 import { compose, withState, shouldUpdate, mapProps } from 'recompose'
-import C from 'react-icons/lib/md/close'
-import Radium from 'radium'
+import CloseIcon from 'react-icons/lib/md/close'
 
 // Custom
 import { center, zDepth1 } from 'theme/mixins'
 
 /*----------------------------------------------------------------------------*/
-
-const CloseIcon = Radium(C)
 
 const styles = {
   container: {
@@ -77,6 +74,7 @@ Notification.propTypes = {
   visible: PropTypes.bool,
   action: PropTypes.string,
   close: PropTypes.func,
+  delay: PropTypes.number,
 }
 
 let timeoutId
@@ -85,23 +83,38 @@ let pageload = true
 const enhance = compose(
   withState('visible', 'setState', false),
   shouldUpdate((props, nextProps) => {
+    // Do not render on the first prop update, such as store rehydration
     if (pageload) {
       pageload = false
       return false
     }
 
+    // Do not render if no children
     if (!nextProps.children) return false
 
+    // Do not render if the notification is not up and its children don't change.
+    // This catches prop changes that should not affect the notification
     if (props.children === nextProps.children &&
       (!props.visible && !nextProps.visible)) {
       return false
     }
 
-    if (!props.visible && !nextProps.visible) {
-      props.setState(() => true)
+    function startTimer() {
       timeoutId = setTimeout(() => {
         props.setState(() => false)
-      }, 3000)
+      }, props.delay || 5000)
+    }
+
+    // If the notification is not up, pop it up and begin the removal timeout
+    if (!props.visible && !nextProps.visible) {
+      props.setState(() => true)
+      startTimer()
+    }
+
+    // If notification is up, refresh timeout when new children arrive
+    if (props.visible && props.children !== nextProps.children) {
+      clearTimeout(timeoutId)
+      startTimer()
     }
 
     return true

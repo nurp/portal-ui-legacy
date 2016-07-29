@@ -2,9 +2,12 @@
 import React from 'react'
 import { REHYDRATE } from 'redux-persist/constants'
 import _ from 'lodash'
+import UndoIcon from 'react-icons/lib/md/undo'
 
 // Custom
 import { notify } from 'dux/notification'
+import { Column } from 'uikit/Flex'
+import { center } from 'theme/mixins'
 
 /*----------------------------------------------------------------------------*/
 
@@ -20,10 +23,13 @@ function toggleInCart(incomingFiles) {
       dispatch(notify({
         action: 'add',
         component:
-          <span>
-            Added <strong>{incomingFiles.file_name}</strong> to the cart.
-            <button onClick={() => dispatch(toggleInCart(incomingFiles))}>Undo</button>
-          </span>,
+          <Column>
+            <span>Added <strong>{incomingFiles.file_name}</strong> to the cart.</span>
+            <span style={center}>
+              <UndoIcon />
+              <a onClick={() => dispatch(toggleInCart(incomingFiles))}>Undo</a>
+            </span>
+          </Column>,
       }))
     }
 
@@ -31,10 +37,13 @@ function toggleInCart(incomingFiles) {
       dispatch(notify({
         action: 'remove',
         component:
-          <span>
-            Removed <strong>{incomingFiles.file_name}</strong> from the cart.
-            <button onClick={() => dispatch(toggleInCart(incomingFiles))}>Undo</button>
-          </span>,
+          <Column>
+            <span>Removed <strong>{incomingFiles.file_name}</strong> from the cart.</span>
+            <span style={center}>
+              <UndoIcon />
+              <a onClick={() => dispatch(toggleInCart(incomingFiles))}>Undo</a>
+            </span>
+          </Column>,
       }))
     }
 

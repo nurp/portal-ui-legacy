@@ -25,10 +25,10 @@ const styles = {
     },
   },
   active: {
-    backgroundColor: 'green',
+    backgroundColor: theme.success,
     color: 'white',
     ':hover': {
-      backgroundColor: Color('green').darken(0.3).rgbString(),
+      backgroundColor: Color(theme.success).darken(0.3).rgbString(),
     },
   },
 }

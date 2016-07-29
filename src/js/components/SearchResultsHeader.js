@@ -3,7 +3,7 @@ import { withRouter } from 'react-router'
 import { Row, Column } from 'uikit/Flex'
 
 const SearchResultsHeader = ({ type, total, count, location }) => (
-  <Row>
+  <Row flex="1">
     <Column>
       <h2>{type}</h2>
       <span>
@@ -15,6 +15,11 @@ const SearchResultsHeader = ({ type, total, count, location }) => (
         <strong> {total.toLocaleString()}</strong> {type}
       </span>
     </Column>
+    <Row style={{ marginLeft: 'auto' }}>
+      <button>Sort</button>
+      <button>arrange columns</button>
+      <button>export</button>
+    </Row>
   </Row>
 )
 

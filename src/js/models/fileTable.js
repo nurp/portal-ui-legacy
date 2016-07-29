@@ -24,7 +24,7 @@ const fileTable = [
     id: 'file_actions',
     th:
       <Th key="file_actions">
-        <Button style={{ padding: '3px 5px', margin: '0 auto' }}>
+        <Button style={{ padding: '3px 4px', margin: '0 auto' }}>
           <ShoppingCartIcon />
         </Button>
       </Th>,

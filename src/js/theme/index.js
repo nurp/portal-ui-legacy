@@ -7,6 +7,8 @@ export default {
   primary: 'rgb(131, 0, 30)',
   primaryLight1: 'rgb(187, 14, 61)',
 
+  success: '#255425',
+
 
   // greyscale
 
