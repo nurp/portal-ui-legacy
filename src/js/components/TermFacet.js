@@ -1,10 +1,11 @@
 // Vendor
 import React, { PropTypes } from 'react'
-import { compose, withState, mapProps } from 'recompose'
+import { compose, withState, mapProps, pure } from 'recompose'
 import { Link, withRouter } from 'react-router'
 import AngleIcon from 'react-icons/lib/fa/angle-down'
 
 // Custom
+import { mergeFilters, setFilters, setFilter, inCurrentFilters } from 'utils/filters'
 import CountBubble from 'components/CountBubble'
 import { Row, Column } from 'uikit/Flex'
 import A from 'uikit/A'
@@ -44,36 +45,19 @@ const styles = {
   },
 }
 
-const mergeFilters = ({ filterContent, value, field }) => ({
-  op: 'and',
-  content: [
-    ...filterContent,
-    {
-      op: 'in',
-      content: { field, value },
-    },
-  ],
-})
-
 const TermFacet = ({
   location,
   field,
   title,
   buckets,
   pathname,
-  params,
   state,
   toggleCollapsed,
   toggleShowMore,
 }) => {
+  const { filters, offset, ...query } = location.query
   const dotField = field.replace(/__/g, '.')
-  const currentFilters = location.query.filters && JSON.parse(location.query.filters).content
-
-  function inCurrentFilters(key) {
-    return currentFilters && currentFilters.some(f =>
-      f.content.field === dotField && f.content.value.includes(key)
-    )
-  }
+  const currentFilters = location.query.filters ? JSON.parse(filters).content : []
 
   return (
     <Column style={styles.container}>
@@ -84,14 +68,32 @@ const TermFacet = ({
       {!state.collapsed &&
         <Column>
           {buckets
-          .reduce((acc, b) => inCurrentFilters(b.key) ? [b, ...acc] : [...acc, b], [])
+          // Sort by active
+          .reduce((acc, b) => (inCurrentFilters({ key: b.key, dotField, currentFilters })
+            ? [b, ...acc]
+            : [...acc, b]
+          ), [])
           .slice(0, state.showingMore ? Infinity : 5)
           .map(bucket => {
-            const mergedFilters = mergeFilters({
-              filterContent: (params.filters || {}).content || [],
-              value: [bucket.key],
-              field: dotField,
-            })
+            const sameField = currentFilters.find(x => x.content.field === dotField)
+
+            let nextFilters
+
+            if (sameField) {
+              const value = sameField.content.value.includes(bucket.key)
+                ? sameField.content.value.filter(x => x !== bucket.key)
+                : [...sameField.content.value, bucket.key]
+
+              nextFilters = value.length
+                ? setFilter({ value, field: dotField })
+                : setFilters(currentFilters.filter(x => x.content.field !== dotField))
+            } else {
+              nextFilters = mergeFilters({
+                filterContent: currentFilters || [],
+                value: [bucket.key],
+                field: dotField,
+              })
+            }
 
             return (
               <Row key={bucket.key} style={styles.bucketRow}>
@@ -100,14 +102,19 @@ const TermFacet = ({
                   to={{
                     pathname,
                     query: {
-                      ...location.query,
-                      ...params,
-                      offset: 0,
-                      filters: JSON.stringify(mergedFilters),
+                      ...query,
+                      ...(nextFilters ? {
+                        filters: JSON.stringify(nextFilters),
+                        offset,
+                      } : {}),
                     },
                   }}
                 >
-                  <input type="checkbox" checked={inCurrentFilters(bucket.key)} />
+                  <input
+                    type="checkbox"
+                    style={{ pointerEvents: 'none' }}
+                    checked={inCurrentFilters({ key: bucket.key, dotField, currentFilters })}
+                  />
                   {bucket.key}
                 </Link>
                 <CountBubble>{bucket.doc_count}</CountBubble>
@@ -135,7 +142,6 @@ TermFacet.propTypes = {
   title: PropTypes.string,
   buckets: PropTypes.array,
   pathname: PropTypes.string,
-  params: PropTypes.object,
   filters: PropTypes.object,
   state: PropTypes.object, // TODO: make shape
   toggleCollapsed: PropTypes.func,
@@ -151,7 +157,8 @@ const enhance = compose(
     toggleCollapsed: () => setState(state => ({ collapsed: !state.collapsed })),
     toggleShowMore: () => setState(state => ({ showingMore: !state.showingMore })),
     ...rest,
-  }))
+  })),
+  pure
 )
 
 /*----------------------------------------------------------------------------*/

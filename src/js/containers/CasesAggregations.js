@@ -13,7 +13,6 @@ const CasesAggregations = props => (
         field={`${docType}.${f.name}`}
         pathname={'/files'}
         title={f.title}
-        params={props.relay.route.params}
         buckets={((props.aggregations[f.name] || {}).buckets || [])}
       />
     )}

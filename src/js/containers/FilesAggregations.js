@@ -18,7 +18,6 @@ const FilesAggregations = props => (
         field={`${docType}.${f.name}`}
         pathname={`/${docType}`}
         title={f.title}
-        params={props.relay.route.params}
         buckets={((props.aggregations[f.name] || {}).buckets || [])}
       />
     )}
