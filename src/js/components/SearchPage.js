@@ -1,6 +1,7 @@
 // Vendor
 import React, { PropTypes } from 'react'
 import Radium from 'radium'
+import { withRouter } from 'react-router'
 import LeftArrow from 'react-icons/lib/fa/long-arrow-left'
 import ShoppingCartIcon from 'react-icons/lib/fa/shopping-cart'
 import DownloadIcon from 'react-icons/lib/fa/download'
@@ -10,6 +11,7 @@ import { Row, Column } from 'uikit/Flex'
 import Button from 'uikit/Button'
 import Info from 'uikit/Alerts/Info'
 import theme from 'theme'
+import CurrentFilters from 'components/CurrentFilters'
 
 /*----------------------------------------------------------------------------*/
 
@@ -30,6 +32,7 @@ const styles = {
 }
 
 const Files = ({
+  location,
   Results,
   Facets,
 }) => (
@@ -39,17 +42,25 @@ const Files = ({
     </Column>
 
     <Column style={styles.content}>
-      <Info>
-        <LeftArrow />
-        <span style={{ marginLeft: '0.6rem' }}>
-          Start searching by selecting a facet
-        </span>
-      </Info>
+      {!location.query.filters &&
+        <Info>
+          <LeftArrow />
+          <span style={{ marginLeft: '0.6rem' }}>
+            Start searching by selecting a facet
+          </span>
+        </Info>
+      }
+
+      {location.query.filters &&
+        <Info>
+          <CurrentFilters />
+        </Info>
+      }
 
       <Info>
         <Button leftIcon={<ShoppingCartIcon />}>Add all files to the cart</Button>
         <Button
-          style={{ marginLeft: '1rem' }}
+          style={{ marginLeft: '0.3rem' }}
           leftIcon={<DownloadIcon />}
         >
           Download Manifest
@@ -69,4 +80,4 @@ Files.propTypes = {
 
 /*----------------------------------------------------------------------------*/
 
-export default Radium(Files)
+export default Radium(withRouter(Files))

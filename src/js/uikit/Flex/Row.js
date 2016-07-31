@@ -1,5 +1,5 @@
 // Vendor
-import React, { PropTypes } from 'react'
+import React, { PropTypes, Children } from 'react'
 
 /*----------------------------------------------------------------------------*/
 
@@ -11,9 +11,21 @@ const baseStyle = {
   outline: 'none',
 }
 
-const Row = ({ flex, style, children, ...props }) => (
-  <div style={{ ...baseStyle, flex, ...style }} {...props}>
-    {children}
+const Row = ({ flex, wrap, style, spacing, children, ...props }) => (
+  <div
+    style={{
+      ...baseStyle,
+      flex,
+      ...(wrap ? { flexWrap: 'wrap' } : {}),
+      ...style,
+    }}
+    {...props}
+  >
+    {!spacing && children}
+    {spacing && Children.map(children, (child, i) =>
+      child && <span style={i ? { marginLeft: spacing } : {}}>{child}</span>
+
+    )}
   </div>
 )
 
@@ -24,6 +36,8 @@ Row.propTypes = {
     PropTypes.string,
     PropTypes.number,
   ]),
+  wrap: PropTypes.bool,
+  spacing: PropTypes.string,
 }
 
 /*----------------------------------------------------------------------------*/

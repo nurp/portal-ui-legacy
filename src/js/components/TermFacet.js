@@ -111,6 +111,7 @@ const TermFacet = ({
                   }}
                 >
                   <input
+                    readOnly
                     type="checkbox"
                     style={{ pointerEvents: 'none' }}
                     checked={inCurrentFilters({ key: bucket.key, dotField, currentFilters })}
