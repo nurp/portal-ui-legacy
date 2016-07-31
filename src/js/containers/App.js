@@ -24,7 +24,7 @@ const App = ({ relayLoading, notification, children }) => (
   <StyleRoot>
     <Style rules={global} />
     <Overlay show={relayLoading}><Particle /></Overlay>
-    <Notification action={notification.action}>
+    <Notification id={notification.id} action={notification.action}>
       {notification.component}
     </Notification>
     <Column style={styles.wrapper}>

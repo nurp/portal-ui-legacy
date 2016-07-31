@@ -89,6 +89,7 @@ const CurrentFilters = ({ location }) => {
 
               return (
                 <Link
+                  key={value}
                   to={{
                     pathname: location.pathname,
                     query: {
@@ -100,7 +101,7 @@ const CurrentFilters = ({ location }) => {
                     },
                   }}
                 >
-                  <Button key={value} style={styles.value}>{value}</Button>
+                  <Button style={styles.value}>{value}</Button>
                 </Link>
               )
             })}

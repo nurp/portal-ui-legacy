@@ -71,6 +71,7 @@ const Notification = ({ style, visible, action, close, children }) => (
 Notification.propTypes = {
   style: PropTypes.object,
   children: PropTypes.node,
+  id: PropTypes.string,
   visible: PropTypes.bool,
   action: PropTypes.string,
   close: PropTypes.func,
@@ -94,7 +95,7 @@ const enhance = compose(
 
     // Do not render if the notification is not up and its children don't change.
     // This catches prop changes that should not affect the notification
-    if (props.children === nextProps.children &&
+    if (props.id === nextProps.id &&
       (!props.visible && !nextProps.visible)) {
       return false
     }
@@ -111,8 +112,8 @@ const enhance = compose(
       startTimer()
     }
 
-    // If notification is up, refresh timeout when new children arrive
-    if (props.visible && props.children !== nextProps.children) {
+    // If notification is up, refresh timeout when id changes
+    if (props.visible && props.id !== nextProps.id) {
       clearTimeout(timeoutId)
       startTimer()
     }

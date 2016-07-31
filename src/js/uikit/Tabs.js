@@ -26,7 +26,7 @@ const baseTabStyle = {
   borderLeft: '1px solid transparent',
   borderBottom: '1px solid transparent',
   borderRight: '1px solid transparent',
-  backgroundColor: theme.greyScale5,
+  backgroundColor: theme.greyScale6,
   marginBottom: '-1px',
   transition: 'background-color 0.2s ease',
   borderRadius: '4px 4px 0 0',
@@ -38,7 +38,7 @@ const styles = {
     ':hover': {
       textDecoration: 'none',
       color: '#000',
-      backgroundColor: Color(theme.greyScale5).darken(0.05).rgbString(),
+      backgroundColor: Color(theme.greyScale6).darken(0.05).rgbString(),
       ...tabBorder,
     },
   },

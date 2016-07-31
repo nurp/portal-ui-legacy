@@ -1,6 +1,31 @@
+// Vendor
 import React, { PropTypes } from 'react'
 import { withRouter } from 'react-router'
+import SortIcon from 'react-icons/lib/fa/sort-alpha-asc'
+import ArrangeIcon from 'react-icons/lib/fa/bars'
+import DownloadIcon from 'react-icons/lib/fa/download'
+
+// Custom
 import { Row, Column } from 'uikit/Flex'
+import ButtonGroup from 'uikit/ButtonGroup'
+import Button from 'uikit/Button'
+import theme from 'theme'
+
+/*----------------------------------------------------------------------------*/
+
+const styles = {
+  tableActionButtons: {
+    height: '3.5rem',
+    width: '3.5rem',
+    padding: '0.6rem',
+    backgroundColor: 'white',
+    color: theme.greyScale1,
+    border: `1px solid ${theme.greyScale4}`,
+    ':hover': {
+      backgroundColor: theme.greyScale6,
+    },
+  },
+}
 
 const SearchResultsHeader = ({ type, total, count, location }) => (
   <Row flex="1">
@@ -16,9 +41,11 @@ const SearchResultsHeader = ({ type, total, count, location }) => (
       </span>
     </Column>
     <Row style={{ marginLeft: 'auto' }}>
-      <button>Sort</button>
-      <button>arrange columns</button>
-      <button>export</button>
+      <ButtonGroup>
+        <Button style={styles.tableActionButtons} leftIcon={<SortIcon />} />
+        <Button style={styles.tableActionButtons} leftIcon={<ArrangeIcon />} />
+        <Button style={styles.tableActionButtons} leftIcon={<DownloadIcon />} />
+      </ButtonGroup>
     </Row>
   </Row>
 )
@@ -29,5 +56,7 @@ SearchResultsHeader.propTypes = {
   total: PropTypes.number,
   location: PropTypes.object,
 }
+
+/*----------------------------------------------------------------------------*/
 
 export default withRouter(SearchResultsHeader)

@@ -15,7 +15,7 @@ export const FileTBody = props => {
       props.edges.map((e, i) => (
         h(FileTr, {
           ...e,
-          style: i % 2 === 0 ? { backgroundColor: theme.greyScale5 } : {},
+          style: i % 2 === 0 ? { backgroundColor: theme.greyScale6 } : {},
           key: e.node.id,
         })
       ))

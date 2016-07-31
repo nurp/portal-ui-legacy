@@ -22,6 +22,7 @@ function toggleInCart(incomingFiles) {
     if (nextFiles.length === existingFiles.length + 1) {
       dispatch(notify({
         action: 'add',
+        id: `add/${incomingFiles.file_name}`,
         component:
           <Column>
             <span>Added <strong>{incomingFiles.file_name}</strong> to the cart.</span>
@@ -36,6 +37,7 @@ function toggleInCart(incomingFiles) {
     if (nextFiles.length === existingFiles.length - 1) {
       dispatch(notify({
         action: 'remove',
+        id: `remove/${incomingFiles.file_name}`,
         component:
           <Column>
             <span>Removed <strong>{incomingFiles.file_name}</strong> from the cart.</span>

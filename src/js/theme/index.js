@@ -12,8 +12,9 @@ export default {
 
   // greyscale
 
-  greyScale5: 'rgb(245, 245, 245)',
-  greyScale4: 'rgb(221, 221, 221)',
+  greyScale6: 'rgb(245, 245, 245)',
+  greyScale5: 'rgb(222, 222, 222)',
+  greyScale4: 'rgb(200, 200, 200)',
   greyScale3: 'rgb(144, 144, 144)',
   greyScale2: 'rgb(61, 61, 61)',
   greyScale1: 'rgb(36, 36, 36)',

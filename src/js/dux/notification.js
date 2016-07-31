@@ -3,6 +3,7 @@ const NOTIFY = 'NOTIFY'
 const notify = payload => ({ type: NOTIFY, payload })
 
 const initialState = {
+  id: null,
   component: null,
   action: null,
 }

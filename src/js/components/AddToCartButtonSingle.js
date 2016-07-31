@@ -21,7 +21,7 @@ const styles = {
     backgroundColor: 'white',
     color: theme.greyScale2,
     ':hover': {
-      backgroundColor: theme.greyScale5,
+      backgroundColor: theme.greyScale6,
     },
   },
   active: {
