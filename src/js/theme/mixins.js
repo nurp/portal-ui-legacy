@@ -15,3 +15,14 @@ export const buttonLike = {
   borderRadius: '4px',
   border: '1px solid transparent',
 }
+
+export const dropdown = {
+  ...zDepth1,
+  position: 'absolute',
+  zIndex: 1,
+  minWidth: '165px',
+  backgroundColor: 'white',
+  textAlign: 'left',
+  marginTop: '1rem',
+  right: 0,
+}

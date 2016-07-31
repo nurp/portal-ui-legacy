@@ -9,6 +9,8 @@ export default {
 
   success: '#255425',
 
+  secondary: 'rgb(40,161,205)',
+
 
   // greyscale
 

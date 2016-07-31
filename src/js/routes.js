@@ -20,7 +20,9 @@ const props = {
     AnnotationRoute,
     AnnotationsRoute,
   ],
-  indexRoute: { onEnter: (nextState, replace) => replace('/files') },
+  indexRoute: {
+    onEnter: (nextState, replace) => replace('/files'),
+  },
 }
 
 /*----------------------------------------------------------------------------*/

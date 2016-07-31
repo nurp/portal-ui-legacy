@@ -13,6 +13,7 @@ import { center } from 'theme/mixins'
 const styles = {
   button: {
     ...center,
+    position: 'relative',
     cursor: 'pointer',
     padding: '6px 12px',
     fontSize: '14px',

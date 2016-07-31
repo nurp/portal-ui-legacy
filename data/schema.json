@@ -246,6 +246,16 @@
                 {
                   "defaultValue": null,
                   "description": null,
+                  "name": "sort",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
                   "name": "before",
                   "type": {
                     "kind": "SCALAR",
@@ -397,13 +407,9 @@
               "description": null,
               "name": "value",
               "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
               }
             }
           ],
@@ -445,7 +451,67 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
+              "name": "downstream_analyses__workflow_version",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "downstream_analyses__output_files__data_type",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "analysis__metadata__read_groups__library_name",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
               "name": "annotations__annotation_id",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "downstream_analyses__output_files__state",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "analysis__metadata__read_groups__target_capture_kit_catalog_number",
               "type": {
                 "kind": "OBJECT",
                 "name": "Agg",
@@ -469,7 +535,43 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
+              "name": "downstream_analyses__analysis_type",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "analysis__metadata__read_groups__platform",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
               "name": "metadata_files__data_category",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "analysis__workflow_start_datetime",
               "type": {
                 "kind": "OBJECT",
                 "name": "Agg",
@@ -493,7 +595,91 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
+              "name": "type",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "downstream_analyses__submitter_id",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "analysis__metadata__read_groups__includes_spike_ins",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "downstream_analyses__output_files__file_name",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "analysis__metadata__read_groups__submitter_id",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "analysis__metadata__read_groups__adapter_name",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
               "name": "archive__data_category",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "analysis__input_files__updated_datetime",
               "type": {
                 "kind": "OBJECT",
                 "name": "Agg",
@@ -517,7 +703,55 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
-              "name": "archive__updated_datetime",
+              "name": "index_files__experimental_strategy",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "analysis__input_files__file_size",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "downstream_analyses__updated_datetime",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "analysis__input_files__error_type",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "error_type",
               "type": {
                 "kind": "OBJECT",
                 "name": "Agg",
@@ -565,6 +799,30 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
+              "name": "analysis__metadata__read_groups__target_capture_kit_vendor",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "analysis__metadata__read_groups__base_caller_version",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
               "name": "archive__data_format",
               "type": {
                 "kind": "OBJECT",
@@ -589,7 +847,19 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
-              "name": "origin",
+              "name": "archive__state",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "analysis__input_files__file_id",
               "type": {
                 "kind": "OBJECT",
                 "name": "Agg",
@@ -613,6 +883,42 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
+              "name": "analysis__metadata__read_groups__adapter_sequence",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "downstream_analyses__output_files__file_size",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "analysis__workflow_end_datetime",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
               "name": "metadata_files__file_name",
               "type": {
                 "kind": "OBJECT",
@@ -625,7 +931,103 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
+              "name": "downstream_analyses__workflow_type",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "analysis__input_files__platform",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "analysis__workflow_version",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
               "name": "metadata_files__state",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "analysis__metadata__read_groups__is_paired_end",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "analysis__metadata__read_groups__library_preparation_kit_version",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "downstream_analyses__output_files__revision",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "associated_entities__case_id",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "analysis__metadata__read_groups__target_capture_kit_name",
               "type": {
                 "kind": "OBJECT",
                 "name": "Agg",
@@ -673,6 +1075,18 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
+              "name": "analysis__metadata__read_groups__read_group_name",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
               "name": "metadata_files__updated_datetime",
               "type": {
                 "kind": "OBJECT",
@@ -685,7 +1099,67 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
+              "name": "archive__md5sum",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
               "name": "metadata_files__error_type",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "analysis__metadata__read_groups__created_datetime",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "analysis__input_files__created_datetime",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "archive__updated_datetime",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "index_files__data_category",
               "type": {
                 "kind": "OBJECT",
                 "name": "Agg",
@@ -721,7 +1195,43 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
-              "name": "index_files__file_name",
+              "name": "analysis__submitter_id",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "analysis__metadata__read_groups__spike_ins_concentration",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "analysis__metadata__read_groups__spike_ins_fasta",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "metadata_files__md5sum",
               "type": {
                 "kind": "OBJECT",
                 "name": "Agg",
@@ -757,7 +1267,31 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
+              "name": "analysis__metadata__read_groups__size_selection_range",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
               "name": "archive__archive_id",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "index_files__revision",
               "type": {
                 "kind": "OBJECT",
                 "name": "Agg",
@@ -793,6 +1327,30 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
+              "name": "index_files__platform",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "index_files__file_name",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
               "name": "annotations__status",
               "type": {
                 "kind": "OBJECT",
@@ -805,7 +1363,67 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
+              "name": "analysis__analysis_type",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
               "name": "annotations__creator",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "analysis__metadata__read_groups__library_preparation_kit_name",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "analysis__input_files__md5sum",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "analysis__workflow_link",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "analysis__metadata__read_groups__read_length",
               "type": {
                 "kind": "OBJECT",
                 "name": "Agg",
@@ -841,6 +1459,42 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
+              "name": "downstream_analyses__output_files__file_state",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "analysis__metadata__read_groups__read_group_id",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "index_files__data_type",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
               "name": "annotations__case_submitter_id",
               "type": {
                 "kind": "OBJECT",
@@ -853,7 +1507,7 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
-              "name": "associated_entities__case_id",
+              "name": "analysis__metadata__read_groups__instrument_model",
               "type": {
                 "kind": "OBJECT",
                 "name": "Agg",
@@ -866,6 +1520,18 @@
               "description": null,
               "isDeprecated": false,
               "name": "acl",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "downstream_analyses__output_files__data_category",
               "type": {
                 "kind": "OBJECT",
                 "name": "Agg",
@@ -901,7 +1567,55 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
+              "name": "downstream_analyses__output_files__md5sum",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "analysis__metadata__read_groups__library_selection",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
               "name": "annotations__classification",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "analysis__metadata__read_groups__updated_datetime",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "revision",
               "type": {
                 "kind": "OBJECT",
                 "name": "Agg",
@@ -926,6 +1640,18 @@
               "description": null,
               "isDeprecated": false,
               "name": "archive__file_state",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "analysis__metadata__read_groups__flow_cell_barcode",
               "type": {
                 "kind": "OBJECT",
                 "name": "Agg",
@@ -985,6 +1711,30 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
+              "name": "downstream_analyses__output_files__submitter_id",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "analysis__input_files__data_category",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
               "name": "created_datetime",
               "type": {
                 "kind": "OBJECT",
@@ -997,7 +1747,79 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
+              "name": "analysis__metadata__read_groups__state",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "analysis__input_files__state_comment",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "associated_entities__entity_type",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
               "name": "index_files__state_comment",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "analysis__metadata__read_groups__target_capture_kit_target_region",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "analysis__input_files__file_state",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "analysis__workflow_type",
               "type": {
                 "kind": "OBJECT",
                 "name": "Agg",
@@ -1034,6 +1856,18 @@
               "description": null,
               "isDeprecated": false,
               "name": "annotations__state",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "analysis__input_files__data_type",
               "type": {
                 "kind": "OBJECT",
                 "name": "Agg",
@@ -1105,6 +1939,18 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
+              "name": "analysis__metadata__read_groups__sequencing_center",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
               "name": "annotations__case_id",
               "type": {
                 "kind": "OBJECT",
@@ -1129,7 +1975,55 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
+              "name": "analysis__analysis_id",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "downstream_analyses__output_files__updated_datetime",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "analysis__metadata__read_groups__library_preparation_kit_vendor",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
               "name": "metadata_files__data_format",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "analysis__metadata__read_groups__to_trim_adapter_sequence",
               "type": {
                 "kind": "OBJECT",
                 "name": "Agg",
@@ -1153,7 +2047,7 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
-              "name": "type",
+              "name": "analysis__metadata__read_groups__RIN",
               "type": {
                 "kind": "OBJECT",
                 "name": "Agg",
@@ -1165,7 +2059,31 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
-              "name": "archive__md5sum",
+              "name": "downstream_analyses__workflow_start_datetime",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "downstream_analyses__output_files__error_type",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "downstream_analyses__output_files__state_comment",
               "type": {
                 "kind": "OBJECT",
                 "name": "Agg",
@@ -1189,7 +2107,31 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
+              "name": "analysis__metadata__read_groups__target_capture_kit_version",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
               "name": "index_files__submitter_id",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "analysis__state",
               "type": {
                 "kind": "OBJECT",
                 "name": "Agg",
@@ -1237,6 +2179,18 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
+              "name": "analysis__input_files__experimental_strategy",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
               "name": "index_files__created_datetime",
               "type": {
                 "kind": "OBJECT",
@@ -1261,7 +2215,7 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
-              "name": "metadata_files__md5sum",
+              "name": "analysis__created_datetime",
               "type": {
                 "kind": "OBJECT",
                 "name": "Agg",
@@ -1273,7 +2227,31 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
-              "name": "index_files__error_type",
+              "name": "analysis__metadata__read_groups__sequencing_date",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "analysis__input_files__revision",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "downstream_analyses__created_datetime",
               "type": {
                 "kind": "OBJECT",
                 "name": "Agg",
@@ -1297,7 +2275,55 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
+              "name": "downstream_analyses__workflow_end_datetime",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "index_files__error_type",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
               "name": "annotations__submitter_id",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "analysis__input_files__state",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "analysis__updated_datetime",
               "type": {
                 "kind": "OBJECT",
                 "name": "Agg",
@@ -1321,7 +2347,31 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
-              "name": "archive__state",
+              "name": "analysis__metadata__read_groups__library_strand",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "origin",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "analysis__input_files__data_format",
               "type": {
                 "kind": "OBJECT",
                 "name": "Agg",
@@ -1345,7 +2395,7 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
-              "name": "error_type",
+              "name": "analysis__metadata__read_groups__library_preparation_kit_catalog_number",
               "type": {
                 "kind": "OBJECT",
                 "name": "Agg",
@@ -1369,6 +2419,78 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
+              "name": "downstream_analyses__analysis_id",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "analysis__metadata__read_groups__base_caller_name",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "analysis__input_files__submitter_id",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "downstream_analyses__workflow_link",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "analysis__input_files__file_name",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "downstream_analyses__output_files__file_id",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
               "name": "data_category",
               "type": {
                 "kind": "OBJECT",
@@ -1381,7 +2503,31 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
+              "name": "downstream_analyses__output_files__platform",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
               "name": "annotations__entity_type",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "downstream_analyses__output_files__experimental_strategy",
               "type": {
                 "kind": "OBJECT",
                 "name": "Agg",
@@ -1406,6 +2552,30 @@
               "description": null,
               "isDeprecated": false,
               "name": "file_id",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "analysis__metadata__read_groups__experiment_name",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "analysis__metadata__read_groups__library_strategy",
               "type": {
                 "kind": "OBJECT",
                 "name": "Agg",
@@ -1465,6 +2635,30 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
+              "name": "downstream_analyses__state",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "downstream_analyses__output_files__created_datetime",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
               "name": "file_state",
               "type": {
                 "kind": "OBJECT",
@@ -1513,7 +2707,7 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
-              "name": "associated_entities__entity_type",
+              "name": "metadata_files__access",
               "type": {
                 "kind": "OBJECT",
                 "name": "Agg",
@@ -1525,7 +2719,7 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
-              "name": "metadata_files__access",
+              "name": "downstream_analyses__output_files__data_format",
               "type": {
                 "kind": "OBJECT",
                 "name": "Agg",
@@ -1940,6 +3134,22 @@
             {
               "args": [],
               "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "downstream_analyses",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "FilesDownstreamAnalyses",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
               "description": "string",
               "isDeprecated": false,
               "name": "submitter_id",
@@ -2216,6 +3426,18 @@
             {
               "args": [],
               "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "analysis",
+              "type": {
+                "kind": "OBJECT",
+                "name": "FilesAnalysis",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
               "description": "string",
               "isDeprecated": false,
               "name": "acl",
@@ -2252,6 +3474,18 @@
                   "ofType": null
                 }
               }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "long",
+              "isDeprecated": false,
+              "name": "revision",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
             }
           ],
           "inputFields": null,
@@ -2276,6 +3510,18 @@
               "description": "string",
               "isDeprecated": false,
               "name": "md5sum",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "data_type",
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
@@ -2359,6 +3605,18 @@
               "deprecationReason": null,
               "description": "string",
               "isDeprecated": false,
+              "name": "platform",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
               "name": "state",
               "type": {
                 "kind": "SCALAR",
@@ -2381,9 +3639,407 @@
             {
               "args": [],
               "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "data_category",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
               "description": "long",
               "isDeprecated": false,
               "name": "file_size",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "experimental_strategy",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "state_comment",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "file_state",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "long",
+              "isDeprecated": false,
+              "name": "revision",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "kind": "OBJECT",
+          "name": "FilesIndexFiles",
+          "possibleTypes": null
+        },
+        {
+          "description": null,
+          "enumValues": null,
+          "fields": [
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "analysis_id",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "updated_datetime",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "created_datetime",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "submitter_id",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "state",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "workflow_end_datetime",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "workflow_link",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "analysis_type",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "workflow_type",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "workflow_start_datetime",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "workflow_version",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "output_files",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "FilesDownstreamAnalysesOutputFiles",
+                  "ofType": null
+                }
+              }
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "kind": "OBJECT",
+          "name": "FilesDownstreamAnalyses",
+          "possibleTypes": null
+        },
+        {
+          "description": null,
+          "enumValues": null,
+          "fields": [
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "md5sum",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "data_type",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "updated_datetime",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "created_datetime",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "file_name",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "error_type",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "data_format",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "submitter_id",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "platform",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "state",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "file_id",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "data_category",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "long",
+              "isDeprecated": false,
+              "name": "file_size",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "long",
+              "isDeprecated": false,
+              "name": "revision",
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",
@@ -2413,12 +4069,24 @@
                 "name": "String",
                 "ofType": null
               }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "experimental_strategy",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
             }
           ],
           "inputFields": null,
           "interfaces": [],
           "kind": "OBJECT",
-          "name": "FilesIndexFiles",
+          "name": "FilesDownstreamAnalysesOutputFiles",
           "possibleTypes": null
         },
         {
@@ -4520,7 +6188,7 @@
               "deprecationReason": null,
               "description": "string",
               "isDeprecated": false,
-              "name": "aliquot_id",
+              "name": "state",
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
@@ -4616,7 +6284,7 @@
               "deprecationReason": null,
               "description": "string",
               "isDeprecated": false,
-              "name": "state",
+              "name": "aliquot_id",
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
@@ -5204,7 +6872,7 @@
               "deprecationReason": null,
               "description": "long",
               "isDeprecated": false,
-              "name": "percent_monocyte_infiltration",
+              "name": "percent_eosinophil_infiltration",
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",
@@ -5252,7 +6920,7 @@
               "deprecationReason": null,
               "description": "long",
               "isDeprecated": false,
-              "name": "percent_eosinophil_infiltration",
+              "name": "percent_monocyte_infiltration",
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",
@@ -6233,18 +7901,6 @@
             {
               "args": [],
               "deprecationReason": null,
-              "description": "long",
-              "isDeprecated": false,
-              "name": "relationship_age_at_diagnosis",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
               "description": "string",
               "isDeprecated": false,
               "name": "updated_datetime",
@@ -6271,7 +7927,7 @@
               "deprecationReason": null,
               "description": "string",
               "isDeprecated": false,
-              "name": "relative_with_cancer_history",
+              "name": "relationship_primary_diagnosis",
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
@@ -6283,10 +7939,22 @@
               "deprecationReason": null,
               "description": "string",
               "isDeprecated": false,
-              "name": "relationship_gender",
+              "name": "relative_with_cancer_history",
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "long",
+              "isDeprecated": false,
+              "name": "relationship_age_at_diagnosis",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
                 "ofType": null
               }
             },
@@ -6343,7 +8011,7 @@
               "deprecationReason": null,
               "description": "string",
               "isDeprecated": false,
-              "name": "relationship_primary_diagnosis",
+              "name": "relationship_gender",
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
@@ -7210,6 +8878,874 @@
           "interfaces": [],
           "kind": "OBJECT",
           "name": "FilesCenter",
+          "possibleTypes": null
+        },
+        {
+          "description": null,
+          "enumValues": null,
+          "fields": [
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "analysis_id",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "updated_datetime",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "created_datetime",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "metadata",
+              "type": {
+                "kind": "OBJECT",
+                "name": "FilesAnalysisMetadata",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "submitter_id",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "state",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "workflow_end_datetime",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "workflow_link",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "analysis_type",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "workflow_type",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "workflow_start_datetime",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "workflow_version",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "input_files",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "FilesAnalysisInputFiles",
+                  "ofType": null
+                }
+              }
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "kind": "OBJECT",
+          "name": "FilesAnalysis",
+          "possibleTypes": null
+        },
+        {
+          "description": null,
+          "enumValues": null,
+          "fields": [
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "read_groups",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "FilesAnalysisMetadataReadGroups",
+                  "ofType": null
+                }
+              }
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "kind": "OBJECT",
+          "name": "FilesAnalysisMetadata",
+          "possibleTypes": null
+        },
+        {
+          "description": null,
+          "enumValues": null,
+          "fields": [
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "library_name",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "is_paired_end",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "size_selection_range",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "adapter_sequence",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "library_strand",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "submitter_id",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "library_preparation_kit_name",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "to_trim_adapter_sequence",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "target_capture_kit_name",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "base_caller_version",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "includes_spike_ins",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "library_preparation_kit_version",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "spike_ins_concentration",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "created_datetime",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "sequencing_date",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "updated_datetime",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "spike_ins_fasta",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "long",
+              "isDeprecated": false,
+              "name": "RIN",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "platform",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "state",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "library_selection",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "library_strategy",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "library_preparation_kit_catalog_number",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "target_capture_kit_target_region",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "target_capture_kit_version",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "read_group_name",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "library_preparation_kit_vendor",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "target_capture_kit_vendor",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "target_capture_kit_catalog_number",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "instrument_model",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "base_caller_name",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "long",
+              "isDeprecated": false,
+              "name": "read_length",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "experiment_name",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "flow_cell_barcode",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "sequencing_center",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "read_group_id",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "adapter_name",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "kind": "OBJECT",
+          "name": "FilesAnalysisMetadataReadGroups",
+          "possibleTypes": null
+        },
+        {
+          "description": null,
+          "enumValues": null,
+          "fields": [
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "md5sum",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "data_type",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "updated_datetime",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "created_datetime",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "file_name",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "error_type",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "data_format",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "submitter_id",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "platform",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "state",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "file_id",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "data_category",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "long",
+              "isDeprecated": false,
+              "name": "file_size",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "experimental_strategy",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "state_comment",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "file_state",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "long",
+              "isDeprecated": false,
+              "name": "revision",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "kind": "OBJECT",
+          "name": "FilesAnalysisInputFiles",
           "possibleTypes": null
         },
         {
@@ -9523,6 +12059,18 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
+              "name": "files__analysis__input_files__file_id",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
               "name": "submitter_portion_ids",
               "type": {
                 "kind": "OBJECT",
@@ -10880,6 +13428,18 @@
               "description": null,
               "isDeprecated": false,
               "name": "samples__portions__analytes__aliquots__annotations__annotation_id",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Agg",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "files__downstream_analyses__output_files__file_id",
               "type": {
                 "kind": "OBJECT",
                 "name": "Agg",
@@ -12529,18 +15089,6 @@
             {
               "args": [],
               "deprecationReason": null,
-              "description": "string",
-              "isDeprecated": false,
-              "name": "aliquot_id",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
               "name": "center",
@@ -12577,12 +15125,12 @@
             {
               "args": [],
               "deprecationReason": null,
-              "description": "string",
+              "description": "long",
               "isDeprecated": false,
-              "name": "analyte_type_id",
+              "name": "amount",
               "type": {
                 "kind": "SCALAR",
-                "name": "String",
+                "name": "Int",
                 "ofType": null
               }
             },
@@ -12613,12 +15161,12 @@
             {
               "args": [],
               "deprecationReason": null,
-              "description": "long",
+              "description": "string",
               "isDeprecated": false,
-              "name": "amount",
+              "name": "state",
               "type": {
                 "kind": "SCALAR",
-                "name": "Int",
+                "name": "String",
                 "ofType": null
               }
             },
@@ -12627,7 +15175,19 @@
               "deprecationReason": null,
               "description": "string",
               "isDeprecated": false,
-              "name": "state",
+              "name": "aliquot_id",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "analyte_type_id",
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
@@ -13387,7 +15947,7 @@
               "deprecationReason": null,
               "description": "long",
               "isDeprecated": false,
-              "name": "number_proliferating_cells",
+              "name": "percent_inflam_infiltration",
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",
@@ -13411,7 +15971,7 @@
               "deprecationReason": null,
               "description": "long",
               "isDeprecated": false,
-              "name": "percent_inflam_infiltration",
+              "name": "number_proliferating_cells",
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",
@@ -14284,6 +16844,22 @@
             {
               "args": [],
               "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "downstream_analyses",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "CasesFilesDownstreamAnalyses",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
               "description": "string",
               "isDeprecated": false,
               "name": "submitter_id",
@@ -14528,6 +17104,18 @@
             {
               "args": [],
               "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "analysis",
+              "type": {
+                "kind": "OBJECT",
+                "name": "CasesFilesAnalysis",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
               "description": "string",
               "isDeprecated": false,
               "name": "acl",
@@ -14548,6 +17136,18 @@
                 "name": "String",
                 "ofType": null
               }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "long",
+              "isDeprecated": false,
+              "name": "revision",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
             }
           ],
           "inputFields": null,
@@ -14566,6 +17166,18 @@
               "description": "string",
               "isDeprecated": false,
               "name": "md5sum",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "data_type",
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
@@ -14649,6 +17261,18 @@
               "deprecationReason": null,
               "description": "string",
               "isDeprecated": false,
+              "name": "platform",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
               "name": "state",
               "type": {
                 "kind": "SCALAR",
@@ -14671,9 +17295,33 @@
             {
               "args": [],
               "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "data_category",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
               "description": "long",
               "isDeprecated": false,
               "name": "file_size",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "long",
+              "isDeprecated": false,
+              "name": "revision",
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",
@@ -14703,12 +17351,398 @@
                 "name": "String",
                 "ofType": null
               }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "experimental_strategy",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
             }
           ],
           "inputFields": null,
           "interfaces": [],
           "kind": "OBJECT",
           "name": "CasesFilesIndexFiles",
+          "possibleTypes": null
+        },
+        {
+          "description": null,
+          "enumValues": null,
+          "fields": [
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "analysis_id",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "updated_datetime",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "created_datetime",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "submitter_id",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "state",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "workflow_end_datetime",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "workflow_link",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "analysis_type",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "workflow_type",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "workflow_start_datetime",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "workflow_version",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "output_files",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "CasesFilesDownstreamAnalysesOutputFiles",
+                  "ofType": null
+                }
+              }
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "kind": "OBJECT",
+          "name": "CasesFilesDownstreamAnalyses",
+          "possibleTypes": null
+        },
+        {
+          "description": null,
+          "enumValues": null,
+          "fields": [
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "md5sum",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "data_type",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "updated_datetime",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "created_datetime",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "file_name",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "error_type",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "data_format",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "submitter_id",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "platform",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "state",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "file_id",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "data_category",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "long",
+              "isDeprecated": false,
+              "name": "file_size",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "experimental_strategy",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "state_comment",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "file_state",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "long",
+              "isDeprecated": false,
+              "name": "revision",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "kind": "OBJECT",
+          "name": "CasesFilesDownstreamAnalysesOutputFiles",
           "possibleTypes": null
         },
         {
@@ -15195,12 +18229,880 @@
             {
               "args": [],
               "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "analysis_id",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "updated_datetime",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "created_datetime",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "input_files",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "CasesFilesAnalysisInputFiles",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "submitter_id",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "state",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "workflow_end_datetime",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "workflow_link",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "analysis_type",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "workflow_type",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "workflow_start_datetime",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "workflow_version",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "metadata",
+              "type": {
+                "kind": "OBJECT",
+                "name": "CasesFilesAnalysisMetadata",
+                "ofType": null
+              }
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "kind": "OBJECT",
+          "name": "CasesFilesAnalysis",
+          "possibleTypes": null
+        },
+        {
+          "description": null,
+          "enumValues": null,
+          "fields": [
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "md5sum",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "data_type",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "updated_datetime",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "created_datetime",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "file_name",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "error_type",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "data_format",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "submitter_id",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "platform",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "state",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "file_id",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "data_category",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
               "description": "long",
               "isDeprecated": false,
-              "name": "relationship_age_at_diagnosis",
+              "name": "file_size",
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "long",
+              "isDeprecated": false,
+              "name": "revision",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "state_comment",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "file_state",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "experimental_strategy",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "kind": "OBJECT",
+          "name": "CasesFilesAnalysisInputFiles",
+          "possibleTypes": null
+        },
+        {
+          "description": null,
+          "enumValues": null,
+          "fields": [
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "read_groups",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "CasesFilesAnalysisMetadataReadGroups",
+                  "ofType": null
+                }
+              }
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "kind": "OBJECT",
+          "name": "CasesFilesAnalysisMetadata",
+          "possibleTypes": null
+        },
+        {
+          "description": null,
+          "enumValues": null,
+          "fields": [
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "library_name",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "is_paired_end",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "size_selection_range",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "adapter_sequence",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "library_strand",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "submitter_id",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "library_preparation_kit_name",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "to_trim_adapter_sequence",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "target_capture_kit_name",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "base_caller_name",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "library_preparation_kit_version",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "spike_ins_concentration",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "created_datetime",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "sequencing_date",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "updated_datetime",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "spike_ins_fasta",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "long",
+              "isDeprecated": false,
+              "name": "RIN",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "platform",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "state",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "library_selection",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "library_strategy",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "library_preparation_kit_catalog_number",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "target_capture_kit_target_region",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "target_capture_kit_version",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "adapter_name",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "read_group_name",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "library_preparation_kit_vendor",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "sequencing_center",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "target_capture_kit_catalog_number",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "instrument_model",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "includes_spike_ins",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "long",
+              "isDeprecated": false,
+              "name": "read_length",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "experiment_name",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "flow_cell_barcode",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "target_capture_kit_vendor",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "read_group_id",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "base_caller_version",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "kind": "OBJECT",
+          "name": "CasesFilesAnalysisMetadataReadGroups",
+          "possibleTypes": null
+        },
+        {
+          "description": null,
+          "enumValues": null,
+          "fields": [
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "string",
+              "isDeprecated": false,
+              "name": "relationship_gender",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
                 "ofType": null
               }
             },
@@ -15245,7 +19147,7 @@
               "deprecationReason": null,
               "description": "string",
               "isDeprecated": false,
-              "name": "relationship_gender",
+              "name": "relationship_primary_diagnosis",
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
@@ -15303,12 +19205,12 @@
             {
               "args": [],
               "deprecationReason": null,
-              "description": "string",
+              "description": "long",
               "isDeprecated": false,
-              "name": "relationship_primary_diagnosis",
+              "name": "relationship_age_at_diagnosis",
               "type": {
                 "kind": "SCALAR",
-                "name": "String",
+                "name": "Int",
                 "ofType": null
               }
             }

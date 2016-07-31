@@ -1,5 +1,6 @@
 // Vendor
 import React, { PropTypes, Children } from 'react'
+import Radium from 'radium'
 
 /*----------------------------------------------------------------------------*/
 
@@ -42,4 +43,4 @@ Row.propTypes = {
 
 /*----------------------------------------------------------------------------*/
 
-export default Row
+export default Radium(Row)

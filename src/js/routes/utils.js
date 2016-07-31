@@ -14,6 +14,7 @@ export const prepareViewerParams = (params, { location: { query } }) => ({
   offset: parseIntParam(query.offset, 0),
   first: parseIntParam(query.first, 20),
   filters: parseJsonParam(query.filters, null),
+  sort: query.sort || '',
 })
 
 export const prepareNodeParams = type => params => ({

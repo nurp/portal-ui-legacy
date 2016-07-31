@@ -1,7 +1,6 @@
 // Vendor
 import React, { PropTypes } from 'react'
 import { withRouter } from 'react-router'
-import SortIcon from 'react-icons/lib/fa/sort-alpha-asc'
 import ArrangeIcon from 'react-icons/lib/fa/bars'
 import DownloadIcon from 'react-icons/lib/fa/download'
 
@@ -10,6 +9,7 @@ import { Row, Column } from 'uikit/Flex'
 import ButtonGroup from 'uikit/ButtonGroup'
 import Button from 'uikit/Button'
 import theme from 'theme'
+import SortTableButton from 'components/SortTableButton'
 
 /*----------------------------------------------------------------------------*/
 
@@ -42,7 +42,7 @@ const SearchResultsHeader = ({ type, total, count, location }) => (
     </Column>
     <Row style={{ marginLeft: 'auto' }}>
       <ButtonGroup>
-        <Button style={styles.tableActionButtons} leftIcon={<SortIcon />} />
+        <SortTableButton style={styles.tableActionButtons} />
         <Button style={styles.tableActionButtons} leftIcon={<ArrangeIcon />} />
         <Button style={styles.tableActionButtons} leftIcon={<DownloadIcon />} />
       </ButtonGroup>

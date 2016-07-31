@@ -39,6 +39,7 @@ export default Relay.createContainer(FilesPage, {
     first: 0,
     offset: 0,
     filters: null,
+    sort: '',
   },
   fragments: {
     viewer: () => Relay.QL`
@@ -52,7 +53,7 @@ export default Relay.createContainer(FilesPage, {
           aggregations(filters: $filters) {
             ${FilesAggregations.getFragment('aggregations')}
           }
-          hits(first: $first offset: $offset, filters: $filters) {
+          hits(first: $first, offset: $offset, filters: $filters, sort: $sort) {
             ${FileTable.getFragment('hits')}
           }
         }
