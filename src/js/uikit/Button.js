@@ -2,6 +2,7 @@
 import React, { PropTypes } from 'react'
 import Radium from 'radium'
 import Color from 'color'
+import StyleBuilder from 'style-builder'
 
 // Custom
 import theme from 'theme'
@@ -35,7 +36,7 @@ const styles = {
 }
 
 const Button = ({ style, children, rightIcon, leftIcon, ...props }) => (
-  <button style={{ ...styles.button, ...style }} {...props}>
+  <button style={StyleBuilder.build({ ...styles.button, ...style })} {...props}>
     {leftIcon}
     <span style={{ ...styles.margin(leftIcon, rightIcon), ...center }}>{children}</span>
     {rightIcon}

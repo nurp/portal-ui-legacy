@@ -13,12 +13,11 @@ const ButtonGroup = ({ style, children, ...props }) => (
         ...child.props,
         style: {
           ...child.props.style,
-          borderRadius: `
-            ${!i ? '4px' : '0px'}
-            ${i === children.length - 1 ? '4px' : '0px'}
-            ${i === children.length - 1 ? '4px' : '0px'}
-            ${!i ? '4px' : '0px'}
-          `,
+          borderRadius: // shouldn't have newlines
+            `${!i ? '4px' : '0px'} `
+          + `${i === children.length - 1 ? '4px' : '0px'} `
+          + `${i === children.length - 1 ? '4px' : '0px'} `
+          + `${!i ? '4px' : '0px'}`,
           ...(i ? { borderLeft: 'none' } : {}),
           display: 'inline',
         },
