@@ -37,7 +37,7 @@ const SortTableButton = ({
   mouseUpHandler,
   location,
 }) => {
-  const { sort, ...query } = location.query
+  const { sort = '', ...query } = location.query
   const fields = sort.split(',')
 
   return (
@@ -53,8 +53,11 @@ const SortTableButton = ({
           onMouseUp={mouseUpHandler}
         >
           {fileTable.filter(x => x.sortable).map(x => {
-            const nextSort = sort.includes(x.id)
-              ? fields.filter(f => !f.includes(x.id)).join(',')
+            const sameField = fields.find(f => f.split(':')[0] === x.id)
+            const otherFields = fields.filter(f => f.split(':')[0] !== x.id)
+
+            const nextSort = sameField
+              ? otherFields.join(',')
               : [...fields, `${x.id}:asc`].join(',')
 
             return (
@@ -75,16 +78,48 @@ const SortTableButton = ({
                       readOnly
                       style={{ pointerEvents: 'none' }}
                       type="checkbox"
-                      checked={sort.includes(x.id)}
+                      checked={!!sameField}
                     />
                     <span style={{ marginLeft: '0.3rem' }}>{x.name}</span>
                   </Link>
                 </Row>
                 <Row style={styles.radioRow}>
-                  <ArrowDownIcon />
-                  <input type="radio" />
-                  <ArrowUpIcon />
-                  <input type="radio" />
+                  <Link
+                    style={{ width: '100%' }}
+                    to={{
+                      pathname: location.pathname,
+                      query: {
+                        ...query,
+                        sort: [...otherFields, `${x.id}:asc`].join(','),
+                      },
+                    }}
+                    onClick={() => setTimeout(() => setActive(false))}
+                  >
+                    <ArrowDownIcon />
+                    <input
+                      readOnly
+                      type="radio"
+                      checked={!!sameField && sameField.split(':')[1] === 'asc'}
+                    />
+                  </Link>
+                  <Link
+                    style={{ width: '100%' }}
+                    to={{
+                      pathname: location.pathname,
+                      query: {
+                        ...query,
+                        sort: [...otherFields, `${x.id}:desc`].join(','),
+                      },
+                    }}
+                    onClick={() => setTimeout(() => setActive(false))}
+                  >
+                    <ArrowUpIcon />
+                    <input
+                      readOnly
+                      type="radio"
+                      checked={!!sameField && sameField.split(':')[1] === 'desc'}
+                    />
+                  </Link>
                 </Row>
               </Row>
             )
