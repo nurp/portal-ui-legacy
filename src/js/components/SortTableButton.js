@@ -17,13 +17,14 @@ import theme from 'theme'
 
 const styles = {
   checkboxRow: {
-    padding: '0.3rem',
+    padding: '0.3rem 0.6rem',
     ':hover': {
       backgroundColor: theme.greyScale6,
       borderRight: `2px solid ${theme.secondary}`,
     },
   },
   radioRow: {
+    padding: '0.3rem 0.6rem',
     marginLeft: 'auto',
     alignItems: 'center',
   },

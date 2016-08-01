@@ -21,6 +21,7 @@ function getAnnotations(file) {
 
 const fileTable = [
   {
+    name: 'Add to Cart',
     id: 'file_actions',
     th:
       <Th key="file_actions">
