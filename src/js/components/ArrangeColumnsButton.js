@@ -6,25 +6,18 @@ import ArrangeIcon from 'react-icons/lib/fa/bars'
 import SearchIcon from 'react-icons/lib/fa/search'
 
 // Custom
-import { toggleFileTableColumn, restoreFileTableColumns } from 'dux/activeFileTableColumns'
+import { restoreFileTableColumns } from 'dux/activeFileTableColumns'
 import { Row, Column } from 'uikit/Flex'
 import Button from 'uikit/Button'
 import withDropdown from 'uikit/withDropdown'
 import { dropdown } from 'theme/mixins'
 import fileTable from 'models/fileTable'
 import theme from 'theme'
+import ArrangeColumns from 'components/ArrangeColumns'
 
 /*----------------------------------------------------------------------------*/
 
 const styles = {
-  row: {
-    lineHeight: '1.5',
-    alignItems: 'center',
-    padding: '0.3rem 0.6rem',
-    ':hover': {
-      backgroundColor: theme.greyScale6,
-    },
-  },
   searchIcon: {
     backgroundColor: theme.greyScale5,
     color: theme.greyScale2,
@@ -57,7 +50,6 @@ const ArrangeColumnsButton = ({
   searchTerm,
   setState,
   dispatch,
-  fileTableColumns
 }) => {
   return (
     <Button
@@ -83,26 +75,19 @@ const ArrangeColumnsButton = ({
           </Row>
           <Row
             style={styles.restoreDefaults}
-            onClick={() => dispatch(restoreFileTableColumns())}
+            onClick={
+              () => {
+                dispatch(restoreFileTableColumns())
+                setState(() => '')
+              }
+            }
           >
             Restore Defaults
           </Row>
-          {fileTable
-          .filter(x => x.name.toLowerCase().includes(searchTerm.toLowerCase()))
-          .map(x =>
-            <Row key={x.id} style={styles.row}>
-              <Row onClick={() => dispatch(toggleFileTableColumn(x.id))}>
-                <input
-                  readOnly
-                  style={{ pointerEvents: 'none' }}
-                  type="checkbox"
-                  checked={fileTableColumns.includes(x.id)}
-                />
-                <span style={{ marginLeft: '0.3rem' }}>{x.name}</span>
-              </Row>
-              <ArrangeIcon style={{ marginLeft: 'auto' }} />
-            </Row>
-          )}
+          <ArrangeColumns
+            columns={fileTable}
+            searchTerm={searchTerm}
+          />
         </Column>
       }
     </Button>
@@ -127,10 +112,6 @@ const enhance = compose(
   pure
 )
 
-const mapState = state => ({
-  fileTableColumns: state.activeFileTableColumns,
-})
-
 /*----------------------------------------------------------------------------*/
 
-export default connect(mapState)(enhance(ArrangeColumnsButton))
+export default connect()(enhance(ArrangeColumnsButton))

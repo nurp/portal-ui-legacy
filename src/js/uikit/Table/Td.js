@@ -7,6 +7,7 @@ const styles = {
   td: {
     padding: '3px',
     border: '1px solid #ddd',
+    whiteSpace: 'nowrap',
   },
 }
 

@@ -10,7 +10,11 @@ import fileTable from 'models/fileTable'
 /*----------------------------------------------------------------------------*/
 
 const FileTr = ({ node, style, tableColumns }) => {
-  const data = fileTable.filter(x => tableColumns.includes(x.id))
+  const data = fileTable
+    .slice()
+    .sort((a, b) => tableColumns.indexOf(a.id) - tableColumns.indexOf(b.id))
+    .filter(x => tableColumns.includes(x.id))
+
   return (
     <Tr style={style}>
       {data.map(x => x.td(node))}

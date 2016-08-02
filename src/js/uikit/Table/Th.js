@@ -9,6 +9,7 @@ const styles = {
     padding: '3px',
     lineHeight: '20px',
     textAlign: 'left',
+    whiteSpace: 'nowrap',
   },
 }
 

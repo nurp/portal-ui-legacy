@@ -13,7 +13,10 @@ import fileTable from 'models/fileTable'
 /*----------------------------------------------------------------------------*/
 
 const FileTable = props => {
-  const headings = fileTable.filter(x => props.tableColumns.includes(x.id))
+  const headings = fileTable
+    .slice()
+    .sort((a, b) => props.tableColumns.indexOf(a.id) - props.tableColumns.indexOf(b.id))
+    .filter(x => props.tableColumns.includes(x.id))
 
   const TableComponent = (
     <Table
