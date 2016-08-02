@@ -1,10 +1,12 @@
 // Vendor
 import React, { PropTypes } from 'react'
+import { connect } from 'react-redux'
 import { compose, withState, pure } from 'recompose'
 import ArrangeIcon from 'react-icons/lib/fa/bars'
 import SearchIcon from 'react-icons/lib/fa/search'
 
 // Custom
+import { toggleFileTableColumn, restoreFileTableColumns } from 'dux/activeFileTableColumns'
 import { Row, Column } from 'uikit/Flex'
 import Button from 'uikit/Button'
 import withDropdown from 'uikit/withDropdown'
@@ -54,6 +56,8 @@ const ArrangeColumnsButton = ({
   mouseUpHandler,
   searchTerm,
   setState,
+  dispatch,
+  fileTableColumns
 }) => {
   return (
     <Button
@@ -77,18 +81,25 @@ const ArrangeColumnsButton = ({
               onChange={() => setState(() => searchInput.value)}
             />
           </Row>
-          <Row style={styles.restoreDefaults}>Restore Defaults</Row>
+          <Row
+            style={styles.restoreDefaults}
+            onClick={() => dispatch(restoreFileTableColumns())}
+          >
+            Restore Defaults
+          </Row>
           {fileTable
           .filter(x => x.name.toLowerCase().includes(searchTerm.toLowerCase()))
           .map(x =>
             <Row key={x.id} style={styles.row}>
-              <input
-                readOnly
-                style={{ pointerEvents: 'none' }}
-                type="checkbox"
-                checked={!x.hidden}
-              />
-              <span style={{ marginLeft: '0.3rem' }}>{x.name}</span>
+              <Row onClick={() => dispatch(toggleFileTableColumn(x.id))}>
+                <input
+                  readOnly
+                  style={{ pointerEvents: 'none' }}
+                  type="checkbox"
+                  checked={fileTableColumns.includes(x.id)}
+                />
+                <span style={{ marginLeft: '0.3rem' }}>{x.name}</span>
+              </Row>
               <ArrangeIcon style={{ marginLeft: 'auto' }} />
             </Row>
           )}
@@ -106,6 +117,8 @@ ArrangeColumnsButton.propTypes = {
   mouseUpHandler: PropTypes.func,
   searchTerm: PropTypes.string,
   setState: PropTypes.func,
+  dispatch: PropTypes.func,
+  fileTableColumns: PropTypes.array,
 }
 
 const enhance = compose(
@@ -114,6 +127,10 @@ const enhance = compose(
   pure
 )
 
+const mapState = state => ({
+  fileTableColumns: state.activeFileTableColumns,
+})
+
 /*----------------------------------------------------------------------------*/
 
-export default enhance(ArrangeColumnsButton)
+export default connect(mapState)(enhance(ArrangeColumnsButton))
