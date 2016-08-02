@@ -5,6 +5,7 @@ import Relay from 'react-relay'
 // Custom
 import { fileFacets } from 'models/fileFacets'
 import TermFacet from 'components/TermFacet'
+import FreeTextFacet from 'components/FreeTextFacet'
 
 /*----------------------------------------------------------------------------*/
 
@@ -12,6 +13,10 @@ const docType = 'files'
 
 const FilesAggregations = props => (
   <div>
+    <FreeTextFacet
+      title="File"
+      placeholder="Search for File name or ID"
+    />
     {fileFacets.filter(f => f.facetType === 'terms').map(f =>
       <TermFacet
         key={`${docType}.${f.name}`}
