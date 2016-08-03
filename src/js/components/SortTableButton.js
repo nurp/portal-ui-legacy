@@ -10,7 +10,7 @@ import { Row, Column } from 'uikit/Flex'
 import Button from 'uikit/Button'
 import withDropdown from 'uikit/withDropdown'
 import { dropdown } from 'theme/mixins'
-import fileTable from 'entities/fileTable'
+import entities from 'entities'
 import theme from 'theme'
 
 /*----------------------------------------------------------------------------*/
@@ -37,6 +37,7 @@ const SortTableButton = ({
   mouseDownHandler,
   mouseUpHandler,
   location,
+  entityType,
 }) => {
   const { sort = '', ...query } = location.query
   const fields = sort.split(',')
@@ -53,7 +54,7 @@ const SortTableButton = ({
           onMouseDown={mouseDownHandler}
           onMouseUp={mouseUpHandler}
         >
-          {fileTable.filter(x => x.sortable).map(x => {
+          {entities[entityType].table.filter(x => x.sortable).map(x => {
             const sameField = fields.find(f => f.split(':')[0] === x.id)
             const otherFields = fields.filter(f => f.split(':')[0] !== x.id)
 
@@ -138,6 +139,7 @@ SortTableButton.propTypes = {
   mouseDownHandler: PropTypes.func,
   mouseUpHandler: PropTypes.func,
   location: PropTypes.object,
+  entityType: PropTypes.string,
 }
 
 /*----------------------------------------------------------------------------*/

@@ -42,7 +42,10 @@ const SearchResultsHeader = ({ entityType, total, count, location }) => (
     </Column>
     <Row style={{ marginLeft: 'auto' }}>
       <ButtonGroup>
-        <SortTableButton style={styles.tableActionButtons} />
+        <SortTableButton
+          style={styles.tableActionButtons}
+          entityType={entityType}
+        />
         <ArrangeColumnsButton
           style={styles.tableActionButtons}
           entityType={entityType}
