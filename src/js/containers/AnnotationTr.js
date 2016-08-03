@@ -1,41 +1,50 @@
+// Vendor
+import React, { PropTypes } from 'react'
 import Relay from 'react-relay'
-import { tr, td, h } from 'react-hyperscript-helpers'
-import { Link } from 'react-router'
+import { connect } from 'react-redux'
 
-const AnnotationTr = ({ node }) => (
-  tr([
-    td([
-      h(Link, {
-        to: {
-          pathname: `/annotations/${node.annotation_id}`,
-        },
-      }, node.annotation_id),
-    ]),
-    td(node.case_id),
-    td(node.project.project_id),
-    td(node.entity_type),
-    td(node.entity_id),
-    td(node.category),
-    td(node.classification),
-    td(node.created_datetime),
-  ])
-)
+// Custom
+import { Tr } from 'uikit/Table'
+import annotationTable from 'models/annotationTable'
 
-export default Relay.createContainer(AnnotationTr, {
-  fragments: {
-    node: () => Relay.QL`
-      fragment on Annotation {
-        annotation_id
-        case_id
-        project {
-          project_id
+/*----------------------------------------------------------------------------*/
+
+const AnnotationTr = ({ node, style, tableColumns }) => {
+  const data = annotationTable
+    .slice()
+    .sort((a, b) => tableColumns.indexOf(a.id) - tableColumns.indexOf(b.id))
+    .filter(x => tableColumns.includes(x.id))
+
+  return (
+    <Tr style={style}>
+      {data.map(x => x.td(node))}
+    </Tr>
+  )
+}
+
+AnnotationTr.propTypes = {
+  node: PropTypes.object,
+  style: PropTypes.object,
+  tableColumns: PropTypes.array,
+}
+
+export default Relay.createContainer(
+  connect(state => ({ tableColumns: state.activeAnnotationTableColumns }))(AnnotationTr), {
+    fragments: {
+      node: () => Relay.QL`
+        fragment on Annotation {
+          annotation_id
+          case_id
+          project {
+            project_id
+          }
+          entity_type
+          entity_id
+          category
+          classification
+          created_datetime
         }
-        entity_type
-        entity_id
-        category
-        classification
-        created_datetime
-      }
-    `,
-  },
-})
+      `,
+    },
+  }
+)

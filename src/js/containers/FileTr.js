@@ -22,7 +22,6 @@ const FileTr = ({ node, style, tableColumns }) => {
   )
 }
 
-
 FileTr.propTypes = {
   node: PropTypes.object,
   style: PropTypes.object,

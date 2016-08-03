@@ -13,28 +13,27 @@ import annotationTable from 'models/annotationTable'
 /*----------------------------------------------------------------------------*/
 
 const AnnotationTable = ({ hits, tableColumns }) => {
-  return null
-  // const headings = annotationTable
-  //   .slice()
-  //   .sort((a, b) => tableColumns.indexOf(a.id) - tableColumns.indexOf(b.id))
-  //   .filter(x => tableColumns.includes(x.id))
-  //
-  // const TableComponent = (
-  //   <Table
-  //     headings={headings.map(x => x.th || <Th key={x.id}>{x.name}</Th>)}
-  //     body={<AnnotationTBody edges={hits.edges} />}
-  //   />
-  // )
-  //
-  // return (
-  //   <SearchResults
-  //     type="annotations"
-  //     total={hits.pagination.total}
-  //     count={hits.pagination.count}
-  //     Table={TableComponent}
-  //     Pagination={<Pagination pathname="/annotations" pagination={hits.pagination} />}
-  //   />
-  // )
+  const headings = annotationTable
+    .slice()
+    .sort((a, b) => tableColumns.indexOf(a.id) - tableColumns.indexOf(b.id))
+    .filter(x => tableColumns.includes(x.id))
+
+  const TableComponent = (
+    <Table
+      headings={headings.map(x => x.th || <Th key={x.id}>{x.name}</Th>)}
+      body={<AnnotationTBody edges={hits.edges} />}
+    />
+  )
+
+  return (
+    <SearchResults
+      type="annotations"
+      total={hits.pagination.total}
+      count={hits.pagination.count}
+      Table={TableComponent}
+      Pagination={<Pagination pathname="/annotations" pagination={hits.pagination} />}
+    />
+  )
 }
 
 AnnotationTable.propTypes = {
@@ -44,24 +43,26 @@ AnnotationTable.propTypes = {
 
 export { AnnotationTable }
 
-export default Relay.createContainer(AnnotationTable, {
-  initialVariables: {
-    first: 0,
-    offset: 0,
-    filters: null,
-  },
-  fragments: {
-    hits: () => Relay.QL`
-      fragment on AnnotationConnection {
-        pagination {
-          count
-          total
-          ${Pagination.getFragment('pagination')}
+export default Relay.createContainer(
+  connect(state => ({ tableColumns: state.activeAnnotationTableColumns }))(AnnotationTable), {
+    initialVariables: {
+      first: 0,
+      offset: 0,
+      filters: null,
+    },
+    fragments: {
+      hits: () => Relay.QL`
+        fragment on AnnotationConnection {
+          pagination {
+            count
+            total
+            ${Pagination.getFragment('pagination')}
+          }
+          edges {
+            ${AnnotationTBody.getFragment('edges')}
+          }
         }
-        edges {
-          ${AnnotationTBody.getFragment('edges')}
-        }
-      }
-    `,
-  },
-})
+      `,
+    },
+  }
+)
