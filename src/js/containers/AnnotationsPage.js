@@ -32,6 +32,7 @@ export default Relay.createContainer(AnnotationsPage, {
     first: 0,
     offset: 0,
     filters: null,
+    sort: '',
   },
   fragments: {
     viewer: () => Relay.QL`
@@ -40,7 +41,7 @@ export default Relay.createContainer(AnnotationsPage, {
           aggregations(filters: $filters) {
             ${AnnotationsAggregations.getFragment('aggregations')}
           }
-          hits(first: $first offset: $offset, filters: $filters) {
+          hits(first: $first, offset: $offset, filters: $filters, sort: $sort) {
             ${AnnotationTable.getFragment('hits')}
           }
         }
