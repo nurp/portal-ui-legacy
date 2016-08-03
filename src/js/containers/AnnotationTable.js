@@ -8,7 +8,7 @@ import Table, { Th } from 'uikit/Table'
 import AnnotationTBody from 'containers/AnnotationTBody'
 import Pagination from 'containers/Pagination'
 import SearchResults from 'components/SearchResults'
-import annotationTable from 'models/annotationTable'
+import annotationTable from 'entities/annotationTable'
 
 /*----------------------------------------------------------------------------*/
 
@@ -27,7 +27,7 @@ const AnnotationTable = ({ hits, tableColumns }) => {
 
   return (
     <SearchResults
-      type="annotations"
+      entityType="annotations"
       total={hits.pagination.total}
       count={hits.pagination.count}
       Table={TableComponent}
@@ -44,7 +44,7 @@ AnnotationTable.propTypes = {
 export { AnnotationTable }
 
 export default Relay.createContainer(
-  connect(state => ({ tableColumns: state.activeAnnotationTableColumns }))(AnnotationTable), {
+  connect(state => ({ tableColumns: state.tableColumns.annotations }))(AnnotationTable), {
     initialVariables: {
       first: 0,
       offset: 0,

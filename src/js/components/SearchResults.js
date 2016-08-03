@@ -20,7 +20,7 @@ const styles = {
 }
 
 const SearchResults = ({
-  type,
+  entityType,
   total,
   count,
   Pagination,
@@ -30,7 +30,7 @@ const SearchResults = ({
     <Column>
       <Row style={styles.headerContainer}>
         <SearchResultsHeader
-          type={type}
+          entityType={entityType}
           count={count}
           total={total}
           Pagination={Pagination}
@@ -43,7 +43,7 @@ const SearchResults = ({
 )
 
 SearchResults.propTypes = {
-  type: PropTypes.string,
+  entityType: PropTypes.string,
   total: PropTypes.number,
   count: PropTypes.number,
   Pagination: PropTypes.node,

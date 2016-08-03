@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 
 // Custom
 import { Tr } from 'uikit/Table'
-import fileTable from 'models/fileTable'
+import fileTable from 'entities/fileTable'
 
 /*----------------------------------------------------------------------------*/
 
@@ -33,7 +33,7 @@ FileTr.propTypes = {
 export { FileTr }
 
 export default Relay.createContainer(
-  connect(state => ({ tableColumns: state.activeFileTableColumns }))(FileTr), {
+  connect(state => ({ tableColumns: state.tableColumns.files }))(FileTr), {
     fragments: {
       node: () => Relay.QL`
         fragment on File {

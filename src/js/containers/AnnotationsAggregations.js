@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react'
 import Relay from 'react-relay'
 
 // Custom
-import { annotationFacets } from 'models/annotationFacets'
+import { annotationFacets } from 'entities/annotationFacets'
 import TermFacet from 'components/TermFacet'
 import FreeTextFacet from 'components/FreeTextFacet'
 import theme from 'theme'

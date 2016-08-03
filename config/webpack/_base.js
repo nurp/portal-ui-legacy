@@ -56,7 +56,7 @@ export default {
       containers: path.resolve(path.join(config.get('path_project'), 'src', 'js', 'containers')),
       uikit: path.resolve(path.join(config.get('path_project'), 'src', 'js', 'uikit')),
       theme: path.resolve(path.join(config.get('path_project'), 'src', 'js', 'theme')),
-      models: path.resolve(path.join(config.get('path_project'), 'src', 'js', 'models')),
+      entities: path.resolve(path.join(config.get('path_project'), 'src', 'js', 'entities')),
       dux: path.resolve(path.join(config.get('path_project'), 'src', 'js', 'dux')),
       utils: path.resolve(path.join(config.get('path_project'), 'src', 'js', 'utils')),
     },

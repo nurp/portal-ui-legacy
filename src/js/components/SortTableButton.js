@@ -10,7 +10,7 @@ import { Row, Column } from 'uikit/Flex'
 import Button from 'uikit/Button'
 import withDropdown from 'uikit/withDropdown'
 import { dropdown } from 'theme/mixins'
-import fileTable from 'models/fileTable'
+import fileTable from 'entities/fileTable'
 import theme from 'theme'
 
 /*----------------------------------------------------------------------------*/

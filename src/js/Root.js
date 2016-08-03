@@ -19,8 +19,7 @@ const store = createStore(combineReducers(reducers), applyMiddleware(thunk))
 
 persistStore(store, { whitelist: [
   'cart',
-  'activeFileTableColumns',
-  'activeAnnotationTableColumns',
+  'tableColumns',
 ] })
 
 // Don't inject everytime file is hot-reloaded

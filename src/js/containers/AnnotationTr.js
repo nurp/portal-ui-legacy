@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 
 // Custom
 import { Tr } from 'uikit/Table'
-import annotationTable from 'models/annotationTable'
+import annotationTable from 'entities/annotationTable'
 
 /*----------------------------------------------------------------------------*/
 
@@ -29,7 +29,7 @@ AnnotationTr.propTypes = {
 }
 
 export default Relay.createContainer(
-  connect(state => ({ tableColumns: state.activeAnnotationTableColumns }))(AnnotationTr), {
+  connect(state => ({ tableColumns: state.tableColumns.annotations }))(AnnotationTr), {
     fragments: {
       node: () => Relay.QL`
         fragment on Annotation {

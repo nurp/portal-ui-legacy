@@ -8,7 +8,8 @@ import ArrangeIcon from 'react-icons/lib/fa/bars'
 import theme from 'theme'
 import { Row } from 'uikit/Flex'
 import SortableItem from 'uikit/SortableItem'
-import { toggleFileTableColumn, setFileTableColumns } from 'dux/activeFileTableColumns'
+import entities from 'entities'
+import { toggleColumn, setColumns } from 'dux/tableColumns'
 
 /*----------------------------------------------------------------------------*/
 
@@ -25,10 +26,11 @@ const styles = {
 
 const ArrangeColumns = ({
   dispatch,
-  fileTableColumns,
+  tableColumns,
   setState,
   state,
   searchTerm,
+  entityType,
 }) => {
   const filteredColumns = state.columns.filter(x =>
     x.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -42,10 +44,10 @@ const ArrangeColumns = ({
           updateState={nextState => setState(state => { // eslint-disable-line
             if (!nextState.items && state.items) {
               const nextColumnIds = state.items.reduce((acc, x) => (
-                [...acc, ...(fileTableColumns.includes(x.id) ? [x.id] : [])]
+                [...acc, ...(tableColumns.includes(x.id) ? [x.id] : [])]
               ), [])
 
-              dispatch(setFileTableColumns(nextColumnIds))
+              dispatch(setColumns({ entityType, ids: nextColumnIds }))
             }
             return { columns: filteredColumns, ...nextState }
           })}
@@ -55,12 +57,12 @@ const ArrangeColumns = ({
           outline="list"
         >
           <Row style={styles.row}>
-            <Row onClick={() => dispatch(toggleFileTableColumn(column.id))}>
+            <Row onClick={() => dispatch(toggleColumn({ entityType, id: column.id }))}>
               <input
                 readOnly
                 style={{ pointerEvents: 'none' }}
                 type="checkbox"
-                checked={fileTableColumns.includes(column.id)}
+                checked={tableColumns.includes(column.id)}
               />
               <span style={{ marginLeft: '0.3rem' }}>{column.name}</span>
             </Row>
@@ -74,20 +76,20 @@ const ArrangeColumns = ({
 
 ArrangeColumns.propTypes = {
   dispatch: PropTypes.func,
-  columns: PropTypes.array,
-  fileTableColumns: PropTypes.array,
+  entityType: PropTypes.string,
+  tableColumns: PropTypes.array,
   setState: PropTypes.func,
   state: PropTypes.object,
   searchTerm: PropTypes.string,
 }
 
-const mapState = state => ({
-  fileTableColumns: state.activeFileTableColumns,
+const mapState = (state, props) => ({
+  tableColumns: state.tableColumns[props.entityType],
 })
 
 const enhance = compose(
   withState('state', 'setState',
-    ({ columns }) => ({ draggingIndex: null, columns })
+    ({ entityType }) => ({ draggingIndex: null, columns: entities[entityType].table })
   ),
   pure
 )

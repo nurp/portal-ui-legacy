@@ -8,7 +8,7 @@ import FileTBody from 'containers/FileTBody'
 import Pagination from 'containers/Pagination'
 import SearchResults from 'components/SearchResults'
 import Table, { Th } from 'uikit/Table'
-import fileTable from 'models/fileTable'
+import fileTable from 'entities/fileTable'
 
 /*----------------------------------------------------------------------------*/
 
@@ -27,7 +27,7 @@ const FileTable = props => {
 
   return (
     <SearchResults
-      type="files"
+      entityType="files"
       total={props.hits.pagination.total}
       count={props.hits.pagination.count}
       Table={TableComponent}
@@ -46,7 +46,7 @@ FileTable.propTypes = {
 export { FileTable }
 
 export default Relay.createContainer(
-  connect(state => ({ tableColumns: state.activeFileTableColumns }))(FileTable), {
+  connect(state => ({ tableColumns: state.tableColumns.files }))(FileTable), {
     initialVariables: {
       first: 0,
       offset: 0,

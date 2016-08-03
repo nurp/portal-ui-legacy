@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react'
 import Relay from 'react-relay'
 
 // Custom
-import { caseFacets } from 'models/caseFacets'
+import { caseFacets } from 'entities/caseFacets'
 import TermFacet from 'components/TermFacet'
 import FreeTextFacet from 'components/FreeTextFacet'
 

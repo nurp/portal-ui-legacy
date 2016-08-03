@@ -6,14 +6,14 @@ import ArrangeIcon from 'react-icons/lib/fa/bars'
 import SearchIcon from 'react-icons/lib/fa/search'
 
 // Custom
-import { restoreFileTableColumns } from 'dux/activeFileTableColumns'
+
 import { Row, Column } from 'uikit/Flex'
 import Button from 'uikit/Button'
 import withDropdown from 'uikit/withDropdown'
 import { dropdown } from 'theme/mixins'
-import fileTable from 'models/fileTable'
 import theme from 'theme'
 import ArrangeColumns from 'components/ArrangeColumns'
+import { restoreColumns } from 'dux/tableColumns'
 
 /*----------------------------------------------------------------------------*/
 
@@ -50,6 +50,7 @@ const ArrangeColumnsButton = ({
   searchTerm,
   setState,
   dispatch,
+  entityType,
 }) => {
   return (
     <Button
@@ -77,7 +78,7 @@ const ArrangeColumnsButton = ({
             style={styles.restoreDefaults}
             onClick={
               () => {
-                dispatch(restoreFileTableColumns())
+                dispatch(restoreColumns(entityType))
                 setState(() => '')
               }
             }
@@ -85,7 +86,7 @@ const ArrangeColumnsButton = ({
             Restore Defaults
           </Row>
           <ArrangeColumns
-            columns={fileTable}
+            entityType={entityType}
             searchTerm={searchTerm}
           />
         </Column>
@@ -103,7 +104,7 @@ ArrangeColumnsButton.propTypes = {
   searchTerm: PropTypes.string,
   setState: PropTypes.func,
   dispatch: PropTypes.func,
-  fileTableColumns: PropTypes.array,
+  entityType: PropTypes.string,
 }
 
 const enhance = compose(

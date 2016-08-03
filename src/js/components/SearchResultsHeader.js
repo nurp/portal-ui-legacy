@@ -27,23 +27,26 @@ const styles = {
   },
 }
 
-const SearchResultsHeader = ({ type, total, count, location }) => (
+const SearchResultsHeader = ({ entityType, total, count, location }) => (
   <Row flex="1">
     <Column>
-      <h2>{type}</h2>
+      <h2>{entityType}</h2>
       <span>
         <span>Showing </span>
         <strong>
           {1 + (+location.query.offset || 0)} - {(+location.query.offset + count) || 20}
         </strong>
         <span> of</span>
-        <strong> {total.toLocaleString()}</strong> {type}
+        <strong> {total.toLocaleString()}</strong> {entityType}
       </span>
     </Column>
     <Row style={{ marginLeft: 'auto' }}>
       <ButtonGroup>
         <SortTableButton style={styles.tableActionButtons} />
-        <ArrangeColumnsButton style={styles.tableActionButtons} />
+        <ArrangeColumnsButton
+          style={styles.tableActionButtons}
+          entityType={entityType}
+        />
         <Button style={styles.tableActionButtons} leftIcon={<DownloadIcon />} />
       </ButtonGroup>
     </Row>
@@ -52,7 +55,7 @@ const SearchResultsHeader = ({ type, total, count, location }) => (
 
 SearchResultsHeader.propTypes = {
   count: PropTypes.number,
-  type: PropTypes.string,
+  entityType: PropTypes.string,
   total: PropTypes.number,
   location: PropTypes.object,
 }
