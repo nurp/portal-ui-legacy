@@ -1,40 +1,45 @@
+// Vendor
 import React, { PropTypes } from 'react'
 import Relay from 'react-relay'
+import { connect } from 'react-redux'
+
+// Custom
+import Table, { Th } from 'uikit/Table'
 import AnnotationTBody from 'containers/AnnotationTBody'
 import Pagination from 'containers/Pagination'
 import SearchResults from 'components/SearchResults'
-import Table from 'uikit/Table'
+import annotationTable from 'models/annotationTable'
 
-const AnnotationTable = ({ hits }) => {
-  const TableComponent = (
-    <Table
-      columns={[
-        'UUID',
-        'Case UUID',
-        'Project',
-        'Entity Type',
-        'Entity UUID',
-        'Category',
-        'Classification',
-        'Date Created',
-      ]}
-      body={<AnnotationTBody edges={hits.edges} />}
-    />
-  )
+/*----------------------------------------------------------------------------*/
 
-  return (
-    <SearchResults
-      type="annotations"
-      total={hits.pagination.total}
-      count={hits.pagination.count}
-      Table={TableComponent}
-      Pagination={<Pagination pathname="/annotations" pagination={hits.pagination} />}
-    />
-  )
+const AnnotationTable = ({ hits, tableColumns }) => {
+  return null
+  // const headings = annotationTable
+  //   .slice()
+  //   .sort((a, b) => tableColumns.indexOf(a.id) - tableColumns.indexOf(b.id))
+  //   .filter(x => tableColumns.includes(x.id))
+  //
+  // const TableComponent = (
+  //   <Table
+  //     headings={headings.map(x => x.th || <Th key={x.id}>{x.name}</Th>)}
+  //     body={<AnnotationTBody edges={hits.edges} />}
+  //   />
+  // )
+  //
+  // return (
+  //   <SearchResults
+  //     type="annotations"
+  //     total={hits.pagination.total}
+  //     count={hits.pagination.count}
+  //     Table={TableComponent}
+  //     Pagination={<Pagination pathname="/annotations" pagination={hits.pagination} />}
+  //   />
+  // )
 }
 
 AnnotationTable.propTypes = {
   hits: PropTypes.object,
+  tableColumns: PropTypes.array,
 }
 
 export { AnnotationTable }

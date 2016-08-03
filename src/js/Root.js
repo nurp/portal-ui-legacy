@@ -17,7 +17,11 @@ import routes from './routes'
 
 const store = createStore(combineReducers(reducers), applyMiddleware(thunk))
 
-persistStore(store, { whitelist: ['cart', 'activeFileTableColumns'] })
+persistStore(store, { whitelist: [
+  'cart',
+  'activeFileTableColumns',
+  'activeAnnotationTableColumns',
+] })
 
 // Don't inject everytime file is hot-reloaded
 if (!Relay.Store._storeData._networkLayer._implementation) {

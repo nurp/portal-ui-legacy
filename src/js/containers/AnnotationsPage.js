@@ -1,8 +1,13 @@
+// Vendor
 import React, { PropTypes } from 'react'
 import Relay from 'react-relay'
+
+// Custom
 import SearchPage from 'components/SearchPage'
 import AnnotationTable from 'containers/AnnotationTable'
 import AnnotationsAggregations from 'containers/AnnotationsAggregations'
+
+/*----------------------------------------------------------------------------*/
 
 const AnnotationsPage = ({ viewer }) => {
   const Facets = <AnnotationsAggregations aggregations={viewer.annotations.aggregations} />
