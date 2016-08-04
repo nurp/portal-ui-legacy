@@ -13,12 +13,12 @@ const docType = 'cases'
 
 const CasesAggregations = ({ setAutocomplete, aggregations, hits }) => (
   <div>
-    <FreeTextFacet
+    {/* <FreeTextFacet
       title="Case"
       placeholder="Search for UUID, Submitter ID"
       hits={hits}
       setAutocomplete={setAutocomplete}
-    />
+    /> */}
     {caseFacets.filter(f => f.facetType === 'terms').map(f =>
       <TermFacet
         key={`${docType}.${f.name}`}

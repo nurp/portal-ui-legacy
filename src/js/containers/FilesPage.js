@@ -26,7 +26,12 @@ const FilesPage = ({ viewer, relay }) => {
         hits={(viewer.cases || {}).hits || {}}
         setAutocomplete={setAutocomplete}
       />,
-    Files: <FilesAggregations aggregations={viewer.files.aggregations} />,
+    Files:
+      <FilesAggregations
+        aggregations={viewer.files.aggregations}
+        hits={(viewer.files || {}).hits || {}}
+        setAutocomplete={setAutocomplete}
+      />,
   }
 
   const Results = <FileTable hits={viewer.files.hits} />
@@ -49,7 +54,7 @@ export { FilesPage }
 
 export default Relay.createContainer(FilesPage, {
   initialVariables: {
-    first: 0,
+    first: 20,
     offset: 0,
     filters: null,
     quicksearch: '',

@@ -1,5 +1,6 @@
 // Vendor
 import React, { PropTypes, Children, cloneElement } from 'react'
+import StyleBuilder from 'style-builder'
 
 // Custom
 import { Row } from 'uikit/Flex'
@@ -11,7 +12,7 @@ const ButtonGroup = ({ style, children, ...props }) => (
     {Children.map(children, (child, i) =>
       cloneElement(child, {
         ...child.props,
-        style: {
+        style: StyleBuilder.build({
           ...child.props.style,
           borderRadius: // shouldn't have newlines
             `${!i ? '4px' : '0px'} `
@@ -20,7 +21,7 @@ const ButtonGroup = ({ style, children, ...props }) => (
           + `${!i ? '4px' : '0px'}`,
           ...(i ? { borderLeft: 'none' } : {}),
           display: 'inline',
-        },
+        }),
       })
     )}
   </Row>

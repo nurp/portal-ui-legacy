@@ -6,7 +6,6 @@ import { withRouter } from 'react-router'
 import { Row, Column } from 'uikit/Flex'
 import Card from 'uikit/Card'
 import SearchResultsHeader from 'components/SearchResultsHeader'
-import SearchResultsFooter from 'components/SearchResultsFooter'
 
 /*----------------------------------------------------------------------------*/
 
@@ -22,7 +21,6 @@ const styles = {
 const SearchResults = ({
   entityType,
   total,
-  count,
   Pagination,
   Table,
 }) => (
@@ -31,13 +29,12 @@ const SearchResults = ({
       <Row style={styles.headerContainer}>
         <SearchResultsHeader
           entityType={entityType}
-          count={count}
           total={total}
           Pagination={Pagination}
         />
       </Row>
       <Row style={styles.tableContainer}>{Table}</Row>
-      <SearchResultsFooter Pagination={Pagination} />
+      {Pagination}
     </Column>
   </Card>
 )
@@ -45,7 +42,6 @@ const SearchResults = ({
 SearchResults.propTypes = {
   entityType: PropTypes.string,
   total: PropTypes.number,
-  count: PropTypes.number,
   Pagination: PropTypes.node,
   Table: PropTypes.node,
 }

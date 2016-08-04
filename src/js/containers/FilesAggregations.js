@@ -11,11 +11,13 @@ import FreeTextFacet from 'components/FreeTextFacet'
 
 const docType = 'files'
 
-const FilesAggregations = props => (
+const FilesAggregations = ({ hits, aggregations, setAutocomplete }) => (
   <div>
     <FreeTextFacet
       title="File"
       placeholder="Search for File name or ID"
+      hits={hits}
+      setAutocomplete={setAutocomplete}
     />
     {fileFacets.filter(f => f.facetType === 'terms').map(f =>
       <TermFacet
@@ -23,15 +25,17 @@ const FilesAggregations = props => (
         field={`${docType}.${f.name}`}
         pathname={`/${docType}`}
         title={f.title}
-        buckets={((props.aggregations[f.name] || {}).buckets || [])}
+        buckets={((aggregations[f.name] || {}).buckets || [])}
       />
     )}
   </div>
 )
 
 FilesAggregations.propTypes = {
+  hits: PropTypes.object,
   relay: PropTypes.object,
   aggregations: PropTypes.object,
+  setAutocomplete: PropTypes.func,
 }
 
 export { FilesAggregations }
