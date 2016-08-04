@@ -11,12 +11,13 @@ import FreeTextFacet from 'components/FreeTextFacet'
 
 const docType = 'cases'
 
-const CasesAggregations = props => (
+const CasesAggregations = ({ setAutocomplete, aggregations, hits }) => (
   <div>
     <FreeTextFacet
       title="Case"
       placeholder="Search for UUID, Submitter ID"
-      setAutocomplete={props.setAutocomplete}
+      hits={hits}
+      setAutocomplete={setAutocomplete}
     />
     {caseFacets.filter(f => f.facetType === 'terms').map(f =>
       <TermFacet
@@ -24,15 +25,16 @@ const CasesAggregations = props => (
         field={`${docType}.${f.name}`}
         pathname={'/files'}
         title={f.title}
-        buckets={((props.aggregations[f.name] || {}).buckets || [])}
+        buckets={((aggregations[f.name] || {}).buckets || [])}
       />
     )}
   </div>
 )
 
 CasesAggregations.propTypes = {
-  relay: PropTypes.object,
   aggregations: PropTypes.object,
+  hits: PropTypes.object,
+  setAutocomplete: PropTypes.func,
 }
 
 export default Relay.createContainer(CasesAggregations, {
@@ -79,6 +81,20 @@ export default Relay.createContainer(CasesAggregations, {
           buckets {
             doc_count
             key
+          }
+        }
+      }
+    `,
+    hits: () => Relay.QL`
+      fragment on CaseConnection {
+        edges {
+          node {
+            id
+            case_id
+            project {
+              project_id
+              primary_site
+            }
           }
         }
       }

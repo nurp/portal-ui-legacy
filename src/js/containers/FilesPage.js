@@ -11,15 +11,25 @@ import SearchPage from 'components/SearchPage'
 
 /*----------------------------------------------------------------------------*/
 
-const FilesPage = props => {
-  console.log('asdasdas route', props)
+const FilesPage = ({ viewer, relay }) => {
+  console.log(1234, viewer)
+
+  const setAutocomplete = quicksearch => relay.setVariables({
+    quicksearch,
+    runQuicksearch: !!quicksearch,
+  })
+
   const Aggregations = {
-    Cases: <CasesAggregations aggregations={props.viewer.cases.aggregations}
-      setAutocomplete={quicksearch => props.relay.setVariables({ quicksearch })}/>,
-    Files: <FilesAggregations aggregations={props.viewer.files.aggregations} />,
+    Cases:
+      <CasesAggregations
+        aggregations={viewer.cases.aggregations}
+        hits={(viewer.cases || {}).hits || {}}
+        setAutocomplete={setAutocomplete}
+      />,
+    Files: <FilesAggregations aggregations={viewer.files.aggregations} />,
   }
 
-  const Results = <FileTable hits={props.viewer.files.hits} />
+  const Results = <FileTable hits={viewer.files.hits} />
   const Facets = <FileFacets Aggregations={Aggregations} />
 
   return (
@@ -32,6 +42,7 @@ const FilesPage = props => {
 
 FilesPage.propTypes = {
   viewer: PropTypes.object,
+  relay: PropTypes.object,
 }
 
 export { FilesPage }
@@ -43,6 +54,7 @@ export default Relay.createContainer(FilesPage, {
     filters: null,
     quicksearch: '',
     sort: '',
+    runQuicksearch: false,
   },
   fragments: {
     viewer: () => Relay.QL`
@@ -51,17 +63,8 @@ export default Relay.createContainer(FilesPage, {
           aggregations(filters: $filters) {
             ${CasesAggregations.getFragment('aggregations')}
           }
-          hits(first: 5, quicksearch: $quicksearch) {
-            edges {
-              node {
-                id
-                case_id
-                project {
-                  project_id
-                  primary_site
-                }
-              }
-            }
+          hits(first: 5, quicksearch: $quicksearch) @include(if: $runQuicksearch) {
+            ${CasesAggregations.getFragment('hits')}
           }
         }
         files {

@@ -4,13 +4,16 @@ import { compose, withState, mapProps, pure } from 'recompose'
 import { Link, withRouter } from 'react-router'
 import AngleIcon from 'react-icons/lib/fa/angle-down'
 import SearchIcon from 'react-icons/lib/fa/search'
+import UserIcon from 'react-icons/lib/fa/user'
 
 // Custom
 import { mergeFilters, setFilters, setFilter, inCurrentFilters } from 'utils/filters'
 import { Row, Column } from 'uikit/Flex'
 import A from 'uikit/A'
 import { Input } from 'uikit/Form'
+import withDropdown from 'uikit/withDropdown'
 import theme from 'theme'
+import { dropdown } from 'theme/mixins'
 
 /*----------------------------------------------------------------------------*/
 
@@ -56,19 +59,17 @@ const styles = {
 let input
 
 const FreeTextFacet = ({
-  location,
-  field,
   title,
-  pathname,
   state,
   toggleCollapsed,
   placeholder,
-  ...props,
+  hits,
+  setAutocomplete,
 }) => {
   // const { filters, offset, ...query } = location.query
   // const dotField = field.replace(/__/g, '.')
   // const currentFilters = location.query.filters ? JSON.parse(filters).content : []
-
+  console.log(hits.edges)
   return (
     <Column style={styles.container}>
       <Row style={styles.header} onClick={() => toggleCollapsed()}>
@@ -80,9 +81,22 @@ const FreeTextFacet = ({
           <SearchIcon style={styles.searchIcon} />
           <Input
             getNode={node => { input = node }}
-            onChange={() => props.setAutocomplete(input.value)}
+            onChange={() => setAutocomplete(input.value)}
             placeholder={placeholder}
           />
+          {!!(hits.edges || []).length &&
+            <Column style={{ ...dropdown, marginTop: 0, top: '35px' }}>
+              {hits.edges.map(x =>
+                <Row key={x.node.case_id} style={{ alignItems: 'center' }}>
+                  <UserIcon style={{ marginLeft: '0.5rem', padding: '0.65rem', height: '4rem', width: '4rem' }} />
+                  <Column style={{ padding: '1rem' }}>
+                    <Row>{x.node.case_id}</Row>
+                    <Row style={{ fontSize: '0.8em' }}>{x.node.project.project_id}</Row>
+                  </Column>
+                </Row>
+              )}
+            </Column>
+          }
         </Row>
       }
     </Column>
@@ -97,11 +111,13 @@ FreeTextFacet.propTypes = {
   state: PropTypes.object, // TODO: make shape
   toggleCollapsed: PropTypes.func,
   location: PropTypes.object,
-  field: PropTypes.string,
   placeholder: PropTypes.string,
+  setAutocomplete: PropTypes.func,
+  hits: PropTypes.object,
 }
 
 const enhance = compose(
+  withDropdown,
   withRouter,
   withState('state', 'setState', { collapsed: false }),
   mapProps(({ setState, ...rest }) => ({
