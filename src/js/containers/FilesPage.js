@@ -15,7 +15,7 @@ const FilesPage = props => {
   console.log('asdasdas route', props)
   const Aggregations = {
     Cases: <CasesAggregations aggregations={props.viewer.cases.aggregations}
-      setAutocomplete={value => props.relay.setVariables({ autocompleteFilter: value })}/>,
+      setAutocomplete={quicksearch => props.relay.setVariables({ quicksearch })}/>,
     Files: <FilesAggregations aggregations={props.viewer.files.aggregations} />,
   }
 
@@ -41,7 +41,7 @@ export default Relay.createContainer(FilesPage, {
     first: 0,
     offset: 0,
     filters: null,
-    autocompleteFilter: {"op":"and","content":[{"op":"in","content":{"field":"cases.case_id","value":[""]}}]},
+    quicksearch: '',
     sort: '',
   },
   fragments: {
@@ -51,7 +51,7 @@ export default Relay.createContainer(FilesPage, {
           aggregations(filters: $filters) {
             ${CasesAggregations.getFragment('aggregations')}
           }
-          hits(first: $first, offset: $offset, filters: $autocompleteFilter) {
+          hits(first: 5, quicksearch: $quicksearch) {
             edges {
               node {
                 id

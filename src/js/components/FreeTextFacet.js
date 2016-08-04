@@ -11,7 +11,6 @@ import { Row, Column } from 'uikit/Flex'
 import A from 'uikit/A'
 import { Input } from 'uikit/Form'
 import theme from 'theme'
-import Autocomplete from 'containers/Autocomplete'
 
 /*----------------------------------------------------------------------------*/
 
@@ -56,10 +55,6 @@ const styles = {
 
 let input
 
-const getX = value => (
-  {"op":"and","content":[{"op":"in","content":{"field":"cases.case_id","value":[value]}}]}
-)
-
 const FreeTextFacet = ({
   location,
   field,
@@ -85,10 +80,9 @@ const FreeTextFacet = ({
           <SearchIcon style={styles.searchIcon} />
           <Input
             getNode={node => { input = node }}
-            onChange={() => props.setAutocomplete(getX(input.value))}
+            onChange={() => props.setAutocomplete(input.value)}
             placeholder={placeholder}
           />
-          <Autocomplete />
         </Row>
       }
     </Column>
