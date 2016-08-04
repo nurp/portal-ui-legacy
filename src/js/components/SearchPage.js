@@ -31,7 +31,7 @@ const styles = {
   },
 }
 
-const Files = ({
+const SearchPage = ({
   location,
   Results,
   Facets,
@@ -72,7 +72,7 @@ const Files = ({
   </Row>
 )
 
-Files.propTypes = {
+SearchPage.propTypes = {
   Results: PropTypes.node,
   Facets: PropTypes.node,
   location: PropTypes.object,
@@ -80,4 +80,4 @@ Files.propTypes = {
 
 /*----------------------------------------------------------------------------*/
 
-export default Radium(withRouter(Files))
+export default Radium(withRouter(SearchPage))

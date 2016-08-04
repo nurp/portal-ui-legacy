@@ -6,6 +6,7 @@ import Color from 'color'
 
 // Custom
 import { setFilters, setFilter } from 'utils/filters'
+import { humanify } from 'utils/string'
 import Button from 'uikit/Button'
 import { Row } from 'uikit/Flex'
 import theme from 'theme'
@@ -70,7 +71,7 @@ const CurrentFilters = ({ location }) => {
                 },
               }}
             >
-              <Button style={styles.field}>{filter.content.field}</Button>
+              <Button style={styles.field}>{humanify({ term: filter.content.field })}</Button>
             </Link>
             {filter.op === 'in' && filter.content.value.length === 1 &&
               <span style={styles.op}>IS</span>
