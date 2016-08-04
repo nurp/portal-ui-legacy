@@ -16,6 +16,7 @@ const CasesAggregations = props => (
     <FreeTextFacet
       title="Case"
       placeholder="Search for UUID, Submitter ID"
+      setAutocomplete={props.setAutocomplete}
     />
     {caseFacets.filter(f => f.facetType === 'terms').map(f =>
       <TermFacet

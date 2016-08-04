@@ -10,8 +10,8 @@ import { mergeFilters, setFilters, setFilter, inCurrentFilters } from 'utils/fil
 import { Row, Column } from 'uikit/Flex'
 import A from 'uikit/A'
 import { Input } from 'uikit/Form'
-
 import theme from 'theme'
+import Autocomplete from 'containers/Autocomplete'
 
 /*----------------------------------------------------------------------------*/
 
@@ -54,6 +54,12 @@ const styles = {
   },
 }
 
+let input
+
+const getX = value => (
+  {"op":"and","content":[{"op":"in","content":{"field":"cases.case_id","value":[value]}}]}
+)
+
 const FreeTextFacet = ({
   location,
   field,
@@ -62,6 +68,7 @@ const FreeTextFacet = ({
   state,
   toggleCollapsed,
   placeholder,
+  ...props,
 }) => {
   // const { filters, offset, ...query } = location.query
   // const dotField = field.replace(/__/g, '.')
@@ -77,8 +84,11 @@ const FreeTextFacet = ({
         <Row>
           <SearchIcon style={styles.searchIcon} />
           <Input
+            getNode={node => { input = node }}
+            onChange={() => props.setAutocomplete(getX(input.value))}
             placeholder={placeholder}
           />
+          <Autocomplete />
         </Row>
       }
     </Column>

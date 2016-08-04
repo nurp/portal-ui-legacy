@@ -12,8 +12,10 @@ import SearchPage from 'components/SearchPage'
 /*----------------------------------------------------------------------------*/
 
 const FilesPage = props => {
+  console.log('asdasdas route', props)
   const Aggregations = {
-    Cases: <CasesAggregations aggregations={props.viewer.cases.aggregations} />,
+    Cases: <CasesAggregations aggregations={props.viewer.cases.aggregations}
+      setAutocomplete={value => props.relay.setVariables({ autocompleteFilter: value })}/>,
     Files: <FilesAggregations aggregations={props.viewer.files.aggregations} />,
   }
 
@@ -39,6 +41,7 @@ export default Relay.createContainer(FilesPage, {
     first: 0,
     offset: 0,
     filters: null,
+    autocompleteFilter: {"op":"and","content":[{"op":"in","content":{"field":"cases.case_id","value":[""]}}]},
     sort: '',
   },
   fragments: {
@@ -47,6 +50,18 @@ export default Relay.createContainer(FilesPage, {
         cases {
           aggregations(filters: $filters) {
             ${CasesAggregations.getFragment('aggregations')}
+          }
+          hits(first: $first, offset: $offset, filters: $autocompleteFilter) {
+            edges {
+              node {
+                id
+                case_id
+                project {
+                  project_id
+                  primary_site
+                }
+              }
+            }
           }
         }
         files {
