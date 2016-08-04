@@ -3,9 +3,13 @@ import React, { PropTypes } from 'react'
 import { shouldUpdate, lifecycle, compose } from 'recompose'
 import Relay from 'react-relay'
 import { connect } from 'react-redux'
+import FileIcon from 'react-icons/lib/fa/file-o'
+import CaseIcon from 'react-icons/lib/fa/user'
+import FileSizeIcon from 'react-icons/lib/fa/floppy-o'
 
 // Custom
-import { Column } from 'uikit/Flex'
+import { Row, Column } from 'uikit/Flex'
+import Card from 'uikit/Card'
 import CasesAggregations from 'containers/CasesAggregations'
 import FilesAggregations from 'containers/FilesAggregations'
 import FileTable from 'containers/FileTable'
@@ -19,12 +23,49 @@ const styles = {
 }
 
 const CartPage = ({ viewer, files }) => {
-  const Results = viewer.files.hits ? <FileTable hits={viewer.files.hits} /> : null
-
   return (
     <Column style={styles.container}>
-      {!!files.length && Results}
-      {!files.length && <h1>Empty Cart</h1>}
+      {!files.length && <h1>Your cart is empty.</h1>}
+      {!!files.length && !!viewer.files.hits &&
+        <Column>
+          <Row spacing="2rem" style={{ marginBottom: '2rem' }}>
+            <Card style={{ padding: '1rem', width: '15rem' }}>
+              <Row>
+                <Column>
+                  <Row style={{ fontSize: '1rem' }}>FILES</Row>
+                  <Row style={{ fontSize: '2rem' }}>{files.length}</Row>
+                </Column>
+                <Row style={{ marginLeft: 'auto', alignItems: 'center' }}>
+                  <FileIcon style={{ width: '4rem', height: '4rem' }} />
+                </Row>
+              </Row>
+            </Card>
+            <Card style={{ padding: '1rem', width: '15rem' }}>
+              <Row>
+                <Column>
+                  <Row style={{ fontSize: '1rem' }}>CASES</Row>
+                  <Row style={{ fontSize: '2rem' }}>0</Row>
+                </Column>
+                <Row style={{ marginLeft: 'auto', alignItems: 'center' }}>
+                  <CaseIcon style={{ width: '4rem', height: '4rem' }} />
+                </Row>
+              </Row>
+            </Card>
+            <Card style={{ padding: '1rem', width: '15rem' }}>
+              <Row>
+                <Column>
+                  <Row style={{ fontSize: '1rem' }}>FILE SIZE</Row>
+                  <Row style={{ fontSize: '2rem' }}>0</Row>
+                </Column>
+                <Row style={{ marginLeft: 'auto', alignItems: 'center' }}>
+                  <FileSizeIcon style={{ width: '4rem', height: '4rem' }} />
+                </Row>
+              </Row>
+            </Card>
+          </Row>
+          <FileTable hits={viewer.files.hits} />
+        </Column>
+      }
     </Column>
   )
 }
