@@ -18,8 +18,7 @@ const styles = {
   },
 }
 
-const CartPage = ({ viewer, relay, files }) => {
-
+const CartPage = ({ viewer, files }) => {
   const Results = viewer.files.hits ? <FileTable hits={viewer.files.hits} /> : null
 
   return (
@@ -32,25 +31,34 @@ const CartPage = ({ viewer, relay, files }) => {
 
 CartPage.propTypes = {
   viewer: PropTypes.object,
-  relay: PropTypes.object,
+  files: PropTypes.array,
 }
 
+const getCartFilterVariables = files => ({
+  getFiles: true,
+  filters: {
+    content: [{
+      content: {
+        field: 'files.file_id',
+        value: files.map(x => x.file_id),
+      },
+      op: 'in',
+    }],
+    op: 'and',
+  },
+})
+
 const enhance = compose(
+  lifecycle({
+    componentDidMount() {
+      if (this.props.files.length) {
+        this.props.relay.setVariables(getCartFilterVariables(this.props.files))
+      }
+    },
+  }),
   shouldUpdate((props, nextProps) => {
-    if (props.files.length !== nextProps.files.length) {
-      props.relay.setVariables({
-        getFiles: true,
-        filters: {
-          content: [{
-            content: {
-              field: 'files.file_id',
-              value: nextProps.files.map(x => x.file_id),
-            },
-            op: 'in',
-          }],
-          op: 'and',
-        },
-      })
+    if (props.files.length !== nextProps.files.length && nextProps.files.length) {
+      props.relay.setVariables(getCartFilterVariables(nextProps.files))
     }
 
     return true
