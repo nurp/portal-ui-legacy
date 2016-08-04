@@ -1,6 +1,5 @@
 // Vendor
 import React from 'react'
-import { connect } from 'react-redux'
 import Radium from 'radium'
 import { Link as L } from 'react-router'
 import LoginIcon from 'react-icons/lib/fa/sign-in'
@@ -67,4 +66,4 @@ const Nav = () => (
 
 /*----------------------------------------------------------------------------*/
 
-export default connect(state => state.cart)(Radium(Nav))
+export default Radium(Nav)

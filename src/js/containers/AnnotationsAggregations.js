@@ -21,10 +21,6 @@ const styles = {
 
 export const AnnotationsAggregations = props => (
   <div style={styles.container}>
-    <FreeTextFacet
-      title="File"
-      placeholder="Search for File name or ID"
-    />
     {annotationFacets.filter(f => f.facetType === 'terms').map(f =>
       <TermFacet
         key={`${docType}.${f.name}`}

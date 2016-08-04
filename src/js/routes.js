@@ -8,6 +8,7 @@ import FilesRoute from 'routes/FilesRoute'
 import FileRoute from 'routes/FileRoute'
 import AnnotationsRoute from 'routes/AnnotationsRoute'
 import AnnotationRoute from 'routes/AnnotationRoute'
+import CartRoute from 'routes/CartRoute'
 
 /*----------------------------------------------------------------------------*/
 
@@ -19,6 +20,7 @@ const props = {
     FileRoute,
     AnnotationRoute,
     AnnotationsRoute,
+    CartRoute,
   ],
   indexRoute: {
     onEnter: (nextState, replace) => replace('/files'),
