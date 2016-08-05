@@ -1,7 +1,7 @@
 // Vendor
-import React, { Children, cloneElement, PropTypes } from 'react'
-import Radium from 'radium'
+import React, { Children, PropTypes } from 'react'
 import Color from 'color'
+import { createComponent } from 'react-fela'
 
 // Custom
 import { Row, Column } from 'uikit/Flex'
@@ -30,23 +30,26 @@ const baseTabStyle = {
   marginBottom: '-1px',
   transition: 'background-color 0.2s ease',
   borderRadius: '4px 4px 0 0',
+  cursor: 'pointer',
 }
 
 const styles = {
-  tab: {
+  active: {
     ...baseTabStyle,
+    backgroundColor: '#fff',
+    zIndex: 2,
+    ...tabBorder,
+    ':hover': {
+      backgroundColor: 'white',
+    },
+  },
+  inactive: {
     ':hover': {
       textDecoration: 'none',
       color: '#000',
       backgroundColor: Color(theme.greyScale6).darken(0.05).rgbString(),
       ...tabBorder,
     },
-  },
-  active: {
-    ...baseTabStyle,
-    backgroundColor: '#fff',
-    zIndex: 2,
-    ...tabBorder,
   },
   margin: {
     marginLeft: '0.4rem',
@@ -57,6 +60,14 @@ const styles = {
   },
 }
 
+const tab = ({ active, sibling }) => ({
+  ...baseTabStyle,
+  ...(active ? styles.active : styles.inactive),
+  ...(sibling ? styles.margin : {}),
+})
+
+const Tab = createComponent(tab, 'div')
+
 const Tabs = ({
   style,
   tabs,
@@ -66,12 +77,9 @@ const Tabs = ({
 }) => (
   <Column style={style} {...props}>
     <Row>
-      {Children.map(tabs, (child, i) => cloneElement(child, {
-        style: {
-          ...(i === activeIndex ? styles.active : styles.tab),
-          ...(i ? styles.margin : {}),
-        },
-      }))}
+      {Children.map(tabs, (child, i) =>
+        <Tab active={i === activeIndex} sibling={i}>{child}</Tab>
+      )}
     </Row>
     <Column style={styles.content}>{children}</Column>
   </Column>
@@ -89,4 +97,4 @@ Tabs.propTypes = {
 
 /*----------------------------------------------------------------------------*/
 
-export default Radium(Tabs)
+export default Tabs

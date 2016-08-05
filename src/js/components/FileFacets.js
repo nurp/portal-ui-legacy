@@ -1,9 +1,11 @@
+// Vendor
 import React, { PropTypes } from 'react'
-import Radium from 'radium'
-import { Link as L, withRouter } from 'react-router'
+import { Link, withRouter } from 'react-router'
+
+// Custom
 import Tabs from 'uikit/Tabs'
 
-const Link = Radium(L)
+/*----------------------------------------------------------------------------*/
 
 const FileFacets = ({
   location,
