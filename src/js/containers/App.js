@@ -2,6 +2,8 @@
 import React, { PropTypes } from 'react'
 import Radium, { Style, StyleRoot } from 'radium'
 import { connect } from 'react-redux'
+import { createRenderer } from 'fela'
+import { Provider } from 'react-fela'
 
 // Custom
 import { Column } from 'uikit/Flex'
@@ -14,6 +16,9 @@ import global from 'theme/global'
 
 /*----------------------------------------------------------------------------*/
 
+const renderer = createRenderer()
+const mountNode = document.getElementById('stylesheet')
+
 const styles = {
   wrapper: {
     minHeight: '100vh',
@@ -21,18 +26,20 @@ const styles = {
 }
 
 const App = ({ relayLoading, notification, children }) => (
-  <StyleRoot>
-    <Style rules={global} />
-    <Overlay show={relayLoading}><Particle /></Overlay>
-    <Notification id={notification.id} action={notification.action}>
-      {notification.component}
-    </Notification>
-    <Column style={styles.wrapper}>
-      <Header />
-      {children}
-      <Footer config={{}} />
-    </Column>
-  </StyleRoot>
+  <Provider renderer={renderer} mountNode={mountNode}>
+    <StyleRoot>
+      <Style rules={global} />
+      <Overlay show={relayLoading}><Particle /></Overlay>
+      <Notification id={notification.id} action={notification.action}>
+        {notification.component}
+      </Notification>
+      <Column style={styles.wrapper}>
+        <Header />
+        {children}
+        <Footer config={{}} />
+      </Column>
+    </StyleRoot>
+  </Provider>
 )
 
 App.propTypes = {

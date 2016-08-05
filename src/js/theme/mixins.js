@@ -26,3 +26,12 @@ export const dropdown = {
   marginTop: '1rem',
   right: 0,
 }
+
+export const margin = (left, right) => {
+  if (left) {
+    return { marginLeft: '0.5rem' }
+  } else if (right) {
+    return { marginRight: '0.5rem' }
+  }
+  return {}
+}
