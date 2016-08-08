@@ -1,3 +1,12 @@
+<a name"1.2.1"></a>
+### 1.2.1 (2016-08-03)
+
+
+#### Bug Fixes
+
+* **facets:** LGCY-15 humanify current filter ([010958f0](https://github.com/NCI-GDC/portal-ui-legacy/commit/010958f0))
+
+
 <a name"1.2.0"></a>
 ## 1.2.0 (2016-06-30)
 
