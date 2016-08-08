@@ -14,11 +14,13 @@
   },
   "dependencies": {
     "color": "^0.11.3",
+    "d3": "^4.2.1",
     "fela": "^1.1.0",
     "lodash": "^4.14.0",
     "radium": "^0.18.0",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
+    "react-faux-dom": "^2.7.1",
     "react-fela": "^2.1.0",
     "react-hot-loader": "^3.0.0-beta.2",
     "react-hyperscript-helpers": "^1.1.0",

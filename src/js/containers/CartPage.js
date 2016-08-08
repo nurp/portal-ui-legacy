@@ -13,6 +13,7 @@ import Card from 'uikit/Card'
 import CasesAggregations from 'containers/CasesAggregations'
 import FilesAggregations from 'containers/FilesAggregations'
 import FileTable from 'containers/FileTable'
+import PieChart from 'components/PieChart'
 
 /*----------------------------------------------------------------------------*/
 
@@ -64,6 +65,7 @@ const CartPage = ({ viewer, files }) => {
               </Row>
             </Card>
           </Row>
+          <PieChart />
           <FileTable hits={viewer.files.hits} />
         </Column>
       }
@@ -93,7 +95,6 @@ const getCartFilterVariables = files => ({
 const enhance = compose(
   lifecycle({
     componentDidMount() {
-      console.log('testing')
       if (this.props.files.length) {
         this.props.relay.setVariables(getCartFilterVariables(this.props.files))
       }
@@ -131,8 +132,7 @@ export default Relay.createContainer(
             aggregations(filters: $filters) {
               ${FilesAggregations.getFragment('aggregations')}
             }
-            hits(first: $first, offset: $offset, filters: $filters, sort: $sort)
-            @include(if: $getFiles) {
+            hits(first: $first, offset: $offset, filters: $filters, sort: $sort) @include(if: $getFiles) {
               ${FileTable.getFragment('hits')}
             }
           }
