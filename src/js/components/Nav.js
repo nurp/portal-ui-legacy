@@ -2,7 +2,6 @@
 import React from 'react'
 import Radium from 'radium'
 import { Link as L } from 'react-router'
-import LoginIcon from 'react-icons/lib/fa/sign-in'
 import AnnotationIcon from 'react-icons/lib/fa/align-left'
 import FileIcon from 'react-icons/lib/fa/file-text'
 import Color from 'color'
@@ -12,6 +11,7 @@ import { Row } from 'uikit/Flex'
 import theme from 'theme'
 import { center } from 'theme/mixins'
 import CartLink from 'components/CartLink'
+import LoginButton from 'components/LoginButton'
 
 /*----------------------------------------------------------------------------*/
 
@@ -55,10 +55,7 @@ const Nav = () => (
       </Link>
     </Row>
     <Row>
-      <a style={styles.link}>
-        <LoginIcon style={styles.faded} />
-        <span style={styles.marginLeft}>Login</span>
-      </a>
+      <LoginButton />
       <CartLink />
     </Row>
   </Row>
