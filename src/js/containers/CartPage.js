@@ -13,13 +13,19 @@ import Card from 'uikit/Card'
 import CasesAggregations from 'containers/CasesAggregations'
 import FilesAggregations from 'containers/FilesAggregations'
 import FileTable from 'containers/FileTable'
-import PieChart from 'components/PieChart'
+import SummaryCard from 'components/SummaryCard'
+import theme from 'theme'
 
 /*----------------------------------------------------------------------------*/
 
 const styles = {
   container: {
     padding: '2rem 2.5rem 13rem',
+  },
+  header: {
+    padding: '1rem',
+    borderBottom: `1px solid ${theme.greyScale4}`,
+    color: theme.primary,
   },
 }
 
@@ -31,41 +37,55 @@ const CartPage = ({ viewer, files }) => {
       {!!files.length && !!viewer.files.hits &&
         <Column>
           <Row spacing="2rem" style={{ marginBottom: '2rem' }}>
-            <Card style={{ padding: '1rem', width: '15rem' }}>
-              <Row>
-                <Column>
-                  <Row style={{ fontSize: '1rem' }}>FILES</Row>
-                  <Row style={{ fontSize: '2rem' }}>{files.length}</Row>
-                </Column>
-                <Row style={{ marginLeft: 'auto', alignItems: 'center' }}>
-                  <FileIcon style={{ width: '4rem', height: '4rem' }} />
+            <Column>
+              <Card style={{ padding: '1rem', width: '15rem' }}>
+                <Row>
+                  <Column>
+                    <Row style={{ fontSize: '1rem' }}>FILES</Row>
+                    <Row style={{ fontSize: '2rem' }}>{files.length}</Row>
+                  </Column>
+                  <Row style={{ marginLeft: 'auto', alignItems: 'center' }}>
+                    <FileIcon style={{ width: '4rem', height: '4rem' }} />
+                  </Row>
                 </Row>
-              </Row>
-            </Card>
-            <Card style={{ padding: '1rem', width: '15rem' }}>
-              <Row>
-                <Column>
-                  <Row style={{ fontSize: '1rem' }}>CASES</Row>
-                  <Row style={{ fontSize: '2rem' }}>0</Row>
-                </Column>
-                <Row style={{ marginLeft: 'auto', alignItems: 'center' }}>
-                  <CaseIcon style={{ width: '4rem', height: '4rem' }} />
+              </Card>
+              <Card style={{ padding: '1rem', width: '15rem' }}>
+                <Row>
+                  <Column>
+                    <Row style={{ fontSize: '1rem' }}>CASES</Row>
+                    <Row style={{ fontSize: '2rem' }}>0</Row>
+                  </Column>
+                  <Row style={{ marginLeft: 'auto', alignItems: 'center' }}>
+                    <CaseIcon style={{ width: '4rem', height: '4rem' }} />
+                  </Row>
                 </Row>
-              </Row>
-            </Card>
-            <Card style={{ padding: '1rem', width: '15rem' }}>
-              <Row>
-                <Column>
-                  <Row style={{ fontSize: '1rem' }}>FILE SIZE</Row>
-                  <Row style={{ fontSize: '2rem' }}>0</Row>
-                </Column>
-                <Row style={{ marginLeft: 'auto', alignItems: 'center' }}>
-                  <FileSizeIcon style={{ width: '4rem', height: '4rem' }} />
+              </Card>
+              <Card style={{ padding: '1rem', width: '15rem' }}>
+                <Row>
+                  <Column>
+                    <Row style={{ fontSize: '1rem' }}>FILE SIZE</Row>
+                    <Row style={{ fontSize: '2rem' }}>0</Row>
+                  </Column>
+                  <Row style={{ marginLeft: 'auto', alignItems: 'center' }}>
+                    <FileSizeIcon style={{ width: '4rem', height: '4rem' }} />
+                  </Row>
                 </Row>
-              </Row>
+              </Card>
+            </Column>
+            <SummaryCard
+              title="File Counts by Project"
+              data={[1, 2, 3]}
+              style={{ flex: 1 }}
+            />
+            <SummaryCard
+              title="File Counts by Authorization Level"
+              data={[1, 2, 3]}
+              style={{ flex: 1 }}
+            />
+            <Card style={{ flex: 1 }}>
+              <div style={styles.header}>How to download files in my Cart?</div>
             </Card>
           </Row>
-          <PieChart />
           <FileTable hits={viewer.files.hits} />
         </Column>
       }

@@ -24,7 +24,16 @@ const Row = ({ flex, wrap, style, spacing, children, ...props }) => (
   >
     {!spacing && children}
     {spacing && Children.map(children, (child, i) =>
-      child && <span style={i ? { marginLeft: spacing } : {}}>{child}</span>
+      child && (
+        <span
+          style={{
+            ...(i ? { marginLeft: spacing } : {}),
+            ...(child.props.style ? child.props.style : {}),
+          }}
+        >
+          {child}
+        </span>
+      )
 
     )}
   </div>

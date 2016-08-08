@@ -1,5 +1,5 @@
 // Vendor
-import React, { PropTypes } from 'react'
+import { PropTypes } from 'react'
 import * as d3 from 'd3'
 import ReactFauxDOM from 'react-faux-dom'
 
@@ -16,13 +16,15 @@ const getNestedValue = (item, path) => {
   return getNestedValue(nextItem, path)
 }
 
-const renderSVG = (data = [1, 2, 3, 4]) => {
+const PieChart = ({ data }) => {
   const width = 100
   const height = 100
   const color = d3.scaleOrdinal(d3.schemeCategory10)
   const outerRadius = height / 2 + 10
 
-  const node = ReactFauxDOM.createElement('svg')
+  const node = ReactFauxDOM.createElement('div')
+  node.style.setProperty('display', 'flex')
+  node.style.setProperty('justify-content', 'center')
 
   const pie = d3.pie()
     // .sort(null)
@@ -53,12 +55,6 @@ const renderSVG = (data = [1, 2, 3, 4]) => {
 
   return node.toReact()
 }
-
-const PieChart = ({ data }) => (
-  <div>
-    {renderSVG(data)}
-  </div>
-)
 
 PieChart.propTypes = {
   data: PropTypes.array,
