@@ -23,6 +23,7 @@ const styles = {
 }
 
 const CartPage = ({ viewer, files }) => {
+  console.log('...', viewer, files)
   return (
     <Column style={styles.container}>
       {!files.length && <h1>Your cart is empty.</h1>}
@@ -92,6 +93,7 @@ const getCartFilterVariables = files => ({
 const enhance = compose(
   lifecycle({
     componentDidMount() {
+      console.log('testing')
       if (this.props.files.length) {
         this.props.relay.setVariables(getCartFilterVariables(this.props.files))
       }

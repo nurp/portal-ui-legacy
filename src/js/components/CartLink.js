@@ -1,8 +1,8 @@
 // Vendor
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { Link as L } from 'react-router'
-import Radium from 'radium'
+import { createComponent } from 'react-fela'
+import { Link } from 'react-router'
 import ShoppingCartIcon from 'react-icons/lib/fa/shopping-cart'
 import Color from 'color'
 
@@ -12,19 +12,17 @@ import { center } from 'theme/mixins'
 
 /*----------------------------------------------------------------------------*/
 
-const Link = Radium(L)
-
 const styles = {
-  link: {
+  link: () => ({
     color: 'white',
-    padding: '10px 13px',
+    padding: '7px 13px',
     textDecoration: 'none',
     transition: 'background-color 0.2s ease',
     ':hover': {
       backgroundColor: Color(theme.greyScale2).darken(0.5).rgbString(),
     },
     ...center,
-  },
+  }),
   faded: {
     color: 'rgb(191, 191, 191)',
   },
@@ -36,11 +34,15 @@ const styles = {
   },
 }
 
+const Span = createComponent(styles.link, 'span')
+
 const CartLink = ({ files }) => (
-  <Link to="/cart" style={styles.link}>
-    <ShoppingCartIcon style={styles.faded} />
-    <span style={{ marginLeft: '0.7rem' }}>Cart</span>
-    <span style={styles.fileLength}>{files.length}</span>
+  <Link to="/cart">
+    <Span>
+      <ShoppingCartIcon style={styles.faded} />
+      <span style={{ marginLeft: '0.7rem' }}>Cart</span>
+      <span style={styles.fileLength}>{files.length}</span>
+    </Span>
   </Link>
 )
 

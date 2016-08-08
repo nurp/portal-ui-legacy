@@ -1,14 +1,14 @@
 // Vendor
 import React, { PropTypes } from 'react'
-import Radium from 'radium'
 import Relay from 'react-relay'
-import { Link as L } from 'react-router'
+import { Link } from 'react-router'
 import DoubleLeftIcon from 'react-icons/lib/fa/angle-double-left'
 import LeftIcon from 'react-icons/lib/fa/angle-left'
 import RightIcon from 'react-icons/lib/fa/angle-right'
 import DoubleRightIcon from 'react-icons/lib/fa/angle-double-right'
 import CaretUpIcon from 'react-icons/lib/fa/caret-up'
 import _ from 'lodash'
+import { createComponent } from 'react-fela'
 
 // Custom
 import { prepareJsonParam } from 'routes/utils'
@@ -20,8 +20,6 @@ import { dropdown } from 'theme/mixins'
 import theme from 'theme'
 
 /*----------------------------------------------------------------------------*/
-
-const Link = Radium(L)
 
 const styles = {
   container: {
@@ -51,10 +49,12 @@ const styles = {
   },
 }
 
-const arrowStyles = {
+const paginationButtonStyles = () => ({
   ...styles.tableActionButtons,
   ...styles.inactive,
-}
+})
+
+const PaginationLink = createComponent(paginationButtonStyles, Link)
 
 export const Pagination = ({
   relay,
@@ -64,12 +64,8 @@ export const Pagination = ({
   active,
   mouseUpHandler,
   mouseDownHandler,
-  ...props,
 }) => {
-  console.log('Pagination', props)
-
   const { filters: f, ...params } = relay.route.params
-
   const filters = f ? prepareJsonParam(relay.route.params.f) : {}
 
   const merge = query => ({
@@ -95,7 +91,7 @@ export const Pagination = ({
         <span>Show</span>
         <Button
           rightIcon={<CaretUpIcon />}
-          style={{ ...arrowStyles, margin: '0 0.5rem' }}
+          style={{ ...paginationButtonStyles(), margin: '0 0.5rem' }}
           onClick={() => setActive(true)}
         >
           {params.first}
@@ -122,37 +118,25 @@ export const Pagination = ({
       </Row>
       <Row style={{ marginLeft: 'auto' }}>
         <ButtonGroup>
-          <Link style={arrowStyles} to={to(0)}><DoubleLeftIcon /></Link>
-          <Link
-            style={arrowStyles}
-            to={to(params.offset - params.first)}
-          >
+          <PaginationLink to={to(0)}><DoubleLeftIcon /></PaginationLink>
+          <PaginationLink to={to(params.offset - params.first)}>
             <LeftIcon />
-          </Link>
+          </PaginationLink>
           {_.range(1 + pageOffset, Math.min(11 + pageOffset, totalPages)).map(x =>
-            <Link
+            <PaginationLink
               key={x}
-              style={{
-                ...styles.tableActionButtons,
-                ...(currentPage === x ? styles.active : styles.inactive),
-              }}
+              style={currentPage === x ? styles.active : styles.inactive}
               to={to((x - 1) * params.first)}
             >
               {x}
-            </Link>
+            </PaginationLink>
           )}
-          <Link
-            style={arrowStyles}
-            to={to(params.offset + params.first)}
-          >
+          <PaginationLink to={to(params.offset + params.first)}>
             <RightIcon />
-          </Link>
-          <Link
-            style={arrowStyles}
-            to={to(pagination.total - pagination.total % pagination.size)}
-          >
+          </PaginationLink>
+          <PaginationLink to={to(pagination.total - pagination.total % pagination.size)}>
             <DoubleRightIcon />
-          </Link>
+          </PaginationLink>
         </ButtonGroup>
       </Row>
     </Row>

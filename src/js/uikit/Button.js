@@ -26,14 +26,12 @@ const button = ({ style }) => ({
   ...style,
 })
 
-const B = createComponent(button, 'button')
-
 const Button = ({ style, children, rightIcon, leftIcon, ...props }) => (
-  <B style={style} {...props}>
+  <button style={style} {...props}>
     {leftIcon}
     <span style={{ ...margin(leftIcon, rightIcon), ...center }}>{children}</span>
     {rightIcon}
-  </B>
+  </button>
 )
 
 Button.propTypes = {
@@ -46,4 +44,4 @@ Button.propTypes = {
 
 /*----------------------------------------------------------------------------*/
 
-export default Button
+export default createComponent(button, Button)
