@@ -1,2 +1,2 @@
 ---
-  extends: "./frontend_dev_tools/.eslintrc"
+  extends: "./node_modules/frontend-dev-tools/.eslintrc"
