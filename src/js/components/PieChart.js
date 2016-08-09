@@ -17,8 +17,8 @@ const getNestedValue = (item, path) => {
 }
 
 const PieChart = ({ data }) => {
-  const width = 100
-  const height = 100
+  const width = 160
+  const height = 160
   const color = d3.scaleOrdinal(d3.schemeCategory10)
   const outerRadius = height / 2 + 10
 

@@ -14,7 +14,10 @@ import CasesAggregations from 'containers/CasesAggregations'
 import FilesAggregations from 'containers/FilesAggregations'
 import FileTable from 'containers/FileTable'
 import SummaryCard from 'components/SummaryCard'
+import HowToDownload from 'components/HowToDownload'
+import CountCard from 'components/CountCard'
 import theme from 'theme'
+import Button from 'uikit/Button'
 
 /*----------------------------------------------------------------------------*/
 
@@ -37,65 +40,40 @@ const CartPage = ({ viewer, files }) => {
       {!!files.length && !!viewer.files.hits &&
         <Column>
           <Row spacing="2rem" style={{ marginBottom: '2rem' }}>
-            <Column>
-              <Card style={{ padding: '1rem', width: '15rem' }}>
-                <Row>
-                  <Column>
-                    <Row style={{ fontSize: '1rem' }}>FILES</Row>
-                    <Row style={{ fontSize: '2rem' }}>{files.length}</Row>
-                  </Column>
-                  <Row style={{ marginLeft: 'auto', alignItems: 'center' }}>
-                    <FileIcon style={{ width: '4rem', height: '4rem' }} />
-                  </Row>
-                </Row>
-              </Card>
-              <Card style={{ padding: '1rem', width: '15rem' }}>
-                <Row>
-                  <Column>
-                    <Row style={{ fontSize: '1rem' }}>CASES</Row>
-                    <Row style={{ fontSize: '2rem' }}>0</Row>
-                  </Column>
-                  <Row style={{ marginLeft: 'auto', alignItems: 'center' }}>
-                    <CaseIcon style={{ width: '4rem', height: '4rem' }} />
-                  </Row>
-                </Row>
-              </Card>
-              <Card style={{ padding: '1rem', width: '15rem' }}>
-                <Row>
-                  <Column>
-                    <Row style={{ fontSize: '1rem' }}>FILE SIZE</Row>
-                    <Row style={{ fontSize: '2rem' }}>0</Row>
-                  </Column>
-                  <Row style={{ marginLeft: 'auto', alignItems: 'center' }}>
-                    <FileSizeIcon style={{ width: '4rem', height: '4rem' }} />
-                  </Row>
-                </Row>
-              </Card>
+            <Column spacing="0.6rem">
+              <CountCard
+                title="FILES"
+                count={files.length}
+                icon={<FileIcon style={{ width: '4rem', height: '4rem' }} />}
+              />
+              <CountCard
+                title="CASES"
+                count={0}
+                icon={<CaseIcon style={{ width: '4rem', height: '4rem' }} />}
+              />
+              <CountCard
+                title="FILE SIZE"
+                count={0}
+                icon={<FileSizeIcon style={{ width: '4rem', height: '4rem' }} />}
+              />
             </Column>
             <SummaryCard
               title="File Counts by Project"
-              data={[1, 2, 3]}
+              data={[1, 2, 3, 4, 5]}
               style={{ flex: 1 }}
             />
             <SummaryCard
               title="File Counts by Authorization Level"
-              data={[1, 2, 3]}
+              data={[1, 2]}
               style={{ flex: 1 }}
             />
-            <Card style={{ flex: 1 }}>
-              <div style={styles.header}>How to download files in my Cart?</div>
-              <p>
-                <strong>Download Manifest:</strong>
-                Downloading and analyzing large BAMs or large
-                number of files can be very resource intensive and so it is recommended
-                to use the GDC Data Transfer Tool for this purpose. The GDC Data
-                Transfer Tool provides several different download modes to provide
-                the most efficient transfer possible. For more info, click here.
-
-                <strong>Download Cart:</strong>
-                Download Files in your Cart directly from the Web Browser.
-              </p>
-            </Card>
+            <HowToDownload style={{ flex: 1 }} />
+          </Row>
+          <Row style={{ marginBottom: '2rem' }}>
+            <Row style={{ marginLeft: 'auto' }} spacing="1rem">
+              <Button>Download</Button>
+              <Button>Remove From Cart</Button>
+            </Row>
           </Row>
           <FileTable hits={viewer.files.hits} />
         </Column>
