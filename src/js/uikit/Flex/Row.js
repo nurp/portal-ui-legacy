@@ -1,5 +1,5 @@
 // Vendor
-import React, { PropTypes, Children } from 'react'
+import React, { PropTypes, Children, cloneElement } from 'react'
 import Radium from 'radium'
 
 /*----------------------------------------------------------------------------*/
@@ -24,17 +24,14 @@ const Row = ({ flex, wrap, style, spacing, children, ...props }) => (
   >
     {!spacing && children}
     {spacing && Children.map(children, (child, i) =>
-      child && (
-        <span
-          style={{
-            ...(i ? { marginLeft: spacing } : {}),
-            ...(child.props.style ? child.props.style : {}),
-          }}
-        >
-          {child}
-        </span>
-      )
-
+      child &&
+      cloneElement(child, {
+        ...child.props,
+        style: {
+          ...(i ? { marginLeft: spacing } : {}),
+          ...(child.props.style ? child.props.style : {}),
+        },
+      })
     )}
   </div>
 )

@@ -28,7 +28,9 @@ export const dropdown = {
 }
 
 export const margin = (left, right) => {
-  if (left) {
+  if (left && right) {
+    return { margin: '0 0.5rem' }
+  } else if (left) {
     return { marginLeft: '0.5rem' }
   } else if (right) {
     return { marginRight: '0.5rem' }

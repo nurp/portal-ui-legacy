@@ -1,5 +1,5 @@
 // Vendor
-import React, { PropTypes, Children } from 'react'
+import React, { PropTypes, Children, cloneElement } from 'react'
 
 // Custom
 import Row from './Row'
@@ -10,17 +10,14 @@ const Column = ({ style, children, spacing, ...props }) => (
   <Row style={{ ...style, flexDirection: 'column' }} {...props}>
     {!spacing && children}
     {spacing && Children.map(children, (child, i) =>
-      child && (
-        <span
-          style={{
-            ...(i ? { marginTop: spacing } : {}),
-            ...(child.props.style ? child.props.style : {}),
-          }}
-        >
-          {child}
-        </span>
-      )
-
+      child &&
+      cloneElement(child, {
+        ...child.props,
+        style: {
+          ...(i ? { marginTop: spacing } : {}),
+          ...(child.props.style ? child.props.style : {}),
+        },
+      })
     )}
   </Row>
 )

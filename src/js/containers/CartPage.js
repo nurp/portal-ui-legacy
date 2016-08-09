@@ -9,15 +9,15 @@ import FileSizeIcon from 'react-icons/lib/fa/floppy-o'
 
 // Custom
 import { Row, Column } from 'uikit/Flex'
-import Card from 'uikit/Card'
+import theme from 'theme'
 import CasesAggregations from 'containers/CasesAggregations'
 import FilesAggregations from 'containers/FilesAggregations'
 import FileTable from 'containers/FileTable'
 import SummaryCard from 'components/SummaryCard'
 import HowToDownload from 'components/HowToDownload'
 import CountCard from 'components/CountCard'
-import theme from 'theme'
-import Button from 'uikit/Button'
+import CartDownloadButton from 'components/CartDownloadButton'
+import RemoveFromCartButton from 'components/RemoveFromCartButton'
 
 /*----------------------------------------------------------------------------*/
 
@@ -40,7 +40,7 @@ const CartPage = ({ viewer, files }) => {
       {!!files.length && !!viewer.files.hits &&
         <Column>
           <Row spacing="2rem" style={{ marginBottom: '2rem' }}>
-            <Column spacing="0.6rem">
+            <Column spacing="0.8rem">
               <CountCard
                 title="FILES"
                 count={files.length}
@@ -71,8 +71,8 @@ const CartPage = ({ viewer, files }) => {
           </Row>
           <Row style={{ marginBottom: '2rem' }}>
             <Row style={{ marginLeft: 'auto' }} spacing="1rem">
-              <Button>Download</Button>
-              <Button>Remove From Cart</Button>
+              <CartDownloadButton />
+              <RemoveFromCartButton />
             </Row>
           </Row>
           <FileTable hits={viewer.files.hits} />
@@ -141,7 +141,8 @@ export default Relay.createContainer(
             aggregations(filters: $filters) {
               ${FilesAggregations.getFragment('aggregations')}
             }
-            hits(first: $first, offset: $offset, filters: $filters, sort: $sort) @include(if: $getFiles) {
+            hits(first: $first, offset: $offset, filters: $filters, sort: $sort)
+            @include(if: $getFiles) {
               ${FileTable.getFragment('hits')}
             }
           }

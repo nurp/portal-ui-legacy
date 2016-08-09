@@ -5,8 +5,8 @@ import React, { PropTypes } from 'react'
 import Card from 'uikit/Card'
 import { Row, Column } from 'uikit/Flex'
 
-const CountCard = ({ title, count, icon }) => (
-  <Card style={{ padding: '1rem', width: '15rem' }}>
+const CountCard = ({ title, count, icon, style }) => (
+  <Card style={{ padding: '1rem', width: '15rem', ...style }}>
     <Row>
       <Column>
         <Row style={{ fontSize: '1rem' }}>{title}</Row>
@@ -23,6 +23,7 @@ CountCard.propTypes = {
   title: PropTypes.string,
   count: PropTypes.number,
   icon: PropTypes.node,
+  style: PropTypes.object,
 }
 
 /*----------------------------------------------------------------------------*/
