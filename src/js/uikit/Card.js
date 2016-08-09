@@ -13,13 +13,17 @@ const styles = {
   },
 }
 
-const Card = ({ style, children, ...props }) => (
-  <div style={{ ...styles.card, ...style }} {...props}>{children}</div>
+const Card = ({ style, children, title, ...props }) => (
+  <div style={{ ...styles.card, ...style }} {...props}>
+    {title && <div>{title}</div>}
+    {children}
+  </div>
 )
 
 Card.propTypes = {
   children: PropTypes.node,
   style: PropTypes.object,
+  title: PropTypes.node,
 }
 
 /*----------------------------------------------------------------------------*/

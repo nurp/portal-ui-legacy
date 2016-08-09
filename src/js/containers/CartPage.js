@@ -84,6 +84,17 @@ const CartPage = ({ viewer, files }) => {
             />
             <Card style={{ flex: 1 }}>
               <div style={styles.header}>How to download files in my Cart?</div>
+              <p>
+                <strong>Download Manifest:</strong>
+                Downloading and analyzing large BAMs or large
+                number of files can be very resource intensive and so it is recommended
+                to use the GDC Data Transfer Tool for this purpose. The GDC Data
+                Transfer Tool provides several different download modes to provide
+                the most efficient transfer possible. For more info, click here.
+
+                <strong>Download Cart:</strong>
+                Download Files in your Cart directly from the Web Browser.
+              </p>
             </Card>
           </Row>
           <FileTable hits={viewer.files.hits} />
