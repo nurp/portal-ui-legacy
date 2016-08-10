@@ -28,7 +28,7 @@ const PieChart = ({ data }) => {
 
   const pie = d3.pie()
     // .sort(null)
-    // .value(d => getNestedValue(d, 'doc_count'.split('.')))
+    .value(d => getNestedValue(d, 'doc_count'.split('.')))
 
   const arc = d3.arc()
     .padRadius(outerRadius)

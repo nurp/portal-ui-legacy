@@ -8,16 +8,16 @@ import CaseIcon from 'react-icons/lib/fa/user'
 import FileSizeIcon from 'react-icons/lib/fa/floppy-o'
 
 // Custom
+import { formatFileSize } from 'utils'
 import { Row, Column } from 'uikit/Flex'
 import theme from 'theme'
-import CasesAggregations from 'containers/CasesAggregations'
-import FilesAggregations from 'containers/FilesAggregations'
 import FileTable from 'containers/FileTable'
 import SummaryCard from 'components/SummaryCard'
 import HowToDownload from 'components/HowToDownload'
 import CountCard from 'components/CountCard'
 import CartDownloadButton from 'components/CartDownloadButton'
 import RemoveFromCartButton from 'components/RemoveFromCartButton'
+import { toggleLoading } from 'dux/relayLoading'
 
 /*----------------------------------------------------------------------------*/
 
@@ -33,7 +33,7 @@ const styles = {
 }
 
 const CartPage = ({ viewer, files }) => {
-  console.log('...', viewer, files)
+  console.log('...', viewer)
   return (
     <Column style={styles.container}>
       {!files.length && <h1>Your cart is empty.</h1>}
@@ -53,14 +53,15 @@ const CartPage = ({ viewer, files }) => {
               />
               <CountCard
                 title="FILE SIZE"
-                count={0}
+                count={formatFileSize(viewer.summary.aggregations.fs.value)}
                 icon={<FileSizeIcon style={{ width: '4rem', height: '4rem' }} />}
               />
             </Column>
             <SummaryCard
               title="File Counts by Project"
-              data={[1, 2, 3, 4, 5]}
+              data={viewer.summary.aggregations.project__project_id.buckets}
               style={{ flex: 1 }}
+              footer={`${viewer.summary.aggregations.project__project_id.buckets.length} Projects`}
             />
             <SummaryCard
               title="File Counts by Authorization Level"
@@ -88,33 +89,30 @@ CartPage.propTypes = {
 }
 
 const getCartFilterVariables = files => ({
-  getFiles: true,
-  filters: {
-    content: [{
-      content: {
-        field: 'files.file_id',
-        value: files.map(x => x.file_id),
-      },
-      op: 'in',
-    }],
-    op: 'and',
-  },
+  content: [{
+    content: {
+      field: 'files.file_id',
+      value: files.map(x => x.file_id),
+    },
+    op: 'in',
+  }],
+  op: 'and',
 })
 
 const enhance = compose(
   lifecycle({
     componentDidMount() {
-      if (this.props.files.length) {
-        this.props.relay.setVariables(getCartFilterVariables(this.props.files))
+      const { files, relay } = this.props
+      if (files.length) {
+        relay.setVariables({ filters: getCartFilterVariables(files) })
       }
     },
-  }),
-  shouldUpdate((props, nextProps) => {
-    if (props.files.length !== nextProps.files.length && nextProps.files.length) {
-      props.relay.setVariables(getCartFilterVariables(nextProps.files))
-    }
-
-    return true
+    componentWillReceiveProps(nextProps) {
+      const { files, relay } = this.props
+      if (files.length !== nextProps.files.length && nextProps.files.length) {
+        relay.setVariables({ filters: getCartFilterVariables(nextProps.files) })
+      }
+    },
   })
 )
 
@@ -125,24 +123,27 @@ export default Relay.createContainer(
     initialVariables: {
       first: 20,
       offset: 0,
-      filters: {},
-      getFiles: false,
+      filters: getCartFilterVariables([{ file_id: 'DUMMY_ID' }]),
       sort: '',
     },
     fragments: {
       viewer: () => Relay.QL`
         fragment on Root {
-          cases {
+          summary {
             aggregations(filters: $filters) {
-              ${CasesAggregations.getFragment('aggregations')}
+              project__project_id {
+                buckets {
+                  case_count
+                  doc_count
+                  file_size
+                  key
+                }
+              }
+              fs { value }
             }
           }
           files {
-            aggregations(filters: $filters) {
-              ${FilesAggregations.getFragment('aggregations')}
-            }
-            hits(first: $first, offset: $offset, filters: $filters, sort: $sort)
-            @include(if: $getFiles) {
+            hits(first: $first, offset: $offset, filters: $filters, sort: $sort) {
               ${FileTable.getFragment('hits')}
             }
           }

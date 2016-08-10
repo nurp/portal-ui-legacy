@@ -47,11 +47,6 @@ export { FileTable }
 
 export default Relay.createContainer(
   connect(state => ({ tableColumns: state.tableColumns.files }))(FileTable), {
-    initialVariables: {
-      first: 0,
-      offset: 0,
-      filters: null,
-    },
     fragments: {
       hits: () => Relay.QL`
         fragment on FileConnection {

@@ -21,7 +21,10 @@ const CountCard = ({ title, count, icon, style }) => (
 
 CountCard.propTypes = {
   title: PropTypes.string,
-  count: PropTypes.number,
+  count: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
   icon: PropTypes.node,
   style: PropTypes.object,
 }
