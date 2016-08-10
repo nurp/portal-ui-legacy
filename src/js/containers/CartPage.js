@@ -1,6 +1,6 @@
 // Vendor
 import React, { PropTypes } from 'react'
-import { shouldUpdate, lifecycle, compose } from 'recompose'
+import { lifecycle, compose } from 'recompose'
 import Relay from 'react-relay'
 import { connect } from 'react-redux'
 import FileIcon from 'react-icons/lib/fa/file-o'
@@ -9,6 +9,7 @@ import FileSizeIcon from 'react-icons/lib/fa/floppy-o'
 
 // Custom
 import { formatFileSize } from 'utils'
+import { userCanDownloadFile } from 'utils/auth'
 import { Row, Column } from 'uikit/Flex'
 import theme from 'theme'
 import FileTable from 'containers/FileTable'
@@ -17,7 +18,6 @@ import HowToDownload from 'components/HowToDownload'
 import CountCard from 'components/CountCard'
 import CartDownloadButton from 'components/CartDownloadButton'
 import RemoveFromCartButton from 'components/RemoveFromCartButton'
-import { toggleLoading } from 'dux/relayLoading'
 
 /*----------------------------------------------------------------------------*/
 
@@ -32,8 +32,39 @@ const styles = {
   },
 }
 
-const CartPage = ({ viewer, files }) => {
+const getAuthCounts = ({ user, files }) => {
+  const defaultData = {
+    authorized: { count: 0, file_size: 0 },
+    unauthorized: { count: 0, file_size: 0 },
+  }
+
+  const authCountAndFileSizes = files.reduce((result, file) => {
+    const canDownloadKey = userCanDownloadFile({ user, file }) ? 'authorized' : 'unauthorized'
+    result[canDownloadKey].count += 1
+    result[canDownloadKey].file_size += file.file_size
+    return result
+  }, defaultData)
+
+  const data = [
+    {
+      key: 'authorized',
+      doc_count: authCountAndFileSizes.authorized.count || 0,
+      file_size: authCountAndFileSizes.authorized.file_size,
+    },
+    {
+      key: 'unauthorized',
+      doc_count: authCountAndFileSizes.unauthorized.count || 0,
+      file_size: authCountAndFileSizes.unauthorized.file_size,
+    },
+  ].filter(i => i.doc_count)
+
+  return data
+}
+
+const CartPage = ({ viewer, files, user }) => {
   console.log('...', viewer)
+  const authCounts = getAuthCounts({ user, files })
+
   return (
     <Column style={styles.container}>
       {!files.length && <h1>Your cart is empty.</h1>}
@@ -58,15 +89,16 @@ const CartPage = ({ viewer, files }) => {
               />
             </Column>
             <SummaryCard
+              style={{ flex: 1 }}
               title="File Counts by Project"
               data={viewer.summary.aggregations.project__project_id.buckets}
-              style={{ flex: 1 }}
               footer={`${viewer.summary.aggregations.project__project_id.buckets.length} Projects`}
             />
             <SummaryCard
-              title="File Counts by Authorization Level"
-              data={[1, 2]}
               style={{ flex: 1 }}
+              title="File Counts by Authorization Level"
+              data={authCounts}
+              footer={`${authCounts.length} Authorization Levels`}
             />
             <HowToDownload style={{ flex: 1 }} />
           </Row>
@@ -89,14 +121,14 @@ CartPage.propTypes = {
 }
 
 const getCartFilterVariables = files => ({
+  op: 'and',
   content: [{
+    op: 'in',
     content: {
       field: 'files.file_id',
       value: files.map(x => x.file_id),
     },
-    op: 'in',
   }],
-  op: 'and',
 })
 
 const enhance = compose(
@@ -119,7 +151,10 @@ const enhance = compose(
 export { CartPage }
 
 export default Relay.createContainer(
-  connect(state => state.cart)(enhance(CartPage)), {
+  connect(state => ({
+    ...state.cart,
+    ...state.auth,
+  }))(enhance(CartPage)), {
     initialVariables: {
       first: 20,
       offset: 0,
