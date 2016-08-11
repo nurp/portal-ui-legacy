@@ -1,10 +1,10 @@
 {
-  "name": "deploy-tool-ui",
+  "name": "deploybot-ui",
   "private": true,
   "version": "0.0.1",
   "repository": {
     "type": "git",
-    "url": "https://github.com/NCI-GDC/deploy-tool-ui.git"
+    "url": "https://github.com/NCI-GDC/deploybot-ui.git"
   },
   "homepage": "https://github.com/NCI-GDC/deploybot-ui",
   "author": {
