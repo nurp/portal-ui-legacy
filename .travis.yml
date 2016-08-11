@@ -6,7 +6,7 @@ dist: trusty
 services:
 - docker
 before_script:
-- ls -lash node_modules/frontend_dev_tools/travis
+- ls -lash
 - bash node_modules/frontend_dev_tools/travis/before_script.sh
 script:
 - bash node_modules/frontend_dev_tools/travis/script.sh
