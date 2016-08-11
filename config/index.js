@@ -42,6 +42,7 @@ config.set('globals', {
   'process.env': {
     NODE_ENV: JSON.stringify(process.env.NODE_ENV),
   },
+  __AUTH__: process.env.GDC_AUTH || 'https://gdc-portal.nci.nih.gov/auth',
   __API__: process.env.API || `${config.get('webpack_public_path')}api/`,
   NODE_ENV: process.env.NODE_ENV || 'stage',
   __DEV__: process.env.NODE_ENV === 'development',

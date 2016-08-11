@@ -3,6 +3,7 @@ import React, { PropTypes } from 'react'
 import Relay from 'react-relay'
 
 // Custom
+import DownloadManifestButton from 'containers/DownloadManifestButton'
 import CasesAggregations from 'containers/CasesAggregations'
 import FilesAggregations from 'containers/FilesAggregations'
 import FileTable from 'containers/FileTable'
@@ -41,6 +42,7 @@ const FilesPage = ({ viewer, relay }) => {
     <SearchPage
       Facets={Facets}
       Results={Results}
+      hits={viewer.files.hits}
     />
   )
 }
@@ -77,6 +79,7 @@ export default Relay.createContainer(FilesPage, {
             ${FilesAggregations.getFragment('aggregations')}
           }
           hits(first: $first, offset: $offset, filters: $filters, sort: $sort) {
+            ${DownloadManifestButton.getFragment('hits')}
             ${FileTable.getFragment('hits')}
           }
         }

@@ -4,7 +4,6 @@ import Radium from 'radium'
 import { withRouter } from 'react-router'
 import LeftArrow from 'react-icons/lib/fa/long-arrow-left'
 import ShoppingCartIcon from 'react-icons/lib/fa/shopping-cart'
-import DownloadIcon from 'react-icons/lib/fa/download'
 
 // Custom
 import { Row, Column } from 'uikit/Flex'
@@ -12,6 +11,7 @@ import Button from 'uikit/Button'
 import Info from 'uikit/Alerts/Info'
 import theme from 'theme'
 import CurrentFilters from 'components/CurrentFilters'
+import DownloadManifestButton from 'containers/DownloadManifestButton'
 
 /*----------------------------------------------------------------------------*/
 
@@ -35,6 +35,7 @@ const SearchPage = ({
   location,
   Results,
   Facets,
+  hits,
 }) => (
   <Row style={styles.container}>
     <Column style={styles.facetsPanel}>
@@ -59,12 +60,7 @@ const SearchPage = ({
 
       <Info>
         <Button leftIcon={<ShoppingCartIcon />}>Add all files to the cart</Button>
-        <Button
-          style={{ marginLeft: '0.3rem' }}
-          leftIcon={<DownloadIcon />}
-        >
-          Download Manifest
-        </Button>
+        <DownloadManifestButton hits={hits} />
       </Info>
 
       {Results}

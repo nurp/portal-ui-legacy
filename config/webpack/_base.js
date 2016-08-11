@@ -64,6 +64,7 @@ export default {
   plugins: [
     new webpack.DefinePlugin({
       'process.env': config.get('globals')['process.env'],
+      __AUTH__: JSON.stringify(config.get('globals').__AUTH__),
       __API__: JSON.stringify(config.get('globals').__API__),
       __DEV__: JSON.stringify(config.get('globals').__DEV__),
       __PROD__: JSON.stringify(config.get('globals').__PROD__),
