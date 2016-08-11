@@ -32,7 +32,7 @@ export default {
         include: `${config.get('dir_src')}/js`,
         query: {
           presets: [
-            'react', 'es2015-webpack', 'stage-0',
+            'react', 'es2015', 'stage-0',
             {
               plugins: babelPlugins,
             },
