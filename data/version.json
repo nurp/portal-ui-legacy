@@ -1,4 +1,6 @@
 {
-  "code": "ResourceNotFound",
-  "message": "/status does not exist"
+  "commit": "b2e07a6e95b23cfffc127a30681d215185d0dae5",
+  "status": "OK",
+  "tag": "1.1.4",
+  "version": 1
 }
