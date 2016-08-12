@@ -1,3 +1,12 @@
+<a name"1.2.2"></a>
+### 1.2.2 (2016-08-12)
+
+
+#### Bug Fixes
+
+* **app:** PRTL-237 data status banner ([7bc29d6d](https://github.com/NCI-GDC/portal-ui-legacy/commit/7bc29d6d))
+
+
 <a name"1.2.1"></a>
 ### 1.2.1 (2016-08-03)
 
