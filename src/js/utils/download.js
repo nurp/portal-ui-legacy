@@ -3,7 +3,8 @@ import _ from 'lodash'
 import $ from 'jquery'
 import Cookies from 'js-cookie'
 
-const cookiePath = document.querySelector('base').getAttribute('href')
+// const cookiePath = document.querySelector('base').getAttribute('href')
+const cookiePath = '/'
 const iFrameIdPrefix = '__downloader_iframe__'
 const formIdPrefix = '__downloader_form__'
 const getIframeResponse = iFrame => JSON.parse(iFrame.contents().find('body pre').text())
