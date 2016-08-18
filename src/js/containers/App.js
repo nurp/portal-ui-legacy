@@ -30,7 +30,6 @@ const App = ({ relayLoading, notification, children }) => (
   <Provider renderer={renderer} mountNode={mountNode}>
     <StyleRoot>
       <Style rules={global} />
-      <Helmet base={{ href: __BASE__ }} />
       <Overlay show={relayLoading}><Particle /></Overlay>
       <Notification id={notification.id} action={notification.action}>
         {notification.component}

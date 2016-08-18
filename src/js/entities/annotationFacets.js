@@ -1,4 +1,4 @@
-export const annotationFacets = [
+export default [
   {
     name: 'project__primary_site',
     title: 'Primary Site',

@@ -1,6 +1,6 @@
 import { PropTypes } from 'react'
 
-export const uikit = {
+export default {
   children: PropTypes.node,
   style: PropTypes.object,
 }
