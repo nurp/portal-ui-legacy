@@ -88,19 +88,6 @@ module ngApp.cart.controllers {
         defaultText: "authorization level",
         pluralDefaultText: "authorization levels"
       };
-
-      this.clinicalDataExportFilters = this.biospecimenDataExportFilters = {
-        'files.file_id': this.CartService.getFileIds()
-      };
-      this.clinicalDataExportExpands = ['demographic', 'diagnoses', 'family_histories', 'exposures'];
-      this.clinicalDataExportFileName = 'clinical.cart';
-
-      this.biospecimenDataExportExpands =
-        ['samples','samples.portions','samples.portions.analytes','samples.portions.analytes.aliquots',
-        'samples.portions.analytes.aliquots.annotations','samples.portions.analytes.annotations',
-        'samples.portions.submitter_id','samples.portions.slides','samples.portions.annotations',
-        'samples.portions.center'];
-      this.biospecimenDataExportFileName = 'biospecimen.cart';
     }
 
     getSummary() {
