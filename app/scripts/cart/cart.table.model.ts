@@ -50,27 +50,15 @@ module ngApp.cart.models {
         tdClassName: 'truncated-cell'
       }, {
         name: "Cases",
-        id: "cases",
-        td: (row, $scope) => {
-          function getParticipants(row, $filter) {
-            return row.cases.length == 1 ?
-                     '<a href="cases/' + row.cases[0].case_id + '">1</a>' :
-                     withFilter(row.cases.length, [{field: "files.file_id", value: row.file_id}], $filter);
-          }
-          return row.cases.length ? getParticipants(row, $scope.$filter) : 0;
-        },
+        id: "cases.case_id",
+        td: row => row.cases.length,
         thClassName: 'text-right',
         tdClassName: 'text-right'
       }, {
         name: "Project",
         id: "cases.project.project_id",
-        td: row => {
-          return _.unique(row.cases, c => c.project.project_id).map(c => {
-            return ('<a href="projects/' + c.project.project_id +
-                    '" data-tooltip="' + c.project.name +
-                    '" data-tooltip-append-to-body="true" data-tooltip-placement="right">'+ c.project.project_id + '</a>');
-          }).join('<br>');
-        },
+        toolTipText: row => _.unique(_.map(row.cases, p => p.project.name)).join(', '),
+        td: row => _.unique(_.map(row.cases, p => p.project.project_id)).join('<br>') || '--',
         sortable: true
       }, {
         name: "Data Type",
