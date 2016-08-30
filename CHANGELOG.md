@@ -1,3 +1,25 @@
+<a name"1.3.0"></a>
+## 1.3.0 (2016-08-30)
+
+
+#### Bug Fixes
+
+* **app:** PRTL-237 data status banner ([e4231faa](https://github.com/NCI-GDC/portal-ui-legacy/commit/e4231faa))
+* **cart:** [LGCY-23] remove links to case and project ([c57ea240](https://github.com/NCI-GDC/portal-ui-legacy/commit/c57ea240))
+* **customFacets:** PRTL-184 use actual checkbox ([9bfbd22c](https://github.com/NCI-GDC/portal-ui-legacy/commit/9bfbd22c), closes [PGDC-184](https://jira.opensciencedatacloud.org/browse/PGDC-184))
+* **facets:**
+  * LGCY-19 508 label name correction ([7ee3e124](https://github.com/NCI-GDC/portal-ui-legacy/commit/7ee3e124))
+  * remove extra label ([c56aaaea](https://github.com/NCI-GDC/portal-ui-legacy/commit/c56aaaea))
+* **file:** PRTL-86 hide padding if 0 assoc cases ([905787e8](https://github.com/NCI-GDC/portal-ui-legacy/commit/905787e8), closes [PGDC-86](https://jira.opensciencedatacloud.org/browse/PGDC-86))
+
+
+#### Features
+
+* **app:** LGCY-10 add favicon ([2245d6b7](https://github.com/NCI-GDC/portal-ui-legacy/commit/2245d6b7))
+* **cart:** [LGCY-18] combine metadata downloads ([d9f261c3](https://github.com/NCI-GDC/portal-ui-legacy/commit/d9f261c3))
+* **facet:** LGCY-9 open typeahead on input click ([b59b2722](https://github.com/NCI-GDC/portal-ui-legacy/commit/b59b2722), closes [PGDC-9](https://jira.opensciencedatacloud.org/browse/PGDC-9))
+
+
 <a name"1.2.2"></a>
 ### 1.2.2 (2016-08-12)
 
