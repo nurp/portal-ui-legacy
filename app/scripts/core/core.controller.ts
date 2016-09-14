@@ -2,6 +2,7 @@ module ngApp.core.controllers {
   import ICartService = ngApp.cart.services.ICartService;
   import INotifyService = ng.cgNotify.INotifyService;
   import IUserService = ngApp.components.user.services.IUserService;
+  import IGDCConfig = ngApp.IGDCConfig;
 
   export interface ICoreController {
     showWarning: boolean;
@@ -14,6 +15,8 @@ module ngApp.core.controllers {
     loading5s: boolean;
     loading8s: boolean;
     loadingTimers: Promise<any>[];
+    notifications: Array<Object> = [];
+    numDisplayedNotifications: number = 1; // the 1 is the hardcoded banner
 
     /* @ngInject */
     constructor(
@@ -25,8 +28,30 @@ module ngApp.core.controllers {
       private $cookies: ng.cookies.ICookiesService,
       UserService: IUserService,
       private $uibModal: any,
-      private $timeout
+      private $timeout,
+      private $window: IGDCWindowService,
+      private $document: any,
+      private Restangular: restangular.IService,
+      private config: IGDCConfig,
+      private $http: ng.IHttpService,
     ) {
+      this.$rootScope.$on('hideBanner', () => this.numDisplayedNotifications = this.numDisplayedNotifications - 1);
+
+      $http({
+        method: 'GET',
+        url: `${config.api.replace(/legacy/, '')}/notifications`
+      }).then(notifications => {
+        const filteredNotifications = (notifications.data || { data: [] }).data
+        .filter(n => _.includes(n.components, 'LEGACY_PORTAL') || _.includes(n.components, 'LEGACY_API'))
+        .map(n => {
+          n.dismissed = false;
+          return n;
+        });
+        this.notifications = _.sortBy(filteredNotifications, n => n.dismissible);
+        this.numDisplayedNotifications = this.numDisplayedNotifications + this.notifications.length;
+      }, (response) => {
+        console.log(`error getting notifications ${JSON.stringify(response)}`);
+      });
 
       this.loadingTimers = [];
 
