@@ -41,6 +41,7 @@ jspm_packages
 .chrome
 .vscode
 .idea
+.jest
 
 # Output
 dist
