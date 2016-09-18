@@ -1,14 +1,14 @@
 // Vendor
-import React from 'react'
-import { Route } from 'react-router'
+import React from 'react';
+import { Route } from 'react-router';
 
 // Custom
-import App from 'containers/App'
-import FilesRoute from 'routes/FilesRoute'
-import FileRoute from 'routes/FileRoute'
-import AnnotationsRoute from 'routes/AnnotationsRoute'
-import AnnotationRoute from 'routes/AnnotationRoute'
-import CartRoute from 'routes/CartRoute'
+import App from 'containers/App';
+import FilesRoute from 'routes/FilesRoute';
+import FileRoute from 'routes/FileRoute';
+import AnnotationsRoute from 'routes/AnnotationsRoute';
+import AnnotationRoute from 'routes/AnnotationRoute';
+import CartRoute from 'routes/CartRoute';
 
 /*----------------------------------------------------------------------------*/
 
@@ -25,8 +25,8 @@ const props = {
   indexRoute: {
     onEnter: (nextState, replace) => replace('/files'),
   },
-}
+};
 
 /*----------------------------------------------------------------------------*/
 
-export default <Route {...props} />
+export default <Route {...props} />;
