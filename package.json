@@ -36,7 +36,7 @@
     "style-builder": "git@github.com:alex-wilmer/style-builder.git#54de5af7147855fb324f53cfb8f056b04610a166"
   },
   "devDependencies": {
-    "hobbes": "../../js/hobbes"
+    "hobbes": "github:shanewilson/hobbes"
   },
   "engines": {
     "node": ">=6.2.0"
