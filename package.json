@@ -29,6 +29,7 @@
     "react-router-relay": "^0.13.5",
     "react-sortable": "^1.0.3",
     "recompose": "^0.20.2",
+    "recompose-relay": "^0.3.0",
     "redux": "^3.5.2",
     "redux-api-middleware": "^1.0.2",
     "redux-persist": "^3.2.2",
