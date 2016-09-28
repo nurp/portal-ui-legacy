@@ -5,6 +5,7 @@ module ngApp.files.controllers {
   import ICartService = ngApp.cart.services.ICartService;
   import IFilesService = ngApp.files.services.IFilesService;
   import IGqlService = ngApp.components.gql.IGqlService;
+  import IBiospecimenService = ngApp.components.ui.biospecimen.services.IBiospecimenService;
 
   interface ITableFilters {
     assocEntity: string;
@@ -31,12 +32,27 @@ module ngApp.files.controllers {
     };
 
     /* @ngInject */
-    constructor(public file: IFile,
-                public $scope: ng.IScope,
-                private CoreService: ICoreService,
-                private CartService: ICartService,
-                private FilesService: IFilesService
-                ) {
+    constructor(
+      public file: IFile,
+      public $scope: ng.IScope,
+      private CoreService: ICoreService,
+      private CartService: ICartService,
+      private FilesService: IFilesService,
+      private $filter: ng.IFilterService,
+      private BiospecimenService: IBiospecimenService
+    ) {
+
+      setTimeout(() => {
+        // long-scrollable-table should become its own directive
+        // --
+        // this function moves the "sticky" header columns which do not scroll
+        // naturally with the table
+        $('.long-scrollable-table-container').scroll(function () {
+          let el = $(this);
+          let div = el.find('.sticky div');
+          div.css({ transform: `translateX(-${el.scrollLeft()}px)` });
+        });
+      });
 
       CoreService.setPageTitle("File", file.file_name);
 
@@ -51,7 +67,14 @@ module ngApp.files.controllers {
         this.archiveCount = 0;
       }
 
-      _.every(file.associated_entities, (entity) => {
+      _.forEach(file.associated_entities, (entity) => {
+        let found = BiospecimenService.search(entity.entity_id,
+        _.find(file.cases, {"case_id": entity.case_id}),
+       ['submitter_id', 'sample_id', 'portion_id',
+          'analyte_id', 'slide_id', 'aliquot_id']
+        )
+        entity.sample_type = (_.first(found) || {sample_type : '--'}).sample_type;
+
         entity.annotations = _.filter(file.annotations, (annotation) => {
           return annotation.entity_id === entity.entity_id;
         });
