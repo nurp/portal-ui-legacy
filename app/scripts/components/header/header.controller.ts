@@ -32,7 +32,6 @@ module ngApp.components.header.controllers {
                 private UserService: IUserService, private $uibModal: any,
                 private $window: ng.IWindowService) {
       this.addedLanguages = !!_.keys(gettextCatalog.strings).length;
-      this.showBanner = true;
     }
 
     getToken(): void {
