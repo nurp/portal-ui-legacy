@@ -1,3 +1,12 @@
+<a name"1.3.1"></a>
+### 1.3.1 (2016-10-06)
+
+
+#### Features
+
+* **header:** DAT-251 remove power failure banner ([fe73f389](https://github.com/NCI-GDC/portal-ui-legacy/commit/fe73f389))
+
+
 <a name"1.3.0"></a>
 ## 1.3.0 (2016-08-30)
 
