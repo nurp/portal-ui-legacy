@@ -1,5 +1,12 @@
-<header id="gdc-header" class="container-fluid navbar navbar-default navbar-static-top" role="banner">
-    <div class="row legacy-header" style="padding: 15px 0;">
+<header id="gdc-header" class="navbar navbar-default navbar-static-top" role="banner">
+    <banner
+      data-ng-repeat="n in notifications track by n.id"
+      data-notification-id="{{n.id}}"
+      data-message="{{n.message}}"
+      data-level="{{n.level}}"
+      data-dismissible="n.dismissible"
+    ></banner>
+    <div class="row legacy-header" style="padding: 15px;">
         <div class="col-md-9">
             <div>
                 <a class="navbar-brand" data-ui-sref="search.files" data-translate tabindex="0">GDC Legacy Archive</a>
