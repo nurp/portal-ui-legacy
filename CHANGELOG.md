@@ -1,3 +1,25 @@
+<a name"1.4.0"></a>
+## 1.4.0 (2016-10-26)
+
+
+#### Bug Fixes
+
+* **app:** [LGCY-34] remove state/status from entity pages ([8aeab2b0](https://github.com/NCI-GDC/portal-ui-legacy/commit/8aeab2b0))
+* **css:** [PRTL-275] fix css to hide static header ([6107fbfd](https://github.com/NCI-GDC/portal-ui-legacy/commit/6107fbfd))
+* **facets:**
+  * LGCY-25 not cutoff anymore (#155) ([b1731627](https://github.com/NCI-GDC/portal-ui-legacy/commit/b1731627))
+  * [LGCY-33] remove date filter from current ([5d803ff0](https://github.com/NCI-GDC/portal-ui-legacy/commit/5d803ff0))
+  * LGCY-14 don't humanify in current ([e654f406](https://github.com/NCI-GDC/portal-ui-legacy/commit/e654f406))
+* **manifest:** [LGCY-31] dont allow DL when in progress (#149) ([e664303d](https://github.com/NCI-GDC/portal-ui-legacy/commit/e664303d))
+* **styles:** LGCY-16 remove break all from notify ([e53f0f42](https://github.com/NCI-GDC/portal-ui-legacy/commit/e53f0f42))
+
+
+#### Features
+
+* **app:** LGCY-2 update text for dl ([df85f438](https://github.com/NCI-GDC/portal-ui-legacy/commit/df85f438))
+* **header:** LGCY-5 notifications from endpoint (#152) ([46ba757e](https://github.com/NCI-GDC/portal-ui-legacy/commit/46ba757e))
+
+
 <a name"1.3.1"></a>
 ### 1.3.1 (2016-10-06)
 
