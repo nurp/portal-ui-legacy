@@ -285,7 +285,7 @@ module ngApp.search.models {
             {name: "diagnoses.age_at_diagnosis", title: "Age at diagnosis", collapsed: false, facetType: "range", convertDays: true},
             {name: "diagnoses.vital_status", title: "Vital Status", collapsed: false, facetType: "terms"},
             {name: "diagnoses.days_to_death", title: "Days to Death", collapsed: false, facetType: "range", hasGraph: true},
-            {name: "demographic.race", title: "Race", collapsed: false, facetType: "terms"},
+            {name: "demographic.race", title: "Race", collapsed: false, facetType: "terms", showTooltip: true},
             {name: "demographic.ethnicity", title: "Ethnicity", collapsed: false, facetType: "terms"}
         ]
     };
