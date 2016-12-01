@@ -154,32 +154,18 @@ function appRun(
   });
 
 
-  Restangular.all('status').get('').then(function(data){
+  Restangular.all('status').get('').then((data) => {
 
     config.apiVersion = data['tag'];
     config.apiCommitHash = data['commit'];
     config.apiTag = "https://github.com/NCI-GDC/gdcapi/releases/tag/" + config.apiVersion;
     config.apiCommitLink ="https://github.com/NCI-GDC/gdcapi/commit/" + config.apiCommitHash;
 
-    logVersionInfo(config)
+    logVersionInfo(config);
 
     if (+data.version !== +config.supportedAPI) {
       config.apiIsMismatched = true;
     }
-  }, function(response) {
-    notify.config({ duration: 60000 });
-    notify.closeAll();
-    notify({
-      message: "",
-      messageTemplate:
-        `<span>
-          Unable to connect to the GDC API. Make sure you have accepted the Security Certificate. <br>
-          If not, please click <a target='_blank' href="${config.api}/status">here</a>
-          and accept the Security Certificate
-        </span>`,
-      container: "#notification",
-      classes: "alert-danger"
-    });
   });
 
   UserService.login();

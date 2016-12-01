@@ -20,7 +20,7 @@ module ngApp.components.downloader.directive {
     const showErrorModal = (error: Object): void => {
       const warning = error.warning || error.message;
       $uibModal.open({
-        templateUrl: 'core/templates/' + (warning ? 'generic-warning' : 'internal-server-error') + '.html',
+        templateUrl: 'core/templates/' + (warning && error.status !== 500 ? 'generic-warning' : 'internal-server-error') + '.html',
         controller: 'WarningController',
         controllerAs: 'wc',
         backdrop: 'static',
@@ -53,7 +53,9 @@ module ngApp.components.downloader.directive {
       const cookieStillThere = (): boolean => downloadToken === $cookies.get(cookieKey);
       const handleError = (): Object => {
         const error = _.flow(_.attempt,
-          (e) => _.isError(e) ? {message: 'GDC download service is currently experiencing issues.'} : e)(_.partial(getIframeResponse, iFrame));
+        (e) => _.isError(e)
+        ? { message: `The GDC service has encountered an error. Please contact <a href="https://gdc.nci.nih.gov/support#gdc-help-desk" target="_blank">GDC Support</a> if the problem persists.` }
+          : e)(_.partial(getIframeResponse, iFrame));
         $log.error('Download failed: ', error);
         return error;
       };
@@ -73,12 +75,12 @@ module ngApp.components.downloader.directive {
         finished();
       };
 
-      const simpleMessage = '<span>Download preparation in progress. Please wait…</span><br /><br /> \
-        <a data-ng-click="cancelDownload()"><i class="fa fa-times-circle-o"></i> Cancel Download</a>';
+      const simpleMessage = `<span>Download preparation in progress. Please wait…</span><br /><br />
+        <a data-ng-click="cancelDownload()"><i class="fa fa-times-circle-o"></i> Cancel Download</a>`;
 
-      const detailedMessage = '<span>The download preparation can take time due to different factors (total file size, number of files, or number of concurrent users). \
-        We recommend that you use the <a href="https://gdc.nci.nih.gov/access-data/gdc-data-transfer-tool" target="_blank">GDC Data Transfer Tool</a> or cancel the download and try again later.</span><br /><br /> \
-        <a data-ng-click="cancelDownload()"><i class="fa fa-times-circle-o"></i> Cancel Download</a>';
+      const detailedMessage = `<span>The download preparation can take time due to a variety of factors (total file size, number of files, or number of concurrent users).
+        We recommend that you use the <a href="https://gdc.nci.nih.gov/access-data/gdc-data-transfer-tool" target="_blank">GDC Data Transfer Tool</a> or cancel the download and try again later.</span><br /><br />
+        <a data-ng-click="cancelDownload()"><i class="fa fa-times-circle-o"></i> Cancel Download</a>`;
 
       const checker = (): void => {
         if (iFrame[0].__frame__loaded) {
