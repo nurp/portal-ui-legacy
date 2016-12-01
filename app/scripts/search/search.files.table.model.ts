@@ -145,7 +145,7 @@ module ngApp.search.models {
       {name: "data_type", title: "Data Type", collapsed: false, facetType: "terms", removable: false },
       {name: "experimental_strategy", title: "Experimental Strategy", collapsed: false, facetType: "terms", removable: false },
       {name: "data_format", title: "Data Format", collapsed: false, facetType: "terms", removable: false },
-      {name: "platform", title: "Platform", collapsed: false, facetType: "terms", removable: false },
+      {name: "platform", title: "Platform", collapsed: false, facetType: "terms", removable: false, showTooltip: true },
       {name: "access", title: "Access Level", collapsed: false, facetType: "terms", removable: false },
     ]
   };

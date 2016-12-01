@@ -41,7 +41,18 @@
               data-tooltip-append-to-body="true"
               data-tooltip-placement="right"
               for="facet-checkbox-true-{{term.key}}">{{ ::term.key.toUpperCase() }}</label>
-        <label data-ng-if="tc.name.indexOf('project_id') === -1" for="facet-checkbox-true-{{term.key}}">
+        <label
+          data-ng-if="tc.name.indexOf('project_id') === -1 && showTooltip"
+          for="facet-checkbox-true-{{term.key}}"
+          data-tooltip-append-to-body="true"
+          data-uib-tooltip="{{::term.key}}"
+        >
+          {{ ::term.key | translate }}
+        </label>
+        <label
+          data-ng-if="tc.name.indexOf('project_id') === -1 && !showTooltip"
+          for="facet-checkbox-true-{{term.key}}"
+        >
           {{ ::term.key | translate }}
         </label>
       </span>
