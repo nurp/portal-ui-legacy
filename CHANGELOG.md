@@ -1,3 +1,17 @@
+<a name"1.5.0"></a>
+## 1.4.0 (2017-03-09)
+
+
+#### Features
+
+* **user:** LGCY-27 dl refresh token (#158)
+* **app:** [LGCY-25] add tooltip to 'Platform' and 'Race' facets (#160)
+* **app:** PRTL-295 update error messages (#1095) (#159)
+* **app:** [PGDC-3150] update website links to gdc.cancer.gov
+* **app:** 	fix/app cancer.gov links
+* **analytics:** ): add script tag
+
+
 <a name"1.4.0"></a>
 ## 1.4.0 (2016-10-26)
 
@@ -1738,11 +1752,11 @@
 * **facets:**
   * simplify facets directive, ts fixes ([ba3d210c](https://github.com/NCI-GDC/portal-ui/commit/ba3d210c253cef2feb3124e6552808a3843bbc9b))
   * Updates facet UI. ([455b82d0](https://github.com/NCI-GDC/portal-ui/commit/455b82d076e88c1e841eae76662e5decf385d86b), closes [OICR-63](https://jira.opensciencedatacloud.org/browse/OICR-63))
-* **header:** 
+* **header:**
 	* cart count in header tab ([1e43d4ce](https://github.com/NCI-GDC/portal-ui/commit/1e43d4ce4d9c39ef54eed6979ab0cc2d6db242d1), closes [OICR-59](https://jira.opensciencedatacloud.org/browse/OICR-59))
 	* highlight active header link ([9f04fb5c](https://github.com/NCI-GDC/portal-ui/commit/9f04fb5cb97ab19cf34a67d445e594cc3869798f))
 * **i18n:** Integrates i18n into application. ([e15366fa](https://github.com/NCI-GDC/portal-ui/commit/e15366faeeefe6da73f01478d6c2244591f621f0), closes [OICR-67](https://jira.opensciencedatacloud.org/browse/OICR-67))
-* **search:** 
+* **search:**
 	* Files can be added to cart. ([7437d426](https://github.com/NCI-GDC/portal-ui/commit/7437d4263e2700b6d6a3802ee844f7d82fc8288d), closes [OICR-61](https://jira.opensciencedatacloud.org/browse/OICR-61))
 	* updates search tables ([3aaf0b36](https://github.com/NCI-GDC/portal-ui/commit/3aaf0b367c83f0985bd206323d920a488866088a), closes [OICR-27](https://jira.opensciencedatacloud.org/browse/OICR-27))
 * **annotations:** Updates UI to new mockups. ([4e0347cd](https://github.com/NCI-GDC/portal-ui/commit/4e0347cda1750381024032e95cf32e037be96f06), closes [OICR-47](https://jira.opensciencedatacloud.org/browse/OICR-47))
