@@ -33,7 +33,7 @@ describe('Core:', function () {
         sinon.spy(FilesService.ds, 'get');
         sinon.spy(CoreService, 'retry');
 
-        httpBackend.whenGET("/files?filters=%7B%7D&from=1&size=20&sort=cases.project.project_id:asc").respond(500, '');
+        httpBackend.whenGET("/files?filters=%7B%7D&from=0&size=20&sort=cases.project.project_id:asc").respond(500, '');
 
         FilesService.getFiles();
         httpBackend.flush();
