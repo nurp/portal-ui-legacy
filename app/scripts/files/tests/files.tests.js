@@ -53,7 +53,7 @@ describe('Files:', function () {
       sinon.spy(FilesService.ds, 'get');
 
       var fs = {hits: [], facets: [], pagination: {}};
-      httpBackend.whenGET("/files?filters=%7B%7D&from=1&size=20&sort=cases.project.project_id:asc").respond(fs);
+      httpBackend.whenGET("/files?filters=%7B%7D&from=0&size=20&sort=cases.project.project_id:asc").respond(fs);
 
       FilesService.getFiles();
       httpBackend.flush();

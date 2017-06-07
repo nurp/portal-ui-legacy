@@ -174,7 +174,7 @@ module ngApp.core.controllers {
   }
 
   class WarningController {
-    defaultMsg: string = `The GDC service has encountered an error. Please contact <a href="https://gdc.nci.nih.gov/support#gdc-help-desk" target="_blank">GDC Support</a> if the problem persists.`;
+    defaultMsg: string = `The GDC service has encountered an error. Please contact <a href="https://gdc.cancer.gov/support#gdc-help-desk" target="_blank">GDC Support</a> if the problem persists.`;
 
     /* @ngInject */
     constructor(private $uibModalInstance, private warning) {}

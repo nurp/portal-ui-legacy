@@ -434,7 +434,7 @@ module ngApp.cart.directives {
               resolve: {
                 warning: () => "Your cart contains more than 5GBs of data. <br />"
                 + "Please select the \"Download > Manifest\" option and use the "
-                + "<a href='https://gdc.nci.nih.gov/access-data/gdc-data-transfer-tool' target='_blank'>"
+                + "<a href='https://gdc.cancer.gov/access-data/gdc-data-transfer-tool' target='_blank'>"
                 +   "GDC Data Transfer Tool"
                 + "</a>"
                 + " to continue."

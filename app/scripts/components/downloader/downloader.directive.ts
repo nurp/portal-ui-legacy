@@ -54,7 +54,7 @@ module ngApp.components.downloader.directive {
       const handleError = (): Object => {
         const error = _.flow(_.attempt,
         (e) => _.isError(e)
-        ? { message: `The GDC service has encountered an error. Please contact <a href="https://gdc.nci.nih.gov/support#gdc-help-desk" target="_blank">GDC Support</a> if the problem persists.` }
+        ? { message: `The GDC service has encountered an error. Please contact <a href="https://gdc.cancer.gov/support#gdc-help-desk" target="_blank">GDC Support</a> if the problem persists.` }
           : e)(_.partial(getIframeResponse, iFrame));
         $log.error('Download failed: ', error);
         return error;
@@ -79,7 +79,7 @@ module ngApp.components.downloader.directive {
         <a data-ng-click="cancelDownload()"><i class="fa fa-times-circle-o"></i> Cancel Download</a>`;
 
       const detailedMessage = `<span>The download preparation can take time due to a variety of factors (total file size, number of files, or number of concurrent users).
-        We recommend that you use the <a href="https://gdc.nci.nih.gov/access-data/gdc-data-transfer-tool" target="_blank">GDC Data Transfer Tool</a> or cancel the download and try again later.</span><br /><br />
+        We recommend that you use the <a href="https://gdc.cancer.gov/access-data/gdc-data-transfer-tool" target="_blank">GDC Data Transfer Tool</a> or cancel the download and try again later.</span><br /><br />
         <a data-ng-click="cancelDownload()"><i class="fa fa-times-circle-o"></i> Cancel Download</a>`;
 
       const checker = (): void => {
