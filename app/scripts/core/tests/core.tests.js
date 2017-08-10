@@ -59,7 +59,7 @@ describe('Core:', function () {
         sinon.spy(AnnotationsService.ds, 'get');
         sinon.spy(CoreService, 'retry');
 
-        httpBackend.whenGET("/annotations?filters=%7B%7D&from=1&size=20&sort=entity_type:asc").respond(500, '');
+        httpBackend.whenGET("/annotations?filters=%7B%7D&from=0&size=20&sort=entity_type:asc").respond(500, '');
 
         AnnotationsService.getAnnotations();
         httpBackend.flush();
