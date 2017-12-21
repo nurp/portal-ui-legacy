@@ -202,11 +202,12 @@ module ngApp.components.user.services {
         }
         const fileInCorrectState = (f: IFile): boolean => f.state === 'live';
         const intersectsWithFileAcl = (file: IFile): boolean => _.intersection(this.currentUser.projects.phs_ids || [], file.acl).length !== 0;
-        if ((this.isUserProject(file) || intersectsWithFileAcl(file)) && fileInCorrectState(file)) {
-          return true;
-        } else {
-          return false;
-        }
+
+        return (
+          fileInCorrectState(file) ||
+          this.isUserProject(file) ||
+          intersectsWithFileAcl(file)
+        )
       });
     }
 
