@@ -12,7 +12,7 @@ jobs:
   - stage: deploy
     script:
     - npm run build
-    - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+    - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
       quay.io
     - bash docker.sh
 notifications:
