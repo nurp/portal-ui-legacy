@@ -14,7 +14,7 @@ describe('Participant:', function () {
 
   before(function () {
     page = new ParticipantPage();
-    ptor = protractor.getInstance();
+    ptor = browser.get(browser.baseUrl)
   });
 
   it('should have a page title', function () {

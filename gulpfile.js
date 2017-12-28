@@ -301,7 +301,7 @@ gulp.task('karma:watch', function () {
 
 gulp.task('webdriver', $.protractor.webdriver_update);
 
-gulp.task('protractor', ['webdriver'], function () {
+gulp.task('protractor', ['webdriver', 'serve_no_test'], function () {
   return gulp.src('app/tests/**/*.spec.js')
       .pipe($.protractor.protractor({configFile: 'protractor.conf.js'}));
 });
@@ -416,6 +416,10 @@ gulp.task('pegjs', function () {
 gulp.task('serve', function (cb) {
   runSequence('default', ['karma:watch',
    'serve:web'], cb);
+});
+
+gulp.task('serve_no_test', function (cb) {
+  runSequence('default', ['serve:web'], cb);
 });
 
 // Build Production Files, the Default Task
