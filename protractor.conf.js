@@ -1,6 +1,6 @@
 exports.config = {
     // The file path to the selenium server jar.
-    seleniumServerJar: './node_modules/protractor/selenium/selenium-server-standalone-2.43.1.jar',
+    seleniumServerJar: './node_modules/protractor/selenium/selenium-server-standalone-2.45.0.jar',
     chromeOnly: true,
     capabilities: {
         browserName: 'chrome'
