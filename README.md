@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/NCI-GDC/portal-ui-legacy.svg?branch=next)](https://travis-ci.org/NCI-GDC/portal-ui-legacy)
+
 `Buzzwords: #typescript #angularjs #gulp #less #bower #karma`
 
 - [Technologies](#technologies)
