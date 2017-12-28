@@ -50,7 +50,7 @@ Setup Successful!
 #### Remote API & ElasticSearch, Local UI
 Connect to VPN and run ui with
 ```
-GDC_API=https://gdc-portal.nci.nih.gov/auth/api/v0 GDC_FAKE_AUTH=true npm start
+GDC_API=https://portal.gdc.cancer.gov/auth/api/v0 GDC_FAKE_AUTH=true npm start
 ```
 
 #### Local API, Remote ElastiSearch and Local UI
@@ -74,13 +74,13 @@ in a specific way. This includes `sudo` and running the app on port `80`. You wi
 that you don't have something else using that port (like a local apache setup).
 
 The following command should work:
-`sudo GDC_API=http://portal.gdc.nci.nih.gov:5000 GDC_PORT=80 npm start`
+`sudo GDC_API=http://portal.gdc.cancer.gov:5000 GDC_PORT=80 npm start`
 
 #### Modifying /etc/hosts
 In order to support local use of the login system we need to add the following
 to your `/etc/hosts` file:
 
-`127.0.0.1 gdc-portal.nci.nih.gov`
+`127.0.0.1 portal.gdc.cancer.gov`
 
 ### ElasticSearch
 If you are connecting to a local ES, edit path-to-elastic-search/config/elasticsearch.yml, find the line with http.max_content_length, add
@@ -136,11 +136,11 @@ Using ChromeDriver directly...
 The development server is setup using Browsersync
 
 ```
-❯ GDC_API="http://gdc-portal.nci.nih.gov:5000" npm start
+❯ GDC_API="http://portal.gdc.cancer.gov:5000" npm start
 [16:47:02] Environment Development
 ...
 [BS] Local URL: http://localhost:3000
-[BS] External URL: http://gdc-portal.nci.nih.gov:3000
+[BS] External URL: http://portal.gdc.cancer.gov:3000
 [BS] Serving files from: dist
 ```
 
