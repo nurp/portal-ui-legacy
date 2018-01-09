@@ -9,6 +9,9 @@ services:
 - docker
 jobs:
   include:
+  - stage: test
+    script:
+    - npm run test
   - stage: deploy
     script:
     - npm run build
