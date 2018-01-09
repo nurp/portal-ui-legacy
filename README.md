@@ -52,7 +52,7 @@ Setup Successful!
 #### Remote API & ElasticSearch, Local UI
 Connect to VPN and run ui with
 ```
-GDC_API=https://portal.gdc.cancer.gov/auth/api/v0 GDC_FAKE_AUTH=true npm start
+GDC_API=https://api.gdc.cancer.gov/v0/legacy GDC_FAKE_AUTH=true npm start
 ```
 
 #### Local API, Remote ElastiSearch and Local UI
@@ -72,11 +72,8 @@ Not recommended, would require loading local ES with data.
 
 ### Authentication
 In order to properly run the UI and login to test the auth you will need to run the application
-in a specific way. This includes `sudo` and running the app on port `80`. You will need to ensure
-that you don't have something else using that port (like a local apache setup).
-
-The following command should work:
-`sudo GDC_API=http://portal.gdc.cancer.gov:5000 GDC_PORT=80 npm start`
+in a specific way. Locally, auth can be faked with GDC_FAKE_AUTH=true npm start.
+To really test auth please vpn into an environment.
 
 #### Modifying /etc/hosts
 In order to support local use of the login system we need to add the following
