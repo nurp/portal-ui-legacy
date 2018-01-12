@@ -34,6 +34,9 @@ module ngApp.components.header.directives {
           $scope.dismissed = true;
           $scope.$emit('hideBanner');
         };
+        
+        var md = new Remarkable();
+        $scope.markdownRenderedMessage = md.render($scope.message);
       }
     };
   }

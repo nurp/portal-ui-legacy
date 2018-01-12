@@ -10,8 +10,7 @@
      }"
   >
   </span>
-  <span class="message">
-    {{ message }}
+  <span class="message" data-ng-bind-html="markdownRenderedMessage">
   </span>
   <span data-ng-if="dismissible" class="header-banner-dismiss"
         data-ng-click="dismiss()">
