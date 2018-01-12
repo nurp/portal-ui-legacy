@@ -73,6 +73,11 @@
 
   .message {
     flex: 32;
+
+    p {
+      margin: 0;
+    }
+    
   }
 
   &.dismissed,
@@ -85,6 +90,8 @@
 
   &.warning {
     background-color: #D39C3F;
+    color: #000000;
+    font-weight: bold;
   }
 
   &.error {
@@ -107,4 +114,15 @@
     text-decoration: underline;
   }
 
+}
+
+.header-banner a:link, .header-banner a:visited {
+  color: white;
+  text-decoration: underline;
+}
+
+.header-banner.warning a, .header-banner.warning a:visited {
+  color: #000;
+  font-weight: bold;
+  text-decoration: underline;
 }
