@@ -227,6 +227,12 @@ angular
       "templates"
     ])
     .config(appConfig)
+    .config(function($ariaProvider) {
+      $ariaProvider.config({
+        tabindex: false,
+        ariaExpanded: false
+      });
+    })
     .factory('RestFullResponse', function(Restangular: restangular.IService) {
       return Restangular.withConfig(function(RestangularConfigurer: restangular.IProvider) {
         RestangularConfigurer.setFullResponse(true);

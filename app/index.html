@@ -42,15 +42,15 @@
 </head>
 
 <body>
+<a href="#skip" class="skip-to-content" data-translate>Skip to Main Content</a>
 <div class="alert alert-warning m-margin-bottom-0 ng-cloak" ng-if="config.apiIsMismatched">
   <a onclick="window.location.reload()">
     A newer version of this software is available. Click here to refresh the page. <i class="fa fa-lg fa-refresh"></i>
   </a>
 </div>
 <div id="notification"></div>
-<a href="#skip" tabindex="1" class="skip-to-content" data-translate>Skip to Main Content</a>
 
-<div id="wrapper" aria-busy="true" aria-live="assertive" tabindex="0">
+<div id="wrapper" aria-busy="true" aria-live="assertive">
   <!--<div data-ng-if="!loaded || !modelLoaded" class="app-loading">-->
     <!--<i class="fa fa-spinner fa-spin fa-5x" data-ng-click="cancelRequest()"></i>-->
   <!--</div>-->
@@ -63,11 +63,11 @@
     <style>
       #loadingScreen { display: none; }
     </style>
-    <div id="body" tabindex="0">
+    <div id="body">
       <header id="gdc-header" class="container-fluid navbar navbar-default navbar-static-top" role="banner">
         <div class="row legacy-header" style="padding: 15px;">
           <div class="col-md-9">
-            <a class="navbar-brand" data-ui-sref="search.files" data-translate="" tabindex="0" href="/legacy-archive/search/f">
+            <a class="navbar-brand" data-ui-sref="search.files" data-translate="" href="/legacy-archive/search/f">
               <span class="ng-scope">GDC Legacy Archive</span>
             </a>
 
@@ -77,7 +77,7 @@
           </div>
 
           <div class="col-md-3">
-            <a class="gdc-data-portal-brand" href="https://portal.gdc.cancer.gov/" data-translate="" tabindex="1">
+            <a class="gdc-data-portal-brand" href="https://portal.gdc.cancer.gov/" data-translate="">
               <div class="ng-scope"><i class="gdc-data-portal-icon">GDC Data Portal</i></div>
               <div class="ng-scope">Launch the<br><strong>GDC Data Portal</strong></div>
             </a>
@@ -112,7 +112,7 @@
     </div>
   </div>
 
-  <div id="skip" class="gdc-body" data-ui-view role="main" tabindex="0"></div>
+  <div id="skip" class="gdc-body" data-ui-view role="main"></div>
 
 
   <!-- NCI Footer -->
