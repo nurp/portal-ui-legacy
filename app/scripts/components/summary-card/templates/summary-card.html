@@ -9,11 +9,17 @@
     </h4>
     <div class="pull-right" data-ng-show="data.length">
       <i class="fa fa-eraser" data-ng-show="activeFilters && config.filterKey"
-         data-ng-click="sc.clearFilters()" data-ng-keypress="sc.clearFilters()"></i>
+         data-ng-click="sc.clearFilters()" data-ng-keypress="sc.clearFilters()"
+         aria-label="clear filters"
+       ></i>
       <i class="fa fa-pie-chart" data-ng-show="mode === 'table'"
-         data-ng-click="mode = 'graph'"></i>
+         data-ng-click="mode = 'graph'"
+        aria-label="toggle graph"
+      ></i>
       <i class="fa fa-table" data-ng-show="mode === 'graph'"
-         data-ng-click="mode = 'table'"></i>
+         data-ng-click="mode = 'table'"
+        aria-label="toggle table"
+       ></i>
     </div>
   </div>
 
