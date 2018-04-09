@@ -1,5 +1,5 @@
 <div class="list-group-item" id="{{ title | lowercase | spaceReplace:'-' }}-facet-list-group">
-  <h4 class="list-group-item-heading facet-title"
+  <h2 class="list-group-item-heading facet-title"
       tabindex="0">
      <span data-ng-click="tc.toggle($event, 'collapsed')"
            role="button"
@@ -20,7 +20,7 @@
         data-ng-click="removeFunction()"
       ></i>
     </span>
-  </h4>
+  </h2>
 
   <div data-ng-show="!tc.collapsed">
     <p data-ng-show="(!tc.terms.length && !tc.error) || (tc.terms.length === 1 && tc.terms[0].key === '_missing')">

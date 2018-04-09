@@ -59,65 +59,66 @@
     <nga-header data-notifications="corec.notifications"></nga-header>
   </div>
 
-  <noscript>
-    <style>
-      #loadingScreen { display: none; }
-    </style>
-    <div id="body">
-      <header id="gdc-header" class="container-fluid navbar navbar-default navbar-static-top" role="banner">
-        <div class="row legacy-header" style="padding: 15px;">
-          <div class="col-md-9">
-            <a class="navbar-brand" data-ui-sref="search.files" data-translate="" href="/legacy-archive/search/f">
-              <span class="ng-scope">GDC Legacy Archive</span>
-            </a>
+  <main>
+    <noscript>
+      <style>
+        #loadingScreen { display: none; }
+      </style>
+      <div id="body">
+        <header id="gdc-header" class="container-fluid navbar navbar-default navbar-static-top" role="banner">
+          <div class="row legacy-header" style="padding: 15px;">
+            <div class="col-md-9">
+              <a class="navbar-brand" data-ui-sref="search.files" data-translate="" href="/legacy-archive/search/f">
+                <span class="ng-scope">GDC Legacy Archive</span>
+              </a>
 
-            <div style="font-size: 1.1rem">Legacy data is the original data that uses the old genome build hg19 as produced by the original submitter. Legacy data is not actively being updated in any way. Users should migrate to the harmonized data.
-              <br>Please visit the <a href="https://portal.gdc.cancer.gov/">GDC Data Portal</a>.
+              <div style="font-size: 1.1rem">Legacy data is the original data that uses the old genome build hg19 as produced by the original submitter. Legacy data is not actively being updated in any way. Users should migrate to the harmonized data.
+                <br>Please visit the <a href="https://portal.gdc.cancer.gov/">GDC Data Portal</a>.
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <a class="gdc-data-portal-brand" href="https://portal.gdc.cancer.gov/" data-translate="">
+                <div class="ng-scope"><i class="gdc-data-portal-icon">GDC Data Portal</i></div>
+                <div class="ng-scope">Launch the<br><strong>GDC Data Portal</strong></div>
+              </a>
             </div>
           </div>
+        </header>
 
-          <div class="col-md-3">
-            <a class="gdc-data-portal-brand" href="https://portal.gdc.cancer.gov/" data-translate="">
-              <div class="ng-scope"><i class="gdc-data-portal-icon">GDC Data Portal</i></div>
-              <div class="ng-scope">Launch the<br><strong>GDC Data Portal</strong></div>
-            </a>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="alert alert-info clearfix col-lg-8 col-lg-offset-2">
+                Javascript is required to use the features of this website. Please enable Javascript and reload the page.
+            </div>
           </div>
         </div>
-      </header>
+      </div>
 
-      <div class="container-fluid">
-        <div class="row">
-          <div class="alert alert-info clearfix col-lg-8 col-lg-offset-2">
-              Javascript is required to use the features of this website. Please enable Javascript and reload the page.
-          </div>
+    </noscript>
+
+    <div class="loading-overlay" ng-class="{ active: corec.loading }">
+      <div class="spinParticleContainer" ng-class="{ active: corec.loading5s }">
+        <div class="particle red"></div>
+        <div class="particle grey other-particle"></div>
+        <div class="particle blue other-other-particle"></div>
+      </div>
+      <div class="loading-message" ng-class="{ active: corec.loading5s }">
+        <div>Loading, please wait...</div>
+        <div class="long-loading-message" ng-class="{ active: corec.loading8s }">
+          <div>We are experiencing longer than normal load times.</div>
+          <div>Please contact <a target="_blank" href="https://gdc.cancer.gov/support#gdc-help-desk">
+            GDC Support</a> if the problem persists.</div>
         </div>
       </div>
     </div>
 
-  </noscript>
-
-  <div class="loading-overlay" ng-class="{ active: corec.loading }">
-    <div class="spinParticleContainer" ng-class="{ active: corec.loading5s }">
-      <div class="particle red"></div>
-      <div class="particle grey other-particle"></div>
-      <div class="particle blue other-other-particle"></div>
-    </div>
-    <div class="loading-message" ng-class="{ active: corec.loading5s }">
-      <div>Loading, please wait...</div>
-      <div class="long-loading-message" ng-class="{ active: corec.loading8s }">
-        <div>We are experiencing longer than normal load times.</div>
-        <div>Please contact <a target="_blank" href="https://gdc.cancer.gov/support#gdc-help-desk">
-          GDC Support</a> if the problem persists.</div>
-      </div>
-    </div>
-  </div>
-
-  <div id="skip" class="gdc-body" data-ui-view role="main"></div>
-
+    <div id="skip" class="gdc-body" data-ui-view></div>
+  </main>
 
   <!-- NCI Footer -->
-  <footer id="footer">
-    <div class="container" role="contentinfo">
+  <footer id="footer" role="contentinfo">
+    <div class="container">
       <div>
         <a href="/">Site Home</a>
          | <a href="http://www.cancer.gov/global/web/policies">Policies</a>
@@ -188,12 +189,21 @@
 
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-XXXXX-X', 'auto');
-  ga('send', 'pageview');
+(function(i, s, o, g, r, a, m) {
+  i['GoogleAnalyticsObject'] = r;
+  (i[r] =
+    i[r] ||
+    function() {
+      (i[r].q = i[r].q || []).push(arguments);
+    }),
+    (i[r].l = 1 * new Date());
+  (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
+  a.async = 1;
+  a.src = g;
+  m.parentNode.insertBefore(a, m);
+})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+ga('create', 'UA-XXXXX-X', 'auto');
+ga('send', 'pageview');
 </script>
 
 <script language="JavaScript" type="text/javascript" src="https://static.cancer.gov/webanalytics/wa_gdc_pageload.js"></script>
