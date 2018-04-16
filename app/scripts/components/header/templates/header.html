@@ -28,16 +28,16 @@
          aria-label="{{ 'Site Navigation' | translate }}">
         <div class="row">
             <div class="col-md-offset-4 col-md-4">
-                <ul class="nav navbar-nav" style="float:none;width: 205px;margin:0 auto">
+                <ul class="nav navbar-nav" style="float:none;width: 230px;margin:0 auto">
                     <li data-ng-class="{ active: hc.$state.includes('search') || hc.$state.includes('query') }"
                         id="header-data">
                     <a ui-sref="search.files" tabindex="0"><i class="fa fa-database"></i>
-                        <span data-translate>Files</span>
+                        <h1 class="navbar-tab" data-translate>Files</h1>
                     </a>
                     </li>
                     <li ui-sref-active="active" id="header-annotations">
                     <a ui-sref="annotations" tabindex="0"><i class="fa fa-align-left"></i>
-                        <span data-translate>Annotations</span>
+                        <h1 class="navbar-tab" data-translate>Annotations</h1>
                     </a>
                     </li>
                 </ul>

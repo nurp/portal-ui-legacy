@@ -1,5 +1,5 @@
 <div class="list-group-item" id="{{ title | lowercase | spaceReplace:'-' }}-facet-list-group">
-  <h4 class="list-group-item-heading h4 facet-title">
+  <h2 class="list-group-item-heading h2 facet-title">
     <label
         data-ng-click="ftc.toggle($event, 'collapsed')"
         data-ng-keypress="ftc.toggle($event, 'collapsed')"
@@ -16,7 +16,7 @@
         data-ng-click="ftc.clear()"
       ></i>
     </span>
-  </h4>
+  </h2>
 
   <p class="text-success facet-title" data-ng-repeat="active in ftc.actives">
     <span data-ng-click="ftc.remove(active)"

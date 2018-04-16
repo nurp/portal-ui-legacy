@@ -12,12 +12,24 @@
 }
 
 #gdc-header {
-    .legacy-header {
-        background: #fefefe; /* Old browsers */
-        background: -moz-linear-gradient(top, #fefefe 0%, #c7c7c7 100%); /* FF3.6-15 */
-        background: -webkit-linear-gradient(top, #fefefe 0%,#c7c7c7 100%); /* Chrome10-25,Safari5.1-6 */
-        background: linear-gradient(to bottom, #fefefe 0%,#c7c7c7 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    }
+  .legacy-header {
+    background: #fefefe; /* Old browsers */
+    background: -moz-linear-gradient(
+      top,
+      #fefefe 0%,
+      #c7c7c7 100%
+    ); /* FF3.6-15 */
+    background: -webkit-linear-gradient(
+      top,
+      #fefefe 0%,
+      #c7c7c7 100%
+    ); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(
+      to bottom,
+      #fefefe 0%,
+      #c7c7c7 100%
+    ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  }
 
   &.navbar-static-top {
     z-index: auto;
@@ -27,23 +39,23 @@
     background-color: #3d3d3d;
     padding: 0 20px;
     .navbar-nav {
-        a {
-            color: #fff;
-            padding-top: 10px;
-            padding-bottom: 10px;
-        }
-        a:hover {
-            background-color: #232323;
-        }
-        .active > a {
-            background-color: #232323;
-        }
-        .dropdown-menu a {
-            color: #232323;
-        }
-        .dropdown-menu a:hover {
-            color: #fff;
-        }
+      a {
+        color: #fff;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+      a:hover {
+        background-color: #232323;
+      }
+      .active > a {
+        background-color: #232323;
+      }
+      .dropdown-menu a {
+        color: #232323;
+      }
+      .dropdown-menu a:hover {
+        color: #fff;
+      }
     }
   }
 
@@ -77,7 +89,6 @@
     p {
       margin: 0;
     }
-    
   }
 
   &.dismissed,
@@ -89,15 +100,14 @@
   }
 
   &.warning {
-    background-color: #D39C3F;
+    background-color: #d39c3f;
     color: #000000;
     font-weight: bold;
   }
 
   &.error {
-    background-color: #83001E;
+    background-color: #83001e;
   }
-
 }
 
 .header-banner-link {
@@ -113,16 +123,23 @@
   &:hover {
     text-decoration: underline;
   }
-
 }
 
-.header-banner a:link, .header-banner a:visited {
+.header-banner a:link,
+.header-banner a:visited {
   color: white;
   text-decoration: underline;
 }
 
-.header-banner.warning a, .header-banner.warning a:visited {
+.header-banner.warning a,
+.header-banner.warning a:visited {
   color: #000;
   font-weight: bold;
   text-decoration: underline;
+}
+
+h1.navbar-tab {
+  font-size: 1.1em !important;
+  display: inline;
+  color: inherit !important;
 }
