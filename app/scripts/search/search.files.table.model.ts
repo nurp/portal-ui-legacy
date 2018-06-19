@@ -138,7 +138,6 @@ module ngApp.search.models {
       "cases.case_id",
       "cases.project.project_id",
       "cases.project.name",
-      "file_state",
       "acl",
     ],
     facets: [

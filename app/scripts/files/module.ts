@@ -21,7 +21,6 @@ module ngApp.files {
             ],
             fields: [
               "state",
-              "file_state",
               "md5sum",
               "access",
               "data_format",
