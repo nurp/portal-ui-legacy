@@ -25,9 +25,9 @@ module ngApp.components.tables.pagination.controllers {
     refresh() {
       var pagination = this.LocationService.pagination(),
           current = this.$scope.paging;
-
+          
       current.size = isNaN(current.size) || current.size <= 10 ? 10 : current.size;
-      current.from = (current.size * (current.page - 1)) + 1;
+      current.from = (current.size * (current.page - 1));
 
       var obj = {
         from: current.from,
