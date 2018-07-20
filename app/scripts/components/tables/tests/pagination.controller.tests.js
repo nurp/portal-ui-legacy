@@ -10,7 +10,7 @@ describe('Pagination:', function () {
       scope.paging = {
         page: 1,
         size: 10,
-        from: 1
+        from: 0
       };
       scope.page = "test";
 
@@ -19,7 +19,7 @@ describe('Pagination:', function () {
 
       var paging = LocationService.pagination()[scope.page];
       expect(paging.size).to.equal(10);
-      expect(paging.from).to.equal(1);
+      expect(paging.from).to.equal(0);
     }));
 
     it('should update paging size', inject(function ($rootScope, $controller, LocationService) {
