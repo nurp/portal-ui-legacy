@@ -71,7 +71,7 @@
     "sinon": "1.14.1",
     "sinon-chai": "2.8.0",
     "typescript": "1.8.10",
-    "typings": "0.7.3"
+    "typings": "2.1.1"
   },
   "scripts": {
     "postinstall": "bower install --quiet && typings install",
