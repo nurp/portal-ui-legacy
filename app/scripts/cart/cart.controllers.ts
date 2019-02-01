@@ -287,7 +287,6 @@ module ngApp.cart.controllers {
           "file_size",
           "cases.project.project_id",
           "cases.project.name",
-          "file_state",
           "state",
           "acl",
         ],

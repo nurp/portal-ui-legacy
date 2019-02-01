@@ -333,7 +333,6 @@ module ngApp.cart.services {
         return {
           acl: f.acl,
           state: f.state,
-          file_state: f.file_state,
           access: f.access,
           file_id: f.file_id,
           file_size: f.file_size,
